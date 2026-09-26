@@ -1041,6 +1041,11 @@ button {
     font-size: var(--font-base);
 
     line-height: var(--line-height-base);
+
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .resource-footer {
@@ -1898,4 +1903,39 @@ button {
 
         padding: var(--space-6);
     }
+}
+
+/* ==================================================
+   NOTIFICATION NAVIGATION BADGE
+   ================================================== */
+
+.notifications-nav-link {
+  position: relative;
+}
+
+.notification-unread-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 18px;
+  height: 18px;
+
+  margin-left: 5px;
+  padding: 0 5px;
+
+  border-radius: 999px;
+
+  background: #dc2626;
+  color: #ffffff;
+
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+
+  vertical-align: middle;
+}
+
+.notification-unread-badge[hidden] {
+  display: none;
 }

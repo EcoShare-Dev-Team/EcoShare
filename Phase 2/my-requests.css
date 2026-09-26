@@ -2,437 +2,778 @@
    EcoShare — My Requests
 ========================================== */
 
-
 /* ==========================================
    HERO
 ========================================== */
 
 .requests-hero {
-    padding: 110px 0 70px;
-    background: var(--color-background-soft);
-    border-bottom: var(--border-width) solid var(--color-border-light);
+  padding: 120px 0 55px;
+
+  background: var(--color-background-soft);
+
+  border-bottom: var(--border-width) solid var(--color-border-light);
 }
 
 .requests-hero-content {
-    max-width: 760px;
+  max-width: 760px;
 }
 
 .requests-label {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-2);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
 
-    margin-bottom: var(--space-4);
+  margin-bottom: var(--space-4);
 
-    color: var(--color-primary-dark);
-    font-size: var(--font-sm);
-    font-weight: var(--font-weight-semibold);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
+  color: var(--color-primary-dark);
+
+  font-size: var(--font-sm);
+  font-weight: var(--font-weight-semibold);
+
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.requests-label i {
+  font-size: 14px;
 }
 
 .requests-hero h1 {
-    margin-bottom: var(--space-4);
+  margin-bottom: var(--space-4);
+
+  color: var(--color-black);
 }
 
 .requests-hero p {
-    max-width: 650px;
-    color: var(--color-text-secondary);
-    font-size: var(--font-lg);
-}
+  max-width: 650px;
 
+  color: var(--color-text-secondary);
+
+  font-size: var(--font-lg);
+  line-height: var(--line-height-body);
+}
 
 /* ==========================================
    REQUESTS SECTION
 ========================================== */
 
 .requests-section {
-    padding: var(--space-16) 0;
+  padding: var(--space-16) 0;
+
+  background: var(--color-white);
 }
 
 .requests-header {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: var(--space-6);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
 
-    margin-bottom: var(--space-8);
+  gap: var(--space-6);
+
+  margin-bottom: var(--space-8);
 }
 
 .requests-header h2 {
-    margin-bottom: var(--space-2);
+  margin-bottom: var(--space-2);
+
+  color: var(--color-black);
+
+  font-size: var(--font-2xl);
+  line-height: var(--line-height-heading);
 }
 
 .requests-header p {
-    color: var(--color-text-secondary);
-}
+  color: var(--color-text-secondary);
 
+  font-size: var(--font-base);
+}
 
 /* ==========================================
    REQUEST LIST
 ========================================== */
 
 .requests-list {
-    display: grid;
-    gap: var(--space-5);
-}
+  display: flex;
+  flex-direction: column;
 
+  gap: var(--space-5);
+}
 
 /* ==========================================
    REQUEST CARD
 ========================================== */
 
 .request-card {
-    display: grid;
-    grid-template-columns: 180px 1fr auto;
-    gap: var(--space-6);
-    align-items: center;
+  position: relative;
 
-    padding: var(--space-6);
+  display: grid;
 
-    background: var(--color-white);
-    border: var(--border-width) solid var(--color-border-light);
-    border-radius: var(--radius-lg);
+  grid-template-columns:
+    160px
+    minmax(0, 1fr);
 
-    box-shadow: var(--shadow-sm);
+  gap: var(--space-6);
 
-    transition:
-        transform var(--transition-fast),
-        box-shadow var(--transition-fast);
+  width: 100%;
+
+  padding: var(--space-5);
+
+  background: var(--color-white);
+
+  border: var(--border-width) solid var(--color-border-light);
+
+  border-radius: var(--radius-xl);
+
+  box-shadow: var(--shadow-sm);
+
+  transition:
+    transform var(--transition-normal),
+    box-shadow var(--transition-normal),
+    border-color var(--transition-normal);
 }
 
 .request-card:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
-}
+  transform: translateY(-3px);
 
+  border-color: var(--color-border);
+
+  box-shadow: var(--shadow-md);
+}
 
 /* ==========================================
    REQUEST IMAGE
 ========================================== */
 
 .request-image {
-    width: 180px;
-    height: 140px;
+  width: 160px;
+  height: 160px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    overflow: hidden;
+  overflow: hidden;
 
-    background: var(--color-background-soft);
-    border-radius: var(--radius-md);
+  background: var(--color-background-green);
+
+  border-radius: var(--radius-lg);
 }
 
 .request-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: contain;
 }
 
 .request-image i {
-    color: var(--color-text-muted);
-    font-size: 2rem;
-}
+  color: var(--color-primary);
 
+  font-size: 42px;
+}
 
 /* ==========================================
    REQUEST CONTENT
 ========================================== */
 
 .request-content {
-    min-width: 0;
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+
+  padding-right: 125px;
 }
 
 .request-category {
-    display: inline-block;
+  width: fit-content;
 
-    margin-bottom: var(--space-2);
+  margin-bottom: var(--space-2);
 
-    color: var(--color-primary-dark);
-    font-size: var(--font-sm);
-    font-weight: var(--font-weight-semibold);
+  color: var(--color-primary-dark);
+
+  font-size: var(--font-xs);
+  font-weight: var(--font-weight-bold);
+
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
 .request-content h3 {
-    margin-bottom: var(--space-2);
+  margin: 0 0 var(--space-2);
 
-    font-size: var(--font-xl);
+  color: var(--color-black);
+
+  font-size: var(--font-xl);
+  line-height: var(--line-height-heading);
+
+  font-weight: var(--font-weight-bold);
 }
 
 .request-description {
-    margin-bottom: var(--space-4);
+  max-width: 760px;
 
-    color: var(--color-text-secondary);
-    line-height: 1.6;
+  margin: 0;
+
+  color: var(--color-text-secondary);
+
+  font-size: var(--font-base);
+  line-height: var(--line-height-body);
+
+  display: -webkit-box;
+
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
 }
 
-.request-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-4);
+/* ==========================================
+   REQUEST META
+========================================== */
 
-    color: var(--color-text-secondary);
-    font-size: var(--font-sm);
+.request-meta {
+  display: flex;
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: var(--space-5);
+
+  margin-top: var(--space-4);
 }
 
 .request-meta span {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-2);
+  display: inline-flex;
+  align-items: center;
+
+  gap: 7px;
+
+  color: var(--color-text-muted);
+
+  font-size: var(--font-sm);
 }
 
+.request-meta span i {
+  color: var(--color-primary);
+
+  font-size: 13px;
+}
 
 /* ==========================================
-   STATUS
+   REQUEST STATUS
 ========================================== */
 
 .request-status {
-    min-width: 120px;
+  position: absolute;
 
-    text-align: center;
+  top: var(--space-5);
+  right: var(--space-5);
+
+  z-index: 1;
 }
 
 .status-badge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
-    padding: 8px 14px;
+  gap: 7px;
 
-    border-radius: var(--radius-full);
+  min-width: 105px;
 
-    font-size: var(--font-sm);
-    font-weight: var(--font-weight-semibold);
+  padding: 8px 12px;
+
+  border-radius: var(--radius-pill);
+
+  font-size: var(--font-xs);
+  font-weight: var(--font-weight-semibold);
+
+  white-space: nowrap;
 }
+
+.status-badge i {
+  font-size: 11px;
+}
+
+/* ==========================================
+   STATUS — PENDING
+========================================== */
 
 .status-pending {
-    background: var(--color-background-soft);
-    color: var(--color-primary-dark);
+  background: #fff7df;
+
+  color: #946c00;
 }
+
+/* ==========================================
+   STATUS — APPROVED
+========================================== */
 
 .status-approved {
-    background: var(--color-accent);
-    color: var(--color-primary-deep);
+  background: #e9f6df;
+
+  color: var(--color-primary-dark);
 }
+
+/* ==========================================
+   STATUS — REJECTED
+========================================== */
 
 .status-rejected {
-    background: var(--color-background-soft);
-    color: var(--color-text-secondary);
+  background: #fbeaea;
+
+  color: #a33a3a;
 }
+
+/* ==========================================
+   STATUS — CANCELLED
+========================================== */
 
 .status-cancelled {
-    background: var(--color-background-soft);
-    color: var(--color-text-secondary);
+  background: var(--color-background-soft);
+
+  color: var(--color-text-muted);
 }
 
+/* ==========================================
+   STATUS — RETURNED
+========================================== */
 
-/*/* ==========================================
+.status-returned {
+  background: #e9f6df;
+
+  color: var(--color-primary-dark);
+}
+
+/* ==========================================
    REQUEST ACTIONS
-   ========================================== */
+========================================== */
 
 .request-actions {
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
-    margin-top: var(--space-4);
+  display: flex;
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: var(--space-3);
+
+  margin-top: var(--space-4);
 }
 
-.request-actions {
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
-    margin-top: var(--space-4);
+.request-actions button {
+  min-width: 145px;
+  min-height: 40px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  padding: 0 16px;
+
+  border-radius: var(--radius-md);
+
+  font-size: var(--font-sm);
+  font-weight: var(--font-weight-semibold);
+
+  cursor: pointer;
+
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast),
+    transform var(--transition-fast);
 }
 
-.view-request-btn,
-.withdraw-request-btn {
-    flex: 1;
-    min-height: 46px;
-    padding: 12px 18px;
-    border-radius: var(--radius-md);
-
-    font-size: var(--font-sm);
-    font-weight: var(--font-weight-semibold);
-
-    cursor: pointer;
-
-    transition:
-        background-color var(--transition-fast),
-        color var(--transition-fast),
-        border-color var(--transition-fast),
-        transform var(--transition-fast);
+.request-actions button i {
+  font-size: 13px;
 }
 
-
-/* View Resource */
+/* ==========================================
+   VIEW RESOURCE
+========================================== */
 
 .view-request-btn {
-    border: none;
-    background: var(--color-primary);
-    color: var(--color-white);
+  border: var(--border-width) solid var(--color-primary);
+
+  background: var(--color-primary);
+
+  color: var(--color-white);
 }
 
 .view-request-btn:hover {
-    background: var(--color-primary-dark);
-    transform: translateY(-1px);
+  background: var(--color-primary-dark);
+
+  border-color: var(--color-primary-dark);
+
+  transform: translateY(-1px);
 }
 
-
-/* Withdraw Request */
+/* ==========================================
+   WITHDRAW REQUEST
+========================================== */
 
 .withdraw-request-btn {
-    border: var(--border-width) solid var(--color-border);
-    background: var(--color-white);
-    color: var(--color-text-secondary);
+  border: var(--border-width) solid var(--color-border);
+
+  background: var(--color-white);
+
+  color: var(--color-text-secondary);
 }
 
 .withdraw-request-btn:hover {
-    background: #fff5f5;
-    border-color: #d9534f;
-    color: #c0392b;
-    transform: translateY(-1px);
+  background: #fff5f5;
+
+  border-color: #d9534f;
+
+  color: #c0392b;
+
+  transform: translateY(-1px);
 }
 
 .withdraw-request-btn:disabled {
-    opacity: 0.65;
-    cursor: not-allowed;
-    transform: none;
+  opacity: 0.65;
+
+  cursor: not-allowed;
+
+  transform: none;
 }
 
+/* ==========================================
+   RETURN RESOURCE
+========================================== */
 
-/* Mobile */
+.return-resource-btn {
+  border: var(--border-width) solid var(--color-primary);
 
-@media (max-width: 600px) {
+  background: var(--color-white);
 
-    .request-actions {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .view-request-btn,
-    .withdraw-request-btn {
-        width: 100%;
-    }
+  color: var(--color-primary-dark);
 }
 
+.return-resource-btn:hover {
+  background: var(--color-background-green);
+
+  border-color: var(--color-primary);
+
+  transform: translateY(-1px);
+}
+
+.return-resource-btn:disabled {
+  opacity: 0.65;
+
+  cursor: not-allowed;
+
+  transform: none;
+}
 
 /* ==========================================
    EMPTY STATE
 ========================================== */
 
 .empty-requests {
-    padding: 70px 20px;
+  padding: 70px 20px;
 
-    text-align: center;
+  text-align: center;
 
-    border: var(--border-width) dashed var(--color-border);
-    border-radius: var(--radius-lg);
-    background: var(--color-background-soft);
+  border: var(--border-width) dashed var(--color-border);
+
+  border-radius: var(--radius-xl);
+
+  background: var(--color-background-soft);
 }
 
 .empty-requests-icon {
-    margin-bottom: var(--space-5);
+  margin-bottom: var(--space-5);
 
-    color: var(--color-primary);
-    font-size: 3rem;
+  color: var(--color-primary);
+
+  font-size: 3rem;
 }
 
 .empty-requests h3 {
-    margin-bottom: var(--space-3);
+  margin-bottom: var(--space-3);
+
+  color: var(--color-black);
+
+  font-size: var(--font-xl);
 }
 
 .empty-requests p {
-    max-width: 520px;
-    margin: 0 auto var(--space-6);
+  max-width: 520px;
 
-    color: var(--color-text-secondary);
+  margin: 0 auto var(--space-6);
+
+  color: var(--color-text-secondary);
+
+  line-height: var(--line-height-body);
 }
-
 
 /* ==========================================
    ERROR STATE
 ========================================== */
 
 .requests-error {
-    padding: 50px 20px;
+  padding: var(--space-10);
 
-    text-align: center;
+  text-align: center;
 
-    border: var(--border-width) solid var(--color-border-light);
-    border-radius: var(--radius-lg);
-    background: var(--color-background-soft);
+  border: var(--border-width) solid var(--color-border-light);
+
+  border-radius: var(--radius-xl);
+
+  background: var(--color-background-soft);
 }
 
-.requests-error i {
-    margin-bottom: var(--space-4);
+.requests-error > i {
+  display: block;
 
-    color: var(--color-text-secondary);
-    font-size: 2.5rem;
+  margin-bottom: var(--space-4);
+
+  color: var(--color-primary);
+
+  font-size: 30px;
 }
 
 .requests-error h3 {
-    margin-bottom: var(--space-2);
+  margin-bottom: var(--space-2);
+
+  color: var(--color-black);
+
+  font-size: var(--font-lg);
 }
 
 .requests-error p {
-    color: var(--color-text-secondary);
+  color: var(--color-text-secondary);
+
+  font-size: var(--font-sm);
 }
 
-
 /* ==========================================
-   RESPONSIVE
+   TABLET
 ========================================== */
 
 @media (max-width: 900px) {
+  .requests-hero {
+    padding: 100px 0 60px;
+  }
 
-    .request-card {
-        grid-template-columns: 140px 1fr;
-    }
+  .requests-section {
+    padding: var(--space-14) 0;
+  }
 
-    .request-image {
-        width: 140px;
-        height: 120px;
-    }
+  .request-card {
+    grid-template-columns:
+      140px
+      minmax(0, 1fr);
 
-    .request-status {
-        grid-column: 2;
-        justify-self: start;
-    }
+    gap: var(--space-5);
 
+    padding: var(--space-5);
+  }
+
+  .request-image {
+    width: 140px;
+    height: 140px;
+  }
+
+  .request-content {
+    padding-right: 115px;
+  }
+
+  .request-content h3 {
+    font-size: var(--font-lg);
+  }
+
+  .request-description {
+    -webkit-line-clamp: 2;
+  }
+
+  .request-actions button {
+    min-width: 135px;
+  }
 }
 
+/* ==========================================
+   MOBILE
+========================================== */
 
 @media (max-width: 700px) {
+  .requests-hero {
+    padding: 90px 0 55px;
+  }
 
-    .requests-hero {
-        padding: 90px 0 55px;
-    }
+  .requests-hero p {
+    font-size: var(--font-base);
+  }
 
-    .requests-section {
-        padding: var(--space-12) 0;
-    }
+  .requests-section {
+    padding: var(--space-12) 0;
+  }
 
-    .requests-header {
-        align-items: flex-start;
-        flex-direction: column;
-    }
+  .requests-header {
+    align-items: flex-start;
 
-    .request-card {
-        grid-template-columns: 1fr;
-    }
+    flex-direction: column;
 
-    .request-image {
-        width: 100%;
-        height: 180px;
-    }
+    gap: var(--space-3);
 
-    .request-status {
-        grid-column: auto;
-        justify-self: start;
-    }
+    margin-bottom: var(--space-6);
+  }
 
+  .requests-header h2 {
+    font-size: var(--font-xl);
+  }
+
+  .request-card {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: var(--space-4);
+
+    padding: var(--space-4);
+  }
+
+  .request-image {
+    width: 100%;
+    height: 190px;
+  }
+
+  .request-content {
+    padding-right: 0;
+  }
+
+  .request-category {
+    margin-bottom: var(--space-2);
+  }
+
+  .request-content h3 {
+    font-size: var(--font-lg);
+  }
+
+  .request-description {
+    -webkit-line-clamp: 3;
+  }
+
+  .request-meta {
+    gap: var(--space-3);
+
+    margin-top: var(--space-3);
+  }
+
+  .request-status {
+    position: static;
+
+    align-self: flex-start;
+
+    order: -1;
+  }
+
+  .request-actions {
+    width: 100%;
+
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: var(--space-2);
+
+    margin-top: var(--space-4);
+  }
+
+  .request-actions button {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .empty-requests {
+    padding: 55px 20px;
+  }
+
+  .requests-error {
+    padding: 45px 20px;
+  }
 }
 
+/* ==========================================
+   SMALL MOBILE
+========================================== */
+
+@media (max-width: 400px) {
+  .requests-hero {
+    padding-top: 80px;
+  }
+
+  .request-image {
+    height: 170px;
+  }
+
+  .request-content h3 {
+    font-size: var(--font-base);
+  }
+
+  .request-meta {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: var(--space-2);
+  }
+}
+
+/* REQUEST FILTERS */
+
+.request-filters {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-8);
+  padding: 5px;
+  width: fit-content;
+  background: var(--color-background-soft);
+  border: var(--border-width) solid var(--color-border-light);
+  border-radius: var(--radius-pill);
+}
+
+.request-filter {
+  border: none;
+  background: transparent;
+  color: var(--color-text-secondary);
+  padding: 9px 18px;
+  border-radius: var(--radius-pill);
+  font-size: var(--font-sm);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.request-filter:hover {
+  color: var(--color-primary-dark);
+}
+
+.request-filter.active {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+@media (max-width: 600px) {
+  .request-filters {
+    width: 100%;
+    overflow-x: auto;
+    justify-content: flex-start;
+    border-radius: var(--radius-lg);
+  }
+
+  .request-filter {
+    flex: 0 0 auto;
+  }
+}

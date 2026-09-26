@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Notifications - EcoShare</title>
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+
+    <!-- Phase 1 Styles -->
+    <link rel="stylesheet" href="../Phase 1/style.css" />
+
+    <!-- Notifications Styles -->
+    <link rel="stylesheet" href="notifications.css" />
+  </head>
+
+  <body>
+    <main class="notifications-page">
+      <!-- Page Header -->
+
+      <header class="notifications-header">
+        <a
+          href="../Phase 1/index.html"
+          class="back-button"
+          aria-label="Go to EcoShare home"
+        >
+          <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+        </a>
+        <h1>Notifications</h1>
+
+        <div
+  id="notificationSelectionControls"
+  class="notification-selection-controls"
+  hidden
+>
+  <span id="selectedNotificationCount">0 selected</span>
+
+  <button
+    id="deleteSelectedNotifications"
+    type="button"
+  >
+    <i class="fa-solid fa-trash" aria-hidden="true"></i>
+    Delete
+  </button>
+</div>
+      </header>
+
+      <!-- Notifications Content -->
+
+      <section
+        id="notificationsContainer"
+        class="notifications-container"
+        aria-label="Notifications"
+      >
+      <div
+  id="notificationSelectAll"
+  class="notification-select-all"
+  hidden
+>
+  <input
+    type="checkbox"
+    id="selectAllNotifications"
+    aria-label="Select all notifications"
+  />
+
+  <label for="selectAllNotifications">
+    Select All
+  </label>
+</div>
+        <!-- Notifications will be loaded here -->
+      </section>
+
+      <!-- Empty State -->
+
+      <div id="notificationsEmpty" class="notifications-empty" hidden>
+        <i class="fa-regular fa-bell-slash" aria-hidden="true"></i>
+
+        <h2>No notifications</h2>
+
+        <p>You don't have any notifications yet.</p>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../Phase 1/supabase.js"></script>
+    <script src="notifications.js"></script>
+  </body>
+</html>

@@ -1,300 +1,195 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
 
-<head>
-    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <meta
-        name="description"
-        content="View your EcoShare borrow requests."
-    >
+    <meta name="description" content="View your EcoShare borrow requests." />
 
     <title>My Requests | EcoShare</title>
 
     <!-- Font Awesome -->
     <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-    >
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
 
     <!-- Global + Page Styles -->
-    <link rel="stylesheet" href="/Phase 1/style.css">
-    <link rel="stylesheet" href="my-requests.css">
-</head>
+    <link rel="stylesheet" href="../Phase 1/style.css" />
+    <link rel="stylesheet" href="../Phase 2/my-requests.css" />
+  </head>
 
-<body>
-
+  <body>
     <!-- ==========================================
          HEADER
     =========================================== -->
 
     <header class="header">
+      <div class="container">
+        <nav class="navbar" aria-label="Main navigation">
+          <a href="../Phase 1/index.html" class="logo" aria-label="EcoShare Home">
+            <img src="../assets/logo.png" alt="EcoShare" />
+          </a>
 
-        <div class="container">
+          <div class="nav-links" id="primary-navigation">
+           <a href="../Phase 1/index.html" class="nav-link">
+            <i class="fa-solid fa-house" aria-hidden="true"></i>
+            Home
+          </a>
 
-            <nav
-                class="navbar"
-                aria-label="Main navigation"
+          <a href="../Phase 2/explore.html" class="nav-link">
+            <i class="fa-solid fa-compass" aria-hidden="true"></i>
+            Explore
+          </a>
+
+            <a href="../Phase 1/index.html#about" class="nav-link"> About </a>
+
+            <a href="../Phase 1/index.html#contact" class="nav-link"> Contact </a>
+
+            <a
+              href="../Phase 1/profile.html"
+              class="login-nav-btn"
+              id="authNavButton"
             >
+              Profile
+            </a>
+          </div>
 
-                <a
-                    href="/Phase 1/index.html"
-                    class="logo"
-                    aria-label="EcoShare Home"
-                >
-                    <img
-                        src="/assets/logo.png"
-                        alt="EcoShare"
-                    >
-                </a>
-
-                <div
-                    class="nav-links"
-                    id="primary-navigation"
-                >
-
-                    <a
-                        href="/Phase 1/index.html"
-                        class="nav-link"
-                    >
-                        Home
-                    </a>
-
-                    <a
-                        href="explore.html"
-                        class="nav-link"
-                    >
-                        Explore
-                    </a>
-
-                    <a
-                        href="/Phase 1/index.html#how-it-works"
-                        class="nav-link"
-                    >
-                        How It Works
-                    </a>
-
-                    <a
-                        href="/Phase 1/index.html#about"
-                        class="nav-link"
-                    >
-                        About
-                    </a>
-
-                    <a
-                        href="/Phase 1/index.html#contact"
-                        class="nav-link"
-                    >
-                        Contact
-                    </a>
-
-                    <a
-                        href="/Phase 1/profile.html"
-                        class="login-nav-btn"
-                        id="authNavButton"
-                    >
-                        Profile
-                    </a>
-
-                </div>
-
-                <button
-                    type="button"
-                    class="menu-btn"
-                    id="menu-btn"
-                    aria-label="Open navigation menu"
-                    aria-expanded="false"
-                    aria-controls="primary-navigation"
-                >
-                    <i
-                        class="fa-solid fa-bars"
-                        aria-hidden="true"
-                    ></i>
-                </button>
-
-            </nav>
-
-        </div>
-
+          <button
+            type="button"
+            class="menu-btn"
+            id="menu-btn"
+            aria-label="Open navigation menu"
+            aria-expanded="false"
+            aria-controls="primary-navigation"
+          >
+            <i class="fa-solid fa-bars" aria-hidden="true"></i>
+          </button>
+        </nav>
+      </div>
     </header>
-
 
     <!-- ==========================================
          MAIN
     =========================================== -->
 
     <main>
+      <!-- HERO -->
 
-        <!-- HERO -->
+      <section class="requests-hero">
+        <div class="container">
+          <div class="requests-hero-content">
+            <span class="requests-label">
+              <i class="fa-solid fa-list-check" aria-hidden="true"></i>
 
-        <section class="requests-hero">
+              Borrowing Activity
+            </span>
 
-            <div class="container">
+            <h1>My Requests</h1>
 
-                <div class="requests-hero-content">
+            <p>
+              Track the resources you have requested and see the status of each
+              request.
+            </p>
+          </div>
+        </div>
+      </section>
 
-                    <span class="requests-label">
-                        <i
-                            class="fa-solid fa-list-check"
-                            aria-hidden="true"
-                        ></i>
+      <!-- REQUESTS -->
 
-                        Borrowing Activity
-                    </span>
-
-                    <h1>
-                        My Requests
-                    </h1>
-
-                    <p>
-                        Track the resources you have requested
-                        and see the status of each request.
-                    </p>
-
-                </div>
-
+      <section class="requests-section">
+        <div class="container">
+          <div class="requests-header">
+            <div>
+              <h2>Your Borrow Requests</h2>
+              <p id="requestsCount">Loading requests...</p>
             </div>
 
-        </section>
+            <a href="../Phase 2/explore.html" class="primary-btn">
+              <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+              Explore Resources
+            </a>
+          </div>
 
+          <!-- REQUEST FILTERS -->
+          <div class="request-filters" aria-label="Filter borrow requests">
+            <button
+              type="button"
+              class="request-filter active"
+              data-filter="all"
+            >
+              All
+            </button>
 
-        <!-- REQUESTS -->
+            <button type="button" class="request-filter" data-filter="pending">
+              Pending
+            </button>
 
-        <section class="requests-section">
+            <button type="button" class="request-filter" data-filter="active">
+              Active
+            </button>
 
-            <div class="container">
+            <button
+              type="button"
+              class="request-filter"
+              data-filter="completed"
+            >
+              Completed
+            </button>
+          </div>
 
-                <div class="requests-header">
+          <!-- Loading / Request Cards -->
 
-                    <div>
-                        <h2>
-                            Your Borrow Requests
-                        </h2>
+          <div class="requests-list" id="requestsList" aria-live="polite"></div>
 
-                        <p id="requestsCount">
-                            Loading requests...
-                        </p>
-                    </div>
+          <!-- Empty State -->
 
-                    <a
-                        href="explore.html"
-                        class="primary-btn"
-                    >
-                        <i
-                            class="fa-solid fa-magnifying-glass"
-                            aria-hidden="true"
-                        ></i>
-
-                        Explore Resources
-                    </a>
-
-                </div>
-
-
-                <!-- Loading / Request Cards -->
-
-                <div
-                    class="requests-list"
-                    id="requestsList"
-                    aria-live="polite"
-                ></div>
-
-
-                <!-- Empty State -->
-
-                <div
-                    class="empty-requests"
-                    id="emptyRequests"
-                    hidden
-                >
-
-                    <div class="empty-requests-icon">
-
-                        <i
-                            class="fa-solid fa-inbox"
-                            aria-hidden="true"
-                        ></i>
-
-                    </div>
-
-                    <h3>
-                        No borrow requests yet
-                    </h3>
-
-                    <p>
-                        You haven't requested any resources yet.
-                        Explore the community and find something useful.
-                    </p>
-
-                    <a
-                        href="explore.html"
-                        class="primary-btn"
-                    >
-                        Explore Resources
-                    </a>
-
-                </div>
-
+          <div class="empty-requests" id="emptyRequests" hidden>
+            <div class="empty-requests-icon">
+              <i class="fa-solid fa-inbox" aria-hidden="true"></i>
             </div>
 
-        </section>
+            <h3>No borrow requests yet</h3>
 
+            <p>
+              You haven't requested any resources yet. Explore the community and
+              find something useful.
+            </p>
+
+            <a href="explore.html" class="primary-btn"> Explore Resources </a>
+          </div>
+        </div>
+      </section>
     </main>
-
 
     <!-- ==========================================
          FOOTER
     =========================================== -->
 
     <footer class="footer">
+      <div class="container">
+        <div class="footer-container">
+          <div class="footer-brand">
+            <a
+              href="../Phase 1/index.html"
+              class="footer-logo"
+              aria-label="EcoShare Home"
+            >
+              <img src="../assets/logo.png" alt="EcoShare" />
+            </a>
 
-        <div class="container">
+            <p>Share resources. Reduce waste. Build a stronger community.</p>
+          </div>
 
-            <div class="footer-container">
+          <div class="footer-bottom">
+            <p>© 2026 EcoShare. All rights reserved.</p>
 
-                <div class="footer-brand">
-
-                    <a
-                        href="/Phase 1/index.html"
-                        class="footer-logo"
-                        aria-label="EcoShare Home"
-                    >
-                        <img
-                            src="/assets/logo.png"
-                            alt="EcoShare"
-                        >
-                    </a>
-
-                    <p>
-                        Share resources. Reduce waste.
-                        Build a stronger community.
-                    </p>
-
-                </div>
-
-                <div class="footer-bottom">
-
-                    <p>
-                        © 2026 EcoShare. All rights reserved.
-                    </p>
-
-                    <p>
-                        Community-powered resource sharing.
-                    </p>
-
-                </div>
-
-            </div>
-
+            <p>Community-powered resource sharing.</p>
+          </div>
         </div>
-
+      </div>
     </footer>
-
 
     <!-- ==========================================
          JAVASCRIPT
@@ -302,10 +197,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    <script src="/Phase 1/supabase.js"></script>
+    <script src="../Phase 1/supabase.js"></script>
 
-    <script src="my-requests.js"></script>
-
-</body>
-
+    <script src="../Phase 2/my-requests.js"></script>
+  </body>
 </html>

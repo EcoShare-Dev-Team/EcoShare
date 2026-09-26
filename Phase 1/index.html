@@ -19,7 +19,7 @@
     />
 
     <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="/Phase 1/style.css" />
+    <link rel="stylesheet" href="../Phase 1/style.css" />
   </head>
 
   <body>
@@ -30,8 +30,8 @@
     <header class="header">
       <div class="container navbar">
         <!-- Logo -->
-        <a href="/Phase 1/index.html" class="logo" aria-label="EcoShare Home">
-          <img src="/assets/logo.png" alt="EcoShare logo" />
+        <a href="../Phase 1/index.html" class="logo" aria-label="EcoShare Home">
+          <img src="../assets/logo.png" alt="EcoShare logo" />
         </a>
 
         <!-- Navigation -->
@@ -40,18 +40,56 @@
           id="primary-navigation"
           aria-label="Primary navigation"
         >
-          <a href="/Phase 1/index.html" class="nav-link active"> Home </a>
+          <a href="../Phase 1/index.html" class="nav-link">
+            <i class="fa-solid fa-house" aria-hidden="true"></i>
+            Home
+          </a>
 
-          <a href="/Phase 2/explore.html" class="nav-link"> Explore </a>
+          <a href="../Phase 2/explore.html" class="nav-link">
+            <i class="fa-solid fa-compass" aria-hidden="true"></i>
+            Explore
+          </a>
 
-          <a href="#how-it-works" class="nav-link"> How It Works </a>
+          <a href="../Phase 4/Rating/rating.html"> Rating </a>
+
+          <a href="../Phase 4/Community/community.html"> Community </a>
 
           <a href="#about" class="nav-link"> About </a>
 
           <a href="#contact" class="nav-link"> Contact </a>
 
-         <a href="login.html" class="login-nav-btn" id="authNavButton">
-            <i class="fa-solid fa-right-to-bracket"></i>
+          <a
+            href="../Phase 3/messages.html"
+            class="nav-link"
+            id="messagesNavLink"
+            hidden
+          >
+            <i class="fa-solid fa-message" aria-hidden="true"></i>
+            Messages
+          </a>
+
+          <a
+            href="../Phase 3/notifications.html"
+            class="nav-link notifications-nav-link"
+            id="notificationsNavLink"
+            hidden
+          >
+            <i class="fa-solid fa-bell" aria-hidden="true"></i>
+
+            <span>Notifications</span>
+
+            <span
+              id="notificationUnreadBadge"
+              class="notification-unread-badge"
+              hidden
+              aria-label="Unread notifications"
+            >
+              0
+            </span>
+          </a>
+
+          <a href="../Phase 1/login.html" class="login-nav-btn" id="authNavButton">
+            <i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i>
             Login
           </a>
         </nav>
@@ -95,12 +133,12 @@
             </p>
 
             <div class="hero-buttons">
-              <a href="/Phase 2/explore.html" class="primary-btn">
+              <a href="../Phase 2/explore.html" class="primary-btn">
                 <i class="fa-solid fa-magnifying-glass"></i>
                 Explore Resources
               </a>
 
-              <a href="/Phase 1/login.html" class="secondary-btn">
+              <a href="../Phase 1/login.html" class="secondary-btn">
                 <i class="fa-solid fa-hand-holding-heart"></i>
                 Start Sharing
               </a>
@@ -144,7 +182,7 @@
 
                 <span> Share knowledge </span>
               </div>
-            </div> 
+            </div>
 
             <div class="floating-card card-two">
               <div class="floating-card-icon">
@@ -242,7 +280,7 @@
           </div>
 
           <div class="explore-more">
-            <a href="/Phase 2/explore.html" class="outline-btn">
+            <a href="../Phase 2/explore.html" class="outline-btn">
               Browse Resources
               <i class="fa-solid fa-arrow-right"></i>
             </a>
@@ -341,7 +379,10 @@
               </p>
             </div>
 
-            <a href="/Phase 2/lend-resource.html" class="primary-btn light-btn">
+            <a
+              href="../Phase 2/lend-resource.html"
+              class="primary-btn light-btn"
+            >
               <i class="fa-solid fa-plus"></i>
               Lend a Resource
             </a>
@@ -451,7 +492,10 @@
 
               <p>Have feedback, suggestions, or questions about EcoShare?</p>
 
-              <a href="mailto:alok.kumar.official.ak@gmail.com" class="contact-email">
+              <a
+                href="mailto:alok.kumar.official.ak@gmail.com"
+                class="contact-email"
+              >
                 alok.kumar.official.ak@gmail.com
               </a>
             </div>
@@ -468,7 +512,7 @@
       <div class="container footer-container">
         <div class="footer-brand">
           <a href="#home" class="footer-logo">
-            <img src="/assets/logo.png" alt="EcoShare logo" />
+            <img src="../assets/logo.png" alt="EcoShare logo" />
 
             <span> EcoShare </span>
           </a>
@@ -485,8 +529,8 @@
     </footer>
 
     <!-- JavaScript -->
-     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="/Phase 1/supabase.js"></script>
-    <script src="/Phase 1/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../Phase 1/supabase.js"></script>
+    <script src="../Phase 1/script.js"></script>
   </body>
 </html>

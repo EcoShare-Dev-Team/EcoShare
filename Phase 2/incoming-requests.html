@@ -1,293 +1,161 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
 
-<head>
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <meta
-        name="description"
-        content="Manage borrow requests for your EcoShare resources."
-    >
+      name="description"
+      content="Manage borrow requests for your EcoShare resources."
+    />
 
     <title>Incoming Requests | EcoShare</title>
 
-    <link
-        rel="stylesheet"
-        href="../Phase 1/style.css"
-    >
+    <link rel="stylesheet" href="../Phase 1/style.css" />
+
+    <link rel="stylesheet" href="../Phase 2/incoming-requests.css" />
 
     <link
-        rel="stylesheet"
-        href="incoming-requests.css"
-    >
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+  </head>
 
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    >
-</head>
-
-
-<body>
-
+  <body>
     <!-- ==========================================
          HEADER
          ========================================== -->
 
     <header class="header">
+      <nav class="navbar">
+        <a href="../Phase 1/index.html" class="logo" aria-label="EcoShare Home">
+          <img src="../assets/logo.png" alt="EcoShare" />
+        </a>
 
-        <nav class="navbar">
+        <button
+          class="menu-btn"
+          id="menu-btn"
+          type="button"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+        >
+          <i class="fa-solid fa-bars"></i>
+        </button>
 
-            <a
-                href="../Phase 1/index.html"
-                class="logo"
-                aria-label="EcoShare Home"
-            >
-                <img
-                    src="../assets/logo.png"
-                    alt="EcoShare"
-                >
-            </a>
+        <div class="nav-links" id="primary-navigation">
+          <a href="../Phase 1/index.html" class="nav-link">
+            <i class="fa-solid fa-house" aria-hidden="true"></i>
+            Home
+          </a>
 
+          <a href="../Phase 2/explore.html" class="nav-link">
+            <i class="fa-solid fa-compass" aria-hidden="true"></i>
+            Explore
+          </a>
 
-            <button
-                class="menu-btn"
-                id="menu-btn"
-                type="button"
-                aria-label="Open navigation menu"
-                aria-expanded="false"
-            >
-                <i class="fa-solid fa-bars"></i>
-            </button>
+          <a href="../Phase 1/index.html#about" class="nav-link"> About </a>
 
+          <a href="../Phase 1/index.html#contact" class="nav-link"> Contact </a>
 
-            <div
-                class="nav-links"
-                id="primary-navigation"
-            >
-
-                <a
-                    href="../Phase 1/index.html"
-                    class="nav-link"
-                >
-                    Home
-                </a>
-
-                <a
-                    href="explore.html"
-                    class="nav-link"
-                >
-                    Explore
-                </a>
-
-                <a
-                    href="../Phase 1/index.html#how-it-works"
-                    class="nav-link"
-                >
-                    How It Works
-                </a>
-
-                <a
-                    href="../Phase 1/index.html#about"
-                    class="nav-link"
-                >
-                    About
-                </a>
-
-                <a
-                    href="../Phase 1/index.html#contact"
-                    class="nav-link"
-                >
-                    Contact
-                </a>
-
-                <a
-                    href="../Phase 1/login.html"
-                    class="login-nav-btn"
-                    id="authNavButton"
-                >
-                    Login
-                </a>
-
-            </div>
-
-        </nav>
-
+          <a
+            href="../Phase 1/login.html"
+            class="login-nav-btn"
+            id="authNavButton"
+          >
+            Login
+          </a>
+        </div>
+      </nav>
     </header>
-
 
     <!-- ==========================================
          PAGE HERO
          ========================================== -->
 
     <main>
+      <section class="page-hero">
+        <div class="container">
+          <div class="eyebrow">
+            <i class="fa-solid fa-inbox" aria-hidden="true"></i>
 
-        <section class="page-hero">
+            LENDING ACTIVITY
+          </div>
 
-            <div class="container">
+          <h1>Incoming Requests</h1>
 
-                <div class="eyebrow">
+          <p>Manage requests from people who want to borrow your resources.</p>
+        </div>
+      </section>
 
-                    <i
-                        class="fa-solid fa-inbox"
-                        aria-hidden="true"
-                    ></i>
-
-                    LENDING ACTIVITY
-
-                </div>
-
-
-                <h1>
-                    Incoming Requests
-                </h1>
-
-
-                <p>
-                    Manage requests from people who want to borrow your resources.
-                </p>
-
-            </div>
-
-        </section>
-
-
-        <!-- ======================================
+      <!-- ======================================
              REQUESTS SECTION
              ====================================== -->
 
-        <section class="requests-section">
+      <section class="requests-section">
+        <div class="container">
+          <div class="requests-header">
+            <div>
+              <h2>Requests for Your Resources</h2>
 
-            <div class="container">
-
-                <div class="requests-header">
-
-                    <div>
-
-                        <h2>
-                            Requests for Your Resources
-                        </h2>
-
-                        <p id="requestsCount">
-                            Loading requests...
-                        </p>
-
-                    </div>
-
-
-                    <a
-                        href="lend-resource.html"
-                        class="explore-resources-btn"
-                    >
-                        <i
-                            class="fa-solid fa-plus"
-                            aria-hidden="true"
-                        ></i>
-
-                        Lend a Resource
-                    </a>
-
-                </div>
-
-
-                <!-- Requests -->
-
-                <div
-                    class="incoming-requests-list"
-                    id="requestsList"
-                >
-                </div>
-
-
-                <!-- Empty State -->
-
-                <div
-                    class="empty-requests"
-                    id="emptyRequests"
-                    hidden
-                >
-
-                    <div class="empty-icon">
-
-                        <i
-                            class="fa-solid fa-inbox"
-                            aria-hidden="true"
-                        ></i>
-
-                    </div>
-
-
-                    <h3>
-                        No Incoming Requests
-                    </h3>
-
-
-                    <p>
-                        When someone requests one of your resources,
-                        their request will appear here.
-                    </p>
-
-
-                    <a
-                        href="explore.html"
-                        class="empty-action-btn"
-                    >
-                        Explore Resources
-                    </a>
-
-                </div>
-
+              <p id="requestsCount">Loading requests...</p>
             </div>
 
-        </section>
+            <a
+              href="../Phase 2/lend-resource.html"
+              class="explore-resources-btn"
+            >
+              <i class="fa-solid fa-plus" aria-hidden="true"></i>
 
+              Lend a Resource
+            </a>
+          </div>
+
+          <!-- Requests -->
+
+          <div class="incoming-requests-list" id="requestsList"></div>
+
+          <!-- Empty State -->
+
+          <div class="empty-requests" id="emptyRequests" hidden>
+            <div class="empty-icon">
+              <i class="fa-solid fa-inbox" aria-hidden="true"></i>
+            </div>
+
+            <h3>No Incoming Requests</h3>
+
+            <p>
+              When someone requests one of your resources, their request will
+              appear here.
+            </p>
+
+            <a href="../Phase 2/explore.html" class="empty-action-btn">
+              Explore Resources
+            </a>
+          </div>
+        </div>
+      </section>
     </main>
-
 
     <!-- ==========================================
          FOOTER
          ========================================== -->
 
     <footer class="footer">
-
-        <div class="container">
-
-            <div class="footer-logo">
-
-                <img
-                    src="../assets/logo.png"
-                    alt="EcoShare"
-                >
-
-            </div>
-
-
-            <p>
-                Share resources. Reduce waste. Build a stronger community.
-            </p>
-
-
-            <div class="footer-bottom">
-
-                <span>
-                    © 2026 EcoShare. All rights reserved.
-                </span>
-
-                <span>
-                    Community-powered resource sharing.
-                </span>
-
-            </div>
-
+      <div class="container">
+        <div class="footer-logo">
+          <img src="../assets/logo.png" alt="EcoShare" />
         </div>
 
-    </footer>
+        <p>Share resources. Reduce waste. Build a stronger community.</p>
 
+        <div class="footer-bottom">
+          <span> © 2026 EcoShare. All rights reserved. </span>
+
+          <span> Community-powered resource sharing. </span>
+        </div>
+      </div>
+    </footer>
 
     <!-- ==========================================
          SCRIPTS
@@ -297,8 +165,6 @@
 
     <script src="../Phase 1/supabase.js"></script>
 
-    <script src="incoming-requests.js"></script>
-
-</body>
-
+    <script src="../Phase 2/incoming-requests.js"></script>
+  </body>
 </html>

@@ -2,75 +2,54 @@
 // EcoShare — Incoming Requests JavaScript
 // ==========================================
 
-
 // ==========================================
 // 1. GET ELEMENTS
 // ==========================================
 
-const requestsList =
-  document.getElementById("requestsList");
+const requestsList = document.getElementById("requestsList");
 
-const emptyRequests =
-  document.getElementById("emptyRequests");
+const emptyRequests = document.getElementById("emptyRequests");
 
-const requestsCount =
-  document.getElementById("requestsCount");
+const requestsCount = document.getElementById("requestsCount");
 
-const menuBtn =
-  document.getElementById("menu-btn");
+const menuBtn = document.getElementById("menu-btn");
 
-const primaryNavigation =
-  document.getElementById("primary-navigation");
+const primaryNavigation = document.getElementById("primary-navigation");
 
-const authNavButton =
-  document.getElementById("authNavButton");
+const authNavButton = document.getElementById("authNavButton");
 
-const header =
-  document.querySelector(".header");
-
+const header = document.querySelector(".header");
 
 // ==========================================
 // 2. FORMAT CATEGORY
 // ==========================================
 
 function formatCategory(category) {
-
   if (!category) {
     return "Other";
   }
 
-  return (
-    category.charAt(0).toUpperCase() +
-    category.slice(1)
-  );
+  return category.charAt(0).toUpperCase() + category.slice(1);
 }
-
 
 // ==========================================
 // 3. FORMAT STATUS
 // ==========================================
 
 function formatStatus(status) {
-
   if (!status) {
     return "Unknown";
   }
 
-  return (
-    status.charAt(0).toUpperCase() +
-    status.slice(1)
-  );
+  return status.charAt(0).toUpperCase() + status.slice(1);
 }
-
 
 // ==========================================
 // 4. STATUS ICON
 // ==========================================
 
 function getStatusIcon(status) {
-
   switch (status) {
-
     case "pending":
       return "fa-clock";
 
@@ -88,13 +67,11 @@ function getStatusIcon(status) {
   }
 }
 
-
 // ==========================================
 // 5. FORMAT DATE
 // ==========================================
 
 function formatDate(dateValue) {
-
   if (!dateValue) {
     return "Date unavailable";
   }
@@ -112,13 +89,11 @@ function formatDate(dateValue) {
   });
 }
 
-
 // ==========================================
 // 6. UPDATE AUTH NAVIGATION
 // ==========================================
 
 async function updateAuthNavigation() {
-
   if (!authNavButton) {
     return;
   }
@@ -127,46 +102,32 @@ async function updateAuthNavigation() {
     data: { session },
   } = await supabaseClient.auth.getSession();
 
-
   if (session) {
-
     authNavButton.innerHTML = `
       <i class="fa-solid fa-user"></i>
       Profile
     `;
 
-    authNavButton.href =
-      "../Phase 1/profile.html";
+    authNavButton.href = "../Phase 1/profile.html";
 
-    authNavButton.setAttribute(
-      "aria-label",
-      "Open profile"
-    );
-
+    authNavButton.setAttribute("aria-label", "Open profile");
   } else {
-
     authNavButton.innerHTML = `
       <i class="fa-solid fa-right-to-bracket"></i>
       Login
     `;
 
-    authNavButton.href =
-      "../Phase 1/login.html";
+    authNavButton.href = "../Phase 1/login.html";
 
-    authNavButton.setAttribute(
-      "aria-label",
-      "Login"
-    );
+    authNavButton.setAttribute("aria-label", "Login");
   }
 }
-
 
 // ==========================================
 // 7. SHOW ERROR
 // ==========================================
 
 function showError(message) {
-
   if (!requestsList) {
     return;
   }
@@ -193,25 +154,18 @@ function showError(message) {
   `;
 }
 
-
 // ==========================================
 // 8. GET AUTHENTICATED USER
 // ==========================================
 
 async function getAuthenticatedUser() {
-
   const {
     data: { user },
     error,
   } = await supabaseClient.auth.getUser();
 
-
   if (error) {
-
-    console.error(
-      "Authentication error:",
-      error
-    );
+    console.error("Authentication error:", error);
 
     return null;
   }
@@ -219,33 +173,28 @@ async function getAuthenticatedUser() {
   return user;
 }
 
+const urlParams = new URLSearchParams(window.location.search);
+
+const highlightedRequestId = Number(urlParams.get("requestId")) || null;
 
 // ==========================================
 // 9. LOAD INCOMING REQUESTS
 // ==========================================
 
 async function loadIncomingRequests() {
-
-  const user =
-    await getAuthenticatedUser();
-
+  const user = await getAuthenticatedUser();
 
   // --------------------------------------
   // Not authenticated
   // --------------------------------------
 
   if (!user) {
-
     window.location.href =
       "../Phase 1/login.html?returnUrl=" +
-      encodeURIComponent(
-        window.location.pathname +
-        window.location.search
-      );
+      encodeURIComponent(window.location.pathname + window.location.search);
 
     return;
   }
-
 
   // --------------------------------------
   // Loading state
@@ -272,17 +221,14 @@ async function loadIncomingRequests() {
     </div>
   `;
 
-
   // --------------------------------------
   // Fetch incoming requests
   // --------------------------------------
 
-  const {
-    data: requests,
-    error: requestsError,
-  } = await supabaseClient
+  const { data: requests, error: requestsError } = await supabaseClient
     .from("incoming_request_listings")
-    .select(`
+    .select(
+      `
       id,
       resource_id,
       borrower_id,
@@ -298,44 +244,37 @@ async function loadIncomingRequests() {
       available,
       borrower_name,
       borrower_location
-    `)
+    `,
+    )
     .order("created_at", {
       ascending: false,
     });
-
 
   // --------------------------------------
   // Handle error
   // --------------------------------------
 
   if (requestsError) {
-
-    console.error(
-      "Incoming requests error:",
-      requestsError
-    );
+    console.error("Incoming requests error:", requestsError);
 
     showError(
-      "Unable to load incoming requests. Please refresh the page and try again."
+      "Unable to load incoming requests. Please refresh the page and try again.",
     );
 
     return;
   }
-
 
   // --------------------------------------
   // Empty state
   // --------------------------------------
 
   if (!requests || requests.length === 0) {
-
     showEmptyState(
-      "When someone requests one of your resources, it will appear here."
+      "When someone requests one of your resources, it will appear here.",
     );
 
     return;
   }
-
 
   // --------------------------------------
   // Display
@@ -348,144 +287,113 @@ async function loadIncomingRequests() {
   }
 
   if (requestsCount) {
-
     requestsCount.textContent =
-      `${requests.length} request` +
-      `${requests.length === 1 ? "" : "s"}`;
+      `${requests.length} request` + `${requests.length === 1 ? "" : "s"}`;
   }
-
 
   displayRequests(requests);
 }
-
 
 // ==========================================
 // 10. EMPTY STATE
 // ==========================================
 
 function showEmptyState(message) {
-
   requestsList.innerHTML = "";
 
   requestsList.hidden = true;
 
-
   if (emptyRequests) {
-
     emptyRequests.hidden = false;
 
-    const paragraph =
-      emptyRequests.querySelector("p");
+    const paragraph = emptyRequests.querySelector("p");
 
     if (paragraph) {
       paragraph.textContent = message;
     }
   }
 
-
   if (requestsCount) {
-
-    requestsCount.textContent =
-      "No requests";
+    requestsCount.textContent = "No requests";
   }
 }
-
 
 // ==========================================
 // 11. DISPLAY REQUESTS
 // ==========================================
 
 function displayRequests(requests) {
-
   requestsList.innerHTML = "";
 
-
   requests.forEach((request) => {
-
     // ----------------------------------
     // Resource data from view
     // ----------------------------------
 
     const resource = {
+      title: request.title,
 
-      title:
-        request.title,
+      description: request.description,
 
-      description:
-        request.description,
+      category: request.category,
 
-      category:
-        request.category,
+      location: request.resource_location,
 
-      location:
-        request.resource_location,
+      image_url: request.image_url,
 
-      image_url:
-        request.image_url,
-
-      available:
-        request.available,
+      available: request.available,
     };
-
 
     // ----------------------------------
     // Borrower data from view
     // ----------------------------------
 
     const borrower = {
+      full_name: request.borrower_name,
 
-      full_name:
-        request.borrower_name,
-
-      location:
-        request.borrower_location,
+      location: request.borrower_location,
     };
-
 
     // ----------------------------------
     // Create card
     // ----------------------------------
 
-    const card =
-      document.createElement("article");
+    const card = document.createElement("article");
 
-    card.className =
-      "incoming-request-card";
+    card.className = "incoming-request-card";
 
+    card.dataset.requestId = String(request.id);
+
+    if (highlightedRequestId === Number(request.id)) {
+  card.classList.add("highlighted-request");
+}
 
     // ----------------------------------
     // Image
     // ----------------------------------
 
-    const imageHTML =
-      resource.image_url
-
-        ? `
+    const imageHTML = resource.image_url
+      ? `
           <img
             src="${resource.image_url}"
             alt="${resource.title}"
             loading="lazy"
           >
         `
-
-        : `
+      : `
           <i
             class="fa-solid fa-image"
             aria-hidden="true"
           ></i>
         `;
 
-
     // ----------------------------------
     // Status
     // ----------------------------------
 
-    const statusClass =
-      `status-${request.status}`;
+    const statusClass = `status-${request.status}`;
 
-    const statusIcon =
-      getStatusIcon(request.status);
-
+    const statusIcon = getStatusIcon(request.status);
 
     // ----------------------------------
     // Action buttons
@@ -493,7 +401,6 @@ function displayRequests(requests) {
 
     const actionsHTML =
       request.status === "pending"
-
         ? `
           <div class="incoming-request-actions">
 
@@ -530,9 +437,7 @@ function displayRequests(requests) {
 
           </div>
         `
-
         : "";
-
 
     // ----------------------------------
     // Card HTML
@@ -551,9 +456,7 @@ function displayRequests(requests) {
 
         <span class="request-category">
 
-          ${formatCategory(
-            resource.category
-          )}
+          ${formatCategory(resource.category)}
 
         </span>
 
@@ -586,10 +489,7 @@ function displayRequests(requests) {
               aria-hidden="true"
             ></i>
 
-            ${
-              borrower.full_name ||
-              "Unknown user"
-            }
+            ${borrower.full_name || "Unknown user"}
 
           </span>
 
@@ -598,7 +498,6 @@ function displayRequests(requests) {
 
           ${
             borrower.location
-
               ? `
                 <span>
 
@@ -611,7 +510,6 @@ function displayRequests(requests) {
 
                 </span>
               `
-
               : ""
           }
 
@@ -625,9 +523,7 @@ function displayRequests(requests) {
               aria-hidden="true"
             ></i>
 
-            ${formatDate(
-              request.created_at
-            )}
+            ${formatDate(request.created_at)}
 
           </span>
 
@@ -672,9 +568,7 @@ function displayRequests(requests) {
             aria-hidden="true"
           ></i>
 
-          ${formatStatus(
-            request.status
-          )}
+          ${formatStatus(request.status)}
 
         </span>
 
@@ -682,142 +576,92 @@ function displayRequests(requests) {
 
     `;
 
-
     // ----------------------------------
     // Image fallback
     // ----------------------------------
 
-    const image =
-      card.querySelector("img");
-
+    const image = card.querySelector("img");
 
     if (image) {
+      image.addEventListener("error", () => {
+        const container = card.querySelector(".incoming-request-image");
 
-      image.addEventListener(
-        "error",
-        () => {
+        if (!container) {
+          return;
+        }
 
-          const container =
-            card.querySelector(
-              ".incoming-request-image"
-            );
-
-
-          if (!container) {
-            return;
-          }
-
-
-          container.innerHTML = `
+        container.innerHTML = `
             <i
               class="fa-solid fa-image"
               aria-hidden="true"
             ></i>
           `;
-        }
-      );
+      });
     }
-
 
     // ----------------------------------
     // Approve button
     // ----------------------------------
 
-    const approveButton =
-      card.querySelector(
-        ".approve-request-btn"
-      );
-
+    const approveButton = card.querySelector(".approve-request-btn");
 
     if (approveButton) {
-
-      approveButton.addEventListener(
-        "click",
-        () =>
-          updateRequestStatus(
-            request.id,
-            "approved",
-            card
-          )
+      approveButton.addEventListener("click", () =>
+        updateRequestStatus(request.id, "approved", card),
       );
     }
-
 
     // ----------------------------------
     // Reject button
     // ----------------------------------
 
-    const rejectButton =
-      card.querySelector(
-        ".reject-request-btn"
-      );
-
+    const rejectButton = card.querySelector(".reject-request-btn");
 
     if (rejectButton) {
-
-      rejectButton.addEventListener(
-        "click",
-        () =>
-          updateRequestStatus(
-            request.id,
-            "rejected",
-            card
-          )
+      rejectButton.addEventListener("click", () =>
+        updateRequestStatus(request.id, "rejected", card),
       );
     }
 
-
     requestsList.appendChild(card);
 
+    if (highlightedRequestId === Number(request.id)) {
+  requestAnimationFrame(() => {
+    card.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+    });
+  });
+}
   });
 }
 
-
 // ==========================================
-// 12. UPDATE REQUEST STATUS
+// 12. APPROVE / REJECT REQUEST
 // ==========================================
 
-async function updateRequestStatus(
-  requestId,
-  newStatus,
-  card
-) {
-
-  const actionName =
-    newStatus === "approved"
-      ? "approve"
-      : "reject";
-
+async function updateRequestStatus(requestId, newStatus, card) {
+  const actionName = newStatus === "approved" ? "approve" : "reject";
 
   // --------------------------------------
   // Confirmation
   // --------------------------------------
 
-  const confirmed =
-    window.confirm(
-      `Are you sure you want to ${actionName} this request?`
-    );
-
+  const confirmed = window.confirm(
+    `Are you sure you want to ${actionName} this request?`,
+  );
 
   if (!confirmed) {
     return;
   }
 
-
   // --------------------------------------
   // Get buttons
   // --------------------------------------
 
-  const approveButton =
-    card.querySelector(
-      ".approve-request-btn"
-    );
+  const approveButton = card.querySelector(".approve-request-btn");
 
-  const rejectButton =
-    card.querySelector(
-      ".reject-request-btn"
-    );
-
+  const rejectButton = card.querySelector(".reject-request-btn");
 
   // --------------------------------------
   // Disable buttons
@@ -831,206 +675,152 @@ async function updateRequestStatus(
     rejectButton.disabled = true;
   }
 
-
   // --------------------------------------
   // Active button
   // --------------------------------------
 
-  const activeButton =
-    newStatus === "approved"
-      ? approveButton
-      : rejectButton;
-
+  const activeButton = newStatus === "approved" ? approveButton : rejectButton;
 
   if (activeButton) {
-
     activeButton.innerHTML = `
       <i
         class="fa-solid fa-spinner fa-spin"
         aria-hidden="true"
       ></i>
 
-      ${
-        newStatus === "approved"
-          ? "Approving..."
-          : "Rejecting..."
-      }
+      ${newStatus === "approved" ? "Approving..." : "Rejecting..."}
     `;
   }
 
+  // ======================================
+  // APPROVE USING DATABASE FUNCTION
+  // ======================================
 
-  // --------------------------------------
-  // Update database
-  // --------------------------------------
+  if (newStatus === "approved") {
+    const { error } = await supabaseClient.rpc("approve_borrow_request", {
+      request_id: Number(requestId),
+    });
 
-  const {
-    error,
-  } = await supabaseClient
-    .from("borrow_requests")
-    .update({
-      status: newStatus,
-      updated_at:
-        new Date().toISOString(),
-    })
-    .eq("id", requestId);
+    if (error) {
+      console.error("Approve request error:", error);
 
+      restoreActionButtons(approveButton, rejectButton);
 
-  // --------------------------------------
-  // Handle update error
-  // --------------------------------------
+      alert(
+        error.message || "Unable to approve the request. Please try again.",
+      );
 
-  if (error) {
-
-    console.error(
-      "Update request status error:",
-      error
-    );
-
-
-    // Re-enable buttons
-
-    if (approveButton) {
-      approveButton.disabled = false;
+      return;
     }
 
-    if (rejectButton) {
-      rejectButton.disabled = false;
-    }
+    // Database function handles:
+    // 1. Approving the selected request
+    // 2. Making the resource unavailable
+    // 3. Rejecting other pending requests
 
-
-    // Restore active button
-
-    if (activeButton) {
-
-      activeButton.innerHTML =
-
-        newStatus === "approved"
-
-          ? `
-            <i
-              class="fa-solid fa-check"
-              aria-hidden="true"
-            ></i>
-
-            Approve
-          `
-
-          : `
-            <i
-              class="fa-solid fa-xmark"
-              aria-hidden="true"
-            ></i>
-
-            Reject
-          `;
-    }
-
-
-    alert(
-      "Unable to update the request. Please try again."
-    );
+    await loadIncomingRequests();
 
     return;
   }
 
+  // ======================================
+  // REJECT USING DATABASE FUNCTION
+  // ======================================
 
-  // --------------------------------------
-  // Reload requests
-  // --------------------------------------
+  if (newStatus === "rejected") {
+    const { error } = await supabaseClient.rpc("reject_borrow_request", {
+      request_id: Number(requestId),
+    });
 
-  await loadIncomingRequests();
-}
+    if (error) {
+      console.error("Reject request error:", error);
 
+      restoreActionButtons(approveButton, rejectButton);
 
-// ==========================================
-// 13. MOBILE NAVIGATION
-// ==========================================
+      alert(error.message || "Unable to reject the request. Please try again.");
 
-if (
-  menuBtn &&
-  primaryNavigation
-) {
-
-  menuBtn.addEventListener(
-    "click",
-    () => {
-
-      const isOpen =
-        primaryNavigation.classList.toggle(
-          "show"
-        );
-
-
-      menuBtn.setAttribute(
-        "aria-expanded",
-        String(isOpen)
-      );
-
-
-      menuBtn.setAttribute(
-        "aria-label",
-        isOpen
-          ? "Close navigation menu"
-          : "Open navigation menu"
-      );
-
-
-      const icon =
-        menuBtn.querySelector("i");
-
-
-      if (icon) {
-
-        icon.classList.toggle(
-          "fa-bars",
-          !isOpen
-        );
-
-        icon.classList.toggle(
-          "fa-xmark",
-          isOpen
-        );
-      }
-
-    }
-  );
-
-}
-
-
-// ==========================================
-// 14. HEADER SCROLL
-// ==========================================
-
-window.addEventListener(
-  "scroll",
-  () => {
-
-    if (!header) {
       return;
     }
 
+    await loadIncomingRequests();
+  }
+}
 
-    header.classList.toggle(
-      "scrolled",
-      window.scrollY > 30
+// ==========================================
+// 13. RESTORE ACTION BUTTONS
+// ==========================================
+
+function restoreActionButtons(approveButton, rejectButton) {
+  if (approveButton) {
+    approveButton.disabled = false;
+
+    approveButton.innerHTML = `
+      <i
+        class="fa-solid fa-check"
+        aria-hidden="true"
+      ></i>
+
+      Approve
+    `;
+  }
+
+  if (rejectButton) {
+    rejectButton.disabled = false;
+
+    rejectButton.innerHTML = `
+      <i
+        class="fa-solid fa-xmark"
+        aria-hidden="true"
+      ></i>
+
+      Reject
+    `;
+  }
+}
+
+// ==========================================
+// 14. MOBILE NAVIGATION
+// ==========================================
+
+if (menuBtn && primaryNavigation) {
+  menuBtn.addEventListener("click", () => {
+    const isOpen = primaryNavigation.classList.toggle("show");
+
+    menuBtn.setAttribute("aria-expanded", String(isOpen));
+
+    menuBtn.setAttribute(
+      "aria-label",
+      isOpen ? "Close navigation menu" : "Open navigation menu",
     );
 
-  }
-);
+    const icon = menuBtn.querySelector("i");
 
+    if (icon) {
+      icon.classList.toggle("fa-bars", !isOpen);
+
+      icon.classList.toggle("fa-xmark", isOpen);
+    }
+  });
+}
 
 // ==========================================
-// 15. INITIALIZE
+// 15. HEADER SCROLL
 // ==========================================
 
-document.addEventListener(
-  "DOMContentLoaded",
-  async () => {
-
-    await updateAuthNavigation();
-
-    await loadIncomingRequests();
-
+window.addEventListener("scroll", () => {
+  if (!header) {
+    return;
   }
-);
+
+  header.classList.toggle("scrolled", window.scrollY > 30);
+});
+
+// ==========================================
+// 16. INITIALIZE
+// ==========================================
+
+document.addEventListener("DOMContentLoaded", async () => {
+  await updateAuthNavigation();
+
+  await loadIncomingRequests();
+});

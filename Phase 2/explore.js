@@ -160,6 +160,9 @@ async function loadResources() {
       ascending: false,
     });
 
+    console.log("RESOURCE DATA FROM SUPABASE:", data);
+console.log("RESOURCE ERROR FROM SUPABASE:", error);
+
   // ----------------------------------------
   // HANDLE ERROR
   // ----------------------------------------

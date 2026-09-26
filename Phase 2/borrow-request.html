@@ -1,543 +1,309 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
 
-<head>
-  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+    <meta
+      name="description"
+      content="Request to borrow a resource from the EcoShare community."
+    />
 
-  <meta
-    name="description"
-    content="Request to borrow a resource from the EcoShare community."
-  >
+    <title>Borrow Resource | EcoShare</title>
 
-  <title>Borrow Resource | EcoShare</title>
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
 
-  <!-- Font Awesome -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-  >
+    <!-- Borrow Request CSS -->
+    <link rel="stylesheet" href="../Phase 2/borrow-request.css" />
+  </head>
 
-  <!-- Borrow Request CSS -->
-  <link rel="stylesheet" href="/Phase 2/borrow-request.css">
-</head>
-
-<body>
-
-  <!-- ==================================================
+  <body>
+    <!-- ==================================================
        HEADER
        ================================================== -->
 
-  <header class="header">
+    <header class="header">
+      <div class="container navbar">
+        <!-- Logo -->
 
-    <div class="container navbar">
+        <a href="../Phase 1/index.html" class="logo" aria-label="EcoShare Home">
+          <img src="../assets/logo.png" alt="EcoShare" />
+        </a>
 
-      <!-- Logo -->
-
-      <a
-        href="/Phase 1/index.html"
-        class="logo"
-        aria-label="EcoShare Home"
-      >
-        <img
-          src="/assets/logo.png"
-          alt="EcoShare"
-        >
-      </a>
-
-
-      <!-- Navigation -->
-
-      <nav
-  class="nav-links"
-  id="primary-navigation"
-  aria-label="Primary navigation"
->
-
-  <a
-    href="../Phase 1/index.html"
-    class="nav-link"
-  >
-    Home
-  </a>
-
-  <a
-    href="explore.html"
-    class="nav-link active"
-  >
-    Explore
-  </a>
-
-  <a
-    href="../Phase 1/index.html#how-it-works"
-    class="nav-link"
-  >
-    How It Works
-  </a>
-
-  <a
-    href="../Phase 1/index.html#about"
-    class="nav-link"
-  >
-    About
-  </a>
-
-  <a
-    href="../Phase 1/index.html#contact"
-    class="nav-link"
-  >
-    Contact
-  </a>
-
-  <a
-    href="../Phase 1/login.html"
-    class="login-nav-btn"
-    id="authNavButton"
-  >
-    Login
-  </a>
-
-</nav>
-
-      <!-- Mobile Menu -->
-
-      <button
-        type="button"
-        class="menu-btn"
-        id="menu-btn"
-        aria-label="Open navigation menu"
-        aria-expanded="false"
-        aria-controls="primary-navigation"
-      >
-        <i
-          class="fa-solid fa-bars"
-          aria-hidden="true"
-        ></i>
-      </button>
-
-    </div>
-
-  </header>
-
-
-  <!-- ==================================================
-       MAIN
-       ================================================== -->
-
-  <main>
-
-    <!-- Breadcrumb -->
-
-    <div class="details-top">
-
-      <div class="container">
+        <!-- Navigation -->
 
         <nav
-          class="breadcrumb"
-          aria-label="Breadcrumb"
+          class="nav-links"
+          id="primary-navigation"
+          aria-label="Primary navigation"
         >
+         <a href="../Phase 1/index.html" class="nav-link">
+            <i class="fa-solid fa-house" aria-hidden="true"></i>
+            Home
+          </a>
 
-          <a href="/Phase 2/explore.html">
+          <a href="../Phase 2/explore.html" class="nav-link">
+            <i class="fa-solid fa-compass" aria-hidden="true"></i>
             Explore
           </a>
 
-          <i
-            class="fa-solid fa-chevron-right"
-            aria-hidden="true"
-          ></i>
+          <a href="../Phase 1/index.html#about" class="nav-link"> About </a>
+
+          <a href="../Phase 1/index.html#contact" class="nav-link"> Contact </a>
 
           <a
-            href="#"
-            id="resourceLink"
+            href="../Phase 1/login.html"
+            class="login-nav-btn"
+            id="authNavButton"
           >
-            Resource
+            Login
           </a>
-
-          <i
-            class="fa-solid fa-chevron-right"
-            aria-hidden="true"
-          ></i>
-
-          <span>
-            Borrow / Request
-          </span>
-
         </nav>
 
+        <!-- Mobile Menu -->
+
+        <button
+          type="button"
+          class="menu-btn"
+          id="menu-btn"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          aria-controls="primary-navigation"
+        >
+          <i class="fa-solid fa-bars" aria-hidden="true"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- ==================================================
+       MAIN
+       ================================================== -->
+
+    <main>
+      <!-- Breadcrumb -->
+
+      <div class="details-top">
+        <div class="container">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="../Phase 2/explore.html"> Explore </a>
+
+            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+
+            <a href="#" id="resourceLink"> Resource </a>
+
+            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+
+            <span> Borrow / Request </span>
+          </nav>
+        </div>
       </div>
 
-    </div>
+      <!-- Borrow Request Section -->
 
-
-    <!-- Borrow Request Section -->
-
-    <section class="borrow-request">
-
-      <div class="container">
-
-        <div
-          class="borrow-request-card"
-          id="borrowRequestCard"
-        >
-
-          <!-- ==========================================
+      <section class="borrow-request">
+        <div class="container">
+          <div class="borrow-request-card" id="borrowRequestCard">
+            <!-- ==========================================
                RESOURCE SUMMARY
                ========================================== -->
 
-          <div class="resource-summary">
-
-            <div class="resource-image">
-
-              <img
-                id="resourceImage"
-                src=""
-                alt=""
-              >
-
-            </div>
-
-
-            <div class="resource-summary-content">
-
-              <span
-                class="resource-category"
-                id="resourceCategory"
-              >
-                Category
-              </span>
-
-              <h1 id="resourceTitle">
-                Resource
-              </h1>
-
-              <p
-                class="resource-description"
-                id="resourceDescription"
-              >
-                Resource description.
-              </p>
-
-
-              <div class="resource-meta">
-
-                <div class="meta-item">
-
-                  <i
-                    class="fa-solid fa-user"
-                    aria-hidden="true"
-                  ></i>
-
-                  <div>
-
-                    <span class="meta-label">
-                      Owner
-                    </span>
-
-                    <strong id="resourceOwner">
-                      —
-                    </strong>
-
-                  </div>
-
-                </div>
-
-
-                <div class="meta-item">
-
-                  <i
-                    class="fa-solid fa-location-dot"
-                    aria-hidden="true"
-                  ></i>
-
-                  <div>
-
-                    <span class="meta-label">
-                      Location
-                    </span>
-
-                    <strong id="resourceLocation">
-                      —
-                    </strong>
-
-                  </div>
-
-                </div>
-
-
-                <div class="meta-item">
-
-                  <i
-                    class="fa-solid fa-circle-check"
-                    aria-hidden="true"
-                  ></i>
-
-                  <div>
-
-                    <span class="meta-label">
-                      Availability
-                    </span>
-
-                    <strong
-                      id="resourceAvailability"
-                      class="availability"
-                    >
-                      —
-                    </strong>
-
-                  </div>
-
-                </div>
-
+            <div class="resource-summary">
+              <div class="resource-image">
+                <img id="resourceImage" src="" alt="" />
               </div>
 
+              <div class="resource-summary-content">
+                <span class="resource-category" id="resourceCategory">
+                  Category
+                </span>
+
+                <h1 id="resourceTitle">Resource</h1>
+
+                <p class="resource-description" id="resourceDescription">
+                  Resource description.
+                </p>
+
+                <div class="resource-meta">
+                  <div class="meta-item">
+                    <i class="fa-solid fa-user" aria-hidden="true"></i>
+
+                    <div>
+                      <span class="meta-label"> Owner </span>
+
+                      <strong id="resourceOwner"> — </strong>
+                    </div>
+                  </div>
+
+                  <div class="meta-item">
+                    <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+
+                    <div>
+                      <span class="meta-label"> Location </span>
+
+                      <strong id="resourceLocation"> — </strong>
+                    </div>
+                  </div>
+
+                  <div class="meta-item">
+                    <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+
+                    <div>
+                      <span class="meta-label"> Availability </span>
+
+                      <strong id="resourceAvailability" class="availability">
+                        —
+                      </strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
-          </div>
+            <!-- Divider -->
 
+            <div class="request-divider"></div>
 
-          <!-- Divider -->
-
-          <div class="request-divider"></div>
-
-
-          <!-- ==========================================
+            <!-- ==========================================
                REQUEST FORM
                ========================================== -->
 
-          <div class="request-content">
+            <div class="request-content">
+              <div class="request-heading">
+                <span class="request-label"> Borrow Request </span>
 
-            <div class="request-heading">
-
-              <span class="request-label">
-                Borrow Request
-              </span>
-
-              <h2>
-                Request this resource
-              </h2>
-
-              <p>
-                Send a request to the resource owner.
-                You can include a short message explaining
-                why you would like to borrow it.
-              </p>
-
-            </div>
-
-
-            <form
-              id="borrowRequestForm"
-              novalidate
-            >
-
-              <!-- Message -->
-
-              <div class="form-group">
-
-                <label for="requestMessage">
-                  Message
-                  <span aria-hidden="true">*</span>
-                </label>
-
-                <textarea
-                  id="requestMessage"
-                  name="message"
-                  rows="6"
-                  maxlength="500"
-                  placeholder="Write a short message to the resource owner..."
-                  required
-                ></textarea>
-
-                <div class="character-count">
-
-                  <span>
-                    Maximum 500 characters
-                  </span>
-
-                  <span id="characterCount">
-                    0 / 500
-                  </span>
-
-                </div>
-
-                <p
-                  class="field-error"
-                  id="messageError"
-                  aria-live="polite"
-                ></p>
-
-              </div>
-
-
-              <!-- Request Info -->
-
-              <div class="request-info">
-
-                <i
-                  class="fa-solid fa-circle-info"
-                  aria-hidden="true"
-                ></i>
+                <h2>Request this resource</h2>
 
                 <p>
-                  Your request will be sent to the resource
-                  owner for approval. The resource is not
-                  considered borrowed until the owner accepts
-                  your request.
+                  Send a request to the resource owner. You can include a short
+                  message explaining why you would like to borrow it.
                 </p>
-
               </div>
 
+              <form id="borrowRequestForm" novalidate>
+                <!-- Message -->
 
-              <!-- Actions -->
+                <div class="form-group">
+                  <label for="requestMessage">
+                    Message
+                    <span aria-hidden="true">*</span>
+                  </label>
 
-              <div class="form-actions">
+                  <textarea
+                    id="requestMessage"
+                    name="message"
+                    rows="6"
+                    maxlength="500"
+                    placeholder="Write a short message to the resource owner..."
+                    required
+                  ></textarea>
 
-                <a
-                  href="/Phase 2/explore.html"
-                  class="back-btn"
-                  id="backButton"
-                >
-                  <i
-                    class="fa-solid fa-arrow-left"
-                    aria-hidden="true"
-                  ></i>
+                  <div class="character-count">
+                    <span> Maximum 500 characters </span>
 
-                  Back
-                </a>
+                    <span id="characterCount"> 0 / 500 </span>
+                  </div>
 
-                <button
-                  type="submit"
-                  class="request-btn"
-                  id="requestBtn"
-                >
-                  <i
-                    class="fa-solid fa-paper-plane"
-                    aria-hidden="true"
-                  ></i>
+                  <p
+                    class="field-error"
+                    id="messageError"
+                    aria-live="polite"
+                  ></p>
+                </div>
 
-                  Send Request
-                </button>
+                <!-- Request Info -->
 
-              </div>
+                <div class="request-info">
+                  <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
 
+                  <p>
+                    Your request will be sent to the resource owner for
+                    approval. The resource is not considered borrowed until the
+                    owner accepts your request.
+                  </p>
+                </div>
 
-              <!-- Form Message -->
+                <!-- Actions -->
 
-              <p
-                class="form-message"
-                id="formMessage"
-                aria-live="polite"
-              ></p>
+                <div class="form-actions">
+                  <a
+                    href="../Phase 2/explore.html"
+                    class="back-btn"
+                    id="backButton"
+                  >
+                    <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
 
-            </form>
+                    Back
+                  </a>
 
+                  <button type="submit" class="request-btn" id="requestBtn">
+                    <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+
+                    Send Request
+                  </button>
+                </div>
+
+                <!-- Form Message -->
+
+                <p class="form-message" id="formMessage" aria-live="polite"></p>
+              </form>
+            </div>
           </div>
 
-        </div>
-
-
-        <!-- ==================================================
+          <!-- ==================================================
              RESOURCE NOT FOUND
              ================================================== -->
 
-        <div
-          class="resource-not-found"
-          id="resourceNotFound"
-          hidden
-        >
+          <div class="resource-not-found" id="resourceNotFound" hidden>
+            <div class="not-found-icon">
+              <i class="fa-solid fa-box-open" aria-hidden="true"></i>
+            </div>
 
-          <div class="not-found-icon">
+            <h2>Resource Not Found</h2>
 
-            <i
-              class="fa-solid fa-box-open"
-              aria-hidden="true"
-            ></i>
+            <p>The resource you are trying to request could not be found.</p>
 
+            <a href="../Phase 2/explore.html" class="back-btn">
+              <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+
+              Back to Explore
+            </a>
           </div>
-
-          <h2>
-            Resource Not Found
-          </h2>
-
-          <p>
-            The resource you are trying to request
-            could not be found.
-          </p>
-
-          <a
-            href="/Phase 2/explore.html"
-            class="back-btn"
-          >
-            <i
-              class="fa-solid fa-arrow-left"
-              aria-hidden="true"
-            ></i>
-
-            Back to Explore
-          </a>
-
         </div>
+      </section>
+    </main>
 
-      </div>
-
-    </section>
-
-  </main>
-
-
-  <!-- ==================================================
+    <!-- ==================================================
        FOOTER
        ================================================== -->
 
-  <footer class="footer">
-
-    <div class="container footer-container">
-
-      <div class="footer-brand">
-
-        <a
-          href="/Phase 1/index.html"
-          class="footer-logo"
-          aria-label="EcoShare Home"
-        >
-
-          <img
-            src="/assets/logo.png"
-            alt="EcoShare"
+    <footer class="footer">
+      <div class="container footer-container">
+        <div class="footer-brand">
+          <a
+            href="../Phase 1/index.html"
+            class="footer-logo"
+            aria-label="EcoShare Home"
           >
+            <img src="../assets/logo.png" alt="EcoShare" />
+          </a>
 
-        </a>
+          <p>Share resources. Reduce waste. Build a stronger community.</p>
+        </div>
 
-        <p>
-          Share resources. Reduce waste.
-          Build a stronger community.
-        </p>
-
+        <div class="footer-bottom">
+          <p>© 2026 EcoShare. All rights reserved.</p>
+        </div>
       </div>
+    </footer>
 
-
-      <div class="footer-bottom">
-
-        <p>
-          © 2026 EcoShare. All rights reserved.
-        </p>
-
-      </div>
-
-    </div>
-
-  </footer>
-
-
-  <!-- Borrow Request JavaScript -->
+    <!-- Borrow Request JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="/Phase 1/supabase.js"></script>
-    <script src="/Phase 2/borrow-request.js"></script>
-
-</body>
-
+    <script src="../Phase 1/supabase.js"></script>
+    <script src="../Phase 2/borrow-request.js"></script>
+  </body>
 </html>

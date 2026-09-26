@@ -2,7 +2,6 @@
 // EcoShare — My Requests JavaScript
 // ==========================================
 
-
 // ==========================================
 // 1. GET ELEMENTS
 // ==========================================
@@ -15,749 +14,868 @@ const requestsCount = document.getElementById("requestsCount");
 
 const menuBtn = document.getElementById("menu-btn");
 
-const primaryNavigation =
-    document.getElementById("primary-navigation");
+const primaryNavigation = document.getElementById("primary-navigation");
 
-const authNavButton =
-    document.getElementById("authNavButton");
+const authNavButton = document.getElementById("authNavButton");
 
-const header =
-    document.querySelector(".header");
+const header = document.querySelector(".header");
 
+const requestFilters = document.querySelectorAll(".request-filter");
 
 // ==========================================
-// 2. FORMAT CATEGORY
+// 2. REQUEST STATE
+// ==========================================
+
+let allRequests = [];
+
+let currentFilter = "all";
+
+// ==========================================
+// 3. FORMAT CATEGORY
 // ==========================================
 
 function formatCategory(category) {
+  if (!category) {
+    return "Other";
+  }
 
-    if (!category) {
-        return "Other";
-    }
-
-    return category.charAt(0).toUpperCase() + category.slice(1);
+  return category.charAt(0).toUpperCase() + category.slice(1);
 }
 
-
 // ==========================================
-// 3. FORMAT STATUS
+// 4. FORMAT STATUS
 // ==========================================
 
 function formatStatus(status) {
+  if (!status) {
+    return "Unknown";
+  }
 
-    if (!status) {
-        return "Unknown";
-    }
-
-    return status.charAt(0).toUpperCase() + status.slice(1);
+  return status.charAt(0).toUpperCase() + status.slice(1);
 }
 
-
 // ==========================================
-// 4. STATUS ICON
+// 5. STATUS ICON
 // ==========================================
 
 function getStatusIcon(status) {
+  switch (status) {
+    case "pending":
+      return "fa-clock";
 
-    switch (status) {
+    case "approved":
+      return "fa-circle-check";
 
-        case "pending":
-            return "fa-clock";
+    case "rejected":
+      return "fa-circle-xmark";
 
-        case "approved":
-            return "fa-circle-check";
+    case "cancelled":
+      return "fa-ban";
 
-        case "rejected":
-            return "fa-circle-xmark";
+    case "returned":
+      return "fa-arrow-rotate-left";
 
-        case "cancelled":
-            return "fa-ban";
-
-        default:
-            return "fa-circle-question";
-    }
+    default:
+      return "fa-circle-question";
+  }
 }
 
-
 // ==========================================
-// 5. FORMAT DATE
+// 6. FORMAT DATE
 // ==========================================
 
 function formatDate(dateValue) {
+  if (!dateValue) {
+    return "Date unavailable";
+  }
 
-    if (!dateValue) {
-        return "Date unavailable";
-    }
+  const date = new Date(dateValue);
 
-    const date = new Date(dateValue);
+  if (Number.isNaN(date.getTime())) {
+    return "Date unavailable";
+  }
 
-    if (Number.isNaN(date.getTime())) {
-        return "Date unavailable";
-    }
-
-    return date.toLocaleDateString(undefined, {
-        year: "numeric",
-        month: "short",
-        day: "numeric",
-    });
+  return date.toLocaleDateString(undefined, {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
 }
 
-
 // ==========================================
-// 6. UPDATE AUTH NAVIGATION
+// 7. UPDATE AUTH NAVIGATION
 // ==========================================
 
 async function updateAuthNavigation() {
+  if (!authNavButton) {
+    return;
+  }
 
-    if (!authNavButton) {
-        return;
-    }
+  const {
+    data: { session },
+  } = await supabaseClient.auth.getSession();
 
-    const {
-        data: { session },
-    } = await supabaseClient.auth.getSession();
+  if (session) {
+    authNavButton.innerHTML = `
+      <i class="fa-solid fa-user"></i>
+      Profile
+    `;
 
+    authNavButton.href = "../Phase 1/profile.html";
 
-    if (session) {
+    authNavButton.setAttribute("aria-label", "Open profile");
+  } else {
+    authNavButton.innerHTML = `
+      <i class="fa-solid fa-right-to-bracket"></i>
+      Login
+    `;
 
-        authNavButton.innerHTML = `
-            <i class="fa-solid fa-user"></i>
-            Profile
-        `;
+    authNavButton.href = "../Phase 1/login.html";
 
-        authNavButton.href =
-            "../Phase 1/profile.html";
-
-        authNavButton.setAttribute(
-            "aria-label",
-            "Open profile"
-        );
-
-    } else {
-
-        authNavButton.innerHTML = `
-            <i class="fa-solid fa-right-to-bracket"></i>
-            Login
-        `;
-
-        authNavButton.href =
-            "../Phase 1/login.html";
-
-        authNavButton.setAttribute(
-            "aria-label",
-            "Login"
-        );
-    }
+    authNavButton.setAttribute("aria-label", "Login");
+  }
 }
 
-
 // ==========================================
-// 7. SHOW ERROR
+// 8. SHOW ERROR
 // ==========================================
 
 function showError(message) {
+  if (!requestsList) {
+    return;
+  }
 
-    if (!requestsList) {
-        return;
-    }
+  requestsList.hidden = false;
 
-    requestsList.innerHTML = `
-        <div class="requests-error">
+  requestsList.innerHTML = `
+    <div class="requests-error">
 
-            <i
-                class="fa-solid fa-triangle-exclamation"
-                aria-hidden="true"
-            ></i>
+      <i
+        class="fa-solid fa-triangle-exclamation"
+        aria-hidden="true"
+      ></i>
 
-            <h3>
-                Unable to load your requests
-            </h3>
+      <h3>
+        Unable to load your requests
+      </h3>
 
-            <p>
-                ${message}
-            </p>
+      <p>
+        ${message}
+      </p>
 
-        </div>
-    `;
+    </div>
+  `;
 }
 
+// ==========================================
+// 9. CHECK FILTER
+// ==========================================
+
+function matchesFilter(request, filter) {
+  if (filter === "all") {
+    return true;
+  }
+
+  // Pending = waiting for owner approval
+  if (filter === "pending") {
+    return request.status === "pending";
+  }
+
+  // Active = currently approved / borrowed
+  if (filter === "active") {
+    return request.status === "approved";
+  }
+
+  // Completed = finished or closed requests
+  if (filter === "completed") {
+    return ["returned", "rejected", "cancelled"].includes(request.status);
+  }
+
+  return true;
+}
 
 // ==========================================
-// 8. LOAD MY REQUESTS
+// 10. APPLY REQUEST FILTER
+// ==========================================
+
+function applyRequestFilter() {
+  if (!requestsList) {
+    return;
+  }
+
+  const filteredRequests = allRequests.filter((request) =>
+    matchesFilter(request, currentFilter),
+  );
+
+  requestsList.hidden = false;
+
+  if (emptyRequests) {
+    emptyRequests.hidden = true;
+  }
+
+  // --------------------------------------
+  // No requests in selected filter
+  // --------------------------------------
+
+  if (filteredRequests.length === 0) {
+    requestsList.innerHTML = `
+      <div class="empty-requests">
+
+        <div class="empty-requests-icon">
+          <i
+            class="fa-solid fa-filter"
+            aria-hidden="true"
+          ></i>
+        </div>
+
+        <h3>No requests found</h3>
+
+        <p>
+          ${
+            currentFilter === "all"
+              ? "You don't have any borrow requests yet."
+              : `You don't have any ${currentFilter} requests.`
+          }
+        </p>
+
+        ${
+          currentFilter === "all"
+            ? `
+              <a href="explore.html" class="primary-btn">
+                <i
+                  class="fa-solid fa-magnifying-glass"
+                  aria-hidden="true"
+                ></i>
+                Explore Resources
+              </a>
+            `
+            : ""
+        }
+
+      </div>
+    `;
+
+    if (requestsCount) {
+      requestsCount.textContent =
+        currentFilter === "all"
+          ? "No requests yet"
+          : `No ${currentFilter} requests`;
+    }
+
+    return;
+  }
+
+  // --------------------------------------
+  // Update count
+  // --------------------------------------
+
+  if (requestsCount) {
+    requestsCount.textContent = `${filteredRequests.length} request${
+      filteredRequests.length === 1 ? "" : "s"
+    }`;
+  }
+
+  // --------------------------------------
+  // Display filtered requests
+  // --------------------------------------
+
+  displayRequests(filteredRequests);
+}
+
+// ==========================================
+// 11. LOAD MY REQUESTS
 // ==========================================
 
 async function loadMyRequests() {
+  if (!requestsList) {
+    return;
+  }
 
-    if (!requestsList) {
-        return;
-    }
+  // --------------------------------------
+  // Get authenticated user
+  // --------------------------------------
 
+  const {
+    data: { user },
+    error: authError,
+  } = await supabaseClient.auth.getUser();
 
-    // --------------------------------------
-    // Get authenticated user
-    // --------------------------------------
+  if (authError) {
+    console.error("Authentication error:", authError);
 
-    const {
-        data: { user },
-        error: authError,
-    } = await supabaseClient.auth.getUser();
+    window.location.href = "../Phase 1/login.html";
 
+    return;
+  }
 
-    if (authError) {
+  if (!user) {
+    window.location.href = "../Phase 1/login.html";
 
-        console.error(
-            "Authentication error:",
-            authError
-        );
+    return;
+  }
 
-        window.location.href =
-            "../Phase 1/login.html";
+  // --------------------------------------
+  // Loading state
+  // --------------------------------------
 
-        return;
-    }
+  requestsList.hidden = false;
 
+  requestsList.innerHTML = `
+    <div class="requests-error">
 
-    if (!user) {
+      <i
+        class="fa-solid fa-spinner fa-spin"
+        aria-hidden="true"
+      ></i>
 
-        window.location.href =
-            "../Phase 1/login.html";
+      <h3>
+        Loading requests...
+      </h3>
 
-        return;
-    }
+      <p>
+        Please wait while we load your borrow requests.
+      </p>
 
+    </div>
+  `;
 
-    // --------------------------------------
-    // Loading state
-    // --------------------------------------
+  // --------------------------------------
+  // Fetch requests
+  // --------------------------------------
 
-    requestsList.innerHTML = `
-        <div class="requests-error">
+  const { data: requests, error } = await supabaseClient
+    .from("borrow_requests")
+    .select(
+      `
+        id,
+        resource_id,
+        message,
+        status,
+        created_at,
+        updated_at,
+        resources (
+          title,
+          description,
+          category,
+          location,
+          image_url,
+          available,
+          owner_id
+        )
+      `,
+    )
+    .eq("borrower_id", user.id)
+    .order("created_at", {
+      ascending: false,
+    });
 
-            <i
-                class="fa-solid fa-spinner fa-spin"
-                aria-hidden="true"
-            ></i>
+  // --------------------------------------
+  // Handle error
+  // --------------------------------------
 
-            <h3>
-                Loading requests...
-            </h3>
+  if (error) {
+    console.error("My requests loading error:", error);
 
-            <p>
-                Please wait while we load your
-                borrow requests.
-            </p>
+    showError("Please refresh the page and try again.");
 
-        </div>
-    `;
+    return;
+  }
 
+  // --------------------------------------
+  // Store requests
+  // --------------------------------------
 
-    // --------------------------------------
-    // Fetch requests
-    // --------------------------------------
+  allRequests = requests || [];
 
-    const {
-        data: requests,
-        error,
-    } = await supabaseClient
-        .from("borrow_requests")
-        .select(`
-            id,
-            resource_id,
-            message,
-            status,
-            created_at,
-            updated_at,
-            resources (
-                title,
-                description,
-                category,
-                location,
-                image_url,
-                available,
-                owner_id
-            )
-        `)
-        .eq("borrower_id", user.id)
-        .order("created_at", {
-            ascending: false,
-        });
+  // --------------------------------------
+  // Completely empty
+  // --------------------------------------
 
+  if (allRequests.length === 0) {
+    requestsList.innerHTML = "";
 
-    // --------------------------------------
-    // Handle error
-    // --------------------------------------
-
-    if (error) {
-
-        console.error(
-            "My requests loading error:",
-            error
-        );
-
-        showError(
-            "Please refresh the page and try again."
-        );
-
-        return;
-    }
-
-
-    // --------------------------------------
-    // Empty state
-    // --------------------------------------
-
-    if (!requests || requests.length === 0) {
-
-        requestsList.innerHTML = "";
-
-        requestsList.hidden = true;
-
-        if (emptyRequests) {
-            emptyRequests.hidden = false;
-        }
-
-        if (requestsCount) {
-            requestsCount.textContent =
-                "No requests yet";
-        }
-
-        return;
-    }
-
-
-    // --------------------------------------
-    // Show requests
-    // --------------------------------------
-
-    requestsList.hidden = false;
+    requestsList.hidden = true;
 
     if (emptyRequests) {
-        emptyRequests.hidden = true;
+      emptyRequests.hidden = false;
     }
 
     if (requestsCount) {
-
-        requestsCount.textContent =
-            `${requests.length} request${requests.length === 1 ? "" : "s"}`;
+      requestsCount.textContent = "No requests yet";
     }
 
+    return;
+  }
 
-    displayRequests(requests);
+  // --------------------------------------
+  // Show request list
+  // --------------------------------------
+
+  requestsList.hidden = false;
+
+  if (emptyRequests) {
+    emptyRequests.hidden = true;
+  }
+
+  // --------------------------------------
+  // Apply current filter
+  // --------------------------------------
+
+  applyRequestFilter();
 }
 
-
-/// ==========================================
-// 9. DISPLAY REQUESTS
+// ==========================================
+// 12. DISPLAY REQUESTS
 // ==========================================
 
 function displayRequests(requests) {
+  if (!requestsList) {
+    return;
+  }
 
-    if (!requestsList) {
-        return;
+  requestsList.innerHTML = "";
+
+  requests.forEach((request) => {
+    const resource = request.resources;
+
+    if (!resource) {
+      return;
     }
 
-    requestsList.innerHTML = "";
+    const card = document.createElement("article");
+
+    card.className = "request-card";
+
+    // ----------------------------------
+    // Image
+    // ----------------------------------
+
+    const imageHTML = resource.image_url
+      ? `
+        <img
+          src="${resource.image_url}"
+          alt="${resource.title}"
+          loading="lazy"
+        >
+      `
+      : `
+        <i
+          class="fa-solid fa-image"
+          aria-hidden="true"
+        ></i>
+      `;
+
+    // ----------------------------------
+    // Status
+    // ----------------------------------
+
+    const statusClass = `status-${request.status}`;
+
+    const statusIcon = getStatusIcon(request.status);
+
+    // ----------------------------------
+    // Withdraw button
+    // ----------------------------------
+
+    const withdrawButtonHTML =
+      request.status === "pending"
+        ? `
+          <button
+            type="button"
+            class="withdraw-request-btn"
+            data-request-id="${request.id}"
+          >
+            <i
+              class="fa-solid fa-ban"
+              aria-hidden="true"
+            ></i>
+
+            Withdraw Request
+          </button>
+        `
+        : "";
+
+    // ----------------------------------
+    // Return button
+    // ----------------------------------
+
+    const returnButtonHTML =
+      request.status === "approved"
+        ? `
+          <button
+            type="button"
+            class="return-resource-btn"
+            data-request-id="${request.id}"
+          >
+            <i
+              class="fa-solid fa-arrow-rotate-left"
+              aria-hidden="true"
+            ></i>
+
+            Return Resource
+          </button>
+        `
+        : "";
+
+    // ----------------------------------
+    // Card
+    // ----------------------------------
+
+    card.innerHTML = `
+      <div class="request-image">
+
+        ${imageHTML}
+
+      </div>
 
 
-    requests.forEach((request) => {
+      <div class="request-content">
 
-        const resource = request.resources;
+        <span class="request-category">
+          ${formatCategory(resource.category)}
+        </span>
 
-        if (!resource) {
-            return;
+
+        <h3>
+          ${resource.title}
+        </h3>
+
+
+        <p class="request-description">
+          ${resource.description}
+        </p>
+
+
+        <div class="request-meta">
+
+          <span>
+            <i
+              class="fa-solid fa-location-dot"
+              aria-hidden="true"
+            ></i>
+
+            ${resource.location || "Location not specified"}
+          </span>
+
+
+          <span>
+            <i
+              class="fa-regular fa-calendar"
+              aria-hidden="true"
+            ></i>
+
+            ${formatDate(request.created_at)}
+          </span>
+
+        </div>
+
+
+        <div class="request-actions">
+
+          <button
+            type="button"
+            class="view-request-btn"
+            data-resource-id="${request.resource_id}"
+          >
+            <i
+              class="fa-solid fa-eye"
+              aria-hidden="true"
+            ></i>
+
+            View Resource
+          </button>
+
+
+          ${withdrawButtonHTML}
+
+          ${returnButtonHTML}
+
+        </div>
+
+      </div>
+
+
+      <div class="request-status">
+
+        <span
+          class="status-badge ${statusClass}"
+        >
+
+          <i
+            class="fa-solid ${statusIcon}"
+            aria-hidden="true"
+          ></i>
+
+          ${formatStatus(request.status)}
+
+        </span>
+
+      </div>
+    `;
+
+    // ----------------------------------
+    // Image fallback
+    // ----------------------------------
+
+    const image = card.querySelector("img");
+
+    if (image) {
+      image.addEventListener("error", () => {
+        const container = card.querySelector(".request-image");
+
+        if (!container) {
+          return;
         }
 
+        container.innerHTML = `
+          <i
+            class="fa-solid fa-image"
+            aria-hidden="true"
+          ></i>
+        `;
+      });
+    }
 
-        const card =
-            document.createElement("article");
+    // ----------------------------------
+    // View resource
+    // ----------------------------------
 
-        card.className = "request-card";
+    const viewButton = card.querySelector(".view-request-btn");
 
+    if (viewButton) {
+      viewButton.addEventListener("click", () => {
+        const resourceId = Number(viewButton.dataset.resourceId);
 
-        // ----------------------------------
-        // Image
-        // ----------------------------------
+        window.location.href = `resource-details.html?id=${encodeURIComponent(resourceId)}`;
+      });
+    }
 
-        const imageHTML = resource.image_url
-            ? `
-                <img
-                    src="${resource.image_url}"
-                    alt="${resource.title}"
-                    loading="lazy"
-                >
-            `
-            : `
-                <i
-                    class="fa-solid fa-image"
-                    aria-hidden="true"
-                ></i>
-            `;
+    // ----------------------------------
+    // Withdraw request
+    // ----------------------------------
 
+    const withdrawButton = card.querySelector(".withdraw-request-btn");
 
-        // ----------------------------------
-        // Status
-        // ----------------------------------
+    if (withdrawButton) {
+      withdrawButton.addEventListener("click", async () => {
+        const requestId = Number(withdrawButton.dataset.requestId);
 
-        const statusClass =
-            `status-${request.status}`;
+        const confirmed = window.confirm(
+          "Are you sure you want to withdraw this borrow request?",
+        );
 
-        const statusIcon =
-            getStatusIcon(request.status);
-
-
-        // ----------------------------------
-        // Withdraw button
-        // ----------------------------------
-
-        const withdrawButtonHTML =
-            request.status === "pending"
-                ? `
-                    <button
-                        type="button"
-                        class="withdraw-request-btn"
-                        data-request-id="${request.id}"
-                    >
-                        <i
-                            class="fa-solid fa-ban"
-                            aria-hidden="true"
-                        ></i>
-
-                        Withdraw Request
-                    </button>
-                `
-                : "";
-
+        if (!confirmed) {
+          return;
+        }
 
         // ----------------------------------
-        // Card
+        // Loading state
         // ----------------------------------
 
-        card.innerHTML = `
+        withdrawButton.disabled = true;
 
-            <div class="request-image">
+        withdrawButton.innerHTML = `
+          <i
+            class="fa-solid fa-spinner fa-spin"
+            aria-hidden="true"
+          ></i>
 
-                ${imageHTML}
-
-            </div>
-
-
-            <div class="request-content">
-
-                <span class="request-category">
-                    ${formatCategory(resource.category)}
-                </span>
-
-
-                <h3>
-                    ${resource.title}
-                </h3>
-
-
-                <p class="request-description">
-                    ${resource.description}
-                </p>
-
-
-                <div class="request-meta">
-
-                    <span>
-                        <i
-                            class="fa-solid fa-location-dot"
-                            aria-hidden="true"
-                        ></i>
-
-                        ${resource.location || "Location not specified"}
-                    </span>
-
-
-                    <span>
-                        <i
-                            class="fa-regular fa-calendar"
-                            aria-hidden="true"
-                        ></i>
-
-                        ${formatDate(request.created_at)}
-                    </span>
-
-                </div>
-
-
-                <div class="request-actions">
-
-                    <button
-                        type="button"
-                        class="view-request-btn"
-                        data-resource-id="${request.resource_id}"
-                    >
-                        <i
-                            class="fa-solid fa-eye"
-                            aria-hidden="true"
-                        ></i>
-
-                        View Resource
-                    </button>
-
-
-                    ${withdrawButtonHTML}
-
-                </div>
-
-            </div>
-
-
-            <div class="request-status">
-
-                <span
-                    class="status-badge ${statusClass}"
-                >
-
-                    <i
-                        class="fa-solid ${statusIcon}"
-                        aria-hidden="true"
-                    ></i>
-
-                    ${formatStatus(request.status)}
-
-                </span>
-
-            </div>
-
+          Withdrawing...
         `;
 
+        // ----------------------------------
+        // Secure cancel RPC
+        // ----------------------------------
+
+        const { error } = await supabaseClient.rpc("cancel_borrow_request", {
+          request_id: requestId,
+        });
 
         // ----------------------------------
-        // Image fallback
+        // Handle error
         // ----------------------------------
 
-        const image =
-            card.querySelector("img");
+        if (error) {
+          console.error("Withdraw request error:", error);
 
+          withdrawButton.disabled = false;
 
-        if (image) {
+          withdrawButton.innerHTML = `
+            <i
+              class="fa-solid fa-ban"
+              aria-hidden="true"
+            ></i>
 
-            image.addEventListener(
-                "error",
-                () => {
+            Withdraw Request
+          `;
 
-                    const container =
-                        card.querySelector(".request-image");
+          alert(
+            error.message ||
+              "Unable to withdraw the request. Please try again.",
+          );
 
-                    if (!container) {
-                        return;
-                    }
-
-                    container.innerHTML = `
-                        <i
-                            class="fa-solid fa-image"
-                            aria-hidden="true"
-                        ></i>
-                    `;
-                }
-            );
+          return;
         }
 
-
         // ----------------------------------
-        // View resource
+        // Success
         // ----------------------------------
 
-        const viewButton =
-            card.querySelector(".view-request-btn");
+        await loadMyRequests();
+      });
+    }
 
+    // ----------------------------------
+    // Return resource
+    // ----------------------------------
 
-        if (viewButton) {
+    const returnButton = card.querySelector(".return-resource-btn");
 
-            viewButton.addEventListener(
-                "click",
-                () => {
+    if (returnButton) {
+      returnButton.addEventListener("click", async () => {
+        const requestId = Number(returnButton.dataset.requestId);
 
-                    const resourceId =
-                        Number(
-                            viewButton.dataset.resourceId
-                        );
+        const confirmed = window.confirm(
+          "Are you sure you want to return this resource?",
+        );
 
-                    window.location.href =
-                        `resource-details.html?id=${encodeURIComponent(resourceId)}`;
-                }
-            );
+        if (!confirmed) {
+          return;
         }
 
+        // ----------------------------------
+        // Loading state
+        // ----------------------------------
+
+        returnButton.disabled = true;
+
+        returnButton.innerHTML = `
+          <i
+            class="fa-solid fa-spinner fa-spin"
+            aria-hidden="true"
+          ></i>
+
+          Returning...
+        `;
 
         // ----------------------------------
-        // Withdraw request
+        // Secure return RPC
         // ----------------------------------
 
-        const withdrawButton =
-            card.querySelector(".withdraw-request-btn");
+        const { error } = await supabaseClient.rpc("return_borrowed_resource", {
+          request_id: requestId,
+        });
 
+        // ----------------------------------
+        // Handle error
+        // ----------------------------------
 
-        if (withdrawButton) {
+        if (error) {
+          console.error("Return resource error:", error);
 
-            withdrawButton.addEventListener(
-                "click",
-                async () => {
+          returnButton.disabled = false;
 
-                    const requestId =
-                        Number(
-                            withdrawButton.dataset.requestId
-                        );
+          returnButton.innerHTML = `
+            <i
+              class="fa-solid fa-arrow-rotate-left"
+              aria-hidden="true"
+            ></i>
 
+            Return Resource
+          `;
 
-                    const confirmed =
-                        window.confirm(
-                            "Are you sure you want to withdraw this borrow request?"
-                        );
+          alert(
+            error.message || "Unable to return the resource. Please try again.",
+          );
 
-
-                    if (!confirmed) {
-                        return;
-                    }
-
-
-                    withdrawButton.disabled = true;
-
-                    withdrawButton.innerHTML = `
-                        <i
-                            class="fa-solid fa-spinner fa-spin"
-                            aria-hidden="true"
-                        ></i>
-
-                        Withdrawing...
-                    `;
-
-
-                    const {
-                        error
-                    } = await supabaseClient
-                        .from("borrow_requests")
-                        .update({
-                            status: "cancelled",
-                            updated_at: new Date().toISOString()
-                        })
-                        .eq("id", requestId);
-
-
-                    if (error) {
-
-                        console.error(
-                            "Withdraw request error:",
-                            error
-                        );
-
-
-                        withdrawButton.disabled = false;
-
-                        withdrawButton.innerHTML = `
-                            <i
-                                class="fa-solid fa-ban"
-                                aria-hidden="true"
-                            ></i>
-
-                            Withdraw Request
-                        `;
-
-
-                        alert(
-                            "Unable to withdraw the request. Please try again."
-                        );
-
-                        return;
-                    }
-
-
-                    // Reload the requests
-                    await loadMyRequests();
-
-                }
-            );
+          return;
         }
 
+        // ----------------------------------
+        // Success
+        // ----------------------------------
 
-        requestsList.appendChild(card);
+        await loadMyRequests();
+      });
+    }
 
-    });
+    // ----------------------------------
+    // Add card
+    // ----------------------------------
+
+    requestsList.appendChild(card);
+  });
 }
 
 // ==========================================
-// 10. MOBILE NAVIGATION
+// 13. REQUEST FILTER BUTTONS
+// ==========================================
+
+requestFilters.forEach((filterButton) => {
+  filterButton.addEventListener("click", () => {
+    currentFilter = filterButton.dataset.filter;
+
+    // ----------------------------------
+    // Update active button
+    // ----------------------------------
+
+    requestFilters.forEach((button) => {
+      button.classList.remove("active");
+    });
+
+    filterButton.classList.add("active");
+
+    // ----------------------------------
+    // Apply filter
+    // ----------------------------------
+
+    applyRequestFilter();
+  });
+});
+
+// ==========================================
+// 14. MOBILE NAVIGATION
 // ==========================================
 
 if (menuBtn && primaryNavigation) {
+  menuBtn.addEventListener("click", () => {
+    const isOpen = primaryNavigation.classList.toggle("show");
 
-    menuBtn.addEventListener(
-        "click",
-        () => {
+    menuBtn.setAttribute("aria-expanded", String(isOpen));
 
-            const isOpen =
-                primaryNavigation.classList.toggle("show");
-
-
-            menuBtn.setAttribute(
-                "aria-expanded",
-                String(isOpen)
-            );
-
-
-            menuBtn.setAttribute(
-                "aria-label",
-                isOpen
-                    ? "Close navigation menu"
-                    : "Open navigation menu"
-            );
-
-
-            const icon =
-                menuBtn.querySelector("i");
-
-
-            if (icon) {
-
-                icon.classList.toggle(
-                    "fa-bars",
-                    !isOpen
-                );
-
-                icon.classList.toggle(
-                    "fa-xmark",
-                    isOpen
-                );
-            }
-        }
+    menuBtn.setAttribute(
+      "aria-label",
+      isOpen ? "Close navigation menu" : "Open navigation menu",
     );
+
+    const icon = menuBtn.querySelector("i");
+
+    if (icon) {
+      icon.classList.toggle("fa-bars", !isOpen);
+
+      icon.classList.toggle("fa-xmark", isOpen);
+    }
+  });
 }
 
-
 // ==========================================
-// 11. HEADER SCROLL
-// ==========================================
-
-window.addEventListener(
-    "scroll",
-    () => {
-
-        if (!header) {
-            return;
-        }
-
-        header.classList.toggle(
-            "scrolled",
-            window.scrollY > 30
-        );
-    }
-);
-
-
-// ==========================================
-// 12. INITIALIZE
+// 15. HEADER SCROLL
 // ==========================================
 
-document.addEventListener(
-    "DOMContentLoaded",
-    async () => {
+window.addEventListener("scroll", () => {
+  if (!header) {
+    return;
+  }
 
-        await updateAuthNavigation();
+  header.classList.toggle("scrolled", window.scrollY > 30);
+});
 
-        await loadMyRequests();
+// ==========================================
+// 16. INITIALIZE
+// ==========================================
 
-    }
-);
+document.addEventListener("DOMContentLoaded", async () => {
+  await updateAuthNavigation();
+
+  await loadMyRequests();
+});

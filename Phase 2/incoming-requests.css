@@ -540,3 +540,8 @@
     }
 
 }
+
+.highlighted-request {
+  border: 2px solid #2f7d32;
+  box-shadow: 0 0 0 3px rgba(47, 125, 50, 0.12);
+}
