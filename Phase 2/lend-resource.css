@@ -1,0 +1,1039 @@
+/*
+=========================================================
+  EcoShare — Lend Resource Page
+
+  File: lend-resource.css
+
+  Page-specific styling only.
+
+  UI DESIGN:
+  - Existing layout preserved
+  - Existing colors preserved
+  - Existing spacing preserved
+  - Existing components preserved
+  - Existing responsive behavior preserved
+
+  Global styles are handled by:
+  - ../Phase 1/page.css
+  - ../Phase 1/style.css
+=========================================================
+*/
+
+
+/* ======================================================
+   1. PAGE BACKGROUND
+   ====================================================== */
+
+html {
+    background: #f4f7f0;
+}
+
+body {
+    margin: 0;
+    background: #f4f7f0;
+    color: #1f2937;
+}
+
+
+/* ======================================================
+   2. PAGE HERO
+   ====================================================== */
+
+.page-hero {
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            #f7faf3 100%
+        ) !important;
+
+    border-bottom: 1px solid #e2e8dc;
+    padding: 56px 0 48px;
+    color: #1f2937;
+}
+
+.page-hero .container {
+    max-width: 1060px;
+    margin: 0 auto;
+}
+
+.page-hero h1 {
+    margin: 0 0 12px;
+    color: #1f2937 !important;
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.15;
+}
+
+.page-hero p {
+    margin: 0;
+    color: #596274 !important;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+
+/* ======================================================
+   3. MAIN LEND SECTION
+   ====================================================== */
+
+.lend-section {
+    width: 100%;
+    padding: 64px 0 80px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #f7faf3 0%,
+            #f1f5ed 100%
+        ) !important;
+
+    color: #1f2937;
+}
+
+
+/* ======================================================
+   4. CONTAINER
+   ====================================================== */
+
+.lend-container {
+    width: min(800px, calc(100% - 40px));
+    margin: 0 auto;
+}
+
+
+/* ======================================================
+   5. LEND CARD
+   ====================================================== */
+
+.lend-card {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 40px;
+
+    background: #ffffff !important;
+
+    border: 1px solid #dfe6d8;
+    border-radius: 18px;
+
+    box-shadow:
+        0 10px 35px rgba(45, 70, 30, 0.09),
+        0 2px 8px rgba(0, 0, 0, 0.03);
+
+    color: #1f2937;
+}
+
+
+/* ======================================================
+   6. FORM HEADER
+   ====================================================== */
+
+.form-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+
+    border-bottom: 1px solid #e5e9e1;
+}
+
+.form-icon {
+    flex-shrink: 0;
+
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #eaf5df;
+    border: 1px solid #d9eac9;
+    border-radius: 12px;
+
+    color: #538d22;
+    font-size: 21px;
+}
+
+.form-header h2 {
+    margin: 0 0 6px;
+
+    color: #1f2937 !important;
+
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.form-header p {
+    margin: 0;
+
+    color: #6b7280 !important;
+
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+
+/* ======================================================
+   7. FORM
+   ====================================================== */
+
+.lend-form {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.lend-form .form-group {
+    position: relative;
+
+    margin: 0;
+    padding: 0;
+}
+
+.lend-form .form-group > label {
+    display: block;
+
+    margin: 0 0 9px;
+
+    color: #1f2937 !important;
+
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.lend-form .form-group > label span {
+    color: #538d22;
+}
+
+
+/* ======================================================
+   8. INPUTS
+   ====================================================== */
+
+.lend-form input[type="text"],
+.lend-form input[type="number"],
+.lend-form input[type="email"],
+.lend-form input[type="url"],
+.lend-form textarea,
+.lend-form select {
+    display: block;
+
+    width: 100%;
+    box-sizing: border-box;
+
+    margin: 0;
+    padding: 13px 15px;
+
+    background: #ffffff !important;
+
+    border: 1px solid #cfd6cc !important;
+    border-radius: 9px;
+
+    color: #1f2937 !important;
+
+    font-family: inherit;
+    font-size: 15px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease;
+}
+
+.lend-form input[type="text"],
+.lend-form input[type="number"],
+.lend-form input[type="email"],
+.lend-form input[type="url"],
+.lend-form select {
+    height: 48px;
+}
+
+.lend-form textarea {
+    min-height: 150px;
+    resize: vertical;
+    line-height: 1.6;
+}
+
+.lend-form input::placeholder,
+.lend-form textarea::placeholder {
+    color: #9ca3af !important;
+    opacity: 1;
+}
+
+
+/* ======================================================
+   9. INPUT HOVER
+   ====================================================== */
+
+.lend-form input[type="text"]:hover,
+.lend-form input[type="number"]:hover,
+.lend-form input[type="email"]:hover,
+.lend-form input[type="url"]:hover,
+.lend-form textarea:hover,
+.lend-form select:hover {
+    border-color: #7eaa5c !important;
+    background: #ffffff !important;
+}
+
+
+/* ======================================================
+   10. INPUT FOCUS
+   ====================================================== */
+
+.lend-form input[type="text"]:focus,
+.lend-form input[type="number"]:focus,
+.lend-form input[type="email"]:focus,
+.lend-form input[type="url"]:focus,
+.lend-form textarea:focus,
+.lend-form select:focus {
+    border-color: #538d22 !important;
+
+    box-shadow:
+        0 0 0 3px rgba(83, 141, 34, 0.12) !important;
+}
+
+
+/* ======================================================
+   11. NUMBER INPUTS
+   ====================================================== */
+
+.lend-form input[type="number"] {
+    appearance: textfield;
+    -moz-appearance: textfield;
+}
+
+.lend-form input[type="number"]::-webkit-outer-spin-button,
+.lend-form input[type="number"]::-webkit-inner-spin-button {
+    margin: 0;
+    -webkit-appearance: none;
+}
+
+
+/* ======================================================
+   12. PRICING SECTION
+   ====================================================== */
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.pricing-grid .form-group {
+    min-width: 0;
+}
+
+.price-input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.price-input-wrapper .currency-symbol {
+    position: absolute;
+
+    top: 50%;
+    left: 14px;
+
+    transform: translateY(-50%);
+
+    color: #6b7280;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    pointer-events: none;
+}
+
+.price-input-wrapper input {
+    padding-left: 30px !important;
+}
+
+.price-help {
+    display: block;
+
+    margin-top: 6px;
+
+    color: #6b7280;
+
+    font-size: 12px;
+    line-height: 1.45;
+}
+
+
+/* ======================================================
+   13. CHARACTER COUNT
+   ====================================================== */
+
+.character-count {
+    margin-top: 6px;
+
+    color: #6b7280 !important;
+
+    font-size: 13px;
+    text-align: right;
+}
+
+
+/* ======================================================
+   14. HELP TEXT
+   ====================================================== */
+
+.field-help {
+    display: block;
+
+    margin-top: 7px;
+
+    color: #6b7280 !important;
+
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+
+/* ======================================================
+   15. ERROR TEXT
+   ====================================================== */
+
+.field-error {
+    display: block;
+
+    min-height: 18px;
+    margin-top: 5px;
+
+    color: #c0392b !important;
+
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.form-group.has-error input,
+.form-group.has-error textarea,
+.form-group.has-error select {
+    border-color: #c0392b !important;
+
+    box-shadow:
+        0 0 0 2px rgba(192, 57, 43, 0.07);
+}
+
+
+/* ======================================================
+   16. LOCATION BUTTON
+   ====================================================== */
+
+.location-btn {
+    width: 100%;
+    min-height: 46px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    margin-top: 10px;
+    padding: 0 16px;
+
+    background: #ffffff !important;
+
+    border: 1px solid #cfd6cc !important;
+    border-radius: 9px;
+
+    color: #374151 !important;
+
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.2s ease,
+        background-color 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.location-btn:hover {
+    background: #f0f7e9 !important;
+    border-color: #538d22 !important;
+    color: #538d22 !important;
+}
+
+.location-btn:focus-visible {
+    outline: none;
+
+    border-color: #538d22 !important;
+
+    box-shadow:
+        0 0 0 3px rgba(83, 141, 34, 0.12);
+}
+
+.location-btn:disabled {
+    opacity: 0.65;
+    cursor: wait;
+}
+
+
+/* ======================================================
+   17. IMAGE UPLOAD
+   ====================================================== */
+
+.image-upload-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+#resourceImage {
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+.image-upload-area {
+    width: 100%;
+    min-height: 190px;
+
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 24px;
+
+    background: #f8fafc !important;
+
+    border: 2px dashed #cbd5c3 !important;
+    border-radius: 10px;
+
+    color: #4b5563 !important;
+
+    text-align: center;
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.2s ease,
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.image-upload-area:hover {
+    background: #eef7e8 !important;
+    border-color: #538d22 !important;
+}
+
+.image-upload-area:focus-visible {
+    outline: none;
+
+    border-color: #538d22 !important;
+
+    box-shadow:
+        0 0 0 3px rgba(83, 141, 34, 0.12);
+}
+
+.image-upload-area:active {
+    transform: scale(0.995);
+}
+
+.image-upload-icon {
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    color: #538d22;
+
+    font-size: 21px;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.image-upload-area strong {
+    color: #1f2937 !important;
+
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.image-upload-area > span {
+    color: #6b7280 !important;
+    font-size: 13px;
+}
+
+.image-upload-area .image-upload-filename {
+    max-width: 90%;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    color: #538d22 !important;
+    font-weight: 600;
+}
+
+
+/* ======================================================
+   18. IMAGE PREVIEW
+   ====================================================== */
+
+.image-preview {
+    position: relative;
+
+    width: 100%;
+    height: 280px;
+
+    overflow: hidden;
+
+    background: #f8fafc;
+
+    border: 1px solid #dfe6d8;
+    border-radius: 10px;
+}
+
+.image-preview img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: contain;
+}
+
+.remove-image-btn {
+    position: absolute;
+
+    top: 12px;
+    right: 12px;
+
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.65);
+
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+
+    color: #ffffff;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.remove-image-btn:hover {
+    background: rgba(0, 0, 0, 0.85);
+}
+
+.remove-image-btn:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+}
+
+.remove-image-btn:active {
+    transform: scale(0.94);
+}
+
+
+/* ======================================================
+   19. INFORMATION BOX
+   ====================================================== */
+
+.form-info {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 12px;
+
+    padding: 16px;
+
+    background: #f8faf6 !important;
+
+    border: 1px solid #dfe6d8;
+    border-radius: 9px;
+}
+
+.info-icon {
+    flex-shrink: 0;
+
+    color: #538d22;
+    font-size: 18px;
+}
+
+.form-info strong {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #1f2937 !important;
+
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.form-info p {
+    margin: 0;
+
+    color: #4b5563 !important;
+
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+
+/* ======================================================
+   20. FORM MESSAGE
+   ====================================================== */
+
+.form-message {
+    display: none;
+
+    padding: 12px 14px;
+
+    border-radius: 8px;
+
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.form-message.success {
+    display: block;
+
+    background: #eef7e8 !important;
+
+    border: 1px solid #c7dfb5;
+
+    color: #356516 !important;
+}
+
+.form-message.error {
+    display: block;
+
+    background: #fef2f2 !important;
+
+    border: 1px solid #fecaca;
+
+    color: #a93226 !important;
+}
+
+.form-message.info {
+    display: block;
+
+    background: #eff6ff !important;
+
+    border: 1px solid #bfdbfe;
+
+    color: #1d4ed8 !important;
+}
+
+
+/* ======================================================
+   21. FORM ACTIONS
+   ====================================================== */
+
+.form-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 12px;
+
+    padding-top: 4px;
+}
+
+
+/* ======================================================
+   22. BUTTONS
+   ====================================================== */
+
+.btn {
+    min-height: 48px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 0 20px;
+
+    border-radius: 8px;
+
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.btn:focus-visible {
+    outline: none;
+
+    box-shadow:
+        0 0 0 3px rgba(83, 141, 34, 0.18);
+}
+
+.btn:active {
+    transform: translateY(1px);
+}
+
+.btn:disabled {
+    opacity: 0.65;
+    cursor: wait;
+    transform: none;
+}
+
+.btn-primary {
+    background: #538d22 !important;
+
+    border: 1px solid #538d22 !important;
+
+    color: #ffffff !important;
+}
+
+.btn-primary:hover {
+    background: #3f6f19 !important;
+    border-color: #3f6f19 !important;
+}
+
+.btn-secondary {
+    background: #ffffff !important;
+
+    border: 1px solid #cfd6cc !important;
+
+    color: #374151 !important;
+}
+
+.btn-secondary:hover {
+    background: #f4f8f0 !important;
+
+    border-color: #538d22 !important;
+
+    color: #538d22 !important;
+}
+
+
+/* ======================================================
+   23. RESPONSIVE — TABLET
+   ====================================================== */
+
+@media (max-width: 768px) {
+
+    .page-hero {
+        padding: 42px 0 36px;
+    }
+
+    .lend-section {
+        padding: 40px 0 56px;
+    }
+
+    .lend-container {
+        width: min(100% - 28px, 800px);
+    }
+
+    .lend-card {
+        padding: 24px;
+        border-radius: 16px;
+    }
+
+    .pricing-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .form-actions {
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+
+    .form-actions .btn {
+        width: 100%;
+    }
+
+    .image-preview {
+        height: 240px;
+    }
+}
+
+
+/* ======================================================
+   24. RESPONSIVE — MOBILE
+   ====================================================== */
+
+@media (max-width: 480px) {
+
+    .page-hero {
+        padding: 36px 0 30px;
+    }
+
+    .page-hero h1 {
+        font-size: 1.9rem;
+    }
+
+    .page-hero p {
+        font-size: 15px;
+    }
+
+    .lend-section {
+        padding: 32px 0 44px;
+    }
+
+    .lend-card {
+        padding: 20px;
+        border-radius: 14px;
+    }
+
+    .form-header {
+        gap: 12px;
+
+        margin-bottom: 26px;
+        padding-bottom: 20px;
+    }
+
+    .form-icon {
+        width: 46px;
+        height: 46px;
+
+        border-radius: 10px;
+
+        font-size: 18px;
+    }
+
+    .form-header h2 {
+        font-size: 20px;
+    }
+
+    .form-header p {
+        font-size: 14px;
+    }
+
+    .lend-form {
+        gap: 24px;
+    }
+
+    .lend-form input,
+    .lend-form textarea,
+    .lend-form select {
+        font-size: 16px;
+    }
+
+    .pricing-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .image-upload-area {
+        min-height: 160px;
+        padding: 20px;
+    }
+
+    .image-preview {
+        height: 210px;
+    }
+
+    .form-info {
+        padding: 14px;
+    }
+}
+
+
+/* ======================================================
+   25. VERY SMALL DEVICES
+   ====================================================== */
+
+@media (max-width: 360px) {
+
+    .lend-container {
+        width: calc(100% - 20px);
+    }
+
+    .lend-card {
+        padding: 16px;
+    }
+
+    .form-header {
+        align-items: center;
+    }
+
+    .form-icon {
+        width: 42px;
+        height: 42px;
+    }
+
+    .form-header h2 {
+        font-size: 18px;
+    }
+
+    .form-header p {
+        font-size: 13px;
+    }
+
+    .image-preview {
+        height: 190px;
+    }
+
+    .btn {
+        padding: 0 16px;
+    }
+}
+
+
+/* ======================================================
+   26. REDUCED MOTION
+   ====================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .lend-form input,
+    .lend-form textarea,
+    .lend-form select,
+    .location-btn,
+    .image-upload-area,
+    .remove-image-btn,
+    .btn {
+        transition: none;
+    }
+
+    .image-upload-area:active,
+    .remove-image-btn:active,
+    .btn:active {
+        transform: none;
+    }
+}

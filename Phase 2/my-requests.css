@@ -1,0 +1,1296 @@
+/* =========================================================
+   EcoShare — My Borrow Requests
+   Premium Responsive Stylesheet
+   ========================================================= */
+
+/* =========================================================
+   1. HERO
+   ========================================================= */
+
+.requests-hero {
+  position: relative;
+
+  padding: 118px 0 64px;
+
+  background:
+    radial-gradient(
+      circle at 88% 25%,
+      rgba(76, 175, 54, 0.07),
+      transparent 34%
+    ),
+    linear-gradient(180deg, #fbfdf9 0%, var(--color-background-soft) 100%);
+
+  border-bottom: var(--border-width) solid var(--color-border-light);
+
+  overflow: hidden;
+}
+
+.requests-hero::before {
+  content: "";
+
+  position: absolute;
+
+  top: -110px;
+  right: -90px;
+
+  width: 280px;
+  height: 280px;
+
+  border-radius: 50%;
+
+  background: rgba(76, 175, 54, 0.035);
+
+  pointer-events: none;
+}
+
+.requests-hero-content {
+  position: relative;
+
+  max-width: 780px;
+}
+
+.requests-label {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 9px;
+
+  margin-bottom: 14px;
+
+  color: var(--color-primary-dark);
+
+  font-size: 12px;
+  font-weight: 800;
+
+  line-height: 1.2;
+  letter-spacing: 0.13em;
+
+  text-transform: uppercase;
+}
+
+.requests-label i {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 25px;
+  height: 25px;
+
+  border-radius: 8px;
+
+  background: var(--color-background-green);
+  color: var(--color-primary);
+
+  font-size: 12px;
+}
+
+.requests-hero h1 {
+  margin: 0 0 13px;
+
+  color: var(--color-primary-deep);
+
+  font-size: clamp(34px, 4.5vw, 50px);
+  font-weight: 800;
+
+  letter-spacing: -0.04em;
+  line-height: 1.08;
+}
+
+.requests-hero p {
+  max-width: 680px;
+
+  margin: 0;
+
+  color: var(--color-text-secondary);
+
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+/* =========================================================
+   2. REQUESTS SECTION
+   ========================================================= */
+
+.requests-section {
+  padding: 68px 0 88px;
+
+  background: var(--color-white);
+}
+
+/* =========================================================
+   3. REQUESTS HEADER
+   ========================================================= */
+
+.requests-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  gap: 28px;
+
+  margin-bottom: 28px;
+}
+
+.requests-header > div {
+  min-width: 0;
+}
+
+.requests-header h2 {
+  margin: 0 0 7px;
+
+  color: var(--color-primary-deep);
+
+  font-size: 27px;
+  font-weight: 750;
+
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+
+.requests-header p {
+  margin: 0;
+
+  color: var(--color-text-secondary);
+
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* =========================================================
+   4. PRIMARY BUTTON
+   ========================================================= */
+
+.primary-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  min-height: 46px;
+
+  padding: 0 18px;
+
+  border: 1px solid var(--color-primary);
+
+  border-radius: 11px;
+
+  background: var(--color-primary);
+  color: var(--color-white);
+
+  font-size: 13px;
+  font-weight: 700;
+
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+
+  box-shadow: 0 5px 14px rgba(76, 175, 54, 0.14);
+
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.primary-btn i {
+  font-size: 12px;
+}
+
+.primary-btn:hover {
+  background: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+
+  box-shadow: 0 8px 20px rgba(76, 175, 54, 0.2);
+
+  transform: translateY(-2px);
+}
+
+.primary-btn:active {
+  transform: translateY(0);
+}
+
+.primary-btn:focus-visible {
+  outline: 3px solid rgba(76, 175, 54, 0.22);
+
+  outline-offset: 3px;
+}
+
+/* =========================================================
+   5. REQUEST FILTERS
+   ========================================================= */
+
+.request-filters {
+  display: flex;
+  align-items: center;
+
+  gap: 4px;
+
+  width: fit-content;
+
+  margin-bottom: 30px;
+  padding: 5px;
+
+  border: 1px solid var(--color-border-light);
+
+  border-radius: 13px;
+
+  background: linear-gradient(180deg, #fafbf9 0%, #f5f7f4 100%);
+
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.request-filter {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 38px;
+
+  padding: 0 16px;
+
+  border: none;
+  border-radius: 9px;
+
+  background: transparent;
+  color: var(--color-text-secondary);
+
+  font-size: 12px;
+  font-weight: 700;
+
+  line-height: 1;
+
+  white-space: nowrap;
+
+  cursor: pointer;
+
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.request-filter:hover {
+  color: var(--color-primary-dark);
+}
+
+.request-filter.active {
+  background: var(--color-primary);
+  color: var(--color-white);
+
+  box-shadow: 0 4px 11px rgba(76, 175, 54, 0.17);
+}
+
+.request-filter:active {
+  transform: scale(0.98);
+}
+
+.request-filter:focus-visible {
+  outline: 3px solid rgba(76, 175, 54, 0.22);
+
+  outline-offset: 2px;
+}
+
+/* =========================================================
+   6. REQUEST LIST
+   ========================================================= */
+
+.requests-list {
+  display: flex;
+  flex-direction: column;
+
+  gap: 18px;
+}
+
+/* =========================================================
+   7. REQUEST CARD
+   ========================================================= */
+
+.request-card {
+  position: relative;
+
+  display: grid;
+
+  grid-template-columns:
+    172px
+    minmax(0, 1fr);
+
+  gap: 24px;
+
+  width: 100%;
+
+  padding: 18px;
+
+  border: 1px solid var(--color-border-light);
+
+  border-radius: 18px;
+
+  background: var(--color-white);
+
+  box-shadow: 0 5px 18px rgba(24, 45, 25, 0.045);
+
+  transition:
+    transform 200ms ease,
+    border-color 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.request-card:hover {
+  border-color: rgba(76, 175, 54, 0.22);
+
+  box-shadow: 0 13px 32px rgba(24, 45, 25, 0.085);
+
+  transform: translateY(-3px);
+}
+
+/* =========================================================
+   8. REQUEST IMAGE
+   ========================================================= */
+
+.request-image {
+  position: relative;
+
+  width: 172px;
+  height: 172px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  border: 1px solid var(--color-border-light);
+
+  border-radius: 14px;
+
+  background: linear-gradient(135deg, #f8faf6 0%, #f1f6ef 100%);
+}
+
+.request-image::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.02),
+    rgba(0, 0, 0, 0.025)
+  );
+}
+
+.request-image img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  padding: 9px;
+
+  object-fit: contain;
+
+  transition: transform 280ms ease;
+}
+
+.request-card:hover .request-image img {
+  transform: scale(1.025);
+}
+
+.request-image i {
+  color: var(--color-primary);
+
+  font-size: 40px;
+}
+
+/* =========================================================
+   9. REQUEST CONTENT
+   ========================================================= */
+
+.request-content {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding-right: 126px;
+}
+
+.request-category {
+  width: fit-content;
+
+  margin-bottom: 8px;
+
+  color: var(--color-primary-dark);
+
+  font-size: 10px;
+  font-weight: 800;
+
+  letter-spacing: 0.11em;
+  line-height: 1.3;
+
+  text-transform: uppercase;
+}
+
+.request-content h3 {
+  margin: 0 0 9px;
+
+  color: var(--color-primary-deep);
+
+  font-size: 22px;
+  font-weight: 750;
+
+  letter-spacing: -0.025em;
+  line-height: 1.25;
+
+  overflow-wrap: anywhere;
+}
+
+.request-description {
+  max-width: 780px;
+
+  margin: 0;
+
+  color: var(--color-text-secondary);
+
+  font-size: 14px;
+  line-height: 1.65;
+
+  display: -webkit-box;
+
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
+}
+
+/* =========================================================
+   10. REQUEST META
+   ========================================================= */
+
+.request-meta {
+  display: flex;
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 18px;
+
+  margin-top: 16px;
+}
+
+.request-meta span {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 7px;
+
+  color: var(--color-text-muted);
+
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.request-meta span i {
+  color: var(--color-primary);
+
+  font-size: 12px;
+}
+
+/* =========================================================
+   11. REQUEST STATUS
+   ========================================================= */
+
+.request-status {
+  position: absolute;
+
+  top: 18px;
+  right: 18px;
+
+  z-index: 2;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  min-width: 102px;
+
+  min-height: 30px;
+
+  padding: 0 11px;
+
+  border: 1px solid transparent;
+
+  border-radius: 999px;
+
+  font-size: 10px;
+  font-weight: 800;
+
+  line-height: 1;
+
+  white-space: nowrap;
+}
+
+.status-badge i {
+  font-size: 10px;
+}
+
+/* =========================================================
+   12. STATUS — PENDING
+   ========================================================= */
+
+.status-pending {
+  border-color: #f0dca9;
+
+  background: #fff8e6;
+  color: #8d6808;
+}
+
+/* =========================================================
+   13. STATUS — APPROVED
+   ========================================================= */
+
+.status-approved {
+  border-color: #d1e8c3;
+
+  background: #eff8e9;
+  color: #39762f;
+}
+
+/* =========================================================
+   14. STATUS — REJECTED
+   ========================================================= */
+
+.status-rejected {
+  border-color: #efc6c6;
+
+  background: #fff3f3;
+  color: #a22f2f;
+}
+
+/* =========================================================
+   15. STATUS — CANCELLED
+   ========================================================= */
+
+.status-cancelled {
+  border-color: #dedede;
+
+  background: #f5f5f5;
+  color: #707070;
+}
+
+/* =========================================================
+   16. STATUS — RETURNED
+   ========================================================= */
+
+.status-returned {
+  border-color: #d1e8c3;
+
+  background: #eff8e9;
+  color: #39762f;
+}
+
+/* =========================================================
+   17. REQUEST ACTIONS
+   ========================================================= */
+
+.request-actions {
+  display: flex;
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 9px;
+
+  margin-top: 18px;
+}
+
+.request-actions button,
+.request-actions a {
+  min-width: 138px;
+  min-height: 40px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  padding: 0 14px;
+
+  border-radius: 10px;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  line-height: 1;
+  text-decoration: none;
+
+  white-space: nowrap;
+
+  cursor: pointer;
+
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.request-actions button i,
+.request-actions a i {
+  font-size: 11px;
+}
+
+.request-actions button:hover,
+.request-actions a:hover {
+  transform: translateY(-1px);
+}
+
+.request-actions button:active,
+.request-actions a:active {
+  transform: translateY(0);
+}
+
+.request-actions button:focus-visible,
+.request-actions a:focus-visible {
+  outline: 3px solid rgba(76, 175, 54, 0.22);
+
+  outline-offset: 2px;
+}
+
+/* =========================================================
+   18. VIEW RESOURCE
+   ========================================================= */
+
+.view-request-btn {
+  border: 1px solid var(--color-primary);
+
+  background: var(--color-primary);
+  color: var(--color-white);
+
+  box-shadow: 0 4px 12px rgba(76, 175, 54, 0.1);
+}
+
+.view-request-btn:hover {
+  background: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+
+  box-shadow: 0 7px 17px rgba(76, 175, 54, 0.17);
+}
+
+/* =========================================================
+   19. WITHDRAW REQUEST
+   ========================================================= */
+
+.withdraw-request-btn {
+  border: 1px solid var(--color-border);
+
+  background: var(--color-white);
+  color: var(--color-text-secondary);
+}
+
+.withdraw-request-btn:hover {
+  border-color: #dca4a4;
+
+  background: #fff7f7;
+  color: #a12b2b;
+
+  box-shadow: 0 5px 13px rgba(161, 43, 43, 0.07);
+}
+
+.withdraw-request-btn:disabled {
+  opacity: 0.58;
+
+  cursor: not-allowed;
+
+  transform: none;
+}
+
+/* =========================================================
+   20. RETURN RESOURCE
+   ========================================================= */
+
+.return-resource-btn {
+  border: 1px solid #b9d8ad;
+
+  background: #f8fcf6;
+  color: var(--color-primary-dark);
+}
+
+.return-resource-btn:hover {
+  border-color: var(--color-primary);
+
+  background: var(--color-background-green);
+
+  box-shadow: 0 5px 14px rgba(76, 175, 54, 0.09);
+}
+
+.return-resource-btn:disabled {
+  opacity: 0.58;
+
+  cursor: not-allowed;
+
+  transform: none;
+}
+
+/* =========================================================
+   21. EMPTY REQUESTS
+   ========================================================= */
+
+.empty-requests {
+  padding: 70px 25px;
+
+  border: 1px dashed var(--color-border);
+
+  border-radius: 18px;
+
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    var(--color-background-soft) 100%
+  );
+
+  text-align: center;
+}
+
+.empty-requests-icon {
+  width: 70px;
+  height: 70px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 auto 20px;
+
+  border: 1px solid rgba(76, 175, 54, 0.12);
+
+  border-radius: 50%;
+
+  background: var(--color-background-green);
+  color: var(--color-primary);
+
+  font-size: 27px;
+
+  box-shadow: 0 7px 20px rgba(76, 175, 54, 0.08);
+}
+
+.empty-requests h3 {
+  margin: 0 0 9px;
+
+  color: var(--color-primary-deep);
+
+  font-size: 23px;
+  font-weight: 750;
+
+  letter-spacing: -0.02em;
+}
+
+.empty-requests p {
+  max-width: 540px;
+
+  margin: 0 auto 24px;
+
+  color: var(--color-text-secondary);
+
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* =========================================================
+   22. ERROR / LOADING STATE
+   ========================================================= */
+
+.requests-error {
+  padding: 58px 25px;
+
+  border: 1px solid var(--color-border-light);
+
+  border-radius: 18px;
+
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    var(--color-background-soft) 100%
+  );
+
+  text-align: center;
+
+  box-shadow: 0 5px 18px rgba(24, 45, 25, 0.035);
+}
+
+.requests-error > i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 54px;
+  height: 54px;
+
+  margin: 0 auto 17px;
+
+  border-radius: 50%;
+
+  background: var(--color-background-green);
+  color: var(--color-primary);
+
+  font-size: 22px;
+}
+
+.requests-error h3 {
+  margin: 0 0 8px;
+
+  color: var(--color-primary-deep);
+
+  font-size: 19px;
+  font-weight: 750;
+}
+
+.requests-error p {
+  max-width: 520px;
+
+  margin: 0 auto;
+
+  color: var(--color-text-secondary);
+
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+/* =========================================================
+   23. LOADING SPINNER
+   ========================================================= */
+
+.requests-error .fa-spinner {
+  animation: requestsSpinner 0.8s linear infinite;
+}
+
+@keyframes requestsSpinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================================
+   24. TABLET
+   ========================================================= */
+
+@media (max-width: 1000px) {
+  .requests-hero {
+    padding: 105px 0 58px;
+  }
+
+  .requests-section {
+    padding: 58px 0 76px;
+  }
+
+  .request-card {
+    grid-template-columns:
+      145px
+      minmax(0, 1fr);
+
+    gap: 20px;
+
+    padding: 16px;
+  }
+
+  .request-image {
+    width: 145px;
+    height: 145px;
+  }
+
+  .request-content {
+    padding-right: 112px;
+  }
+
+  .request-content h3 {
+    font-size: 20px;
+  }
+
+  .request-actions button,
+  .request-actions a {
+    min-width: 128px;
+  }
+}
+
+/* =========================================================
+   25. TABLET / LARGE MOBILE
+   ========================================================= */
+
+@media (max-width: 760px) {
+  .requests-hero {
+    padding: 92px 0 52px;
+  }
+
+  .requests-hero h1 {
+    font-size: clamp(32px, 8vw, 42px);
+  }
+
+  .requests-hero p {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .requests-section {
+    padding: 50px 0 65px;
+  }
+
+  .requests-header {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 17px;
+
+    margin-bottom: 24px;
+  }
+
+  .requests-header h2 {
+    font-size: 24px;
+  }
+
+  .requests-header .primary-btn {
+    width: 100%;
+  }
+
+  .request-card {
+    display: flex;
+    flex-direction: column;
+
+    gap: 17px;
+
+    padding: 15px;
+
+    border-radius: 16px;
+  }
+
+  .request-image {
+    width: 100%;
+    height: 215px;
+
+    border-radius: 13px;
+  }
+
+  .request-content {
+    padding-right: 0;
+  }
+
+  .request-content h3 {
+    font-size: 20px;
+  }
+
+  .request-description {
+    -webkit-line-clamp: 3;
+  }
+
+  .request-meta {
+    gap: 12px;
+
+    margin-top: 14px;
+  }
+
+  .request-status {
+    position: static;
+
+    align-self: flex-start;
+
+    order: -1;
+  }
+
+  .request-actions {
+    width: 100%;
+
+    flex-direction: column;
+    align-items: stretch;
+
+    gap: 8px;
+
+    margin-top: 16px;
+  }
+
+  .request-actions button,
+  .request-actions a {
+    width: 100%;
+    min-width: 0;
+
+    min-height: 43px;
+  }
+
+  .empty-requests {
+    padding: 58px 20px;
+  }
+
+  .requests-error {
+    padding: 48px 20px;
+  }
+}
+
+/* =========================================================
+   26. FILTERS — MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+  .request-filters {
+    width: 100%;
+
+    overflow-x: auto;
+
+    justify-content: flex-start;
+
+    margin-bottom: 24px;
+
+    padding: 4px;
+
+    border-radius: 12px;
+
+    scrollbar-width: thin;
+
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .request-filter {
+    flex: 0 0 auto;
+
+    min-height: 37px;
+
+    padding: 0 15px;
+  }
+
+  .request-filters::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  .request-filters::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .request-filters::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+
+    background: rgba(76, 175, 54, 0.28);
+  }
+}
+
+/* =========================================================
+   27. MOBILE
+   ========================================================= */
+
+@media (max-width: 500px) {
+  .requests-hero {
+    padding: 82px 0 46px;
+  }
+
+  .requests-label {
+    font-size: 10px;
+
+    letter-spacing: 0.11em;
+  }
+
+  .requests-label i {
+    width: 23px;
+    height: 23px;
+
+    font-size: 10px;
+  }
+
+  .requests-hero h1 {
+    margin-bottom: 10px;
+
+    font-size: 31px;
+  }
+
+  .requests-hero p {
+    font-size: 13px;
+  }
+
+  .requests-section {
+    padding: 42px 0 55px;
+  }
+
+  .requests-header h2 {
+    font-size: 22px;
+  }
+
+  .requests-header p {
+    font-size: 13px;
+  }
+
+  .request-image {
+    height: 195px;
+  }
+
+  .request-content h3 {
+    font-size: 19px;
+  }
+
+  .request-description {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .request-meta {
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 8px;
+  }
+
+  .request-meta span {
+    font-size: 12px;
+  }
+
+  .status-badge {
+    min-height: 29px;
+
+    padding: 0 10px;
+
+    font-size: 10px;
+  }
+
+  .empty-requests {
+    padding: 52px 18px;
+  }
+
+  .empty-requests-icon {
+    width: 64px;
+    height: 64px;
+
+    font-size: 24px;
+  }
+
+  .empty-requests h3 {
+    font-size: 21px;
+  }
+
+  .empty-requests p {
+    font-size: 13px;
+  }
+}
+
+/* =========================================================
+   28. SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 400px) {
+  .requests-hero {
+    padding-top: 76px;
+  }
+
+  .requests-hero h1 {
+    font-size: 29px;
+  }
+
+  .request-card {
+    padding: 13px;
+  }
+
+  .request-image {
+    height: 175px;
+  }
+
+  .request-content h3 {
+    font-size: 18px;
+  }
+
+  .request-category {
+    font-size: 9px;
+  }
+
+  .request-actions button,
+  .request-actions a {
+    min-height: 42px;
+
+    font-size: 12px;
+  }
+
+  .empty-requests {
+    padding: 46px 16px;
+  }
+
+  .requests-error {
+    padding: 42px 16px;
+  }
+}
+
+/* =========================================================
+   29. VERY SMALL DEVICES
+   ========================================================= */
+
+@media (max-width: 340px) {
+  .requests-hero h1 {
+    font-size: 27px;
+  }
+
+  .request-image {
+    height: 160px;
+  }
+
+  .request-content h3 {
+    font-size: 17px;
+  }
+
+  .request-filter {
+    padding: 0 13px;
+
+    font-size: 11px;
+  }
+}
+
+/* =========================================================
+   30. HOVER DEVICES ONLY
+   ========================================================= */
+
+@media (hover: none) {
+  .request-card:hover {
+    transform: none;
+  }
+
+  .request-card:hover .request-image img {
+    transform: none;
+  }
+
+  .primary-btn:hover,
+  .request-actions button:hover,
+  .request-actions a:hover {
+    transform: none;
+  }
+}
+
+/* =========================================================
+   31. REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .requests-hero *,
+  .request-card,
+  .request-image img,
+  .primary-btn,
+  .request-filter,
+  .request-actions button,
+  .request-actions a,
+  .requests-error .fa-spinner {
+    animation: none !important;
+
+    transition: none !important;
+  }
+
+  .request-card:hover,
+  .request-image img,
+  .primary-btn:hover,
+  .request-actions button:hover,
+  .request-actions a:hover {
+    transform: none;
+  }
+}

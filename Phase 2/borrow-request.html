@@ -1,0 +1,709 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="description"
+      content="Choose your rental duration and borrow a resource from the EcoShare community."
+    />
+
+    <title>Borrow Resource | EcoShare</title>
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+
+    <!-- Global EcoShare Styles -->
+    <link rel="stylesheet" href="../Phase 1/page.css" />
+
+    <!-- Borrow Resource Styles -->
+    <link rel="stylesheet" href="borrow-request.css" />
+  </head>
+
+  <body>
+    <!-- ==================================================
+         HEADER
+         ================================================== -->
+    <header class="header">
+      <div class="container navbar">
+        <button
+          type="button"
+          class="menu-btn"
+          id="menu-btn"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          aria-controls="primary-navigation"
+        >
+          <i class="fa-solid fa-bars" aria-hidden="true"></i>
+        </button>
+        <!-- =====================================================
+                 LOGO
+                 ===================================================== -->
+
+        <a href="../index.html" class="logo" aria-label="EcoShare Home">
+          <img
+            id="siteLogo"
+            src="https://cplbvftcbiwgqkeqmrbq.supabase.co/storage/v1/object/public/site-assets/logo.png"
+            alt="EcoShare logo"
+            width="120"
+            height="120"
+            decoding="async"
+            fetchpriority="high"
+          />
+        </a>
+
+        <!-- =====================================================
+                 PRIMARY NAVIGATION
+                 ===================================================== -->
+
+        <nav
+          class="primary-navigation"
+          id="primary-navigation"
+          aria-label="Main navigation"
+        >
+          <!-- Home -->
+
+          <a href="../index.html" class="nav-link" aria-current="page">
+            <i class="fa-solid fa-house" aria-hidden="true"></i>
+
+            <span>Home</span>
+          </a>
+
+          <!-- Explore -->
+
+          <a href="../Phase 2/explore.html" class="nav-link">
+            <i class="fa-solid fa-compass" aria-hidden="true"></i>
+
+            <span>Explore</span>
+          </a>
+
+          <!-- Community -->
+
+          <a href="../Phase 4/community.html" class="nav-link">
+            <i class="fa-solid fa-users" aria-hidden="true"></i>
+
+            <span>Community</span>
+          </a>
+
+          <!-- Messages -->
+
+          <a
+            href="../Phase 3/messages.html"
+            class="nav-link"
+            id="messagesNavLink"
+          >
+            <i class="fa-solid fa-message" aria-hidden="true"></i>
+
+            <span>Messages</span>
+          </a>
+
+          <!-- Notifications -->
+
+          <a
+            href="../Phase 3/notifications.html"
+            class="nav-link notifications-nav-link"
+            id="notificationsNavLink"
+          >
+            <i class="fa-solid fa-bell" aria-hidden="true"></i>
+
+            <span>Notifications</span>
+
+            <span
+              id="notificationUnreadBadge"
+              class="notification-unread-badge"
+              aria-label="Unread notifications"
+              hidden
+            >
+              0
+            </span>
+          </a>
+        </nav>
+
+        <!-- =====================================================
+                 LOGIN / REGISTRATION
+                 ===================================================== -->
+
+        <a
+          href="../Phase 1/login.html"
+          class="login-nav-btn"
+          id="authNavButton"
+        >
+          <i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i>
+
+          <span>Login</span>
+        </a>
+
+        <a
+          href="../Phase 1/register.html"
+          class="register-nav-btn"
+          id="registerNavButton"
+        >
+          <i class="fa-solid fa-user-plus" aria-hidden="true"></i>
+
+          <span>Register</span>
+        </a>
+
+        <!-- =====================================================
+                 PROFILE DROPDOWN
+                 ===================================================== -->
+
+        <div class="profile-dropdown" id="profileDropdown" hidden>
+          <!-- Profile Avatar Button -->
+
+          <button
+            type="button"
+            class="profile-avatar-btn"
+            id="profileAvatarBtn"
+            aria-label="Open profile menu"
+            aria-expanded="false"
+            aria-controls="profileMenu"
+          >
+            <img
+              id="navProfilePhoto"
+              src=""
+              alt="Your profile"
+              class="profile-avatar"
+              width="40"
+              height="40"
+              decoding="async"
+            />
+
+            <i
+              class="fa-solid fa-chevron-down profile-chevron"
+              aria-hidden="true"
+            ></i>
+          </button>
+
+          <!-- Profile Menu -->
+
+          <div class="profile-menu" id="profileMenu" hidden>
+            <!-- Profile Information -->
+
+            <div class="profile-menu-header">
+              <img
+                id="menuProfilePhoto"
+                src=""
+                alt=""
+                class="profile-menu-avatar"
+                width="48"
+                height="48"
+                decoding="async"
+              />
+
+              <div class="profile-menu-user">
+                <a
+                  href="../Phase 1/profile.html"
+                  class="profile-menu-user-link"
+                  aria-label="Open your profile"
+                >
+                  <strong id="menuProfileName"> My Account </strong>
+
+                  <span id="menuProfileEmail"> EcoShare Member </span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Profile -->
+
+            <a href="../Phase 1/profile.html" class="profile-menu-item">
+              <i class="fa-solid fa-user" aria-hidden="true"></i>
+
+              <span>My Profile</span>
+            </a>
+
+            <!-- Admin Dashboard -->
+
+            <a
+              href="../Phase 1/admin-dashboard.html"
+              class="profile-menu-item"
+              id="adminDashboardLink"
+              hidden
+            >
+              <i class="fa-solid fa-user-shield" aria-hidden="true"></i>
+
+              <span>Admin Dashboard</span>
+            </a>
+
+            <!-- User Dashboard -->
+
+            <a
+              href="../Phase 1/user-dashboard.html"
+              class="profile-menu-item"
+              id="userDashboardLink"
+              hidden
+            >
+              <i class="fa-solid fa-gauge-high" aria-hidden="true"></i>
+
+              <span>User Dashboard</span>
+            </a>
+
+            <!-- Resource Management -->
+
+            <a href="../Phase 2/my-listings.html" class="profile-menu-item">
+              <i class="fa-solid fa-box" aria-hidden="true"></i>
+
+              <span>My Resource Listings</span>
+            </a>
+
+            <a href="../Phase 2/lend-resource.html" class="profile-menu-item">
+              <i class="fa-solid fa-hand-holding-heart" aria-hidden="true"></i>
+
+              <span>Lend a Resource</span>
+            </a>
+
+            <a href="../Phase 2/my-requests.html" class="profile-menu-item">
+              <i class="fa-solid fa-handshake" aria-hidden="true"></i>
+
+              <span>My Borrow Requests</span>
+            </a>
+
+            <a
+              href="../Phase 2/incoming-requests.html"
+              class="profile-menu-item"
+            >
+              <i class="fa-solid fa-inbox" aria-hidden="true"></i>
+
+              <span>Incoming Borrow Requests</span>
+            </a>
+
+            <div class="profile-menu-divider"></div>
+
+            <div class="sidebar-divider"></div>
+            <!-- Information -->
+
+            <a href="../Phase 1/about.html" class="profile-menu-item">
+              <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+
+              <span>About EcoShare</span>
+            </a>
+
+            <a href="../Phase 1/contact.html" class="profile-menu-item">
+              <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+
+              <span>Contact Us</span>
+            </a>
+
+            <div class="profile-menu-divider"></div>
+
+            <!-- Logout -->
+
+            <button
+              type="button"
+              class="profile-menu-item logout-menu-item"
+              id="profileLogoutBtn"
+            >
+              <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>
+
+              <span>Logout</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- =====================================================
+                 MOBILE NAVIGATION BUTTON
+                 ===================================================== -->
+      </div>
+    </header>
+    <!-- ==================================================
+         MAIN
+         ================================================== -->
+
+    <main>
+      <!-- Breadcrumb -->
+      <div class="details-top">
+        <div class="container">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="../Phase 2/explore.html"> Explore </a>
+
+            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+
+            <a href="#" id="resourceLink"> Resource </a>
+
+            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+
+            <span aria-current="page"> Borrow Resource </span>
+          </nav>
+        </div>
+      </div>
+
+      <!-- ==================================================
+             BORROW RESOURCE
+             ================================================== -->
+
+      <section class="borrow-request" aria-labelledby="borrowRequestHeading">
+        <div class="container">
+          <!-- Main Card -->
+          <div class="borrow-request-card" id="borrowRequestCard">
+            <!-- ==================================================
+                         RESOURCE SUMMARY
+                         ================================================== -->
+
+            <div class="resource-summary">
+              <!-- Resource Image -->
+              <div class="resource-image">
+                <img id="resourceImage" alt="" decoding="async" />
+              </div>
+
+              <!-- Resource Information -->
+              <div class="resource-summary-content">
+                <!-- Category -->
+                <span class="resource-category" id="resourceCategory">
+                  Category
+                </span>
+
+                <!-- Title -->
+                <h1 id="resourceTitle">Resource</h1>
+
+                <!-- Description -->
+                <p class="resource-description" id="resourceDescription">
+                  Resource description.
+                </p>
+
+                <!-- Resource Metadata -->
+                <div class="resource-meta">
+                  <!-- Owner -->
+                  <div class="meta-item">
+                    <i class="fa-solid fa-user" aria-hidden="true"></i>
+
+                    <div>
+                      <span class="meta-label"> Owner </span>
+
+                      <strong id="resourceOwner"> — </strong>
+                    </div>
+                  </div>
+
+                  <!-- Location -->
+                  <div class="meta-item">
+                    <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+
+                    <div>
+                      <span class="meta-label"> Location </span>
+
+                      <strong id="resourceLocation"> — </strong>
+                    </div>
+                  </div>
+
+                  <!-- Availability -->
+                  <div class="meta-item">
+                    <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+
+                    <div>
+                      <span class="meta-label"> Availability </span>
+
+                      <strong id="resourceAvailability" class="availability">
+                        —
+                      </strong>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- ==================================================
+                                 RENTAL PRICING
+                                 ================================================== -->
+
+                <div
+                  class="resource-pricing-summary"
+                  id="resourcePricingSummary"
+                  hidden
+                >
+                  <div class="pricing-summary-heading">
+                    <i class="fa-solid fa-tag" aria-hidden="true"></i>
+
+                    <span> Rental Pricing </span>
+                  </div>
+
+                  <div class="pricing-options">
+                    <!-- Hourly -->
+                    <div class="pricing-option" id="hourlyPriceOption">
+                      <span class="pricing-label"> Hourly </span>
+
+                      <strong id="resourceHourlyPrice"> ₹0.00/hour </strong>
+                    </div>
+
+                    <!-- Daily -->
+                    <div class="pricing-option" id="dailyPriceOption">
+                      <span class="pricing-label"> Daily </span>
+
+                      <strong id="resourceDailyPrice"> ₹0.00/day </strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="request-divider"></div>
+
+            <!-- ==================================================
+                         BORROW DETAILS
+                         ================================================== -->
+
+            <div class="request-content">
+              <!-- Heading -->
+              <div class="request-heading">
+                <span class="request-label"> Borrow Resource </span>
+
+                <h2 id="borrowRequestHeading">Choose your rental period</h2>
+
+                <p>
+                  Select how long you need this resource and review the rental
+                  cost before continuing.
+                </p>
+              </div>
+
+              <!-- ==================================================
+                             BORROW FORM
+                             ================================================== -->
+
+              <form id="borrowRequestForm" novalidate>
+                <!-- ==================================================
+                                 RENTAL DURATION
+                                 ================================================== -->
+
+                <div class="rental-section">
+                  <!-- Section Heading -->
+                  <div class="rental-section-heading">
+                    <div>
+                      <span class="form-section-label"> Rental Duration </span>
+
+                      <h3>How long do you need it?</h3>
+                    </div>
+
+                    <i class="fa-solid fa-clock" aria-hidden="true"></i>
+                  </div>
+
+                  <!-- Rental Type -->
+                  <div class="form-group">
+                    <label for="rentalType">
+                      Duration Type
+
+                      <span aria-hidden="true"> * </span>
+                    </label>
+
+                    <div class="select-wrapper">
+                      <select
+                        id="rentalType"
+                        name="rental_type"
+                        required
+                        aria-describedby="rentalTypeError"
+                      >
+                        <option value="hour">Hours</option>
+
+                        <option value="day">Days</option>
+                      </select>
+
+                      <i
+                        class="fa-solid fa-chevron-down"
+                        aria-hidden="true"
+                      ></i>
+                    </div>
+
+                    <p
+                      class="field-error"
+                      id="rentalTypeError"
+                      aria-live="polite"
+                    ></p>
+                  </div>
+
+                  <!-- Rental Quantity -->
+                  <div class="form-group">
+                    <label for="rentalQuantity">
+                      Number of
+
+                      <span id="quantityLabel"> Hours </span>
+
+                      <span aria-hidden="true"> * </span>
+                    </label>
+
+                    <input
+                      type="number"
+                      id="rentalQuantity"
+                      name="rental_quantity"
+                      min="1"
+                      max="720"
+                      step="1"
+                      value="1"
+                      inputmode="numeric"
+                      required
+                      aria-describedby="quantityHint rentalQuantityError"
+                    />
+
+                    <p class="field-hint" id="quantityHint">
+                      Enter the number of hours you need.
+                    </p>
+
+                    <p
+                      class="field-error"
+                      id="rentalQuantityError"
+                      aria-live="polite"
+                    ></p>
+                  </div>
+
+                  <!-- ==================================================
+                                     RENTAL SUMMARY
+                                     ================================================== -->
+
+                  <div class="rental-price-card" id="rentalPriceCard">
+                    <!-- Unit Price -->
+                    <div class="rental-price-row">
+                      <span>
+                        Price per
+                        <span id="priceUnitLabel"> hour </span>
+                      </span>
+
+                      <strong id="selectedUnitPrice"> ₹0.00 </strong>
+                    </div>
+
+                    <!-- Duration -->
+                    <div class="rental-price-row">
+                      <span> Rental Duration </span>
+
+                      <strong>
+                        <span id="selectedQuantity"> 1 </span>
+
+                        <span id="selectedQuantityUnit"> hour </span>
+                      </strong>
+                    </div>
+
+                    <div class="rental-price-divider"></div>
+
+                    <!-- Total -->
+                    <div class="rental-total-row">
+                      <div>
+                        <span class="total-label"> Total Rental Price </span>
+
+                        <small>
+                          Amount calculated from the selected rental period.
+                        </small>
+                      </div>
+
+                      <strong id="totalPrice" aria-live="polite">
+                        ₹0.00
+                      </strong>
+                    </div>
+                  </div>
+
+                  <!-- Pricing Error -->
+                  <p
+                    class="field-error"
+                    id="pricingError"
+                    aria-live="polite"
+                  ></p>
+                </div>
+
+                <!-- ==================================================
+                                 PAYMENT / BORROW INFORMATION
+                                 ================================================== -->
+
+                <div class="request-info">
+                  <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+
+                  <div>
+                    <strong> Before you continue </strong>
+
+                    <p>
+                      Review the rental duration and total price carefully
+                      before proceeding.
+                    </p>
+
+                    <p>
+                      Your borrow request will be securely linked to your
+                      account and the resource owner will receive the request.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- ==================================================
+                                 FORM ACTION
+                                 ================================================== -->
+
+                <div class="form-actions">
+                  <button type="submit" class="request-btn" id="requestBtn">
+                    <i class="fa-solid fa-credit-card" aria-hidden="true"></i>
+
+                    <span> Pay &amp; Borrow </span>
+                  </button>
+                </div>
+
+                <!-- Form Message -->
+                <p class="form-message" id="formMessage" aria-live="polite"></p>
+              </form>
+            </div>
+          </div>
+
+          <!-- ==================================================
+                     RESOURCE NOT FOUND
+                     ================================================== -->
+
+          <div class="resource-not-found" id="resourceNotFound" hidden>
+            <div class="not-found-icon">
+              <i class="fa-solid fa-box-open" aria-hidden="true"></i>
+            </div>
+
+            <h2>Resource Not Found</h2>
+
+            <p>
+              The resource you are trying to borrow could not be found or is no
+              longer available.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ==================================================
+         FOOTER
+         ================================================== -->
+
+    <footer class="footer">
+      <div class="container footer-container">
+        <!-- Footer Brand -->
+        <div class="footer-brand">
+          <a
+            href="../index.html"
+            class="footer-logo"
+            aria-label="EcoShare Home"
+          >
+            <img
+              src="https://cplbvftcbiwgqkeqmrbq.supabase.co/storage/v1/object/public/site-assets/logo.png"
+              alt="EcoShare logo"
+              width="48"
+              height="48"
+              loading="lazy"
+              decoding="async"
+            />
+          </a>
+
+          <p>Share resources. Build community. Reduce waste.</p>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+          <p>&copy; 2026 EcoShare. All rights reserved.</p>
+
+          <p>Built for a more sustainable community.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ==================================================
+         JAVASCRIPT
+         ================================================== -->
+
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- Supabase Client -->
+    <script src="../Phase 1/supabase.js"></script>
+
+    <!-- Shared EcoShare Page System -->
+    <script src="../Phase 1/page.js"></script>
+
+    <!-- Borrow Resource Page -->
+    <script src="../Phase 2/borrow-request.js"></script>
+  </body>
+</html>

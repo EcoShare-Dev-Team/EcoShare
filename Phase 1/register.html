@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="description"
+      content="Create an EcoShare account and join your community in sharing useful resources."
+    />
+
+    <meta name="theme-color" content="#538d22" />
+
+    <meta name="color-scheme" content="light" />
+
+    <title>EcoShare - Create Account</title>
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+
+    <!-- Global Design System -->
+    <link rel="stylesheet" href="page.css" />
+
+    <!-- Register Page Styles -->
+    <link rel="stylesheet" href="register.css" />
+  </head>
+
+  <body>
+    <!-- Accessibility -->
+    <a href="#registerMain" class="skip-link"> Skip to registration form </a>
+
+    <main id="registerMain" class="register-page">
+      <section class="register-section" aria-labelledby="registerPageTitle">
+        <div class="register-card">
+          <!-- Left / Brand Section -->
+          <aside class="register-left" aria-label="About EcoShare">
+            <a
+              href="../index.html"
+              class="register-brand"
+              aria-label="EcoShare Home"
+            >
+              <img
+                id="registerLogo"
+                src="https://cplbvftcbiwgqkeqmrbq.supabase.co/storage/v1/object/public/site-assets/logo.png"
+                alt="EcoShare"
+                class="register-logo"
+                width="110"
+                height="110"
+                decoding="async"
+              />
+            </a>
+
+            <div class="register-intro">
+              <h1 id="registerPageTitle">
+                Join
+                <span>EcoShare</span>
+              </h1>
+
+              <p class="register-description">
+                Become part of a community that believes sharing is better than
+                wasting.
+              </p>
+            </div>
+
+            <div class="register-features" aria-label="EcoShare benefits">
+              <article class="register-feature">
+                <div class="register-feature-icon" aria-hidden="true">
+                  <i class="fa-solid fa-handshake"></i>
+                </div>
+
+                <div class="register-feature-content">
+                  <h2>Share &amp; Connect</h2>
+
+                  <p>Connect with people and share useful resources.</p>
+                </div>
+              </article>
+
+              <article class="register-feature">
+                <div class="register-feature-icon" aria-hidden="true">
+                  <i class="fa-solid fa-recycle"></i>
+                </div>
+
+                <div class="register-feature-content">
+                  <h2>Reduce Waste</h2>
+
+                  <p>Give unused items a second life.</p>
+                </div>
+              </article>
+
+              <article class="register-feature">
+                <div class="register-feature-icon" aria-hidden="true">
+                  <i class="fa-solid fa-leaf"></i>
+                </div>
+
+                <div class="register-feature-content">
+                  <h2>Build a Greener Future</h2>
+
+                  <p>Make sustainable choices together.</p>
+                </div>
+              </article>
+            </div>
+          </aside>
+
+          <!-- Right / Form Section -->
+          <section class="register-right" aria-label="Create EcoShare account">
+            <div class="register-form-container">
+              <header class="register-heading">
+                <h2>Create Account</h2>
+
+                <p>Create your EcoShare account to get started.</p>
+              </header>
+
+              <!-- Register Form -->
+              <form
+                id="registerForm"
+                class="register-form"
+                novalidate
+                autocomplete="on"
+              >
+                <!-- Full Name -->
+                <div class="register-form-group">
+                  <label for="name"> Full Name </label>
+
+                  <div class="register-input">
+                    <i class="fa-solid fa-user" aria-hidden="true"></i>
+
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      placeholder="Enter your full name"
+                      autocomplete="name"
+                      maxlength="100"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <!-- Gender -->
+                <div class="register-form-group">
+                  <label for="gender"> Gender </label>
+
+                  <div class="register-input">
+                    <i class="fa-solid fa-venus-mars" aria-hidden="true"></i>
+
+                    <select
+                      id="gender"
+                      name="gender"
+                      autocomplete="sex"
+                      required
+                    >
+                      <option value="" disabled selected>
+                        Select your gender
+                      </option>
+
+                      <option value="male">Male</option>
+
+                      <option value="female">Female</option>
+
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Location -->
+                <div class="register-form-group">
+                  <label for="registerLocation"> Location </label>
+
+                  <div class="register-input">
+                    <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+
+                    <input
+                      type="text"
+                      id="registerLocation"
+                      name="location"
+                      placeholder="Enter your city or town"
+                      autocomplete="address-level2"
+                      maxlength="150"
+                      required
+                    />
+                  </div>
+
+                  <button
+                    type="button"
+                    id="useRegisterLocationBtn"
+                    class="register-location-btn"
+                    aria-describedby="registerLocationHelp"
+                  >
+                    <i
+                      class="fa-solid fa-location-crosshairs"
+                      aria-hidden="true"
+                    ></i>
+
+                    <span id="registerLocationButtonText">
+                      Use My Current Location
+                    </span>
+                  </button>
+
+                  <small
+                    id="registerLocationHelp"
+                    class="register-location-help"
+                    aria-live="polite"
+                  >
+                    Enter your location manually or use GPS to detect it.
+                  </small>
+
+                  <small
+                    id="registerLocationError"
+                    class="register-location-error"
+                    role="status"
+                    aria-live="polite"
+                  ></small>
+                </div>
+
+                <!-- Email -->
+                <div class="register-form-group">
+                  <label for="registerEmail"> Email Address </label>
+
+                  <div class="register-input">
+                    <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+
+                    <input
+                      type="email"
+                      id="registerEmail"
+                      name="email"
+                      placeholder="Enter your email"
+                      autocomplete="email"
+                      maxlength="254"
+                      inputmode="email"
+                      spellcheck="false"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <!-- Password -->
+                <div class="register-form-group">
+                  <label for="registerPassword"> Password </label>
+
+                  <div class="register-input">
+                    <i class="fa-solid fa-lock" aria-hidden="true"></i>
+
+                    <input
+                      type="password"
+                      id="registerPassword"
+                      name="password"
+                      placeholder="Create a password"
+                      autocomplete="new-password"
+                      minlength="8"
+                      maxlength="128"
+                      required
+                    />
+
+                    <button
+                      type="button"
+                      id="toggleRegisterPassword"
+                      class="register-password-toggle"
+                      aria-label="Show password"
+                      aria-pressed="false"
+                    >
+                      <i class="fa-solid fa-eye" aria-hidden="true"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="register-form-group">
+                  <label for="confirmPassword"> Confirm Password </label>
+
+                  <div class="register-input">
+                    <i class="fa-solid fa-lock" aria-hidden="true"></i>
+
+                    <input
+                      type="password"
+                      id="confirmPassword"
+                      name="confirmPassword"
+                      placeholder="Confirm your password"
+                      autocomplete="new-password"
+                      minlength="8"
+                      maxlength="128"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <!-- Terms -->
+                <div class="register-terms">
+                  <label for="terms">
+                    <input type="checkbox" id="terms" name="terms" required />
+
+                    <span>
+                      I agree to the
+
+                      <a href="#" id="termsLink"> Terms &amp; Conditions </a>
+                    </span>
+                  </label>
+                </div>
+
+                <!-- Submit -->
+                <button type="submit" class="register-submit">
+                  Create Account
+                </button>
+
+                <!-- Status Message -->
+                <p
+                  id="registerMessage"
+                  class="form-message"
+                  role="status"
+                  aria-live="polite"
+                  aria-atomic="true"
+                ></p>
+              </form>
+
+              <!-- Login -->
+              <p class="register-login">
+                Already have an account?
+
+                <a href="login.html"> Login </a>
+              </p>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <!-- Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- Shared Supabase Client -->
+    <script src="supabase.js"></script>
+
+    <!-- Registration Logic -->
+    <script src="register.js"></script>
+  </body>
+</html>

@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="description"
+      content="Manage the resources you have shared with the EcoShare community."
+    />
+
+    <title>My Listings | EcoShare</title>
+
+    <!-- =====================================================
+         GLOBAL STYLES
+         ===================================================== -->
+
+    <link rel="stylesheet" href="../Phase 1/page.css" />
+
+    <link rel="stylesheet" href="../Phase 1/style.css" />
+
+    <!-- =====================================================
+         PAGE STYLES
+         ===================================================== -->
+
+    <link rel="stylesheet" href="../Phase 2/my-listings.css" />
+
+    <!-- =====================================================
+         FONT AWESOME
+         ===================================================== -->
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+    <!-- =====================================================
+         IMPORTANT:
+         Keep [hidden] hidden.
+
+         This prevents page-specific CSS such as
+         .loading-state and .empty-state from overriding
+         the browser's native hidden behavior.
+         ===================================================== -->
+
+    <style>
+      [hidden] {
+        display: none !important;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- =====================================================
+         HEADER
+         ===================================================== -->
+
+    <header class="header">
+      <div class="container navbar">
+        <button
+          type="button"
+          class="menu-btn"
+          id="menu-btn"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          aria-controls="primary-navigation"
+        >
+          <i class="fa-solid fa-bars" aria-hidden="true"></i>
+        </button>
+        <!-- =====================================================
+                 LOGO
+                 ===================================================== -->
+
+        <a href="../index.html" class="logo" aria-label="EcoShare Home">
+          <img
+            id="siteLogo"
+            src="https://cplbvftcbiwgqkeqmrbq.supabase.co/storage/v1/object/public/site-assets/logo.png"
+            alt="EcoShare logo"
+            width="120"
+            height="120"
+            decoding="async"
+            fetchpriority="high"
+          />
+        </a>
+
+        <!-- =====================================================
+                 PRIMARY NAVIGATION
+                 ===================================================== -->
+
+        <nav
+          class="primary-navigation"
+          id="primary-navigation"
+          aria-label="Main navigation"
+        >
+          <!-- Home -->
+
+          <a href="../index.html" class="nav-link" aria-current="page">
+            <i class="fa-solid fa-house" aria-hidden="true"></i>
+
+            <span>Home</span>
+          </a>
+
+          <!-- Explore -->
+
+          <a href="../Phase 2/explore.html" class="nav-link">
+            <i class="fa-solid fa-compass" aria-hidden="true"></i>
+
+            <span>Explore</span>
+          </a>
+
+          <!-- Community -->
+
+          <a href="../Phase 4/community.html" class="nav-link">
+            <i class="fa-solid fa-users" aria-hidden="true"></i>
+
+            <span>Community</span>
+          </a>
+
+          <!-- Messages -->
+
+          <a
+            href="../Phase 3/messages.html"
+            class="nav-link"
+            id="messagesNavLink"
+          >
+            <i class="fa-solid fa-message" aria-hidden="true"></i>
+
+            <span>Messages</span>
+          </a>
+
+          <!-- Notifications -->
+
+          <a
+            href="../Phase 3/notifications.html"
+            class="nav-link notifications-nav-link"
+            id="notificationsNavLink"
+          >
+            <i class="fa-solid fa-bell" aria-hidden="true"></i>
+
+            <span>Notifications</span>
+
+            <span
+              id="notificationUnreadBadge"
+              class="notification-unread-badge"
+              aria-label="Unread notifications"
+              hidden
+            >
+              0
+            </span>
+          </a>
+        </nav>
+
+        <!-- =====================================================
+                 LOGIN / REGISTRATION
+                 ===================================================== -->
+
+        <a
+          href="../Phase 1/login.html"
+          class="login-nav-btn"
+          id="authNavButton"
+        >
+          <i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i>
+
+          <span>Login</span>
+        </a>
+
+        <a
+          href="../Phase 1/register.html"
+          class="register-nav-btn"
+          id="registerNavButton"
+        >
+          <i class="fa-solid fa-user-plus" aria-hidden="true"></i>
+
+          <span>Register</span>
+        </a>
+
+        <!-- =====================================================
+                 PROFILE DROPDOWN
+                 ===================================================== -->
+
+        <div class="profile-dropdown" id="profileDropdown" hidden>
+          <!-- Profile Avatar Button -->
+
+          <button
+            type="button"
+            class="profile-avatar-btn"
+            id="profileAvatarBtn"
+            aria-label="Open profile menu"
+            aria-expanded="false"
+            aria-controls="profileMenu"
+          >
+            <img
+              id="navProfilePhoto"
+              src=""
+              alt="Your profile"
+              class="profile-avatar"
+              width="40"
+              height="40"
+              decoding="async"
+            />
+
+            <i
+              class="fa-solid fa-chevron-down profile-chevron"
+              aria-hidden="true"
+            ></i>
+          </button>
+
+          <!-- Profile Menu -->
+
+          <div class="profile-menu" id="profileMenu" hidden>
+            <!-- Profile Information -->
+
+            <div class="profile-menu-header">
+              <img
+                id="menuProfilePhoto"
+                src=""
+                alt=""
+                class="profile-menu-avatar"
+                width="48"
+                height="48"
+                decoding="async"
+              />
+
+              <div class="profile-menu-user">
+                <a
+                  href="../Phase 1/profile.html"
+                  class="profile-menu-user-link"
+                  aria-label="Open your profile"
+                >
+                  <strong id="menuProfileName"> My Account </strong>
+
+                  <span id="menuProfileEmail"> EcoShare Member </span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Profile -->
+
+            <a href="../Phase 1/profile.html" class="profile-menu-item">
+              <i class="fa-solid fa-user" aria-hidden="true"></i>
+
+              <span>My Profile</span>
+            </a>
+
+            <!-- Admin Dashboard -->
+
+            <a
+              href="../Phase 1/admin-dashboard.html"
+              class="profile-menu-item"
+              id="adminDashboardLink"
+              hidden
+            >
+              <i class="fa-solid fa-user-shield" aria-hidden="true"></i>
+
+              <span>Admin Dashboard</span>
+            </a>
+
+            <!-- User Dashboard -->
+
+            <a
+              href="../Phase 1/user-dashboard.html"
+              class="profile-menu-item"
+              id="userDashboardLink"
+              hidden
+            >
+              <i class="fa-solid fa-gauge-high" aria-hidden="true"></i>
+
+              <span>User Dashboard</span>
+            </a>
+
+            <!-- Resource Management -->
+
+            <a href="../Phase 2/my-listings.html" class="profile-menu-item">
+              <i class="fa-solid fa-box" aria-hidden="true"></i>
+
+              <span>My Resource Listings</span>
+            </a>
+
+            <a href="../Phase 2/lend-resource.html" class="profile-menu-item">
+              <i class="fa-solid fa-hand-holding-heart" aria-hidden="true"></i>
+
+              <span>Lend a Resource</span>
+            </a>
+
+            <a href="../Phase 2/my-requests.html" class="profile-menu-item">
+              <i class="fa-solid fa-handshake" aria-hidden="true"></i>
+
+              <span>My Borrow Requests</span>
+            </a>
+
+            <a
+              href="../Phase 2/incoming-requests.html"
+              class="profile-menu-item"
+            >
+              <i class="fa-solid fa-inbox" aria-hidden="true"></i>
+
+              <span>Incoming Borrow Requests</span>
+            </a>
+
+            <div class="profile-menu-divider"></div>
+
+            <div class="sidebar-divider"></div>
+            <!-- Information -->
+
+            <a href="../Phase 1/about.html" class="profile-menu-item">
+              <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+
+              <span>About EcoShare</span>
+            </a>
+
+            <a href="../Phase 1/contact.html" class="profile-menu-item">
+              <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+
+              <span>Contact Us</span>
+            </a>
+
+            <div class="profile-menu-divider"></div>
+
+            <!-- Logout -->
+
+            <button
+              type="button"
+              class="profile-menu-item logout-menu-item"
+              id="profileLogoutBtn"
+            >
+              <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>
+
+              <span>Logout</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- =====================================================
+                 MOBILE NAVIGATION BUTTON
+                 ===================================================== -->
+      </div>
+    </header>
+    <!-- =====================================================
+         MAIN CONTENT
+         ===================================================== -->
+
+    <main class="listings-page">
+      <!-- =================================================
+             PAGE HEADER
+             ================================================= -->
+
+      <section class="listings-header" aria-labelledby="pageTitle">
+        <div>
+          <span class="section-label"> RESOURCE MANAGEMENT </span>
+
+          <h1 id="pageTitle">My Listings</h1>
+
+          <p>
+            Manage the resources you have shared with the EcoShare community.
+          </p>
+        </div>
+
+        <!-- Lend Resource -->
+
+        <a href="../Phase 2/lend-resource.html" class="primary-button">
+          <i class="fa-solid fa-plus" aria-hidden="true"></i>
+
+          <span>Lend a Resource</span>
+        </a>
+      </section>
+
+      <!-- =================================================
+             PAGE MESSAGE
+
+             JavaScript uses this for:
+             - errors
+             - success messages
+             - information messages
+             ================================================= -->
+
+      <div
+        class="page-message"
+        id="pageMessage"
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+        hidden
+      ></div>
+
+      <!-- =================================================
+             LOADING STATE
+             ================================================= -->
+
+      <section
+        class="loading-state"
+        id="loadingState"
+        aria-live="polite"
+        aria-busy="true"
+      >
+        <div class="loading-spinner" aria-hidden="true"></div>
+
+        <p>Loading your listings...</p>
+      </section>
+
+      <!-- =================================================
+             EMPTY STATE
+             ================================================= -->
+
+      <section
+        class="empty-state"
+        id="emptyState"
+        aria-labelledby="emptyStateTitle"
+        hidden
+      >
+        <div class="empty-icon" aria-hidden="true">
+          <i class="fa-solid fa-box-open"></i>
+        </div>
+
+        <h2 id="emptyStateTitle">No resources listed yet</h2>
+
+        <p>
+          You haven't shared any resources with the community yet. Start by
+          lending something you own.
+        </p>
+
+        <a href="../Phase 2/lend-resource.html" class="primary-button">
+          <i class="fa-solid fa-plus" aria-hidden="true"></i>
+
+          <span>Lend Your First Resource</span>
+        </a>
+      </section>
+
+      <!-- =================================================
+             LISTINGS GRID
+
+             JavaScript creates the listing cards here.
+             ================================================= -->
+
+      <section
+        class="listings-grid"
+        id="listingsGrid"
+        aria-label="Your resource listings"
+        hidden
+      ></section>
+    </main>
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
+    <footer class="footer">
+      <div class="container footer-container">
+        <!-- Footer Brand -->
+
+        <div class="footer-brand">
+          <a
+            href="../index.html"
+            class="footer-logo"
+            aria-label="EcoShare Home"
+          >
+            <img
+              src="https://cplbvftcbiwgqkeqmrbq.supabase.co/storage/v1/object/public/site-assets/logo.png"
+              alt="EcoShare logo"
+              width="48"
+              height="48"
+              loading="lazy"
+              decoding="async"
+            />
+          </a>
+
+          <p>Share resources. Build community. Reduce waste.</p>
+        </div>
+
+        <!-- Footer Bottom -->
+
+        <div class="footer-bottom">
+          <p>&copy; 2026 EcoShare. All rights reserved.</p>
+
+          <p>Built for a more sustainable community.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- =====================================================
+         SUPABASE
+         ===================================================== -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- =====================================================
+         ECO SHARE SUPABASE CONFIGURATION
+         ===================================================== -->
+
+    <script src="../Phase 1/supabase.js"></script>
+
+    <!-- =====================================================
+         GLOBAL PAGE / NAVIGATION LOGIC
+         ===================================================== -->
+
+    <script src="../Phase 1/page.js"></script>
+
+    <!-- =====================================================
+         MY LISTINGS LOGIC
+         ===================================================== -->
+
+    <script src="../Phase 2/my-listings.js"></script>
+  </body>
+</html>

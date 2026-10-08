@@ -1,0 +1,2583 @@
+/*
+
+=========================================================
+
+  EcoShare - Homepage Styles
+
+
+
+  File: style.css
+
+  Page: ../index.html
+
+
+
+  RESPONSIBILITIES:
+
+  - Homepage design tokens
+
+  - Hero section
+
+  - Hero buttons and statistics
+
+  - Hero visual / floating cards
+
+  - Section headings
+
+  - Resource search
+
+  - Category filters
+
+  - Resource cards
+
+  - Resource availability
+
+  - Loading / empty / error states
+
+  - Community impact
+
+  - How it works
+
+  - Why EcoShare
+
+  - Lend CTA
+
+  - Homepage responsive behavior
+
+  - Accessibility
+
+  - Reduced motion
+
+  - Print styles
+
+
+
+  GLOBAL STYLES:
+
+  page.css
+
+
+
+  IMPORTANT:
+
+  Authentication, Supabase, database and authorization
+
+  logic do NOT belong in this stylesheet.
+
+=========================================================
+
+*/
+
+/* =========================================================
+
+   1. HOMEPAGE DESIGN TOKENS
+
+========================================================= */
+
+:root {
+  --home-primary: var(--eco-green-600, #538d22);
+
+  --home-primary-dark: var(--eco-green-800, #245501);
+
+  --home-primary-deep: var(--eco-green-900, #1a4301);
+
+  --home-accent: var(--eco-green-300, #aad576);
+
+  --home-white: #ffffff;
+
+  --home-black: #000000;
+
+  --home-text: var(--eco-text, #1f2937);
+
+  --home-text-secondary: var(--eco-text-secondary, #555555);
+
+  --home-text-muted: var(--eco-text-muted, #777777);
+
+  --home-background-soft: var(--eco-background-soft, #f5f8ef);
+
+  --home-background-green: var(--eco-background-green, #edf5df);
+
+  --home-border: var(--eco-border, #d9e3c9);
+
+  --home-border-light: var(--eco-border-light, #e4ebd8);
+
+  --home-danger: var(--eco-danger, #dc2626);
+
+  --home-success: #166534;
+
+  --home-success-bg: #dcfce7;
+
+  --home-success-border: #bbf7d0;
+
+  --home-error: #dc2626;
+
+  --home-error-bg: #fee2e2;
+
+  --home-error-border: #fecaca;
+
+  --home-shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.06);
+
+  --home-shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+
+  --home-shadow-lg: 0 14px 35px rgba(0, 0, 0, 0.1);
+
+  --home-shadow-primary: 0 8px 22px rgba(83, 141, 34, 0.18);
+
+  --home-transition-fast: 0.2s ease;
+
+  --home-transition-normal: 0.3s ease;
+
+  --home-section-padding: 90px;
+}
+
+/* =========================================================
+
+   2. HERO
+
+========================================================= */
+
+.hero {
+  display: flex;
+
+  align-items: center;
+
+  overflow: hidden;
+
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+
+    var(--home-background-soft) 100%
+  );
+}
+
+.hero-container {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.05fr)
+    minmax(0, 0.95fr);
+
+  align-items: center;
+
+  gap: 60px;
+
+  padding: 80px 0;
+}
+
+.hero-content {
+  max-width: 650px;
+
+  min-width: 0;
+}
+
+/* =========================================================
+
+   3. HERO LABEL
+
+========================================================= */
+
+.hero-label,
+.section-label {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  color: var(--home-primary-dark);
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  letter-spacing: 1px;
+
+  line-height: 1.4;
+
+  text-transform: uppercase;
+}
+
+.hero-label {
+  margin-bottom: 20px;
+}
+
+/* =========================================================
+
+   4. HERO HEADING
+
+========================================================= */
+
+.hero-content h1 {
+  max-width: 650px;
+
+  margin: 0 0 20px;
+
+  color: var(--home-black);
+
+  font-size: clamp(36px, 4vw, 52px);
+
+  font-weight: 700;
+
+  line-height: 1.15;
+
+  overflow-wrap: break-word;
+}
+
+.hero-content h1 span {
+  display: block;
+
+  color: var(--home-primary);
+}
+
+.hero-content > p {
+  max-width: 590px;
+
+  margin: 0 0 30px;
+
+  color: var(--home-text-secondary);
+
+  font-size: 16px;
+
+  line-height: 1.75;
+}
+
+/* =========================================================
+
+   5. HERO BUTTONS
+
+========================================================= */
+
+.hero-buttons {
+  display: flex;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 14px;
+
+  margin-bottom: 55px;
+}
+
+.primary-btn,
+.secondary-btn,
+.outline-btn {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  min-height: 46px;
+
+  padding: 12px 24px;
+
+  border-radius: 999px;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  line-height: 1.2;
+
+  text-align: center;
+
+  text-decoration: none;
+
+  cursor: pointer;
+
+  transition:
+    transform var(--home-transition-fast),
+    background var(--home-transition-fast),
+    color var(--home-transition-fast),
+    border-color var(--home-transition-fast),
+    box-shadow var(--home-transition-fast);
+}
+
+/* / ---------- Primary ---------- / */
+
+.primary-btn {
+  border: 1px solid var(--home-primary);
+
+  background: var(--home-primary);
+
+  color: var(--home-white);
+}
+
+.primary-btn:hover {
+  border-color: var(--home-primary-dark);
+
+  background: var(--home-primary-dark);
+
+  color: var(--home-white);
+
+  transform: translateY(-2px);
+
+  box-shadow: var(--home-shadow-primary);
+}
+
+/* / ---------- Secondary ---------- / */
+
+.secondary-btn {
+  border: 1px solid var(--home-primary);
+
+  background: var(--home-white);
+
+  color: var(--home-primary-dark);
+}
+
+.secondary-btn:hover {
+  background: var(--home-background-green);
+
+  color: var(--home-primary-dark);
+
+  transform: translateY(-2px);
+}
+
+/* / ---------- Outline ---------- / */
+
+.outline-btn {
+  border: 1px solid var(--home-primary);
+
+  background: transparent;
+
+  color: var(--home-primary-dark);
+}
+
+.outline-btn:hover {
+  background: var(--home-primary);
+
+  color: var(--home-white);
+
+  transform: translateY(-2px);
+}
+
+/* / ---------- Light ---------- / */
+
+.light-btn {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  flex-shrink: 0;
+
+  min-height: 46px;
+
+  padding: 12px 24px;
+
+  border: 1px solid var(--home-white);
+
+  border-radius: 999px;
+
+  background: var(--home-white);
+
+  color: var(--home-primary-deep);
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  line-height: 1;
+
+  text-decoration: none;
+
+  cursor: pointer;
+
+  transition:
+    transform var(--home-transition-fast),
+    background var(--home-transition-fast),
+    color var(--home-transition-fast),
+    border-color var(--home-transition-fast),
+    box-shadow var(--home-transition-fast);
+}
+
+.light-btn:hover {
+  background: var(--home-accent);
+
+  color: var(--home-black);
+
+  transform: translateY(-2px);
+}
+
+/* =========================================================
+
+   6. HERO STATS
+
+========================================================= */
+
+.hero-stats {
+  display: flex;
+
+  align-items: flex-start;
+
+  flex-wrap: wrap;
+
+  gap: 25px;
+}
+
+.hero-stat {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 5px;
+}
+
+.hero-stat strong {
+  color: var(--home-black);
+
+  font-size: 14px;
+
+  font-weight: 700;
+}
+
+.hero-stat span {
+  color: var(--home-text-muted);
+
+  font-size: 12px;
+}
+
+/* =========================================================
+
+   7. HERO VISUAL
+
+========================================================= */
+
+.hero-visual {
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  min-width: 0;
+
+  min-height: 460px;
+}
+
+.hero-circle {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 300px;
+
+  height: 300px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle,
+    var(--home-accent) 0%,
+
+    #73a942 70%,
+
+    var(--home-primary) 100%
+  );
+
+  color: var(--home-primary-deep);
+
+  font-size: 110px;
+
+  box-shadow: var(--home-shadow-lg);
+}
+
+/* =========================================================
+
+   8. FLOATING CARDS
+
+========================================================= */
+
+.floating-card {
+  position: absolute;
+
+  z-index: 1;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  min-width: 210px;
+
+  max-width: 250px;
+
+  padding: 12px;
+
+  border: 1px solid var(--home-border-light);
+
+  border-radius: 12px;
+
+  background: var(--home-white);
+
+  box-shadow: var(--home-shadow-md);
+
+  transition:
+    transform var(--home-transition-normal),
+    box-shadow var(--home-transition-normal);
+}
+
+.floating-card:hover {
+  transform: translateY(-3px);
+
+  box-shadow: var(--home-shadow-lg);
+}
+
+.floating-card strong,
+.floating-card span {
+  display: block;
+}
+
+.floating-card strong {
+  margin-bottom: 5px;
+
+  color: var(--home-black);
+
+  font-size: 14px;
+}
+
+.floating-card span {
+  color: var(--home-text-muted);
+
+  font-size: 12px;
+}
+
+.floating-card-icon {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 40px;
+
+  height: 40px;
+
+  flex-shrink: 0;
+
+  border-radius: 8px;
+
+  background: var(--home-background-green);
+
+  color: var(--home-primary-dark);
+
+  font-size: 16px;
+}
+
+/* =========================================================
+
+   9. FLOATING CARD POSITIONS
+
+========================================================= */
+
+.card-one {
+  top: 15%;
+
+  left: 0;
+}
+
+.card-two {
+  top: 42%;
+
+  right: 0;
+}
+
+.card-three {
+  bottom: 12%;
+
+  left: 5%;
+}
+
+/* =========================================================
+
+   10. SECTION HEADINGS
+
+========================================================= */
+
+.section-heading {
+  max-width: 650px;
+
+  margin: 0 auto 55px;
+
+  text-align: center;
+}
+
+.section-heading .section-label {
+  margin-bottom: 10px;
+}
+
+.section-heading h2,
+.lend-content h2,
+.why-ecoshare-content h2 {
+  color: var(--home-black);
+
+  font-size: 29px;
+
+  font-weight: 700;
+
+  line-height: 1.2;
+
+  overflow-wrap: break-word;
+}
+
+.section-heading h2 {
+  margin: 0 0 12px;
+}
+
+.section-heading p {
+  margin: 0;
+
+  color: var(--home-text-secondary);
+
+  font-size: 14px;
+
+  line-height: 1.7;
+}
+
+/* =========================================================
+
+   11. EXPLORE SECTION
+
+========================================================= */
+
+.explore-section {
+  padding: var(--home-section-padding) 0;
+
+  background: var(--home-white);
+}
+
+/* =========================================================
+
+   12. SEARCH
+
+========================================================= */
+
+.search-container {
+  max-width: 760px;
+
+  margin: 0 auto 25px;
+}
+
+.search-box {
+  display: flex;
+
+  align-items: center;
+
+  width: 100%;
+
+  min-height: 54px;
+
+  padding-left: 14px;
+
+  border: 1px solid var(--home-border);
+
+  border-radius: 999px;
+
+  background: var(--home-white);
+
+  box-shadow: var(--home-shadow-sm);
+
+  overflow: hidden;
+
+  transition:
+    border-color var(--home-transition-fast),
+    box-shadow var(--home-transition-fast);
+}
+
+.search-box:focus-within {
+  border-color: var(--home-primary);
+
+  box-shadow: 0 0 0 3px rgba(83, 141, 34, 0.18);
+}
+
+.search-box > i {
+  flex-shrink: 0;
+
+  color: var(--home-primary);
+
+  font-size: 16px;
+}
+
+.search-box input {
+  flex: 1;
+
+  min-width: 0;
+
+  height: 52px;
+
+  padding: 0 12px;
+
+  border: none;
+
+  outline: none;
+
+  background: transparent;
+
+  color: var(--home-black);
+
+  font-size: 14px;
+}
+
+.search-box input::placeholder {
+  color: var(--home-text-muted);
+}
+
+.search-btn {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  height: 54px;
+
+  flex-shrink: 0;
+
+  padding: 0 25px;
+
+  border: none;
+
+  background: var(--home-primary);
+
+  color: var(--home-white);
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background var(--home-transition-fast),
+    color var(--home-transition-fast);
+}
+
+.search-btn:hover {
+  background: var(--home-primary-dark);
+
+  color: var(--home-white);
+}
+
+/* =========================================================
+
+   13. CATEGORIES
+
+========================================================= */
+
+.categories {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+  margin-bottom: 30px;
+}
+
+.category {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  min-height: 38px;
+
+  padding: 10px 16px;
+
+  border: 1px solid var(--home-border);
+
+  border-radius: 999px;
+
+  background: var(--home-white);
+
+  color: var(--home-black);
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background var(--home-transition-fast),
+    color var(--home-transition-fast),
+    border-color var(--home-transition-fast),
+    transform var(--home-transition-fast);
+}
+
+.category:hover {
+  border-color: var(--home-primary);
+
+  color: var(--home-primary-dark);
+
+  transform: translateY(-1px);
+}
+
+.category.active {
+  border-color: var(--home-primary);
+
+  background: var(--home-primary);
+
+  color: var(--home-white);
+}
+
+/* =========================================================
+
+   14. RESOURCE GRID
+
+========================================================= */
+
+.resource-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  align-items: stretch;
+
+  gap: 20px;
+}
+
+/* =========================================================
+
+   15. RESOURCE CARD
+
+========================================================= */
+
+.resource-card {
+  display: flex;
+
+  flex-direction: column;
+
+  width: 100%;
+
+  height: 100%;
+
+  min-width: 0;
+
+  border: 1px solid var(--home-border-light);
+
+  border-radius: 12px;
+
+  background: var(--home-white);
+
+  overflow: hidden;
+
+  box-shadow: var(--home-shadow-sm);
+
+  transition:
+    transform var(--home-transition-normal),
+    box-shadow var(--home-transition-normal),
+    border-color var(--home-transition-normal);
+}
+
+.resource-card:hover {
+  transform: translateY(-4px);
+
+  border-color: var(--home-border);
+
+  box-shadow: var(--home-shadow-md);
+}
+
+/* =========================================================
+
+   16. RESOURCE IMAGE AREA
+
+========================================================= */
+
+.resource-card-image {
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 100%;
+
+  height: 200px;
+
+  min-height: 200px;
+
+  padding: 12px;
+
+  background: #f5f7f1;
+
+  overflow: hidden;
+}
+
+.resource-card-image img {
+  display: block;
+
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: contain;
+
+  object-position: center;
+
+  transition: transform var(--home-transition-normal);
+}
+
+.resource-card:hover .resource-card-image img {
+  transform: scale(1.035);
+}
+
+/* ---------- Placeholder ---------- / */
+
+.resource-card-image-placeholder {
+  background: var(--home-background-soft);
+
+  color: var(--home-primary);
+}
+
+.resource-card-image-placeholder i {
+  color: var(--home-primary);
+
+  font-size: 42px;
+}
+
+/* =========================================================
+
+   17. RESOURCE CONTENT
+
+========================================================= */
+
+.resource-card-content {
+  display: flex;
+
+  flex-direction: column;
+
+  flex: 1;
+
+  min-width: 0;
+
+  padding: 15px;
+}
+
+/* =========================================================
+
+   18. RESOURCE TOP ROW
+
+========================================================= */
+
+.resource-card-top {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  flex-wrap: wrap;
+
+  gap: 7px;
+
+  min-height: 25px;
+
+  margin-bottom: 9px;
+}
+
+/* =========================================================
+
+   19. RESOURCE CATEGORY
+
+========================================================= */
+
+.resource-category {
+  display: inline-flex;
+
+  align-items: center;
+
+  width: fit-content;
+
+  padding: 5px 9px;
+
+  border-radius: 999px;
+
+  background: var(--home-background-green);
+
+  color: var(--home-primary-dark);
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.5px;
+
+  line-height: 1.2;
+
+  text-transform: uppercase;
+
+  white-space: nowrap;
+}
+
+/* =========================================================
+
+   20. RESOURCE AVAILABILITY
+
+========================================================= */
+
+.resource-availability {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 5px;
+
+  width: fit-content;
+
+  padding: 5px 8px;
+
+  border-radius: 999px;
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  line-height: 1;
+
+  white-space: nowrap;
+}
+
+.resource-availability.available {
+  border: 1px solid var(--home-success-border);
+
+  background: var(--home-success-bg);
+
+  color: var(--home-success);
+}
+
+.resource-availability.unavailable {
+  border: 1px solid var(--home-error-border);
+
+  background: var(--home-error-bg);
+
+  color: var(--home-error);
+}
+
+.resource-availability i {
+  font-size: 9px;
+}
+
+/* =========================================================
+
+   21. RESOURCE TITLE
+
+========================================================= */
+
+.resource-title {
+  display: -webkit-box;
+
+  -webkit-box-orient: vertical;
+
+  -webkit-line-clamp: 1;
+
+  line-clamp: 1;
+
+  width: 100%;
+
+  min-height: 22px;
+
+  margin: 0 0 6px;
+
+  color: var(--home-black);
+
+  font-size: 16px;
+
+  font-weight: 700;
+
+  line-height: 1.4;
+
+  overflow: hidden;
+
+  overflow-wrap: anywhere;
+}
+
+/* =========================================================
+
+   22. RESOURCE DESCRIPTION
+
+========================================================= */
+
+.resource-description {
+  display: -webkit-box;
+
+  -webkit-box-orient: vertical;
+
+  -webkit-line-clamp: 3;
+
+  line-clamp: 3;
+
+  width: 100%;
+
+  min-height: 57px;
+
+  max-height: 57px;
+
+  margin: 0 0 10px;
+
+  color: var(--home-text-secondary);
+
+  font-size: 12px;
+
+  line-height: 1.58;
+
+  overflow: hidden;
+
+  overflow-wrap: anywhere;
+}
+
+/* =========================================================
+
+   23. RESOURCE LOCATION
+
+========================================================= */
+
+.resource-location {
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 6px;
+
+  width: 100%;
+
+  min-height: 18px;
+
+  margin-bottom: 5px;
+
+  color: var(--home-text-muted);
+
+  font-size: 11px;
+
+  line-height: 1.45;
+}
+
+.resource-location i {
+  flex-shrink: 0;
+
+  margin-top: 2px;
+
+  color: var(--home-primary);
+
+  font-size: 11px;
+}
+
+.resource-location span {
+  min-width: 0;
+
+  overflow-wrap: anywhere;
+}
+
+/* =========================================================
+
+   24. RESOURCE DISTANCE
+
+========================================================= */
+
+.resource-distance {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 5px;
+
+  width: fit-content;
+
+  margin-bottom: 8px;
+
+  color: var(--home-primary-dark);
+
+  font-size: 10px;
+
+  font-weight: 600;
+
+  line-height: 1.3;
+}
+
+.resource-distance i {
+  color: var(--home-primary);
+
+  font-size: 10px;
+}
+
+/* =========================================================
+
+   25. RESOURCE CARD FOOTER
+
+========================================================= */
+
+.resource-card-footer {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 10px;
+
+  width: 100%;
+
+  margin-top: auto;
+
+  padding-top: 10px;
+
+  border-top: 1px solid var(--home-border-light);
+}
+
+/* =========================================================
+
+   26. RESOURCE OWNER
+
+========================================================= */
+
+.resource-owner {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  min-width: 0;
+
+  flex: 1;
+}
+
+/* =========================================================
+
+   27. RESOURCE OWNER AVATAR
+
+========================================================= */
+
+.resource-owner-avatar {
+  display: block;
+
+  width: 38px;
+
+  height: 38px;
+
+  flex-shrink: 0;
+
+  border: 2px solid var(--home-background-green);
+
+  border-radius: 50%;
+
+  background: var(--home-background-soft);
+
+  object-fit: cover;
+
+  object-position: center;
+
+  overflow: hidden;
+}
+
+/* =========================================================
+
+   28. RESOURCE OWNER INFO
+
+========================================================= */
+
+.resource-owner-info {
+  display: flex;
+
+  flex-direction: column;
+
+  min-width: 0;
+
+  gap: 1px;
+}
+
+.resource-owner-label {
+  color: var(--home-text-muted);
+
+  font-size: 9px;
+
+  line-height: 1.2;
+}
+
+.resource-owner-name {
+  display: block;
+
+  max-width: 120px;
+
+  color: var(--home-black);
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  line-height: 1.3;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+}
+
+/* =========================================================
+
+   29. RESOURCE DATE
+
+========================================================= */
+
+.resource-date {
+  display: inline-flex;
+
+  align-items: center;
+
+  flex-shrink: 0;
+
+  color: var(--home-text-muted);
+
+  font-size: 9px;
+
+  line-height: 1.3;
+
+  white-space: nowrap;
+}
+
+/* =========================================================
+
+   30. VIEW RESOURCE BUTTON
+
+========================================================= */
+
+.resource-view-btn {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 6px;
+
+  flex-shrink: 0;
+
+  min-height: 34px;
+
+  padding: 8px 13px;
+
+  border: 1px solid var(--home-primary);
+
+  border-radius: 8px;
+
+  background: var(--home-primary);
+
+  color: var(--home-white);
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    background var(--home-transition-fast),
+    border-color var(--home-transition-fast),
+    transform var(--home-transition-fast),
+    box-shadow var(--home-transition-fast);
+}
+
+.resource-view-btn:hover {
+  border-color: var(--home-primary-dark);
+
+  background: var(--home-primary-dark);
+
+  color: var(--home-white);
+
+  transform: translateY(-1px);
+
+  box-shadow: var(--home-shadow-primary);
+}
+
+.resource-view-btn:active {
+  transform: translateY(0);
+}
+
+.resource-view-btn:focus-visible {
+  outline: 3px solid rgba(83, 141, 34, 0.25);
+
+  outline-offset: 2px;
+}
+
+.resource-view-btn i {
+  font-size: 9px;
+}
+
+/* =========================================================
+
+   31. EMPTY / ERROR / LOADING STATES
+
+========================================================= */
+
+.no-resources {
+  grid-column: 1 / -1;
+
+  padding: 50px 20px;
+
+  border: 1px dashed var(--home-border);
+
+  border-radius: 12px;
+
+  background: var(--home-background-soft);
+
+  text-align: center;
+}
+
+.no-resources i {
+  display: block;
+
+  margin-bottom: 12px;
+
+  color: var(--home-primary);
+
+  font-size: 40px;
+}
+
+.no-resources h3 {
+  margin: 0 0 8px;
+
+  color: var(--home-black);
+
+  font-size: 16px;
+}
+
+.no-resources p {
+  margin: 0 0 18px;
+
+  color: var(--home-text-muted);
+
+  font-size: 14px;
+}
+
+.no-resources .search-btn {
+  height: 44px;
+
+  padding: 0 20px;
+
+  border-radius: 999px;
+}
+
+/* =========================================================
+
+   32. EXPLORE MORE
+
+========================================================= */
+
+.explore-more {
+  display: flex;
+
+  justify-content: center;
+
+  margin-top: 30px;
+}
+
+/* =========================================================
+
+   33. COMMUNITY IMPACT
+
+========================================================= */
+
+.impact-section {
+  padding: var(--home-section-padding) 0;
+
+  background: var(--home-background-soft);
+}
+
+.impact-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 20px;
+}
+
+.impact-card {
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 18px;
+
+  min-width: 0;
+
+  padding: 26px;
+
+  border: 1px solid var(--home-border-light);
+
+  border-radius: 14px;
+
+  background: var(--home-white);
+
+  box-shadow: var(--home-shadow-sm);
+
+  transition:
+    transform var(--home-transition-normal),
+    box-shadow var(--home-transition-normal),
+    border-color var(--home-transition-normal);
+}
+
+.impact-card:hover {
+  transform: translateY(-4px);
+
+  border-color: var(--home-border);
+
+  box-shadow: var(--home-shadow-md);
+}
+
+.impact-icon {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 52px;
+
+  height: 52px;
+
+  flex-shrink: 0;
+
+  border-radius: 12px;
+
+  background: var(--home-background-green);
+
+  color: var(--home-primary-dark);
+
+  font-size: 19px;
+}
+
+.impact-content {
+  min-width: 0;
+}
+
+.impact-content h3 {
+  margin: 0 0 8px;
+
+  color: var(--home-black);
+
+  font-size: 16px;
+
+  line-height: 1.4;
+}
+
+.impact-content p {
+  margin: 0;
+
+  color: var(--home-text-secondary);
+
+  font-size: 13px;
+
+  line-height: 1.7;
+}
+
+/* =========================================================
+
+   34. HOW IT WORKS
+
+========================================================= */
+
+.how-it-works {
+  padding: var(--home-section-padding) 0;
+
+  background: var(--home-white);
+}
+
+.steps {
+  display: grid;
+
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  gap: 20px;
+}
+
+.step {
+  position: relative;
+
+  padding: 20px;
+
+  border: 1px solid var(--home-border-light);
+
+  border-radius: 12px;
+
+  background: var(--home-background-soft);
+
+  text-align: center;
+
+  box-shadow: var(--home-shadow-sm);
+
+  transition:
+    transform var(--home-transition-normal),
+    box-shadow var(--home-transition-normal),
+    border-color var(--home-transition-normal);
+}
+
+.step:hover {
+  transform: translateY(-4px);
+
+  border-color: var(--home-border);
+
+  box-shadow: var(--home-shadow-md);
+}
+
+.step-number {
+  position: absolute;
+
+  top: 14px;
+
+  right: 14px;
+
+  color: var(--home-accent);
+
+  font-size: 14px;
+
+  font-weight: 700;
+}
+
+.step-icon {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 58px;
+
+  height: 58px;
+
+  margin: 20px auto 16px;
+
+  border-radius: 50%;
+
+  background: var(--home-background-green);
+
+  color: var(--home-primary-dark);
+
+  font-size: 19px;
+}
+
+.step h3 {
+  margin: 0 0 10px;
+
+  color: var(--home-black);
+
+  font-size: 16px;
+}
+
+.step p {
+  margin: 0;
+
+  color: var(--home-text-secondary);
+
+  font-size: 13px;
+
+  line-height: 1.75;
+}
+
+/* =========================================================
+
+   35. WHY ECOSHARE
+
+========================================================= */
+
+.why-ecoshare-section {
+  padding: var(--home-section-padding) 0;
+
+  background: var(--home-white);
+}
+
+.why-ecoshare {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.1fr)
+    minmax(320px, 0.9fr);
+
+  align-items: center;
+
+  gap: 70px;
+
+  padding: 50px;
+
+  border: 1px solid var(--home-border-light);
+
+  border-radius: 20px;
+
+  background: linear-gradient(
+    135deg,
+    var(--home-background-soft) 0%,
+
+    #ffffff 100%
+  );
+
+  box-shadow: var(--home-shadow-sm);
+}
+
+.why-ecoshare-content {
+  min-width: 0;
+}
+
+.why-ecoshare-content > .section-label {
+  margin-bottom: 12px;
+}
+
+.why-ecoshare-content h2 {
+  max-width: 600px;
+
+  margin: 0 0 16px;
+
+  font-size: clamp(28px, 3vw, 36px);
+}
+
+.why-ecoshare-content > p {
+  max-width: 620px;
+
+  margin: 0 0 28px;
+
+  color: var(--home-text-secondary);
+
+  font-size: 14px;
+
+  line-height: 1.8;
+}
+
+/* =========================================================
+
+   36. WHY FEATURES
+
+========================================================= */
+
+.why-features {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 18px;
+}
+
+.why-feature {
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 12px;
+}
+
+.why-feature-icon {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 22px;
+
+  height: 22px;
+
+  flex-shrink: 0;
+
+  margin-top: 2px;
+
+  color: var(--home-primary);
+
+  font-size: 18px;
+}
+
+.why-feature > div {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 3px;
+
+  min-width: 0;
+}
+
+.why-feature strong {
+  color: var(--home-black);
+
+  font-size: 14px;
+
+  font-weight: 700;
+}
+
+.why-feature span {
+  color: var(--home-text-muted);
+
+  font-size: 12px;
+
+  line-height: 1.6;
+}
+
+/* =========================================================
+
+   37. WHY ECOSHARE VISUAL
+
+========================================================= */
+
+.why-ecoshare-visual {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  min-height: 330px;
+}
+
+.why-visual-main {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 260px;
+
+  height: 260px;
+
+  border: 12px solid var(--home-background-green);
+
+  border-radius: 50%;
+
+  background: var(--home-primary);
+
+  color: var(--home-white);
+
+  box-shadow:
+    0 0 0 18px rgba(170, 213, 118, 0.25),
+    var(--home-shadow-lg);
+
+  text-align: center;
+}
+
+.why-visual-main i {
+  margin-bottom: 12px;
+
+  color: var(--home-accent);
+
+  font-size: 48px;
+}
+
+.why-visual-main span {
+  font-size: 13px;
+
+  opacity: 0.9;
+}
+
+.why-visual-main strong {
+  margin: 3px 0;
+
+  font-size: 28px;
+
+  font-weight: 700;
+}
+
+/* =========================================================
+
+   38. LEND CTA
+
+========================================================= */
+
+.lend-section {
+  padding: 65px 0;
+
+  background: var(--home-primary-dark);
+}
+
+.lend-content {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 30px;
+}
+
+.lend-content > div {
+  min-width: 0;
+}
+
+.lend-content .section-label {
+  color: var(--home-accent);
+}
+
+.lend-content h2 {
+  max-width: 700px;
+
+  margin: 10px 0;
+
+  color: var(--home-white);
+}
+
+.lend-content p {
+  max-width: 650px;
+
+  margin: 0;
+
+  color: #dce9c9;
+
+  font-size: 14px;
+
+  line-height: 1.7;
+}
+
+/* =========================================================
+
+   39. ACCESSIBILITY / FOCUS
+
+========================================================= */
+
+.primary-btn:focus-visible,
+.secondary-btn:focus-visible,
+.outline-btn:focus-visible,
+.light-btn:focus-visible,
+.search-btn:focus-visible,
+.category:focus-visible,
+.resource-view-btn:focus-visible {
+  outline: 3px solid rgba(83, 141, 34, 0.35);
+
+  outline-offset: 3px;
+}
+
+.search-box input:focus-visible {
+  outline: none;
+}
+
+/* =========================================================
+
+   40. LARGE TABLETS / SMALL LAPTOPS
+
+========================================================= */
+
+@media (max-width: 1200px) {
+  .resource-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .hero-container {
+    gap: 40px;
+  }
+
+  .why-ecoshare {
+    gap: 45px;
+
+    padding: 40px;
+  }
+}
+
+/* =========================================================
+
+   41. TABLETS
+
+========================================================= */
+
+@media (max-width: 950px) {
+  .hero-container {
+    grid-template-columns: 1fr;
+
+    gap: 45px;
+
+    padding: 65px 0;
+
+    text-align: center;
+  }
+
+  .hero-content {
+    max-width: 750px;
+
+    margin: 0 auto;
+  }
+
+  .hero-content h1 {
+    margin-inline: auto;
+  }
+
+  .hero-content > p {
+    margin-inline: auto;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+  .hero-stats {
+    justify-content: center;
+  }
+
+  .hero-visual {
+    min-height: 400px;
+  }
+
+  .resource-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .impact-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .why-ecoshare {
+    grid-template-columns: 1fr;
+
+    gap: 40px;
+  }
+
+  .why-ecoshare-content {
+    text-align: center;
+  }
+
+  .why-ecoshare-content h2,
+  .why-ecoshare-content > p {
+    margin-left: auto;
+
+    margin-right: auto;
+  }
+
+  .why-features {
+    max-width: 620px;
+
+    margin-inline: auto;
+
+    text-align: left;
+  }
+
+  .why-ecoshare-visual {
+    min-height: 280px;
+  }
+
+  .lend-content {
+    flex-direction: column;
+
+    align-items: flex-start;
+  }
+}
+
+/* =========================================================
+
+   42. MOBILE
+
+========================================================= */
+
+@media (max-width: 700px) {
+  :root {
+    --home-section-padding: 65px;
+  }
+
+  .hero-container {
+    gap: 25px;
+
+    padding: 50px 0;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(32px, 8vw, 42px);
+  }
+
+  .hero-content > p {
+    font-size: 14px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 10px;
+
+    margin-bottom: 40px;
+  }
+
+  .primary-btn,
+  .secondary-btn,
+  .outline-btn,
+  .light-btn {
+    width: 100%;
+  }
+
+  .hero-stats {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 18px;
+
+    text-align: center;
+  }
+
+  .hero-stat {
+    align-items: center;
+  }
+
+  .hero-visual {
+    min-height: 350px;
+  }
+
+  .hero-circle {
+    width: 230px;
+
+    height: 230px;
+
+    font-size: 80px;
+  }
+
+  .floating-card {
+    min-width: 165px;
+
+    max-width: 190px;
+
+    padding: 9px;
+
+    gap: 8px;
+  }
+
+  .floating-card-icon {
+    width: 34px;
+
+    height: 34px;
+
+    font-size: 14px;
+  }
+
+  .floating-card strong {
+    font-size: 12px;
+  }
+
+  .floating-card span {
+    font-size: 10px;
+  }
+
+  .card-one {
+    top: 5%;
+
+    left: 0;
+  }
+
+  .card-two {
+    top: 40%;
+
+    right: 0;
+  }
+
+  .card-three {
+    bottom: 5%;
+
+    left: 2%;
+  }
+
+  .section-heading {
+    margin-bottom: 35px;
+  }
+
+  .section-heading h2,
+  .lend-content h2 {
+    font-size: 25px;
+  }
+
+  .search-box {
+    min-height: 50px;
+  }
+
+  .search-box input {
+    height: 48px;
+  }
+
+  .search-btn {
+    height: 50px;
+
+    padding: 0 17px;
+  }
+
+  .categories {
+    justify-content: flex-start;
+
+    overflow-x: auto;
+
+    flex-wrap: nowrap;
+
+    padding-bottom: 5px;
+
+    scrollbar-width: thin;
+  }
+
+  .category {
+    flex-shrink: 0;
+  }
+
+  .resource-grid {
+    grid-template-columns: 1fr;
+
+    gap: 16px;
+  }
+
+  .resource-card-image {
+    height: 220px;
+
+    min-height: 220px;
+  }
+
+  .impact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .impact-card {
+    padding: 20px;
+  }
+
+  .steps {
+    grid-template-columns: 1fr;
+  }
+
+  .why-ecoshare {
+    gap: 30px;
+
+    padding: 28px 20px;
+
+    border-radius: 16px;
+  }
+
+  .why-visual-main {
+    width: 220px;
+
+    height: 220px;
+  }
+
+  .why-visual-main i {
+    font-size: 40px;
+  }
+
+  .why-visual-main strong {
+    font-size: 24px;
+  }
+
+  .why-ecoshare-visual {
+    min-height: 240px;
+  }
+
+  .lend-section {
+    padding: 50px 0;
+  }
+
+  .lend-content {
+    align-items: stretch;
+
+    gap: 22px;
+  }
+
+  .lend-content .light-btn {
+    width: 100%;
+  }
+}
+
+/* =========================================================
+
+   43. SMALL MOBILE
+
+========================================================= */
+
+@media (max-width: 450px) {
+  .hero-container {
+    padding: 40px 0;
+  }
+
+  .hero-content h1 {
+    font-size: 30px;
+  }
+
+  .hero-label,
+  .section-label {
+    font-size: 10px;
+  }
+
+  .hero-stats {
+    grid-template-columns: 1fr;
+
+    gap: 12px;
+  }
+
+  .hero-visual {
+    min-height: 300px;
+  }
+
+  .hero-circle {
+    width: 190px;
+
+    height: 190px;
+
+    font-size: 65px;
+  }
+
+  .floating-card {
+    min-width: 140px;
+
+    max-width: 155px;
+
+    padding: 8px;
+  }
+
+  .floating-card-icon {
+    width: 30px;
+
+    height: 30px;
+  }
+
+  .floating-card strong {
+    font-size: 10px;
+  }
+
+  .floating-card span {
+    font-size: 9px;
+  }
+
+  .card-one {
+    left: -5px;
+  }
+
+  .card-two {
+    right: -5px;
+  }
+
+  .card-three {
+    left: -5px;
+  }
+
+  .search-box {
+    border-radius: 14px;
+
+    padding-left: 12px;
+  }
+
+  .search-btn {
+    padding: 0 13px;
+  }
+
+  .search-btn span {
+    display: none;
+  }
+
+  .resource-card-image {
+    height: 200px;
+
+    min-height: 200px;
+  }
+
+  .resource-card-footer {
+    align-items: flex-end;
+  }
+
+  .resource-owner-name {
+    max-width: 100px;
+  }
+
+  .resource-date {
+    display: none;
+  }
+
+  .resource-view-btn {
+    min-height: 36px;
+
+    padding-inline: 11px;
+  }
+
+  .why-visual-main {
+    width: 190px;
+
+    height: 190px;
+  }
+
+  .why-visual-main i {
+    font-size: 34px;
+  }
+
+  .why-visual-main span {
+    font-size: 11px;
+  }
+
+  .why-visual-main strong {
+    font-size: 22px;
+  }
+}
+
+/* =========================================================
+
+   44. EXTRA SMALL
+
+========================================================= */
+
+@media (max-width: 360px) {
+  .hero-content h1 {
+    font-size: 28px;
+  }
+
+  .hero-circle {
+    width: 170px;
+
+    height: 170px;
+
+    font-size: 55px;
+  }
+
+  .floating-card {
+    min-width: 125px;
+
+    max-width: 140px;
+
+    padding: 7px;
+  }
+
+  .floating-card-icon {
+    width: 27px;
+
+    height: 27px;
+
+    font-size: 11px;
+  }
+
+  .floating-card strong {
+    font-size: 9px;
+  }
+
+  .floating-card span {
+    font-size: 8px;
+  }
+
+  .resource-card-content {
+    padding: 13px;
+  }
+
+  .resource-card-footer {
+    gap: 6px;
+  }
+
+  .resource-owner-avatar {
+    width: 34px;
+
+    height: 34px;
+  }
+
+  .resource-owner-label {
+    font-size: 8px;
+  }
+
+  .resource-owner-name {
+    max-width: 85px;
+
+    font-size: 10px;
+  }
+
+  .resource-view-btn {
+    padding-inline: 9px;
+
+    font-size: 9px;
+  }
+}
+
+/* =========================================================
+
+   45. REDUCED MOTION
+
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .primary-btn,
+  .secondary-btn,
+  .outline-btn,
+  .light-btn,
+  .floating-card,
+  .resource-card,
+  .resource-card-image img,
+  .impact-card,
+  .step,
+  .category,
+  .resource-view-btn {
+    transition: none;
+  }
+
+  .primary-btn:hover,
+  .secondary-btn:hover,
+  .outline-btn:hover,
+  .light-btn:hover,
+  .floating-card:hover,
+  .resource-card:hover,
+  .impact-card:hover,
+  .step:hover,
+  .category:hover,
+  .resource-view-btn:hover {
+    transform: none;
+  }
+}
+
+/* =========================================================
+
+   46. PRINT
+
+========================================================= */
+
+@media print {
+  .hero,
+  .explore-section,
+  .impact-section,
+  .how-it-works,
+  .why-ecoshare-section,
+  .lend-section {
+    background: #ffffff !important;
+  }
+
+  .floating-card,
+  .resource-card,
+  .impact-card,
+  .step,
+  .why-ecoshare {
+    box-shadow: none !important;
+  }
+
+  .hero-buttons,
+  .explore-more {
+    display: none !important;
+  }
+
+  .resource-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .resource-card {
+    break-inside: avoid;
+  }
+
+  .impact-card,
+  .step {
+    break-inside: avoid;
+  }
+}

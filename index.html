@@ -1,0 +1,857 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="description"
+      content="EcoShare is a community platform for sharing, borrowing, and lending useful resources."
+    />
+
+    <meta name="theme-color" content="#ffffff" />
+
+    <meta name="color-scheme" content="light" />
+
+    <title>EcoShare | Share More, Waste Less</title>
+
+    <!-- =========================================================
+         FONT AWESOME
+         ========================================================= -->
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- =========================================================
+         GLOBAL ECOSHARE STYLES
+         ========================================================= -->
+
+    <link rel="stylesheet" href="../Phase 1/page.css" />
+
+    <!-- =========================================================
+         HOMEPAGE STYLES
+         ========================================================= -->
+
+    <link rel="stylesheet" href="../Phase 1/style.css" />
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="container navbar">
+        <button
+          type="button"
+          class="menu-btn"
+          id="menu-btn"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          aria-controls="primary-navigation"
+        >
+          <i class="fa-solid fa-bars" aria-hidden="true"></i>
+        </button>
+        <!-- =====================================================
+                 LOGO
+                 ===================================================== -->
+
+        <a href="../index.html" class="logo" aria-label="EcoShare Home">
+          <img
+            id="siteLogo"
+            src="https://cplbvftcbiwgqkeqmrbq.supabase.co/storage/v1/object/public/site-assets/logo.png"
+            alt="EcoShare logo"
+            width="120"
+            height="120"
+            decoding="async"
+            fetchpriority="high"
+          />
+        </a>
+
+        <!-- =====================================================
+                 PRIMARY NAVIGATION
+                 ===================================================== -->
+
+        <nav
+          class="primary-navigation"
+          id="primary-navigation"
+          aria-label="Main navigation"
+        >
+          <!-- Home -->
+
+          <a href="../index.html" class="nav-link" aria-current="page">
+            <i class="fa-solid fa-house" aria-hidden="true"></i>
+
+            <span>Home</span>
+          </a>
+
+          <!-- Explore -->
+
+          <a href="../Phase 2/explore.html" class="nav-link">
+            <i class="fa-solid fa-compass" aria-hidden="true"></i>
+
+            <span>Explore</span>
+          </a>
+
+          <!-- Community -->
+
+          <a href="../Phase 4/community.html" class="nav-link">
+            <i class="fa-solid fa-users" aria-hidden="true"></i>
+
+            <span>Community</span>
+          </a>
+
+          <!-- Messages -->
+
+          <a
+            href="../Phase 3/messages.html"
+            class="nav-link"
+            id="messagesNavLink"
+          >
+            <i class="fa-solid fa-message" aria-hidden="true"></i>
+
+            <span>Messages</span>
+          </a>
+
+          <!-- Notifications -->
+
+          <a
+            href="../Phase 3/notifications.html"
+            class="nav-link notifications-nav-link"
+            id="notificationsNavLink"
+          >
+            <i class="fa-solid fa-bell" aria-hidden="true"></i>
+
+            <span>Notifications</span>
+
+            <span
+              id="notificationUnreadBadge"
+              class="notification-unread-badge"
+              aria-label="Unread notifications"
+              hidden
+            >
+              0
+            </span>
+          </a>
+        </nav>
+
+        <!-- =====================================================
+                 LOGIN / REGISTRATION
+                 ===================================================== -->
+
+        <a
+          href="../Phase 1/login.html"
+          class="login-nav-btn"
+          id="authNavButton"
+        >
+          <i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i>
+
+          <span>Login</span>
+        </a>
+
+        <a
+          href="../Phase 1/register.html"
+          class="register-nav-btn"
+          id="registerNavButton"
+        >
+          <i class="fa-solid fa-user-plus" aria-hidden="true"></i>
+
+          <span>Register</span>
+        </a>
+
+        <!-- =====================================================
+                 PROFILE DROPDOWN
+                 ===================================================== -->
+
+        <div class="profile-dropdown" id="profileDropdown" hidden>
+          <!-- Profile Avatar Button -->
+
+          <button
+            type="button"
+            class="profile-avatar-btn"
+            id="profileAvatarBtn"
+            aria-label="Open profile menu"
+            aria-expanded="false"
+            aria-controls="profileMenu"
+          >
+            <img
+              id="navProfilePhoto"
+              src=""
+              alt="Your profile"
+              class="profile-avatar"
+              width="40"
+              height="40"
+              decoding="async"
+            />
+
+            <i
+              class="fa-solid fa-chevron-down profile-chevron"
+              aria-hidden="true"
+            ></i>
+          </button>
+
+          <!-- Profile Menu -->
+
+          <div class="profile-menu" id="profileMenu" hidden>
+            <!-- Profile Information -->
+
+            <div class="profile-menu-header">
+              <img
+                id="menuProfilePhoto"
+                src=""
+                alt=""
+                class="profile-menu-avatar"
+                width="48"
+                height="48"
+                decoding="async"
+              />
+
+              <div class="profile-menu-user">
+                <a
+                  href="../Phase 1/profile.html"
+                  class="profile-menu-user-link"
+                  aria-label="Open your profile"
+                >
+                  <strong id="menuProfileName"> My Account </strong>
+
+                  <span id="menuProfileEmail"> EcoShare Member </span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Profile -->
+
+            <a href="../Phase 1/profile.html" class="profile-menu-item">
+              <i class="fa-solid fa-user" aria-hidden="true"></i>
+
+              <span>My Profile</span>
+            </a>
+
+            <!-- Admin Dashboard -->
+
+            <a
+              href="../Phase 1/admin-dashboard.html"
+              class="profile-menu-item"
+              id="adminDashboardLink"
+              hidden
+            >
+              <i class="fa-solid fa-user-shield" aria-hidden="true"></i>
+
+              <span>Admin Dashboard</span>
+            </a>
+
+            <!-- User Dashboard -->
+
+            <a
+              href="../Phase 1/user-dashboard.html"
+              class="profile-menu-item"
+              id="userDashboardLink"
+              hidden
+            >
+              <i class="fa-solid fa-gauge-high" aria-hidden="true"></i>
+
+              <span>User Dashboard</span>
+            </a>
+
+            <!-- Resource Management -->
+
+            <a href="../Phase 2/my-listings.html" class="profile-menu-item">
+              <i class="fa-solid fa-box" aria-hidden="true"></i>
+
+              <span>My Resource Listings</span>
+            </a>
+
+            <a href="../Phase 2/lend-resource.html" class="profile-menu-item">
+              <i class="fa-solid fa-hand-holding-heart" aria-hidden="true"></i>
+
+              <span>Lend a Resource</span>
+            </a>
+
+            <a href="../Phase 2/my-requests.html" class="profile-menu-item">
+              <i class="fa-solid fa-handshake" aria-hidden="true"></i>
+
+              <span>My Borrow Requests</span>
+            </a>
+
+            <a
+              href="../Phase 2/incoming-requests.html"
+              class="profile-menu-item"
+            >
+              <i class="fa-solid fa-inbox" aria-hidden="true"></i>
+
+              <span>Incoming Borrow Requests</span>
+            </a>
+
+            <div class="profile-menu-divider"></div>
+
+            <div class="sidebar-divider"></div>
+            <!-- Information -->
+
+            <a href="../Phase 1/about.html" class="profile-menu-item">
+              <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+
+              <span>About EcoShare</span>
+            </a>
+
+            <a href="../Phase 1/contact.html" class="profile-menu-item">
+              <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+
+              <span>Contact Us</span>
+            </a>
+
+            <div class="profile-menu-divider"></div>
+
+            <!-- Logout -->
+
+            <button
+              type="button"
+              class="profile-menu-item logout-menu-item"
+              id="profileLogoutBtn"
+            >
+              <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>
+
+              <span>Logout</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- =====================================================
+                 MOBILE NAVIGATION BUTTON
+                 ===================================================== -->
+      </div>
+    </header>
+
+    <!-- =========================================================
+         MAIN CONTENT
+         ========================================================= -->
+
+    <main id="main-content">
+      <!-- =======================================================
+             HERO
+             ======================================================= -->
+
+      <section class="hero" id="home">
+        <div class="container hero-container">
+          <div class="hero-content">
+            <span class="hero-label">
+              <i class="fa-solid fa-leaf" aria-hidden="true"></i>
+
+              Community Resource Sharing
+            </span>
+
+            <h1>
+              Share More.
+              <span>Waste Less.</span>
+            </h1>
+
+            <p>
+              EcoShare connects people who have useful resources with people who
+              need them. Borrow what you need and lend what you don't.
+            </p>
+
+            <div class="hero-buttons">
+              <a href="../Phase 2/explore.html" class="primary-btn">
+                <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+
+                <span>Explore Resources</span>
+              </a>
+
+              <a href="../Phase 2/lend-resource.html" class="secondary-btn">
+                <i
+                  class="fa-solid fa-hand-holding-heart"
+                  aria-hidden="true"
+                ></i>
+
+                <span>Start Sharing</span>
+              </a>
+            </div>
+
+            <div class="hero-stats">
+              <div class="hero-stat">
+                <strong>Community</strong>
+                <span>Resource Sharing</span>
+              </div>
+
+              <div class="hero-stat">
+                <strong>Local</strong>
+                <span>People &amp; Resources</span>
+              </div>
+
+              <div class="hero-stat">
+                <strong>Sustainable</strong>
+                <span>Everyday Living</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Decorative Hero Visual -->
+
+          <div class="hero-visual" aria-hidden="true">
+            <div class="hero-circle">
+              <i class="fa-solid fa-leaf"></i>
+            </div>
+
+            <div class="floating-card card-one">
+              <div class="floating-card-icon">
+                <i class="fa-solid fa-book"></i>
+              </div>
+
+              <div>
+                <strong>Books</strong>
+
+                <span>Share knowledge</span>
+              </div>
+            </div>
+
+            <div class="floating-card card-two">
+              <div class="floating-card-icon">
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+              </div>
+
+              <div>
+                <strong>Tools</strong>
+
+                <span>Borrow instead of buying</span>
+              </div>
+            </div>
+
+            <div class="floating-card card-three">
+              <div class="floating-card-icon">
+                <i class="fa-solid fa-laptop"></i>
+              </div>
+
+              <div>
+                <strong>Resources</strong>
+
+                <span>Give unused items a purpose</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =======================================================
+             RESOURCE DISCOVERY
+             ======================================================= -->
+
+      <section class="explore-section" id="explore">
+        <div class="container">
+          <div class="section-heading">
+            <span class="section-label"> Explore </span>
+
+            <h2>Find What You Need</h2>
+
+            <p>Discover useful resources shared by people in your community.</p>
+          </div>
+
+          <!-- Search -->
+
+          <div class="search-container">
+            <div class="search-box">
+              <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+
+              <input
+                type="search"
+                id="resourceSearch"
+                placeholder="Search resources..."
+                aria-label="Search resources"
+                autocomplete="off"
+                spellcheck="false"
+              />
+
+              <button
+                type="button"
+                class="search-btn"
+                aria-label="Search resources"
+              >
+                Search
+              </button>
+            </div>
+          </div>
+
+          <!-- Categories -->
+
+          <div
+            class="categories"
+            role="group"
+            aria-label="Filter resources by category"
+          >
+            <button
+              type="button"
+              class="category active"
+              data-category="all"
+              aria-pressed="true"
+            >
+              All
+            </button>
+
+            <button
+              type="button"
+              class="category"
+              data-category="electronics"
+              aria-pressed="false"
+            >
+              Electronics
+            </button>
+
+            <button
+              type="button"
+              class="category"
+              data-category="books"
+              aria-pressed="false"
+            >
+              Books
+            </button>
+
+            <button
+              type="button"
+              class="category"
+              data-category="tools"
+              aria-pressed="false"
+            >
+              Tools
+            </button>
+
+            <button
+              type="button"
+              class="category"
+              data-category="sports"
+              aria-pressed="false"
+            >
+              Sports
+            </button>
+
+            <button
+              type="button"
+              class="category"
+              data-category="others"
+              aria-pressed="false"
+            >
+              Others
+            </button>
+          </div>
+
+          <!-- Resources -->
+
+          <div
+            class="resource-grid"
+            id="resourceGrid"
+            aria-live="polite"
+            aria-busy="false"
+          ></div>
+
+          <!-- Explore More -->
+
+          <div class="explore-more">
+            <a href="../Phase 2/explore.html" class="outline-btn">
+              <span> Browse All Resources </span>
+
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- =======================================================
+             IMPACT
+             ======================================================= -->
+
+      <section class="impact-section">
+        <div class="container">
+          <div class="section-heading">
+            <span class="section-label"> The Idea Behind EcoShare </span>
+
+            <h2>Useful Things Should Stay Useful.</h2>
+
+            <p>
+              EcoShare makes it easier to share resources instead of letting
+              useful items sit unused.
+            </p>
+          </div>
+
+          <div class="impact-grid">
+            <article class="impact-card">
+              <div class="impact-icon">
+                <i class="fa-solid fa-arrow-rotate-left" aria-hidden="true"></i>
+              </div>
+
+              <div class="impact-content">
+                <h3>Give Items a Second Life</h3>
+
+                <p>
+                  Share things you no longer use with someone who can put them
+                  to good use.
+                </p>
+              </div>
+            </article>
+
+            <article class="impact-card">
+              <div class="impact-icon">
+                <i class="fa-solid fa-wallet" aria-hidden="true"></i>
+              </div>
+
+              <div class="impact-content">
+                <h3>Borrow Instead of Buying</h3>
+
+                <p>
+                  Find useful resources when you need them without purchasing
+                  something you may rarely use.
+                </p>
+              </div>
+            </article>
+
+            <article class="impact-card">
+              <div class="impact-icon">
+                <i class="fa-solid fa-people-group" aria-hidden="true"></i>
+              </div>
+
+              <div class="impact-content">
+                <h3>Build Local Connections</h3>
+
+                <p>
+                  Connect with people around you through simple acts of sharing
+                  and borrowing.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- =======================================================
+             HOW IT WORKS
+             ======================================================= -->
+
+      <section class="how-it-works" id="how-it-works">
+        <div class="container">
+          <div class="section-heading">
+            <span class="section-label"> Simple Process </span>
+
+            <h2>How EcoShare Works</h2>
+
+            <p>Sharing resources with your community is simple.</p>
+          </div>
+
+          <div class="steps">
+            <article class="step">
+              <div class="step-number">01</div>
+
+              <div class="step-icon">
+                <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+              </div>
+
+              <h3>Explore</h3>
+
+              <p>
+                Search for resources that you need from people in your
+                community.
+              </p>
+            </article>
+
+            <article class="step">
+              <div class="step-number">02</div>
+
+              <div class="step-icon">
+                <i class="fa-solid fa-handshake" aria-hidden="true"></i>
+              </div>
+
+              <h3>Request</h3>
+
+              <p>Send a request to borrow an available resource.</p>
+            </article>
+
+            <article class="step">
+              <div class="step-number">03</div>
+
+              <div class="step-icon">
+                <i
+                  class="fa-solid fa-arrow-right-arrow-left"
+                  aria-hidden="true"
+                ></i>
+              </div>
+
+              <h3>Share</h3>
+
+              <p>Borrow resources or lend your own items to others.</p>
+            </article>
+
+            <article class="step">
+              <div class="step-number">04</div>
+
+              <div class="step-icon">
+                <i class="fa-solid fa-seedling" aria-hidden="true"></i>
+              </div>
+
+              <h3>Make an Impact</h3>
+
+              <p>Reduce unnecessary purchases and build a sharing community.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- =======================================================
+             WHY ECOSHARE
+             ======================================================= -->
+
+      <section class="why-ecoshare-section">
+        <div class="container">
+          <div class="why-ecoshare">
+            <div class="why-ecoshare-content">
+              <span class="section-label"> Why EcoShare? </span>
+
+              <h2>Make Sharing Part of Everyday Life.</h2>
+
+              <p>
+                Whether you need something for a day or have something sitting
+                unused, EcoShare gives you a simple way to connect resources
+                with people who can use them.
+              </p>
+
+              <div class="why-features">
+                <div class="why-feature">
+                  <span class="why-feature-icon" aria-hidden="true">
+                    <i class="fa-solid fa-circle-check"></i>
+                  </span>
+
+                  <div>
+                    <strong> Simple to use </strong>
+
+                    <span>
+                      Find, request and share resources through one platform.
+                    </span>
+                  </div>
+                </div>
+
+                <div class="why-feature">
+                  <span class="why-feature-icon" aria-hidden="true">
+                    <i class="fa-solid fa-circle-check"></i>
+                  </span>
+
+                  <div>
+                    <strong> Community focused </strong>
+
+                    <span>
+                      Turn unused resources into useful connections.
+                    </span>
+                  </div>
+                </div>
+
+                <div class="why-feature">
+                  <span class="why-feature-icon" aria-hidden="true">
+                    <i class="fa-solid fa-circle-check"></i>
+                  </span>
+
+                  <div>
+                    <strong> More sustainable </strong>
+
+                    <span> Encourage reuse before buying something new. </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Decorative Visual -->
+
+            <div class="why-ecoshare-visual" aria-hidden="true">
+              <div class="why-visual-main">
+                <i class="fa-solid fa-leaf"></i>
+
+                <span>Share</span>
+
+                <strong>Reuse</strong>
+
+                <span>Repeat</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =======================================================
+             LEND RESOURCE CTA
+             ======================================================= -->
+
+      <section class="lend-section">
+        <div class="container">
+          <div class="lend-content">
+            <div class="lend-copy">
+              <span class="section-label"> Have Something Useful? </span>
+
+              <h2>Give Your Unused Resources a New Purpose.</h2>
+
+              <p>
+                Instead of letting useful items sit unused, share them with
+                someone who needs them.
+              </p>
+            </div>
+
+            <a
+              href="../Phase 2/lend-resource.html"
+              class="primary-btn light-btn"
+            >
+              <i class="fa-solid fa-plus" aria-hidden="true"></i>
+
+              <span> Lend a Resource </span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- =========================================================
+         FOOTER
+         ========================================================= -->
+
+    <footer class="footer">
+      <div class="container footer-container">
+        <div class="footer-brand">
+          <a
+            href="../index.html"
+            class="footer-logo"
+            aria-label="EcoShare Home"
+          >
+            <img
+              id="footerLogo"
+              src="https://cplbvftcbiwgqkeqmrbq.supabase.co/storage/v1/object/public/site-assets/logo.png"
+              alt="EcoShare logo"
+              width="48"
+              height="48"
+              loading="lazy"
+              decoding="async"
+            />
+          </a>
+
+          <p>Share resources. Build community. Reduce waste.</p>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2026 EcoShare. All rights reserved.</p>
+
+          <p>Built for a more sustainable community.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- =========================================================
+         JAVASCRIPT
+         ========================================================= -->
+
+    <!-- Supabase JS SDK -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- Shared Supabase Client -->
+
+    <script src="../Phase 1/supabase.js"></script>
+
+    <!-- Global EcoShare Behavior -->
+
+    <script src="../Phase 1/page.js"></script>
+
+    <!-- Homepage Functionality -->
+
+    <script src="../Phase 1/script.js"></script>
+  </body>
+</html>

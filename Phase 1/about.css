@@ -1,0 +1,1201 @@
+/* =========================================================
+   EcoShare - About Page
+   File: about.css
+
+   Page-specific styles only.
+   Global styles are handled by page.css.
+   ========================================================= */
+
+
+/* =========================================================
+   1. ABOUT PAGE TOKENS
+   ========================================================= */
+
+:root {
+    --about-primary: #538d22;
+    --about-primary-dark: #245501;
+    --about-primary-deep: #143601;
+    --about-secondary: #73a942;
+    --about-accent: #aad576;
+
+    --about-text: #222222;
+    --about-text-secondary: #555555;
+    --about-text-muted: #777777;
+
+    --about-background: #ffffff;
+    --about-background-soft: #f5f8ef;
+    --about-background-green: #edf5df;
+
+    --about-border: #d9e3c9;
+    --about-border-light: #e4ebd8;
+
+    --about-radius-sm: 7px;
+    --about-radius-md: 10px;
+    --about-radius-lg: 12px;
+    --about-radius-xl: 16px;
+    --about-radius-pill: 999px;
+
+    --about-shadow-sm:
+        0 4px 14px rgba(0, 0, 0, 0.06);
+
+    --about-shadow-md:
+        0 10px 28px rgba(0, 0, 0, 0.085);
+
+    --about-shadow-lg:
+        0 18px 45px rgba(0, 0, 0, 0.09);
+
+    --about-transition:
+        0.25s ease;
+}
+
+
+/* =========================================================
+   2. ABOUT SECTION
+   ========================================================= */
+
+.about-section {
+    position: relative;
+
+    min-height:
+        calc(100vh - var(--header-height, 76px));
+
+    display: flex;
+    align-items: center;
+
+    padding: 90px 0;
+
+    background:
+        radial-gradient(
+            circle at 88% 18%,
+            rgba(83, 141, 34, 0.08),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 5% 90%,
+            rgba(170, 213, 118, 0.07),
+            transparent 26%
+        ),
+        linear-gradient(
+            135deg,
+            var(--about-background) 0%,
+            var(--about-background-soft) 100%
+        );
+
+    overflow: hidden;
+}
+
+
+/* Decorative background element */
+
+.about-section::before {
+    content: "";
+
+    position: absolute;
+
+    width: 360px;
+    height: 360px;
+
+    top: -190px;
+    right: -140px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(83, 141, 34, 0.075),
+            rgba(83, 141, 34, 0)
+        );
+
+    pointer-events: none;
+}
+
+
+/* Secondary decorative element */
+
+.about-section::after {
+    content: "";
+
+    position: absolute;
+
+    width: 250px;
+    height: 250px;
+
+    bottom: -150px;
+    left: -120px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(170, 213, 118, 0.09),
+            rgba(170, 213, 118, 0)
+        );
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   3. ABOUT CONTAINER
+   ========================================================= */
+
+.about-container {
+    position: relative;
+    z-index: 1;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1fr);
+
+    align-items: center;
+
+    gap: clamp(40px, 6vw, 75px);
+}
+
+
+/* =========================================================
+   4. ABOUT CONTENT
+   ========================================================= */
+
+.about-content {
+    width: 100%;
+    max-width: 620px;
+}
+
+
+/* =========================================================
+   SECTION LABEL
+   ========================================================= */
+
+.about-content .section-label {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 18px;
+    padding: 8px 15px;
+
+    border:
+        1px solid
+        var(--about-border-light);
+
+    border-radius:
+        var(--about-radius-pill);
+
+    background:
+        var(--about-background-green);
+
+    color:
+        var(--about-primary-dark);
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 0.09em;
+    line-height: 1.2;
+
+    text-transform: uppercase;
+}
+
+
+/* Add a small visual marker */
+
+.about-content .section-label::before {
+    content: "";
+
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background:
+        var(--about-secondary);
+
+    box-shadow:
+        0 0 0 4px
+        rgba(115, 169, 66, 0.12);
+}
+
+
+/* =========================================================
+   ABOUT HEADING
+   ========================================================= */
+
+.about-content h1 {
+    max-width: 620px;
+
+    margin: 0 0 23px;
+
+    color:
+        var(--about-primary-deep);
+
+    font-size:
+        clamp(34px, 4vw, 50px);
+
+    font-weight: 750;
+
+    letter-spacing: -0.035em;
+
+    line-height: 1.1;
+}
+
+
+/* =========================================================
+   ABOUT PARAGRAPHS
+   ========================================================= */
+
+.about-content p {
+    max-width: 600px;
+
+    margin: 0 0 17px;
+
+    color:
+        var(--about-text-secondary);
+
+    font-size: 16px;
+
+    line-height: 1.82;
+}
+
+.about-content p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* =========================================================
+   5. ABOUT FEATURES
+   ========================================================= */
+
+.about-features {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 18px;
+
+    width: 100%;
+}
+
+
+/* =========================================================
+   FEATURE CARD
+   ========================================================= */
+
+.about-feature {
+    position: relative;
+
+    display: flex;
+    align-items: flex-start;
+
+    gap: 15px;
+
+    min-width: 0;
+    min-height: 158px;
+
+    padding: 23px 20px;
+
+    border:
+        1px solid
+        var(--about-border-light);
+
+    border-radius:
+        var(--about-radius-xl);
+
+    background:
+        rgba(255, 255, 255, 0.94);
+
+    box-shadow:
+        var(--about-shadow-sm);
+
+    transition:
+        transform var(--about-transition),
+        box-shadow var(--about-transition),
+        border-color var(--about-transition),
+        background-color var(--about-transition);
+}
+
+
+/* Top accent */
+
+.about-feature::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 22px;
+    right: 22px;
+
+    height: 2px;
+
+    border-radius: 0 0 4px 4px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--about-accent),
+            transparent
+        );
+
+    opacity: 0;
+
+    transition:
+        opacity var(--about-transition);
+}
+
+
+/* Hover */
+
+.about-feature:hover {
+    transform: translateY(-5px);
+
+    border-color:
+        rgba(115, 169, 66, 0.55);
+
+    background:
+        #ffffff;
+
+    box-shadow:
+        var(--about-shadow-md);
+}
+
+.about-feature:hover::before {
+    opacity: 1;
+}
+
+
+/* =========================================================
+   6. FEATURE ICON
+   ========================================================= */
+
+.feature-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex: 0 0 auto;
+
+    width: 48px;
+    height: 48px;
+
+    border:
+        1px solid
+        rgba(115, 169, 66, 0.14);
+
+    border-radius:
+        var(--about-radius-lg);
+
+    background:
+        var(--about-background-green);
+
+    color:
+        var(--about-primary-dark);
+
+    font-size: 20px;
+
+    transition:
+        background-color var(--about-transition),
+        color var(--about-transition),
+        transform var(--about-transition);
+}
+
+
+/* Icon hover */
+
+.about-feature:hover .feature-icon {
+    background:
+        var(--about-primary);
+
+    color:
+        #ffffff;
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* =========================================================
+   7. FEATURE CONTENT
+   ========================================================= */
+
+.feature-content {
+    min-width: 0;
+}
+
+.about-feature h2 {
+    margin: 0 0 8px;
+
+    color:
+        var(--about-primary-deep);
+
+    font-size: 16px;
+    font-weight: 750;
+
+    letter-spacing: -0.01em;
+
+    line-height: 1.35;
+}
+
+.about-feature p {
+    margin: 0;
+
+    color:
+        var(--about-text-secondary);
+
+    font-size: 13px;
+
+    line-height: 1.68;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   8. LARGE LAPTOP
+   ========================================================= */
+
+@media (max-width: 1200px) {
+
+    .about-section {
+        padding: 78px 0;
+    }
+
+    .about-container {
+        gap: 50px;
+    }
+
+    .about-content h1 {
+        font-size:
+            clamp(32px, 4vw, 44px);
+    }
+
+    .about-content p {
+        font-size: 15px;
+    }
+
+    .about-features {
+        gap: 15px;
+    }
+
+    .about-feature {
+        padding: 21px 17px;
+
+        min-height: 150px;
+    }
+}
+
+
+/* =========================================================
+   9. TABLET LANDSCAPE
+   1024px / 900px
+   ========================================================= */
+
+@media (max-width: 1050px) {
+
+    .about-section {
+        padding: 70px 0;
+    }
+
+    .about-container {
+        gap: 38px;
+    }
+
+    .about-content {
+        max-width: 560px;
+    }
+
+    .about-content h1 {
+        font-size: 38px;
+    }
+
+    .about-content p {
+        font-size: 14px;
+        line-height: 1.75;
+    }
+
+    .about-features {
+        gap: 13px;
+    }
+
+    .about-feature {
+        gap: 12px;
+
+        min-height: 145px;
+
+        padding: 19px 15px;
+    }
+
+    .feature-icon {
+        width: 44px;
+        height: 44px;
+
+        font-size: 18px;
+    }
+
+    .about-feature h2 {
+        font-size: 15px;
+    }
+
+    .about-feature p {
+        font-size: 12px;
+    }
+}
+
+
+/* =========================================================
+   10. TABLET PORTRAIT
+   900px
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .about-section {
+        min-height: auto;
+
+        padding: 70px 0 75px;
+    }
+
+    .about-container {
+        grid-template-columns: 1fr;
+
+        gap: 42px;
+    }
+
+    .about-content {
+        max-width: 760px;
+
+        margin: 0 auto;
+
+        text-align: center;
+    }
+
+    .about-content .section-label {
+        margin-bottom: 15px;
+    }
+
+    .about-content h1 {
+        max-width: 680px;
+
+        margin-right: auto;
+        margin-left: auto;
+
+        font-size:
+            clamp(34px, 5vw, 44px);
+    }
+
+    .about-content p {
+        max-width: 700px;
+
+        margin-right: auto;
+        margin-left: auto;
+
+        font-size: 15px;
+    }
+
+    .about-features {
+        width: 100%;
+        max-width: 760px;
+
+        margin: 0 auto;
+
+        gap: 16px;
+    }
+
+    .about-feature {
+        min-height: 145px;
+    }
+}
+
+
+/* =========================================================
+   11. TABLET — 768px
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .about-section {
+        padding: 58px 0 68px;
+    }
+
+    .about-container {
+        gap: 34px;
+    }
+
+    .about-content h1 {
+        font-size: 34px;
+    }
+
+    .about-content p {
+        font-size: 14px;
+
+        line-height: 1.75;
+    }
+
+    .about-features {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 14px;
+    }
+
+    .about-feature {
+        min-height: 145px;
+
+        padding: 18px 15px;
+    }
+
+    .feature-icon {
+        width: 42px;
+        height: 42px;
+
+        border-radius: 10px;
+
+        font-size: 17px;
+    }
+
+    .about-feature h2 {
+        font-size: 14px;
+    }
+
+    .about-feature p {
+        font-size: 11px;
+
+        line-height: 1.6;
+    }
+}
+
+
+/* =========================================================
+   12. MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .about-section {
+        padding: 48px 0 58px;
+    }
+
+    .about-container {
+        gap: 30px;
+    }
+
+    .about-content {
+        text-align: center;
+    }
+
+    .about-content .section-label {
+        padding: 7px 13px;
+
+        font-size: 10px;
+    }
+
+    .about-content h1 {
+        margin-bottom: 17px;
+
+        font-size: 31px;
+
+        line-height: 1.12;
+    }
+
+    .about-content p {
+        margin-bottom: 14px;
+
+        font-size: 14px;
+
+        line-height: 1.75;
+    }
+
+    .about-features {
+        gap: 13px;
+    }
+
+    .about-feature {
+        min-height: 0;
+
+        padding: 18px 14px;
+
+        gap: 11px;
+    }
+
+    .feature-icon {
+        width: 41px;
+        height: 41px;
+
+        font-size: 17px;
+    }
+
+    .about-feature h2 {
+        margin-bottom: 6px;
+
+        font-size: 14px;
+    }
+
+    .about-feature p {
+        font-size: 11px;
+
+        line-height: 1.6;
+    }
+}
+
+
+/* =========================================================
+   13. MOBILE — 600px
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .about-section {
+        padding: 44px 0 54px;
+    }
+
+    .about-container {
+        gap: 27px;
+    }
+
+    .about-content h1 {
+        font-size: 29px;
+    }
+
+    .about-content p {
+        font-size: 13px;
+    }
+
+    .about-features {
+        grid-template-columns: 1fr;
+
+        max-width: 560px;
+
+        gap: 12px;
+    }
+
+    .about-feature {
+        align-items: center;
+
+        min-height: 0;
+
+        padding: 17px;
+    }
+
+    .feature-icon {
+        width: 44px;
+        height: 44px;
+
+        flex-basis: 44px;
+    }
+
+    .about-feature h2 {
+        font-size: 15px;
+    }
+
+    .about-feature p {
+        font-size: 12px;
+
+        line-height: 1.65;
+    }
+}
+
+
+/* =========================================================
+   14. SMALL MOBILE — 480px
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .about-section {
+        padding: 38px 0 48px;
+    }
+
+    .about-section::before {
+        width: 240px;
+        height: 240px;
+
+        top: -130px;
+        right: -120px;
+    }
+
+    .about-section::after {
+        width: 180px;
+        height: 180px;
+
+        bottom: -110px;
+        left: -100px;
+    }
+
+    .about-container {
+        gap: 25px;
+    }
+
+    .about-content .section-label {
+        margin-bottom: 12px;
+
+        padding: 6px 11px;
+
+        font-size: 9px;
+    }
+
+    .about-content h1 {
+        margin-bottom: 15px;
+
+        font-size: 27px;
+    }
+
+    .about-content p {
+        font-size: 13px;
+
+        line-height: 1.7;
+    }
+
+    .about-features {
+        gap: 10px;
+    }
+
+    .about-feature {
+        padding: 15px;
+
+        border-radius: 14px;
+    }
+
+    .feature-icon {
+        width: 42px;
+        height: 42px;
+
+        flex-basis: 42px;
+
+        border-radius: 10px;
+
+        font-size: 17px;
+    }
+
+    .about-feature h2 {
+        font-size: 14px;
+    }
+
+    .about-feature p {
+        font-size: 11px;
+
+        line-height: 1.6;
+    }
+}
+
+
+/* =========================================================
+   15. SMALL MOBILE — 400px
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+    .about-section {
+        padding: 34px 0 42px;
+    }
+
+    .about-container {
+        gap: 22px;
+    }
+
+    .about-content .section-label {
+        font-size: 8px;
+
+        letter-spacing: 0.08em;
+    }
+
+    .about-content h1 {
+        font-size: 25px;
+
+        letter-spacing: -0.03em;
+    }
+
+    .about-content p {
+        font-size: 12px;
+
+        line-height: 1.65;
+    }
+
+    .about-feature {
+        padding: 14px;
+
+        gap: 11px;
+    }
+
+    .feature-icon {
+        width: 40px;
+        height: 40px;
+
+        flex-basis: 40px;
+
+        font-size: 16px;
+    }
+
+    .about-feature h2 {
+        margin-bottom: 5px;
+
+        font-size: 13px;
+    }
+
+    .about-feature p {
+        font-size: 10.5px;
+    }
+}
+
+
+/* =========================================================
+   16. VERY SMALL MOBILE — 360px
+   ========================================================= */
+
+@media (max-width: 360px) {
+
+    .about-section {
+        padding: 30px 0 38px;
+    }
+
+    .about-content h1 {
+        font-size: 23px;
+    }
+
+    .about-content p {
+        font-size: 11px;
+    }
+
+    .about-feature {
+        padding: 13px;
+
+        gap: 9px;
+    }
+
+    .feature-icon {
+        width: 37px;
+        height: 37px;
+
+        flex-basis: 37px;
+
+        border-radius: 9px;
+
+        font-size: 14px;
+    }
+
+    .about-feature h2 {
+        font-size: 12px;
+    }
+
+    .about-feature p {
+        font-size: 10px;
+
+        line-height: 1.55;
+    }
+}
+
+
+/* =========================================================
+   17. EXTREMELY SMALL DEVICES — 320px
+   ========================================================= */
+
+@media (max-width: 320px) {
+
+    .about-section {
+        padding: 26px 0 34px;
+    }
+
+    .about-content h1 {
+        font-size: 21px;
+    }
+
+    .about-content p {
+        font-size: 10.5px;
+    }
+
+    .about-feature {
+        padding: 11px;
+    }
+
+    .feature-icon {
+        width: 35px;
+        height: 35px;
+
+        flex-basis: 35px;
+
+        font-size: 13px;
+    }
+
+    .about-feature h2 {
+        font-size: 11px;
+    }
+
+    .about-feature p {
+        font-size: 9.5px;
+    }
+}
+
+
+/* =========================================================
+   18. MOBILE LANDSCAPE
+   ========================================================= */
+
+@media (max-width: 900px) and (orientation: landscape) {
+
+    .about-section {
+        min-height: auto;
+
+        padding: 45px 0 55px;
+    }
+
+    .about-container {
+        gap: 30px;
+    }
+
+    .about-content h1 {
+        font-size: 30px;
+    }
+
+    .about-content p {
+        font-size: 13px;
+    }
+
+    .about-features {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .about-feature {
+        min-height: 125px;
+    }
+}
+
+
+/* =========================================================
+   19. PREVENT MOBILE OVERFLOW
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .about-section,
+    .about-container,
+    .about-content,
+    .about-features,
+    .about-feature,
+    .feature-content {
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    .about-content h1,
+    .about-content p,
+    .about-feature h2,
+    .about-feature p {
+        overflow-wrap: anywhere;
+        word-break: break-word;
+    }
+}
+
+
+/* =========================================================
+   20. TOUCH DEVICES
+   ========================================================= */
+
+@media (hover: none) {
+
+    .about-feature:hover {
+        transform: none;
+
+        border-color:
+            var(--about-border-light);
+
+        box-shadow:
+            var(--about-shadow-sm);
+    }
+
+    .about-feature:hover::before {
+        opacity: 0;
+    }
+
+    .about-feature:hover .feature-icon {
+        background:
+            var(--about-background-green);
+
+        color:
+            var(--about-primary-dark);
+
+        transform: none;
+    }
+}
+
+
+/* =========================================================
+   21. ACCESSIBILITY
+   ========================================================= */
+
+.about-feature:focus-within {
+    border-color:
+        var(--about-secondary);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(115, 169, 66, 0.18),
+        var(--about-shadow-sm);
+}
+
+
+/* =========================================================
+   22. REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .about-feature,
+    .feature-icon {
+        transition: none !important;
+        animation: none !important;
+    }
+
+    .about-feature:hover {
+        transform: none;
+    }
+
+    .about-feature:hover .feature-icon {
+        transform: none;
+    }
+}
+
+
+/* =========================================================
+   23. PRINT
+   ========================================================= */
+
+@media print {
+
+    .about-section {
+        min-height: auto;
+
+        padding: 30px 0;
+
+        background: #ffffff;
+    }
+
+    .about-section::before,
+    .about-section::after {
+        display: none;
+    }
+
+    .about-container {
+        grid-template-columns: 1fr;
+    }
+
+    .about-feature {
+        break-inside: avoid;
+
+        box-shadow: none;
+
+        background: #ffffff;
+    }
+
+    .about-feature:hover {
+        transform: none;
+
+        box-shadow: none;
+    }
+}

@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>EcoShare - Ratings & Reviews</title>
+
+    <link rel="stylesheet" href="../Phase 1/page.css" />
+    <link rel="stylesheet" href="ratings.css" />
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="container navbar">
+        <button
+          type="button"
+          class="menu-btn"
+          id="menu-btn"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          aria-controls="primary-navigation"
+        >
+          <i class="fa-solid fa-bars" aria-hidden="true"></i>
+        </button>
+        <!-- =====================================================
+                 LOGO
+                 ===================================================== -->
+
+        <a href="../index.html" class="logo" aria-label="EcoShare Home">
+          <img
+            id="siteLogo"
+            src="https://cplbvftcbiwgqkeqmrbq.supabase.co/storage/v1/object/public/site-assets/logo.png"
+            alt="EcoShare logo"
+            width="120"
+            height="120"
+            decoding="async"
+            fetchpriority="high"
+          />
+        </a>
+
+        <!-- =====================================================
+                 PRIMARY NAVIGATION
+                 ===================================================== -->
+
+        <nav
+          class="primary-navigation"
+          id="primary-navigation"
+          aria-label="Main navigation"
+        >
+          <!-- Home -->
+
+          <a href="../index.html" class="nav-link" aria-current="page">
+            <i class="fa-solid fa-house" aria-hidden="true"></i>
+
+            <span>Home</span>
+          </a>
+
+          <!-- Explore -->
+
+          <a href="../Phase 2/explore.html" class="nav-link">
+            <i class="fa-solid fa-compass" aria-hidden="true"></i>
+
+            <span>Explore</span>
+          </a>
+
+          <!-- Community -->
+
+          <a href="../Phase 4/community.html" class="nav-link">
+            <i class="fa-solid fa-users" aria-hidden="true"></i>
+
+            <span>Community</span>
+          </a>
+
+          <!-- Messages -->
+
+          <a
+            href="../Phase 3/messages.html"
+            class="nav-link"
+            id="messagesNavLink"
+          >
+            <i class="fa-solid fa-message" aria-hidden="true"></i>
+
+            <span>Messages</span>
+          </a>
+
+          <!-- Notifications -->
+
+          <a
+            href="../Phase 3/notifications.html"
+            class="nav-link notifications-nav-link"
+            id="notificationsNavLink"
+          >
+            <i class="fa-solid fa-bell" aria-hidden="true"></i>
+
+            <span>Notifications</span>
+
+            <span
+              id="notificationUnreadBadge"
+              class="notification-unread-badge"
+              aria-label="Unread notifications"
+              hidden
+            >
+              0
+            </span>
+          </a>
+        </nav>
+
+        <!-- =====================================================
+                 LOGIN / REGISTRATION
+                 ===================================================== -->
+
+        <a
+          href="../Phase 1/login.html"
+          class="login-nav-btn"
+          id="authNavButton"
+        >
+          <i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i>
+
+          <span>Login</span>
+        </a>
+
+        <a
+          href="../Phase 1/register.html"
+          class="register-nav-btn"
+          id="registerNavButton"
+        >
+          <i class="fa-solid fa-user-plus" aria-hidden="true"></i>
+
+          <span>Register</span>
+        </a>
+
+        <!-- =====================================================
+                 PROFILE DROPDOWN
+                 ===================================================== -->
+
+        <div class="profile-dropdown" id="profileDropdown" hidden>
+          <!-- Profile Avatar Button -->
+
+          <button
+            type="button"
+            class="profile-avatar-btn"
+            id="profileAvatarBtn"
+            aria-label="Open profile menu"
+            aria-expanded="false"
+            aria-controls="profileMenu"
+          >
+            <img
+              id="navProfilePhoto"
+              src=""
+              alt="Your profile"
+              class="profile-avatar"
+              width="40"
+              height="40"
+              decoding="async"
+            />
+
+            <i
+              class="fa-solid fa-chevron-down profile-chevron"
+              aria-hidden="true"
+            ></i>
+          </button>
+
+          <!-- Profile Menu -->
+
+          <div class="profile-menu" id="profileMenu" hidden>
+            <!-- Profile Information -->
+
+            <div class="profile-menu-header">
+              <img
+                id="menuProfilePhoto"
+                src=""
+                alt=""
+                class="profile-menu-avatar"
+                width="48"
+                height="48"
+                decoding="async"
+              />
+
+              <div class="profile-menu-user">
+                <a
+                  href="../Phase 1/profile.html"
+                  class="profile-menu-user-link"
+                  aria-label="Open your profile"
+                >
+                  <strong id="menuProfileName"> My Account </strong>
+
+                  <span id="menuProfileEmail"> EcoShare Member </span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Profile -->
+
+            <a href="../Phase 1/profile.html" class="profile-menu-item">
+              <i class="fa-solid fa-user" aria-hidden="true"></i>
+
+              <span>My Profile</span>
+            </a>
+
+            <!-- Admin Dashboard -->
+
+            <a
+              href="../Phase 1/admin-dashboard.html"
+              class="profile-menu-item"
+              id="adminDashboardLink"
+              hidden
+            >
+              <i class="fa-solid fa-user-shield" aria-hidden="true"></i>
+
+              <span>Admin Dashboard</span>
+            </a>
+
+            <!-- User Dashboard -->
+
+            <a
+              href="../Phase 1/user-dashboard.html"
+              class="profile-menu-item"
+              id="userDashboardLink"
+              hidden
+            >
+              <i class="fa-solid fa-gauge-high" aria-hidden="true"></i>
+
+              <span>User Dashboard</span>
+            </a>
+
+            <!-- Resource Management -->
+
+            <a href="../Phase 2/my-listings.html" class="profile-menu-item">
+              <i class="fa-solid fa-box" aria-hidden="true"></i>
+
+              <span>My Resource Listings</span>
+            </a>
+
+            <a href="../Phase 2/lend-resource.html" class="profile-menu-item">
+              <i class="fa-solid fa-hand-holding-heart" aria-hidden="true"></i>
+
+              <span>Lend a Resource</span>
+            </a>
+
+            <a href="../Phase 2/my-requests.html" class="profile-menu-item">
+              <i class="fa-solid fa-handshake" aria-hidden="true"></i>
+
+              <span>My Borrow Requests</span>
+            </a>
+
+            <a
+              href="../Phase 2/incoming-requests.html"
+              class="profile-menu-item"
+            >
+              <i class="fa-solid fa-inbox" aria-hidden="true"></i>
+
+              <span>Incoming Borrow Requests</span>
+            </a>
+
+            <div class="profile-menu-divider"></div>
+
+            <div class="sidebar-divider"></div>
+            <!-- Information -->
+
+            <a href="../Phase 1/about.html" class="profile-menu-item">
+              <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+
+              <span>About EcoShare</span>
+            </a>
+
+            <a href="../Phase 1/contact.html" class="profile-menu-item">
+              <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+
+              <span>Contact Us</span>
+            </a>
+
+            <div class="profile-menu-divider"></div>
+
+            <!-- Logout -->
+
+            <button
+              type="button"
+              class="profile-menu-item logout-menu-item"
+              id="profileLogoutBtn"
+            >
+              <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>
+
+              <span>Logout</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- =====================================================
+                 MOBILE NAVIGATION BUTTON
+                 ===================================================== -->
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="page-header">
+        <h1>Ratings & Reviews</h1>
+
+        <p>Rate your experience after completing a borrowing transaction.</p>
+      </section>
+
+      <!-- USER RATING SUMMARY -->
+
+      <section class="summary-card">
+        <div id="averageRating">0.0</div>
+
+        <div id="averageStars">☆☆☆☆☆</div>
+
+        <p id="reviewCount">0 reviews</p>
+      </section>
+
+      <section class="trust-section">
+        <div class="trust-card">
+          <div class="trust-header">
+            <h2>Trust & Verification</h2>
+            <span id="verificationStatus" class="verification-badge">
+              Checking...
+            </span>
+          </div>
+
+          <div class="trust-score">
+            <span id="trustScore">--</span>
+            <small>/ 100</small>
+          </div>
+
+          <p class="trust-label">Trust Score</p>
+
+          <div class="trust-details">
+            <div>
+              <strong id="completedCount">0</strong>
+              <span>Completed Transactions</span>
+            </div>
+
+            <div>
+              <strong id="receivedReviewCount">0</strong>
+              <span>Reviews Received</span>
+            </div>
+
+            <div>
+              <strong id="trustAverageRating">0.0</strong>
+              <span>Average Rating</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TRANSACTIONS -->
+
+      <section class="transactions-section">
+        <div class="section-header">
+          <h2>Completed Transactions</h2>
+
+          <button id="refreshBtn">Refresh</button>
+        </div>
+
+        <div id="loadingState">Loading transactions...</div>
+
+        <div id="emptyState" class="hidden">
+          <h3>No completed transactions</h3>
+
+          <p>Completed transactions that can be reviewed will appear here.</p>
+        </div>
+
+        <div id="transactionsContainer"></div>
+      </section>
+    </main>
+
+    <section class="reviews-section">
+      <div class="section-header">
+        <h2>Reviews Received</h2>
+      </div>
+
+      <div id="reviewsContainer">
+        <p class="loading-text">Loading reviews...</p>
+      </div>
+    </section>
+
+    <!-- RATING MODAL -->
+
+    <div id="ratingModal" class="modal hidden">
+      <div class="modal-content">
+        <button id="closeModalBtn" class="close-btn">×</button>
+
+        <h2>Leave a Review</h2>
+
+        <p id="revieweeName"></p>
+
+        <div class="rating-section">
+          <label> Your Rating </label>
+
+          <div id="starSelector" class="star-selector">
+            <button data-rating="1">★</button>
+            <button data-rating="2">★</button>
+            <button data-rating="3">★</button>
+            <button data-rating="4">★</button>
+            <button data-rating="5">★</button>
+          </div>
+
+          <p id="ratingValue">Select a rating</p>
+        </div>
+
+        <div class="review-section">
+          <label for="reviewText"> Your Review </label>
+
+          <textarea
+            id="reviewText"
+            maxlength="1000"
+            rows="5"
+            placeholder="Share your experience..."
+          >
+          </textarea>
+
+          <small> <span id="characterCount">0</span>/1000 </small>
+        </div>
+
+        <div id="formError" class="error hidden"></div>
+
+        <div id="formSuccess" class="success hidden"></div>
+
+        <button id="submitRatingBtn" class="submit-btn">Submit Review</button>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container footer-container">
+        <div class="footer-brand">
+          <a
+            href="../index.html"
+            class="footer-logo"
+            aria-label="EcoShare Home"
+          >
+            <img
+              src="https://cplbvftcbiwgqkeqmrbq.supabase.co/storage/v1/object/public/site-assets/logo.png"
+              alt="EcoShare logo"
+              width="48"
+              height="48"
+              loading="lazy"
+              decoding="async"
+            />
+          </a>
+
+          <p>Share resources. Build community. Reduce waste.</p>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2026 EcoShare. All rights reserved.</p>
+
+          <p>Built for a more sustainable community.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- IMPORTANT:
+         Existing Phase 1 Supabase client -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="../Phase 1/supabase.js"></script>
+
+    <script src="../Phase 1/page.js"></script>
+
+    <script src="ratings.js"></script>
+  </body>
+</html>

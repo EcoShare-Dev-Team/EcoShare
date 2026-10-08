@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="description"
+      content="Login to your EcoShare account and continue sharing resources with your community."
+    />
+
+    <meta name="theme-color" content="#538d22" />
+
+    <meta name="color-scheme" content="light" />
+
+    <title>Login | EcoShare</title>
+
+    <!-- =====================================================
+         FONT AWESOME
+    ====================================================== -->
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+
+    <!-- =====================================================
+         GLOBAL STYLES
+    ====================================================== -->
+
+    <link rel="stylesheet" href="page.css" />
+
+    <!-- =====================================================
+         LOGIN PAGE STYLES
+    ====================================================== -->
+
+    <link rel="stylesheet" href="login.css" />
+  </head>
+
+  <body>
+    <!-- Skip navigation -->
+    <a href="#loginMain" class="skip-link"> Skip to login form </a>
+
+    <!-- =====================================================
+         LOGIN PAGE
+    ====================================================== -->
+
+    <main id="loginMain" class="login-container">
+      <!-- =================================================
+             LEFT / BRAND SECTION
+        ================================================== -->
+
+      <section class="login-left" aria-label="About EcoShare">
+        <!-- Brand -->
+
+        <a href="../index.html" class="brand" aria-label="EcoShare Home">
+          <img
+            id="loginLogo"
+            src="https://cplbvftcbiwgqkeqmrbq.supabase.co/storage/v1/object/public/site-assets/logo.png"
+            alt="EcoShare logo"
+            width="120"
+            height="120"
+            decoding="async"
+          />
+        </a>
+
+        <!-- Welcome -->
+
+        <div class="login-intro">
+          <h1 class="login-welcome-title">Welcome Back</h1>
+
+          <p class="login-description">
+            Continue being part of a community that believes sharing is better
+            than wasting.
+          </p>
+        </div>
+
+        <!-- Features -->
+
+        <div class="login-features">
+          <article class="login-feature">
+            <div class="login-feature-icon" aria-hidden="true">
+              <i class="fa-solid fa-handshake"></i>
+            </div>
+
+            <div class="login-feature-content">
+              <h2>Share &amp; Connect</h2>
+
+              <p>Connect with people and share useful resources.</p>
+            </div>
+          </article>
+
+          <article class="login-feature">
+            <div class="login-feature-icon" aria-hidden="true">
+              <i class="fa-solid fa-recycle"></i>
+            </div>
+
+            <div class="login-feature-content">
+              <h2>Reduce Waste</h2>
+
+              <p>Give unused items a second life.</p>
+            </div>
+          </article>
+
+          <article class="login-feature">
+            <div class="login-feature-icon" aria-hidden="true">
+              <i class="fa-solid fa-leaf"></i>
+            </div>
+
+            <div class="login-feature-content">
+              <h2>Build a Greener Future</h2>
+
+              <p>Make sustainable choices together.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- =================================================
+             RIGHT / LOGIN SECTION
+        ================================================== -->
+
+      <section class="login-right" aria-labelledby="loginTitle">
+        <div class="login-box">
+          <!-- Heading -->
+
+          <header class="login-heading">
+            <h2 id="loginTitle">Welcome Back</h2>
+
+            <p class="login-subtitle">Login to continue to EcoShare</p>
+          </header>
+
+          <!-- Login form -->
+
+          <form
+            id="loginForm"
+            novalidate
+            autocomplete="on"
+            aria-describedby="message"
+          >
+            <!-- Email -->
+
+            <div class="input-group">
+              <label for="email"> Email Address </label>
+
+              <div class="input-wrapper">
+                <i
+                  class="fa-solid fa-envelope input-icon"
+                  aria-hidden="true"
+                ></i>
+
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="Enter your email"
+                  autocomplete="email"
+                  inputmode="email"
+                  maxlength="320"
+                  spellcheck="false"
+                  autocapitalize="none"
+                  required
+                  aria-required="true"
+                />
+              </div>
+            </div>
+
+            <!-- Password -->
+
+            <div class="input-group">
+              <div class="password-label">
+                <label for="password"> Password </label>
+
+                <button
+                  type="button"
+                  id="forgotPassword"
+                  class="forgot-password"
+                  aria-label="Reset your password"
+                >
+                  Forgot Password?
+                </button>
+              </div>
+
+              <div class="password-container">
+                <i class="fa-solid fa-lock input-icon" aria-hidden="true"></i>
+
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  placeholder="Enter your password"
+                  autocomplete="current-password"
+                  maxlength="128"
+                  required
+                  aria-required="true"
+                />
+
+                <button
+                  type="button"
+                  id="togglePassword"
+                  class="toggle-password"
+                  aria-label="Show password"
+                  aria-controls="password"
+                  aria-pressed="false"
+                >
+                  Show
+                </button>
+              </div>
+            </div>
+
+            <!-- Login button -->
+
+            <button type="submit" class="login-btn" id="loginButton">
+              Login
+            </button>
+
+            <!-- Status / error message -->
+
+            <p
+              id="message"
+              class="form-message"
+              role="status"
+              aria-live="polite"
+              aria-atomic="true"
+            ></p>
+          </form>
+
+          <!-- Divider -->
+
+          <div class="divider" aria-hidden="true">
+            <span>OR</span>
+          </div>
+
+          <!-- Register -->
+
+          <p class="register">
+            Don't have an account?
+
+            <a href="register.html"> Create Account </a>
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <!-- Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- Shared Supabase client -->
+    <script src="supabase.js"></script>
+
+    <!-- Login functionality -->
+    <script src="login.js"></script>
+  </body>
+</html>

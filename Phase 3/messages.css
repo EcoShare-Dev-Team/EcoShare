@@ -1,0 +1,2544 @@
+/* =========================================================
+   EcoShare â€” Messages
+   Final Cleaned & Improved Stylesheet
+   ========================================================= */
+
+/* =========================================================
+   1. PAGE
+   ========================================================= */
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+.messages-page {
+  min-height: calc(100vh - var(--header-height));
+  padding: var(--space-8) 0 var(--space-10);
+}
+
+.messages-container {
+  max-width: 1400px;
+}
+
+/* =========================================================
+   2. PAGE HEADING
+   ========================================================= */
+
+.messages-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: var(--space-6);
+}
+
+.messages-heading h1 {
+  margin: var(--space-2) 0;
+  color: var(--color-black);
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-heading);
+  letter-spacing: -0.025em;
+}
+
+.messages-heading p {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: var(--font-md);
+  line-height: 1.5;
+}
+
+.section-eyebrow,
+.modal-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-primary-dark);
+  font-size: var(--font-sm);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.06em;
+}
+
+/* =========================================================
+   3. MAIN MESSAGE LAYOUT
+   ========================================================= */
+
+.messages-layout {
+  display: grid;
+  grid-template-columns: 360px minmax(0, 1fr);
+  height: calc(100vh - var(--header-height) - 190px);
+  min-height: 560px;
+  overflow: hidden;
+  background: var(--color-white);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 16px 45px rgb(0 0 0 / 0.07);
+}
+
+/* =========================================================
+   4. CONVERSATION PANEL
+   ========================================================= */
+
+.conversation-panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  background: #f1f8eb;
+  border-right: 1px solid rgb(83 141 34 / 0.16);
+}
+
+/* =========================================================
+   5. CONVERSATION HEADER
+   ========================================================= */
+
+.conversation-header {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  min-height: 82px;
+  padding: 16px 18px;
+  background: linear-gradient(180deg, #e8f5e0 0%, #f1f8eb 100%);
+  border-bottom: 1px solid rgb(83 141 34 / 0.14);
+}
+
+.conversation-header h2 {
+  margin: 0 0 4px;
+  color: var(--color-black);
+  font-size: var(--font-lg);
+  font-weight: var(--font-weight-bold);
+}
+
+.conversation-count {
+  color: var(--color-text-secondary);
+  font-size: var(--font-xs);
+}
+
+/* =========================================================
+   6. NEW CONVERSATION BUTTON
+   ========================================================= */
+
+.new-conversation-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-md);
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-family: inherit;
+  font-size: var(--font-sm);
+  font-weight: var(--font-weight-bold);
+  cursor: pointer;
+  box-shadow: 0 5px 14px rgb(83 141 34 / 0.14);
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.new-conversation-btn:hover {
+  background: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgb(83 141 34 / 0.2);
+}
+
+.new-conversation-btn:active {
+  transform: translateY(0);
+}
+
+/* =========================================================
+   7. FOCUS
+   ========================================================= */
+
+.new-conversation-btn:focus-visible,
+.empty-new-conversation-btn:focus-visible,
+.conversation-empty-btn:focus-visible,
+.send-message-btn:focus-visible,
+.conversation-modal-close:focus-visible,
+.conversation-cancel-btn:focus-visible,
+.start-conversation-btn:focus-visible,
+.conversation-item:focus-visible,
+.conversation-selection-indicator:focus-visible,
+.conversation-select-all-btn:focus-visible,
+.conversation-delete-selected-btn:focus-visible,
+.conversation-selection-cancel-btn:focus-visible {
+  outline: 3px solid rgb(83 141 34 / 0.2);
+  outline-offset: 2px;
+}
+
+/* =========================================================
+   8. CONVERSATION LIST
+   ========================================================= */
+
+.conversation-list {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  background: #f1f8eb;
+  scrollbar-width: thin;
+  scrollbar-color: rgb(83 141 34 / 0.28) transparent;
+}
+
+.conversation-list::-webkit-scrollbar,
+.chat-messages::-webkit-scrollbar,
+.conversation-modal-content::-webkit-scrollbar {
+  width: 7px;
+}
+
+.conversation-list::-webkit-scrollbar-track,
+.chat-messages::-webkit-scrollbar-track,
+.conversation-modal-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.conversation-list::-webkit-scrollbar-thumb,
+.chat-messages::-webkit-scrollbar-thumb,
+.conversation-modal-content::-webkit-scrollbar-thumb {
+  background: rgb(83 141 34 / 0.24);
+  border-radius: 999px;
+}
+
+.conversation-list::-webkit-scrollbar-thumb:hover,
+.chat-messages::-webkit-scrollbar-thumb:hover,
+.conversation-modal-content::-webkit-scrollbar-thumb:hover {
+  background: rgb(83 141 34 / 0.38);
+}
+
+/* =========================================================
+   9. CONVERSATION WRAPPER
+   ========================================================= */
+
+.conversation-item-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+  background: #f1f8eb;
+  border-bottom: 1px solid rgb(83 141 34 / 0.1);
+  box-sizing: border-box;
+  transition: background-color var(--transition-fast);
+}
+
+.conversation-item-wrapper:last-child {
+  border-bottom: none;
+}
+
+/* =========================================================
+   10. CONVERSATION ITEM
+   ========================================================= */
+
+.conversation-item {
+  position: relative;
+  flex: 1 1 auto;
+  width: 100%;
+  min-width: 0;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 12px 15px;
+  border: none;
+  border-left: 3px solid transparent;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+/* =========================================================
+   11. CONVERSATION HOVER
+   ========================================================= */
+
+.conversation-item-wrapper:hover {
+  background: #e7f3df;
+}
+
+.conversation-item-wrapper:hover .conversation-item {
+  border-left-color: rgb(83 141 34 / 0.32);
+}
+
+.conversation-item-wrapper:hover .conversation-arrow {
+  color: var(--color-primary-dark);
+  transform: translateX(2px);
+}
+
+/* =========================================================
+   12. ACTIVE CONVERSATION
+   ========================================================= */
+
+.conversation-item.active {
+  background: linear-gradient(
+    90deg,
+    rgb(83 141 34 / 0.13),
+    rgb(83 141 34 / 0.045)
+  );
+  border-left-color: var(--color-primary);
+  box-shadow: inset 1px 0 0 var(--color-primary);
+}
+
+/* =========================================================
+   13. RESOURCE IMAGE
+   ========================================================= */
+
+.conversation-resource-image {
+  width: 56px;
+  height: 56px;
+  flex: 0 0 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #f5f8f3;
+  border: 1px solid var(--color-border-light);
+  border-radius: 11px;
+  transition:
+    border-color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.conversation-item:hover .conversation-resource-image {
+  border-color: rgb(83 141 34 / 0.28);
+  transform: scale(1.02);
+}
+
+.conversation-resource-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+/* =========================================================
+   14. CONVERSATION INFO
+   ========================================================= */
+
+.conversation-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+}
+
+.conversation-user,
+.conversation-resource {
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.conversation-user {
+  color: var(--color-black);
+  font-size: var(--font-sm);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.25;
+}
+
+.conversation-resource {
+  color: var(--color-text-secondary);
+  font-size: var(--font-xs);
+  line-height: 1.35;
+}
+
+/* =========================================================
+   15. CONVERSATION RIGHT SIDE
+   ========================================================= */
+
+.conversation-item-right {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.conversation-arrow {
+  flex: 0 0 auto;
+  color: #69756d;
+  font-size: 12px;
+  transition:
+    color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+/* =========================================================
+   16. UNREAD BADGE
+   ========================================================= */
+
+.conversation-unread-badge {
+  min-width: 21px;
+  height: 21px;
+  padding: 0 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-size: 10px;
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+  box-shadow: 0 3px 9px rgb(83 141 34 / 0.18);
+}
+
+/* =========================================================
+   17. OLD INLINE SELECT BUTTON
+   ========================================================= */
+
+.conversation-select-btn {
+  display: none !important;
+}
+
+/* =========================================================
+   18. EMPTY CONVERSATION LIST
+   ========================================================= */
+
+.conversations-empty {
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  padding: var(--space-6);
+  text-align: center;
+}
+
+.conversations-empty > i {
+  color: var(--color-primary);
+  font-size: 2rem;
+}
+
+.conversations-empty p {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: var(--font-sm);
+}
+
+.conversation-empty-btn {
+  min-height: 40px;
+  padding: 0 16px;
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-md);
+  background: var(--color-white);
+  color: var(--color-primary-dark);
+  font-size: var(--font-sm);
+  font-weight: var(--font-weight-bold);
+  cursor: pointer;
+  transition:
+    background-color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.conversation-empty-btn:hover {
+  background: var(--color-background-green);
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   19. CHAT PANEL
+   ========================================================= */
+
+.chat-panel {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+
+  background:
+    radial-gradient(circle at 18% 12%, rgb(83 141 34 / 0.035), transparent 32%),
+    radial-gradient(circle at 82% 88%, rgb(83 141 34 / 0.025), transparent 36%),
+    #f5f7f4;
+}
+
+/* =========================================================
+   20. EMPTY CHAT
+   ========================================================= */
+
+.chat-empty {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  text-align: center;
+
+  background: radial-gradient(
+    circle at center,
+    rgb(83 141 34 / 0.055),
+    transparent 44%
+  );
+}
+
+.chat-empty-icon {
+  width: 76px;
+  height: 76px;
+  margin-bottom: var(--space-5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(83 141 34 / 0.16);
+  border-radius: 50%;
+  background: var(--color-background-green);
+  color: var(--color-primary-dark);
+  font-size: 28px;
+  box-shadow: 0 8px 24px rgb(83 141 34 / 0.08);
+}
+
+.chat-empty h2 {
+  margin: 0 0 8px;
+  color: var(--color-black);
+  font-size: var(--font-xl);
+  font-weight: var(--font-weight-bold);
+}
+
+.chat-empty p {
+  max-width: 430px;
+  margin: 0 0 20px;
+  color: var(--color-text-secondary);
+  font-size: var(--font-sm);
+  line-height: 1.6;
+}
+
+.empty-new-conversation-btn {
+  min-height: 43px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 19px;
+  border: none;
+  border-radius: var(--radius-md);
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-size: var(--font-sm);
+  font-weight: var(--font-weight-bold);
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgb(83 141 34 / 0.16);
+  transition:
+    background-color var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.empty-new-conversation-btn:hover {
+  background: var(--color-primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 9px 22px rgb(83 141 34 / 0.2);
+}
+
+/* =========================================================
+   21. CHAT CONTENT
+   ========================================================= */
+
+.chat-content {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================================================
+   22. CHAT HEADER
+   ========================================================= */
+
+.chat-header {
+  flex: 0 0 auto;
+  min-height: 74px;
+  padding: 11px 20px;
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border-bottom: 1px solid var(--color-border-light);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.025);
+  z-index: 2;
+}
+
+.chat-participant {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.chat-resource-header-image {
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--color-background-green);
+  border: 1px solid rgb(83 141 34 / 0.14);
+  border-radius: 11px;
+}
+
+.chat-resource-header-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.chat-header-info {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.chat-header-info h2,
+.chat-header-info span {
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.chat-header-info h2 {
+  margin: 0;
+  color: var(--color-black);
+  font-size: var(--font-md);
+  font-weight: var(--font-weight-bold);
+}
+
+.chat-header-info span {
+  color: var(--color-text-secondary);
+  font-size: var(--font-xs);
+}
+
+/* =========================================================
+   23. BACK BUTTON
+   ========================================================= */
+
+.back-to-conversations-button {
+  display: none;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--color-primary-dark);
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color var(--transition-fast);
+}
+
+.back-to-conversations-button:hover {
+  background: var(--color-background-green);
+}
+
+/* =========================================================
+   24. CHAT MESSAGES
+   ========================================================= */
+
+.chat-messages {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  background:
+    radial-gradient(circle at 18% 12%, rgb(83 141 34 / 0.035), transparent 32%),
+    radial-gradient(circle at 82% 88%, rgb(83 141 34 / 0.025), transparent 36%),
+    #f5f7f4;
+}
+
+/* =========================================================
+   25. MESSAGE ROW
+   ========================================================= */
+
+.message-row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.message-row.sent {
+  justify-content: flex-end;
+}
+
+.message-row.received {
+  justify-content: flex-start;
+}
+
+/* =========================================================
+   26. MESSAGE BUBBLE
+   ========================================================= */
+
+.message-bubble {
+  max-width: min(70%, 620px);
+  padding: 10px 13px;
+  border-radius: 15px;
+  font-size: var(--font-sm);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.035);
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+/* RECEIVED â€” PURE WHITE */
+
+.message-row.received .message-bubble {
+  background: #ffffff;
+  color: #1f2821;
+  border: 1px solid #e0e5df;
+  border-bottom-left-radius: 5px;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.035);
+}
+
+/* SENT â€” LIGHT GREEN */
+
+.message-row.sent .message-bubble {
+  background: #e2f3dc;
+  color: #244128;
+  border: 1px solid #c8e4c0;
+  border-bottom-right-radius: 5px;
+  box-shadow: 0 3px 10px rgb(53 92 45 / 0.08);
+}
+
+.message-text {
+  white-space: pre-wrap;
+}
+
+/* =========================================================
+   27. MESSAGE TIME
+   ========================================================= */
+
+.message-time {
+  display: block;
+  margin-top: 5px;
+  color: currentColor;
+  font-size: 10px;
+  line-height: 1;
+  opacity: 0.68;
+  text-align: right;
+}
+
+.message-row.sent .message-time {
+  color: #55735a;
+}
+
+.message-row.received .message-time {
+  color: #68736b;
+}
+
+/* =========================================================
+   28. MESSAGE FORM / COMPOSER
+   ========================================================= */
+
+.message-form {
+  flex: 0 0 auto;
+  padding: 12px 16px;
+  background: #ffffff;
+  border-top: 1px solid var(--color-border-light);
+}
+
+.message-input-wrapper {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  padding: 7px 7px 7px 11px;
+  background: #ffffff;
+  border: 1px solid #dfe5de;
+  border-radius: 13px;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.message-input-wrapper:focus-within {
+  background: #ffffff;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgb(83 141 34 / 0.1);
+}
+
+.message-input-wrapper textarea {
+  flex: 1;
+  min-width: 0;
+  min-height: 38px;
+  max-height: 130px;
+  padding: 8px 5px;
+  border: none;
+  outline: none;
+  resize: none;
+  background: transparent;
+  color: var(--color-black);
+  font-family: inherit;
+  font-size: var(--font-sm);
+  line-height: 1.5;
+}
+
+.message-input-wrapper textarea::placeholder {
+  color: var(--color-text-muted);
+}
+
+/* =========================================================
+   29. SEND BUTTON
+   ========================================================= */
+
+.send-message-btn {
+  min-width: 82px;
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border: 1px solid var(--color-primary);
+  border-radius: 9px;
+  background: var(--color-primary);
+  color: #ffffff;
+  font-family: inherit;
+  font-size: var(--font-xs);
+  font-weight: var(--font-weight-bold);
+  cursor: pointer;
+  box-shadow: 0 4px 11px rgb(83 141 34 / 0.14);
+  transition:
+    background-color var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.send-message-btn:hover:not(:disabled) {
+  background: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 7px 17px rgb(83 141 34 / 0.19);
+}
+
+.send-message-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* =========================================================
+   30. MESSAGE EMPTY STATE
+   ========================================================= */
+
+.messages-empty {
+  min-height: 180px;
+  margin: auto;
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+
+.messages-empty i {
+  margin-bottom: 5px;
+  color: var(--color-primary);
+  font-size: 22px;
+}
+
+.messages-empty p {
+  margin: 0;
+  color: var(--color-black);
+  font-size: var(--font-sm);
+  font-weight: var(--font-weight-bold);
+}
+
+.messages-empty span {
+  color: var(--color-text-muted);
+  font-size: var(--font-xs);
+}
+
+/* =========================================================
+   31. MESSAGE SELECTION TOOLBAR
+   ========================================================= */
+
+.message-selection-toolbar {
+  flex: 0 0 auto;
+  width: 100%;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 13px;
+  background: linear-gradient(90deg, #f4faef, #ffffff);
+  border-top: 1px solid rgb(83 141 34 / 0.08);
+  border-bottom: 1px solid rgb(83 141 34 / 0.12);
+  box-sizing: border-box;
+}
+
+.message-selection-toolbar[hidden] {
+  display: none !important;
+}
+
+.message-selection-actions {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+#selectedMessageCount {
+  color: var(--color-primary-dark);
+  font-size: var(--font-xs);
+  font-weight: var(--font-weight-bold);
+}
+
+#cancelMessageSelectionButton,
+#deleteSelectedMessagesButton,
+#deleteSelectedForEveryoneButton {
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: var(--font-xs);
+  font-weight: var(--font-weight-bold);
+  cursor: pointer;
+}
+
+#cancelMessageSelectionButton {
+  border: 1px solid var(--color-border);
+  background: var(--color-white);
+  color: var(--color-text-secondary);
+}
+
+#cancelMessageSelectionButton:hover {
+  background: var(--color-background-green);
+  border-color: var(--color-primary);
+  color: var(--color-primary-dark);
+}
+
+#deleteSelectedMessagesButton,
+#deleteSelectedForEveryoneButton {
+  border: none;
+  color: #ffffff;
+}
+
+#deleteSelectedMessagesButton {
+  background: #b42318;
+}
+
+#deleteSelectedMessagesButton:hover {
+  background: #8f1d14;
+}
+
+#deleteSelectedForEveryoneButton {
+  background: #991b1b;
+}
+
+#deleteSelectedForEveryoneButton:hover {
+  background: #7f1d1d;
+}
+
+#deleteSelectedMessagesButton:disabled,
+#deleteSelectedForEveryoneButton:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* =========================================================
+   32. MESSAGE SELECTION CHECKBOX
+   ========================================================= */
+
+.message-selection-checkbox {
+  width: 22px;
+  height: 22px;
+  flex: 0 0 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 2px solid #aeb8af;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 11px;
+  user-select: none;
+  -webkit-user-select: none;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.message-selection-checkbox:hover {
+  border-color: var(--color-primary);
+}
+
+.message-selected .message-selection-checkbox {
+  border-color: var(--color-primary);
+  background: var(--color-primary);
+  color: #ffffff;
+}
+
+.message-selection-checkbox i {
+  pointer-events: none;
+}
+
+.message-row.sent .message-selection-checkbox,
+.message-row.received .message-selection-checkbox {
+  order: 1;
+}
+
+.message-row.sent .message-bubble,
+.message-row.received .message-bubble {
+  order: 2;
+}
+
+/* =========================================================
+   33. SELECTED MESSAGE
+   ========================================================= */
+
+.message-row.message-selected {
+  position: relative;
+}
+
+.message-row.message-selected .message-bubble {
+  box-shadow:
+    0 0 0 2px var(--color-primary),
+    0 2px 8px rgb(0 0 0 / 0.08);
+}
+
+.message-row.message-selected.sent .message-bubble {
+  box-shadow:
+    0 0 0 2px var(--color-primary-dark),
+    0 2px 8px rgb(0 0 0 / 0.08);
+}
+
+.message-row.message-selected.received .message-bubble {
+  border-color: var(--color-primary);
+}
+
+/* =========================================================
+   34. MESSAGE ACTION MENU
+   ========================================================= */
+
+.message-action-menu {
+  position: fixed;
+  z-index: 10000;
+  width: 205px;
+  max-width: calc(100vw - 20px);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 6px;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid rgb(83 141 34 / 0.14);
+  border-radius: 13px;
+  box-shadow:
+    0 18px 45px rgb(0 0 0 / 0.14),
+    0 5px 16px rgb(83 141 34 / 0.08);
+  box-sizing: border-box;
+  animation: ecoShareActionMenuIn 0.14s ease-out;
+}
+
+.message-action-menu button,
+.message-action-menu .message-action-item {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  min-width: 0;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  margin: 0;
+  padding: 9px 11px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  outline: none;
+  background: transparent;
+  color: var(--color-black);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: left;
+  white-space: nowrap;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.message-action-menu button::before,
+.message-action-menu button::after,
+.message-action-menu .message-action-item::before,
+.message-action-menu .message-action-item::after,
+.conversation-action-menu button::before,
+.conversation-action-menu button::after {
+  content: none !important;
+  display: none !important;
+}
+
+.message-action-menu button i,
+.message-action-menu .message-action-item i {
+  width: 19px;
+  height: 19px;
+  flex: 0 0 19px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #526057;
+  font-size: 14px;
+  pointer-events: none;
+}
+
+.message-action-menu button:hover,
+.message-action-menu .message-action-item:hover {
+  background: var(--color-background-green);
+  border-color: rgb(83 141 34 / 0.12);
+  color: var(--color-primary-dark);
+  transform: translateX(1px);
+}
+
+.message-action-menu button:hover i,
+.message-action-menu .message-action-item:hover i {
+  color: var(--color-primary-dark);
+}
+
+.message-action-menu button.danger,
+.message-action-menu .message-action-item.danger {
+  color: #b42318;
+}
+
+.message-action-menu button.danger i,
+.message-action-menu .message-action-item.danger i {
+  color: #b42318;
+}
+
+.message-action-menu button.danger:hover,
+.message-action-menu .message-action-item.danger:hover {
+  background: rgb(180 35 24 / 0.07);
+  border-color: rgb(180 35 24 / 0.12);
+}
+
+/* =========================================================
+   35. CONVERSATION ACTION MENU
+   ========================================================= */
+
+.conversation-action-menu {
+  position: fixed !important;
+  z-index: 10000 !important;
+  width: 235px;
+  min-width: 235px !important;
+  max-width: calc(100vw - 20px);
+  padding: 7px;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid rgb(83 141 34 / 0.18);
+  border-radius: 14px;
+  box-shadow:
+    0 20px 48px rgb(0 0 0 / 0.16),
+    0 6px 18px rgb(83 141 34 / 0.1);
+  box-sizing: border-box;
+  transform: none !important;
+  animation: conversationActionMenuIn 0.14s ease-out;
+}
+
+.conversation-action-title {
+  width: 100%;
+  min-width: 0;
+  margin: 1px 0 5px;
+  padding: 9px 10px 10px;
+  overflow: hidden;
+  color: var(--color-primary-dark);
+  font-size: var(--font-xs);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.35;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  border-bottom: 1px solid rgb(83 141 34 / 0.1);
+  box-sizing: border-box;
+}
+
+.conversation-action-menu button {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  width: 100%;
+  min-width: 0;
+  min-height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 11px;
+  margin: 0;
+  padding: 9px 12px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--color-black);
+  font-family: inherit;
+  font-size: var(--font-sm);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.2;
+  text-align: left;
+  white-space: nowrap;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.conversation-action-menu button i {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  font-size: 15px;
+  pointer-events: none;
+}
+
+.conversation-action-menu button:hover {
+  background: var(--color-background-green);
+  border-color: rgb(83 141 34 / 0.12);
+  color: var(--color-primary-dark);
+  transform: translateX(1px);
+}
+
+.conversation-action-menu button.danger {
+  color: #b42318;
+}
+
+.conversation-action-menu button.danger i {
+  color: #b42318;
+}
+
+.conversation-action-menu button.danger:hover {
+  background: rgb(180 35 24 / 0.07);
+  border-color: rgb(180 35 24 / 0.12);
+}
+
+.conversation-action-menu button:last-child {
+  margin-top: 4px;
+  padding-top: 11px;
+  border-top: 1px solid var(--color-border-light);
+  border-radius: 0 0 9px 9px;
+}
+
+.conversation-action-menu button:last-child i {
+  color: var(--color-text-secondary);
+}
+
+.conversation-action-menu button:last-child:hover {
+  background: var(--color-background-soft);
+  border-color: transparent;
+  color: var(--color-black);
+}
+
+/* =========================================================
+   36. CONVERSATION SELECTION MODE
+   ========================================================= */
+
+.conversation-item.conversation-bulk-selected {
+  background: linear-gradient(
+    90deg,
+    rgb(83 141 34 / 0.14),
+    rgb(83 141 34 / 0.055)
+  ) !important;
+  border-left-color: var(--color-primary) !important;
+  box-shadow: inset 3px 0 0 var(--color-primary);
+}
+
+.conversation-item-wrapper:has(.conversation-item.conversation-bulk-selected) {
+  background: var(--color-background-green);
+}
+
+.conversation-item.conversation-bulk-selected:hover {
+  background: var(--color-background-green) !important;
+}
+
+/* =========================================================
+   37. CONVERSATION CHECKBOX
+   ========================================================= */
+
+/*
+ * The JavaScript places this element BEFORE
+ * .conversation-item.
+ *
+ * Therefore it appears on the LEFT/front.
+ */
+
+.conversation-selection-indicator {
+  width: 25px;
+  height: 25px;
+  flex: 0 0 25px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  margin: 0 0 0 10px;
+  padding: 0;
+  border: 2px solid #b6c0b7;
+  border-radius: 6px;
+  background: #ffffff;
+  color: transparent;
+  font-size: 10px;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.conversation-selection-indicator:hover {
+  border-color: var(--color-primary);
+  background: var(--color-background-green);
+  transform: scale(1.05);
+}
+
+.conversation-item.conversation-bulk-selected
+  .conversation-selection-indicator {
+  border-color: var(--color-primary);
+  background: var(--color-primary);
+  color: #ffffff;
+  box-shadow: 0 3px 10px rgb(83 141 34 / 0.18);
+}
+
+.conversation-selection-indicator i {
+  pointer-events: none;
+}
+
+/* =========================================================
+   38. CONVERSATION SELECTION TOOLBAR
+   ========================================================= */
+
+.conversation-selection-toolbar {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 9px 12px;
+  background: linear-gradient(90deg, #f3faee, #ffffff);
+  border-bottom: 1px solid rgb(83 141 34 / 0.14);
+  box-shadow: 0 3px 10px rgb(83 141 34 / 0.06);
+  box-sizing: border-box;
+}
+
+.conversation-selection-toolbar[hidden] {
+  display: none !important;
+}
+
+.conversation-selection-info {
+  min-width: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--color-text-secondary);
+  font-size: var(--font-xs);
+  white-space: nowrap;
+}
+
+.conversation-selection-info strong {
+  color: var(--color-primary-dark);
+  font-size: var(--font-sm);
+  font-weight: var(--font-weight-bold);
+}
+
+.conversation-selection-controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+/* =========================================================
+   39. SELECTION TOOLBAR BUTTONS
+   ========================================================= */
+
+.conversation-select-all-btn,
+.conversation-delete-selected-btn,
+.conversation-selection-cancel-btn {
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: var(--font-weight-bold);
+  cursor: pointer;
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast),
+    transform var(--transition-fast),
+    opacity var(--transition-fast);
+}
+
+.conversation-select-all-btn {
+  border: 1px solid var(--color-border);
+  background: #ffffff;
+  color: var(--color-primary-dark);
+}
+
+.conversation-select-all-btn:hover {
+  border-color: var(--color-primary);
+  background: var(--color-background-green);
+  transform: translateY(-1px);
+}
+
+.conversation-delete-selected-btn {
+  border: none;
+  background: #b42318;
+  color: #ffffff;
+}
+
+.conversation-delete-selected-btn:hover:not(:disabled) {
+  background: #8f1d14;
+  transform: translateY(-1px);
+}
+
+.conversation-delete-selected-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.conversation-selection-cancel-btn {
+  border: 1px solid var(--color-border);
+  background: #ffffff;
+  color: var(--color-text-secondary);
+}
+
+.conversation-selection-cancel-btn:hover {
+  border-color: var(--color-primary);
+  background: var(--color-background-green);
+  color: var(--color-primary-dark);
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   40. ERROR / RETRY
+   ========================================================= */
+
+.conversations-error {
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  padding: var(--space-6);
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+
+.conversations-error > i {
+  color: #b42318;
+  font-size: 1.5rem;
+}
+
+.conversations-error p {
+  margin: 0;
+  font-size: var(--font-sm);
+  line-height: 1.5;
+}
+
+.conversation-retry-btn {
+  min-height: 40px;
+  padding: 0 16px;
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-md);
+  background: #ffffff;
+  color: var(--color-primary-dark);
+  font-family: inherit;
+  font-size: var(--font-sm);
+  font-weight: var(--font-weight-bold);
+  cursor: pointer;
+  transition:
+    background-color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.conversation-retry-btn:hover {
+  background: var(--color-background-green);
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   41. NEW CONVERSATION MODAL
+   ========================================================= */
+
+.conversation-modal {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 20px !important;
+  box-sizing: border-box !important;
+  z-index: 999999 !important;
+  isolation: isolate !important;
+  overflow: hidden !important;
+}
+
+.conversation-modal[hidden] {
+  display: none !important;
+}
+
+.conversation-modal-overlay {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: rgb(17 31 20 / 0.56) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  filter: none !important;
+  z-index: 0 !important;
+}
+
+.conversation-modal-content {
+  position: relative !important;
+  z-index: 1 !important;
+  width: min(620px, calc(100vw - 40px)) !important;
+  max-height: calc(100vh - 40px) !important;
+  max-height: calc(100dvh - 40px) !important;
+  margin: 0 !important;
+  overflow-y: auto !important;
+  padding: clamp(22px, 4vw, 34px);
+  background: #ffffff !important;
+  border: 1px solid rgb(83 141 34 / 0.16);
+  border-radius: 18px;
+  box-shadow:
+    0 28px 80px rgb(0 0 0 / 0.2),
+    0 8px 28px rgb(83 141 34 / 0.08);
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   42. MODAL HEADER
+   ========================================================= */
+
+.conversation-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.conversation-modal-header h2 {
+  margin: 6px 0 7px;
+  color: var(--color-black);
+  font-size: clamp(1.65rem, 4vw, 2.2rem);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.025em;
+}
+
+.conversation-modal-header p {
+  max-width: 480px;
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: var(--font-sm);
+  line-height: 1.6;
+}
+
+/* =========================================================
+   43. MODAL EYEBROW
+   ========================================================= */
+
+.modal-eyebrow {
+  color: var(--color-primary-dark);
+  font-size: var(--font-xs);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.075em;
+}
+
+/* =========================================================
+   44. MODAL CLOSE
+   ========================================================= */
+
+.conversation-modal-close {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid var(--color-border-light);
+  border-radius: 10px;
+  background: #ffffff;
+  color: var(--color-text-secondary);
+  font-size: 15px;
+  cursor: pointer;
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.conversation-modal-close:hover {
+  background: var(--color-background-green);
+  border-color: rgb(83 141 34 / 0.25);
+  color: var(--color-primary-dark);
+  transform: rotate(2deg);
+}
+
+/* =========================================================
+   45. CONVERSATION FORM
+   ========================================================= */
+
+.conversation-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: var(--space-5);
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 7px;
+  color: var(--color-black);
+  font-size: var(--font-sm);
+  font-weight: var(--font-weight-bold);
+}
+
+/* =========================================================
+   46. RESOURCE SELECT
+   ========================================================= */
+
+.select-wrapper {
+  position: relative;
+}
+
+.select-wrapper select {
+  width: 100%;
+  min-height: 50px;
+  appearance: none;
+  padding: 0 48px 0 15px;
+  border: 2px solid var(--color-border);
+  border-radius: 11px;
+  outline: none;
+  background: #fbfcfa;
+  color: var(--color-black);
+  font-family: inherit;
+  font-size: var(--font-sm);
+  cursor: pointer;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.select-wrapper select:hover {
+  background: #ffffff;
+  border-color: rgb(83 141 34 / 0.35);
+}
+
+.select-wrapper select:focus {
+  background: #ffffff;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4px rgb(83 141 34 / 0.1);
+}
+
+.select-wrapper select:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.select-wrapper > i {
+  position: absolute;
+  top: 50%;
+  right: 17px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--color-primary-dark);
+  font-size: var(--font-sm);
+}
+
+/* =========================================================
+   47. SELECTED RESOURCE
+   ========================================================= */
+
+.selected-resource-info {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  min-height: 96px;
+  margin-bottom: var(--space-5);
+  padding: var(--space-4);
+  background: linear-gradient(135deg, #f1f8eb, #fbfdf9);
+  border: 1px solid rgb(83 141 34 / 0.15);
+  border-radius: 13px;
+  box-sizing: border-box;
+}
+
+.selected-resource-image {
+  width: 72px;
+  height: 72px;
+  flex: 0 0 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid var(--color-border-light);
+  border-radius: 10px;
+}
+
+.selected-resource-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.selected-resource-details {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.selected-resource-label {
+  color: var(--color-primary-dark);
+  font-size: 10px;
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+.selected-resource-details strong {
+  display: block;
+  overflow: hidden;
+  color: var(--color-black);
+  font-size: var(--font-md);
+  font-weight: var(--font-weight-bold);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.selected-resource-details span:last-child {
+  color: var(--color-text-secondary);
+  font-size: var(--font-xs);
+}
+
+/* =========================================================
+   48. FORM MESSAGE
+   ========================================================= */
+
+.conversation-form-message {
+  margin-bottom: var(--space-5);
+  padding: 11px 13px;
+  border-radius: var(--radius-md);
+  font-size: var(--font-sm);
+  line-height: 1.5;
+}
+
+.conversation-form-message.error {
+  border: 1px solid rgb(180 35 24 / 0.2);
+  background: rgb(180 35 24 / 0.07);
+  color: #8f1d14;
+}
+
+.conversation-form-message.success {
+  border: 1px solid rgb(46 125 50 / 0.2);
+  background: rgb(46 125 50 / 0.07);
+  color: #246b29;
+}
+
+/* =========================================================
+   49. MODAL ACTIONS
+   ========================================================= */
+
+.conversation-form-actions {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.conversation-cancel-btn,
+.start-conversation-btn {
+  min-height: 43px;
+  padding: 0 17px;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: var(--font-xs);
+  font-weight: var(--font-weight-bold);
+  cursor: pointer;
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.conversation-cancel-btn {
+  border: 1px solid var(--color-border);
+  background: #ffffff;
+  color: var(--color-text-secondary);
+}
+
+.conversation-cancel-btn:hover {
+  background: var(--color-background-green);
+  border-color: rgb(83 141 34 / 0.3);
+  color: var(--color-primary-dark);
+  transform: translateY(-1px);
+}
+
+.start-conversation-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid var(--color-primary);
+  background: var(--color-primary);
+  color: #ffffff;
+  box-shadow: 0 5px 14px rgb(83 141 34 / 0.16);
+}
+
+.start-conversation-btn:hover:not(:disabled) {
+  background: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgb(83 141 34 / 0.2);
+}
+
+.start-conversation-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* =========================================================
+   50. NAVBAR UNREAD BADGE
+   ========================================================= */
+
+.messages-unread-badge {
+  min-width: 20px;
+  height: 20px;
+  margin-left: 6px;
+  padding: 0 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--color-primary);
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+}
+
+/* =========================================================
+   51. LOADING
+   ========================================================= */
+
+.messages-loading,
+.conversations-loading {
+  min-height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 30px;
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+
+.messages-loading i,
+.conversations-loading i {
+  color: var(--color-primary);
+  font-size: 20px;
+}
+
+/* =========================================================
+   52. RIGHT CLICK
+   ========================================================= */
+
+.conversation-item {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* =========================================================
+   53. ANIMATIONS
+   ========================================================= */
+
+@keyframes ecoShareActionMenuIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes conversationActionMenuIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* =========================================================
+   54. MODAL STACKING
+   ========================================================= */
+
+.messages-layout,
+.conversation-panel,
+.chat-panel,
+.chat-content,
+.chat-empty {
+  z-index: auto;
+}
+
+.chat-empty[hidden],
+.chat-content[hidden] {
+  display: none !important;
+}
+
+.conversation-modal:not([hidden]) {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 20px !important;
+  box-sizing: border-box !important;
+  z-index: 999999 !important;
+  isolation: isolate !important;
+}
+
+/* =========================================================
+   55. CONVERSATION SECTION â€” GREEN THEME
+   ========================================================= */
+
+.conversation-panel {
+  background: #f1f8eb;
+  border-right-color: rgb(83 141 34 / 0.16);
+}
+
+.conversation-header {
+  background: linear-gradient(180deg, #e8f5e0 0%, #f1f8eb 100%);
+  border-bottom-color: rgb(83 141 34 / 0.14);
+}
+
+.conversation-list {
+  background: #f1f8eb;
+}
+
+.conversation-item-wrapper {
+  background: #f1f8eb;
+  border-bottom-color: rgb(83 141 34 / 0.1);
+}
+
+.conversation-item-wrapper:hover {
+  background: #e7f3df;
+}
+
+.conversation-item.active {
+  background: linear-gradient(
+    90deg,
+    rgb(83 141 34 / 0.2),
+    rgb(83 141 34 / 0.08)
+  );
+}
+
+.conversation-item.conversation-bulk-selected {
+  background: linear-gradient(
+    90deg,
+    rgb(83 141 34 / 0.24),
+    rgb(83 141 34 / 0.1)
+  ) !important;
+}
+
+.conversation-item-wrapper:has(.conversation-item.conversation-bulk-selected) {
+  background: #e7f3df;
+}
+
+.conversation-resource-image {
+  background: #e8f3e3;
+  border-color: rgb(83 141 34 / 0.14);
+}
+
+/* Keep the green conversation section on mobile too. */
+@media (max-width: 768px) {
+  .conversation-panel {
+    background: #f1f8eb;
+  }
+
+  .conversation-header {
+    background: linear-gradient(180deg, #e8f5e0 0%, #f1f8eb 100%);
+  }
+
+  .conversation-list {
+    background: #f1f8eb;
+  }
+}
+
+/* =========================================================
+   56. RESPONSIVE â€” TABLET
+   ========================================================= */
+
+@media (max-width: 1050px) {
+  .messages-layout {
+    grid-template-columns: 320px minmax(0, 1fr);
+  }
+
+  .message-bubble {
+    max-width: 76%;
+  }
+}
+
+/* =========================================================
+   57. RESPONSIVE â€” MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+  .messages-page {
+    padding: 24px 0 40px;
+  }
+
+  .messages-layout {
+    grid-template-columns: 1fr;
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+    border-radius: 14px;
+  }
+
+  .conversation-panel {
+    min-height: 340px;
+    max-height: 380px;
+    border-right: none;
+    border-bottom: 1px solid var(--color-border-light);
+  }
+
+  .conversation-header {
+    min-height: 76px;
+    padding: 14px;
+  }
+
+  .conversation-item {
+    min-height: 72px;
+    padding: 10px 13px;
+  }
+
+  .conversation-resource-image {
+    width: 50px;
+    height: 50px;
+    flex-basis: 50px;
+  }
+
+  .conversation-selection-toolbar {
+    min-height: 54px;
+    padding: 8px 10px;
+  }
+
+  .conversation-selection-controls {
+    gap: 4px;
+  }
+
+  .conversation-select-all-btn,
+  .conversation-delete-selected-btn,
+  .conversation-selection-cancel-btn {
+    min-height: 32px;
+    padding: 5px 8px;
+    font-size: 10px;
+  }
+
+  .chat-panel {
+    min-height: 560px;
+  }
+
+  .chat-header {
+    min-height: 66px;
+    padding: 10px 13px;
+  }
+
+  .chat-resource-header-image {
+    width: 42px;
+    height: 42px;
+    flex-basis: 42px;
+  }
+
+  .chat-messages {
+    padding: 16px 13px;
+  }
+
+  .message-bubble {
+    max-width: 88%;
+  }
+
+  .message-form {
+    padding: 9px;
+  }
+
+  .send-message-btn {
+    min-width: 42px;
+    width: 42px;
+    padding: 0;
+  }
+
+  .send-message-btn span {
+    display: none;
+  }
+
+  .conversation-action-menu {
+    width: min(235px, calc(100vw - 20px));
+    min-width: min(235px, calc(100vw - 20px)) !important;
+  }
+
+  .message-action-menu {
+    width: min(195px, calc(100vw - 20px));
+  }
+
+  .conversation-selection-indicator {
+    width: 24px;
+    height: 24px;
+    flex-basis: 24px;
+    margin-left: 8px;
+  }
+}
+
+/* =========================================================
+   58. VERY SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 520px) {
+  .messages-heading h1 {
+    font-size: 1.9rem;
+  }
+
+  .messages-heading p {
+    font-size: 13px;
+  }
+
+  .conversation-header {
+    min-height: 70px;
+  }
+
+  .conversation-header h2 {
+    font-size: 15px;
+  }
+
+  .conversation-item {
+    padding: 10px;
+  }
+
+  .conversation-resource-image {
+    width: 50px;
+    height: 50px;
+    flex-basis: 50px;
+  }
+
+  .new-conversation-btn {
+    width: 40px;
+    padding: 0;
+  }
+
+  .new-conversation-btn span {
+    display: none;
+  }
+
+  .chat-header {
+    padding: 10px 12px;
+  }
+
+  .chat-resource-header-image {
+    width: 40px;
+    height: 40px;
+    flex-basis: 40px;
+  }
+
+  .chat-messages {
+    padding: 14px 10px;
+  }
+
+  .message-form {
+    padding: 8px;
+  }
+
+  .send-message-btn {
+    min-width: 42px;
+    width: 42px;
+    padding: 0;
+  }
+
+  .send-message-btn span {
+    display: none;
+  }
+
+  .selected-resource-info {
+    align-items: flex-start;
+  }
+
+  .selected-resource-image {
+    width: 68px;
+    height: 68px;
+    flex-basis: 68px;
+  }
+
+  .conversation-form-actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .conversation-cancel-btn,
+  .start-conversation-btn {
+    width: 100%;
+  }
+
+  .message-bubble {
+    max-width: 92%;
+  }
+
+  .conversation-item-right {
+    gap: 6px;
+  }
+
+  .conversation-unread-badge {
+    min-width: 19px;
+    height: 19px;
+    padding: 0 5px;
+    font-size: 10px;
+  }
+
+  .conversation-selection-indicator {
+    width: 23px;
+    height: 23px;
+    flex-basis: 23px;
+    margin-left: 6px;
+  }
+}
+
+/* =========================================================
+   FINAL VISUAL RULES
+   ========================================================= */
+
+/*
+ * CHAT
+ *
+ * Main background:
+ * #f5f7f4
+ *
+ * Very subtle green radial accents.
+ */
+
+.chat-panel,
+.chat-messages {
+  background:
+    radial-gradient(circle at 18% 12%, rgb(83 141 34 / 0.035), transparent 32%),
+    radial-gradient(circle at 82% 88%, rgb(83 141 34 / 0.025), transparent 36%),
+    #f5f7f4 !important;
+}
+
+/*
+ * RECEIVED
+ *
+ * Pure white.
+ */
+
+.message-row.received .message-bubble {
+  background: #ffffff !important;
+  color: #1f2821 !important;
+  border: 1px solid #e0e5df !important;
+  border-bottom-left-radius: 5px;
+}
+
+/*
+ * SENT
+ *
+ * Light EcoShare green.
+ */
+
+.message-row.sent .message-bubble {
+  background: #e2f3dc !important;
+  color: #244128 !important;
+  border: 1px solid #c8e4c0 !important;
+  border-bottom-right-radius: 5px;
+}
+
+/*
+ * COMPOSER
+ *
+ * Pure white.
+ */
+
+.message-form {
+  background: #ffffff !important;
+}
+
+.message-input-wrapper {
+  background: #ffffff !important;
+}
+
+/*
+ * SEND BUTTON
+ *
+ * EcoShare primary green.
+ */
+
+.send-message-btn {
+  background: var(--color-primary) !important;
+  border-color: var(--color-primary) !important;
+  color: #ffffff !important;
+}
+
+.send-message-btn:hover:not(:disabled) {
+  background: var(--color-primary-dark) !important;
+  border-color: var(--color-primary-dark) !important;
+}
+
+/*
+ * ACTION MENUS
+ */
+
+.message-action-menu,
+.conversation-action-menu {
+  z-index: 10000 !important;
+}
+
+/*
+ * MODAL
+ *
+ * IMPORTANT:
+ * No backdrop blur.
+ *
+ * The page becomes darkened, but the modal
+ * itself stays completely sharp.
+ */
+
+.conversation-modal-overlay {
+  background: rgb(17 31 20 / 0.56) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  filter: none !important;
+}
+
+.conversation-modal-content {
+  background: #ffffff !important;
+  filter: none !important;
+}
+
+/*
+ * Hidden modal must actually disappear.
+ */
+
+.conversation-modal[hidden] {
+  display: none !important;
+}
+/* =========================================================
+   FINAL — START CONVERSATION BUTTON
+   ========================================================= */
+
+#startConversationButton,
+#startConversationButton:hover,
+#startConversationButton:focus,
+#startConversationButton:focus-visible,
+#startConversationButton:active,
+#startConversationButton:visited,
+#startConversationButton:disabled {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+
+  width: 190px !important;
+  min-width: 190px !important;
+  height: 48px !important;
+  min-height: 48px !important;
+
+  margin: 0 !important;
+  padding: 0 20px !important;
+
+  box-sizing: border-box !important;
+
+  border: 1px solid #538d22 !important;
+  border-radius: 10px !important;
+
+  background: #538d22 !important;
+  background-color: #538d22 !important;
+  background-image: none !important;
+
+  color: #ffffff !important;
+
+  font-family: inherit !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+
+  text-align: center !important;
+  text-indent: 0 !important;
+
+  opacity: 1 !important;
+  visibility: visible !important;
+
+  box-shadow: 0 5px 14px rgb(83 141 34 / 0.16) !important;
+
+  cursor: pointer !important;
+}
+
+/* Hover */
+#startConversationButton:hover {
+  background: #3f6f1a !important;
+  background-color: #3f6f1a !important;
+  border-color: #3f6f1a !important;
+  color: #ffffff !important;
+
+  opacity: 1 !important;
+  visibility: visible !important;
+
+  transform: translateY(-1px) !important;
+}
+
+/* Mouse click / active */
+#startConversationButton:active {
+  background: #3f6f1a !important;
+  background-color: #3f6f1a !important;
+  border-color: #3f6f1a !important;
+  color: #ffffff !important;
+
+  opacity: 1 !important;
+  visibility: visible !important;
+
+  transform: translateY(0) !important;
+}
+
+/* Focus */
+#startConversationButton:focus,
+#startConversationButton:focus-visible {
+  background: #538d22 !important;
+  background-color: #538d22 !important;
+  border-color: #538d22 !important;
+  color: #ffffff !important;
+
+  outline: 3px solid rgb(83 141 34 / 0.2) !important;
+  outline-offset: 2px !important;
+}
+
+/* Disabled — still green and visible */
+#startConversationButton:disabled {
+  background: #538d22 !important;
+  background-color: #538d22 !important;
+  border-color: #538d22 !important;
+  color: #ffffff !important;
+
+  opacity: 0.65 !important;
+  cursor: not-allowed !important;
+}
+
+/* Icon and text */
+#startConversationButton i,
+#startConversationButton span {
+  display: inline-flex !important;
+
+  width: auto !important;
+  height: auto !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  color: #ffffff !important;
+
+  font-size: inherit !important;
+  line-height: 1 !important;
+
+  opacity: 1 !important;
+  visibility: visible !important;
+
+  text-indent: 0 !important;
+}
+
+#startConversationButton i {
+  flex: 0 0 auto !important;
+}
+
+#startConversationButton span {
+  flex: 0 0 auto !important;
+}

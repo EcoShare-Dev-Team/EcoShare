@@ -1,0 +1,732 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="description"
+      content="Manage your EcoShare profile, account information, and profile photo."
+    />
+
+    <meta name="theme-color" content="#538d22" />
+
+    <meta name="color-scheme" content="light" />
+
+    <title>My Profile | EcoShare</title>
+
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://cplbvftcbiwgqkeqmrbq.supabase.co/storage/v1/object/public/site-assets/logo.png"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Global EcoShare styles -->
+    <link rel="stylesheet" href="page.css" />
+
+    <!-- Profile page styles -->
+    <link rel="stylesheet" href="profile.css" />
+  </head>
+
+  <body>
+    <!-- =========================================================
+         HEADER / GLOBAL NAVIGATION
+    ========================================================== -->
+    <header class="header">
+      <div class="container navbar">
+        <button
+          type="button"
+          class="menu-btn"
+          id="menu-btn"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          aria-controls="primary-navigation"
+        >
+          <i class="fa-solid fa-bars" aria-hidden="true"></i>
+        </button>
+        <!-- =====================================================
+                 LOGO
+                 ===================================================== -->
+
+        <a href="../index.html" class="logo" aria-label="EcoShare Home">
+          <img
+            id="siteLogo"
+            src="https://cplbvftcbiwgqkeqmrbq.supabase.co/storage/v1/object/public/site-assets/logo.png"
+            alt="EcoShare logo"
+            width="120"
+            height="120"
+            decoding="async"
+            fetchpriority="high"
+          />
+        </a>
+
+        <!-- =====================================================
+                 PRIMARY NAVIGATION
+                 ===================================================== -->
+
+        <nav
+          class="primary-navigation"
+          id="primary-navigation"
+          aria-label="Main navigation"
+        >
+          <!-- Home -->
+
+          <a href="../index.html" class="nav-link" aria-current="page">
+            <i class="fa-solid fa-house" aria-hidden="true"></i>
+
+            <span>Home</span>
+          </a>
+
+          <!-- Explore -->
+
+          <a href="../Phase 2/explore.html" class="nav-link">
+            <i class="fa-solid fa-compass" aria-hidden="true"></i>
+
+            <span>Explore</span>
+          </a>
+
+          <!-- Community -->
+
+          <a href="../Phase 4/community.html" class="nav-link">
+            <i class="fa-solid fa-users" aria-hidden="true"></i>
+
+            <span>Community</span>
+          </a>
+
+          <!-- Messages -->
+
+          <a
+            href="../Phase 3/messages.html"
+            class="nav-link"
+            id="messagesNavLink"
+          >
+            <i class="fa-solid fa-message" aria-hidden="true"></i>
+
+            <span>Messages</span>
+          </a>
+
+          <!-- Notifications -->
+
+          <a
+            href="../Phase 3/notifications.html"
+            class="nav-link notifications-nav-link"
+            id="notificationsNavLink"
+          >
+            <i class="fa-solid fa-bell" aria-hidden="true"></i>
+
+            <span>Notifications</span>
+
+            <span
+              id="notificationUnreadBadge"
+              class="notification-unread-badge"
+              aria-label="Unread notifications"
+              hidden
+            >
+              0
+            </span>
+          </a>
+        </nav>
+
+        <!-- =====================================================
+                 LOGIN / REGISTRATION
+                 ===================================================== -->
+
+        <a
+          href="../Phase 1/login.html"
+          class="login-nav-btn"
+          id="authNavButton"
+        >
+          <i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i>
+
+          <span>Login</span>
+        </a>
+
+        <a
+          href="../Phase 1/register.html"
+          class="register-nav-btn"
+          id="registerNavButton"
+        >
+          <i class="fa-solid fa-user-plus" aria-hidden="true"></i>
+
+          <span>Register</span>
+        </a>
+
+        <!-- =====================================================
+                 PROFILE DROPDOWN
+                 ===================================================== -->
+
+        <div class="profile-dropdown" id="profileDropdown" hidden>
+          <!-- Profile Avatar Button -->
+
+          <button
+            type="button"
+            class="profile-avatar-btn"
+            id="profileAvatarBtn"
+            aria-label="Open profile menu"
+            aria-expanded="false"
+            aria-controls="profileMenu"
+          >
+            <img
+              id="navProfilePhoto"
+              src=""
+              alt="Your profile"
+              class="profile-avatar"
+              width="40"
+              height="40"
+              decoding="async"
+            />
+
+            <i
+              class="fa-solid fa-chevron-down profile-chevron"
+              aria-hidden="true"
+            ></i>
+          </button>
+
+          <!-- Profile Menu -->
+
+          <div class="profile-menu" id="profileMenu" hidden>
+            <!-- Profile Information -->
+
+            <div class="profile-menu-header">
+              <img
+                id="menuProfilePhoto"
+                src=""
+                alt=""
+                class="profile-menu-avatar"
+                width="48"
+                height="48"
+                decoding="async"
+              />
+
+              <div class="profile-menu-user">
+                <a
+                  href="../Phase 1/profile.html"
+                  class="profile-menu-user-link"
+                  aria-label="Open your profile"
+                >
+                  <strong id="menuProfileName"> My Account </strong>
+
+                  <span id="menuProfileEmail"> EcoShare Member </span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Profile -->
+
+            <a href="../Phase 1/profile.html" class="profile-menu-item">
+              <i class="fa-solid fa-user" aria-hidden="true"></i>
+
+              <span>My Profile</span>
+            </a>
+
+            <!-- Admin Dashboard -->
+
+            <a
+              href="../Phase 1/admin-dashboard.html"
+              class="profile-menu-item"
+              id="adminDashboardLink"
+              hidden
+            >
+              <i class="fa-solid fa-user-shield" aria-hidden="true"></i>
+
+              <span>Admin Dashboard</span>
+            </a>
+
+            <!-- User Dashboard -->
+
+            <a
+              href="../Phase 1/user-dashboard.html"
+              class="profile-menu-item"
+              id="userDashboardLink"
+              hidden
+            >
+              <i class="fa-solid fa-gauge-high" aria-hidden="true"></i>
+
+              <span>User Dashboard</span>
+            </a>
+
+            <!-- Resource Management -->
+
+            <a href="../Phase 2/my-listings.html" class="profile-menu-item">
+              <i class="fa-solid fa-box" aria-hidden="true"></i>
+
+              <span>My Resource Listings</span>
+            </a>
+
+            <a href="../Phase 2/lend-resource.html" class="profile-menu-item">
+              <i class="fa-solid fa-hand-holding-heart" aria-hidden="true"></i>
+
+              <span>Lend a Resource</span>
+            </a>
+
+            <a href="../Phase 2/my-requests.html" class="profile-menu-item">
+              <i class="fa-solid fa-handshake" aria-hidden="true"></i>
+
+              <span>My Borrow Requests</span>
+            </a>
+
+            <a
+              href="../Phase 2/incoming-requests.html"
+              class="profile-menu-item"
+            >
+              <i class="fa-solid fa-inbox" aria-hidden="true"></i>
+
+              <span>Incoming Borrow Requests</span>
+            </a>
+
+            <div class="profile-menu-divider"></div>
+
+            <div class="sidebar-divider"></div>
+            <!-- Information -->
+
+            <a href="../Phase 1/about.html" class="profile-menu-item">
+              <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+
+              <span>About EcoShare</span>
+            </a>
+
+            <a href="../Phase 1/contact.html" class="profile-menu-item">
+              <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+
+              <span>Contact Us</span>
+            </a>
+
+            <div class="profile-menu-divider"></div>
+
+            <!-- Logout -->
+
+            <button
+              type="button"
+              class="profile-menu-item logout-menu-item"
+              id="profileLogoutBtn"
+            >
+              <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>
+
+              <span>Logout</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- =====================================================
+                 MOBILE NAVIGATION BUTTON
+                 ===================================================== -->
+      </div>
+    </header>
+    <!-- =========================================================
+         MAIN PROFILE CONTENT
+    ========================================================== -->
+
+    <main id="profileMain" class="profile-page">
+      <div class="container">
+        <!-- Page heading -->
+        <section class="page-heading">
+          <span class="eyebrow">
+            <i class="fa-solid fa-user" aria-hidden="true"></i>
+            Account
+          </span>
+
+          <h1>My Profile</h1>
+
+          <p>Manage your EcoShare profile and account information.</p>
+        </section>
+
+        <!-- Profile layout -->
+        <section class="profile-layout" aria-label="Profile information">
+          <!-- =================================================
+                     PROFILE SUMMARY CARD
+                ================================================== -->
+
+          <aside class="profile-card summary-card">
+            <!-- Profile avatar -->
+            <div class="profile-avatar-section">
+              <div class="profile-avatar-wrapper">
+                <div class="profile-avatar">
+                  <img
+                    id="profileAvatar"
+                    src="../assets/avatar-default.png"
+                    alt="Profile photo"
+                    width="150"
+                    height="150"
+                    decoding="async"
+                  />
+                </div>
+
+                <!-- Edit photo button -->
+                <button
+                  type="button"
+                  id="avatarMenuButton"
+                  class="avatar-camera-btn"
+                  aria-label="Edit profile photo"
+                  aria-expanded="false"
+                  aria-controls="avatarMenu"
+                  title="Edit profile photo"
+                >
+                  <i class="fa-solid fa-pencil" aria-hidden="true"></i>
+                </button>
+
+                <!-- Avatar menu -->
+                <div
+                  id="avatarMenu"
+                  class="avatar-menu"
+                  role="menu"
+                  aria-label="Profile photo options"
+                  hidden
+                >
+                  <!-- Camera -->
+                  <button type="button" id="takePhotoButton" role="menuitem">
+                    <i class="fa-solid fa-camera" aria-hidden="true"></i>
+                    <span>Camera</span>
+                  </button>
+
+                  <!-- Gallery -->
+                  <button type="button" id="choosePhotoButton" role="menuitem">
+                    <i class="fa-solid fa-images" aria-hidden="true"></i>
+                    <span>Gallery</span>
+                  </button>
+
+                  <!-- Remove Photo -->
+                  <button
+                    type="button"
+                    id="removePhotoButton"
+                    class="remove-avatar-option"
+                    role="menuitem"
+                    hidden
+                  >
+                    <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                    <span>Remove Photo</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Gallery file input -->
+              <input
+                type="file"
+                id="avatarUpload"
+                name="avatar"
+                accept="image/jpeg,image/png,image/webp"
+                hidden
+              />
+
+              <p class="avatar-hint">Change your profile photo</p>
+            </div>
+
+            <!-- User information -->
+            <h2 id="profileName">Loading...</h2>
+
+            <p id="profileEmail" class="profile-email">Loading...</p>
+
+            <span id="profileRole" class="role-badge"> Loading... </span>
+
+            <div class="summary-divider"></div>
+
+            <p class="summary-text">
+              Your EcoShare account lets you borrow resources from the community
+              and lend your own resources.
+            </p>
+
+            <!-- Logout -->
+            <button type="button" id="logoutButton" class="logout-btn">
+              <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>
+              Logout
+            </button>
+          </aside>
+
+          <!-- =================================================
+                     EDIT PROFILE CARD
+                ================================================== -->
+
+          <section class="profile-card form-card">
+            <!-- Card heading -->
+            <div class="card-heading">
+              <div>
+                <span class="section-label"> Personal Information </span>
+
+                <h2>Edit Profile</h2>
+              </div>
+
+              <i
+                class="fa-solid fa-pen-to-square heading-icon"
+                aria-hidden="true"
+              ></i>
+            </div>
+
+            <!-- Profile status message -->
+            <div
+              id="profileMessage"
+              class="profile-message"
+              role="status"
+              aria-live="polite"
+              aria-atomic="true"
+              hidden
+            ></div>
+
+            <!-- Profile form -->
+            <form id="profileForm" autocomplete="on">
+              <!-- Full name -->
+              <div class="form-group">
+                <label for="fullName"> Full Name </label>
+
+                <div class="input-wrapper">
+                  <i class="fa-solid fa-user" aria-hidden="true"></i>
+
+                  <input
+                    type="text"
+                    id="fullName"
+                    name="fullName"
+                    placeholder="Enter your full name"
+                    autocomplete="name"
+                    maxlength="100"
+                    required
+                  />
+                </div>
+              </div>
+
+              <!-- Gender -->
+              <div class="form-group">
+                <label for="gender"> Gender </label>
+
+                <div class="input-wrapper gender-select-wrapper">
+                  <i class="fa-solid fa-venus-mars" aria-hidden="true"></i>
+
+                  <select id="gender" name="gender" required>
+                    <option value="" disabled selected>Select gender</option>
+
+                    <option value="male">Male</option>
+
+                    <option value="female">Female</option>
+
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+
+                <small>
+                  Gender can be selected only once and cannot be changed after
+                  saving.
+                </small>
+              </div>
+
+              <!-- Email -->
+              <div class="form-group">
+                <label for="email"> Email </label>
+
+                <div class="input-wrapper disabled-input">
+                  <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    autocomplete="email"
+                    disabled
+                  />
+                </div>
+
+                <small>
+                  Your email is managed by your EcoShare authentication account.
+                </small>
+              </div>
+
+              <!-- Account role -->
+              <div class="form-group">
+                <label for="role"> Account Role </label>
+
+                <div class="input-wrapper disabled-input">
+                  <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+
+                  <input type="text" id="role" name="role" disabled />
+                </div>
+
+                <small> Your account role cannot be changed here. </small>
+              </div>
+
+              <!-- Location -->
+              <div class="form-group">
+                <label for="location"> Location </label>
+
+                <div class="input-wrapper location-input-wrapper">
+                  <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+
+                  <input
+                    type="text"
+                    id="location"
+                    name="location"
+                    placeholder="e.g. Kottayam"
+                    autocomplete="address-level2"
+                    maxlength="100"
+                  />
+                </div>
+
+                <button
+                  type="button"
+                  id="useCurrentLocation"
+                  class="location-detect-btn"
+                >
+                  <i
+                    class="fa-solid fa-location-crosshairs"
+                    aria-hidden="true"
+                  ></i>
+
+                  <span> Use Current Location </span>
+                </button>
+
+                <small id="locationMessage" aria-live="polite">
+                  Enter your location manually or use your current location.
+                </small>
+              </div>
+
+              <!-- Bio -->
+              <div class="form-group">
+                <label for="bio"> Bio </label>
+
+                <textarea
+                  id="bio"
+                  name="bio"
+                  rows="5"
+                  maxlength="300"
+                  placeholder="Tell the EcoShare community a little about yourself..."
+                ></textarea>
+
+                <div class="character-count">
+                  <span id="bioCount">0</span>/300
+                </div>
+              </div>
+
+              <!-- Form actions -->
+              <div class="form-actions">
+                <button type="submit" id="saveProfileButton" class="save-btn">
+                  <i class="fa-solid fa-floppy-disk" aria-hidden="true"></i>
+
+                  <span> Save Changes </span>
+                </button>
+              </div>
+            </form>
+          </section>
+        </section>
+      </div>
+    </main>
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
+
+    <!-- =========================================================
+         CAMERA MODAL
+    ========================================================== -->
+
+    <div
+      id="cameraModal"
+      class="camera-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="cameraTitle"
+      hidden
+    >
+      <div class="camera-modal-content">
+        <!-- Modal header -->
+        <div class="camera-modal-header">
+          <h2 id="cameraTitle">Take a Profile Photo</h2>
+
+          <button
+            type="button"
+            id="closeCameraButton"
+            class="camera-close-btn"
+            aria-label="Close camera"
+          >
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+          </button>
+        </div>
+
+        <!-- Camera preview -->
+        <div class="camera-preview-wrapper">
+          <video id="cameraPreview" autoplay playsinline muted></video>
+
+          <canvas id="cameraCanvas" hidden></canvas>
+        </div>
+
+        <!-- Camera status -->
+        <p
+          id="cameraMessage"
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          Allow camera access when your browser asks.
+        </p>
+
+        <!-- Camera actions -->
+        <div class="camera-modal-actions">
+          <button
+            type="button"
+            id="capturePhotoButton"
+            class="save-btn"
+            disabled
+          >
+            <i class="fa-solid fa-camera" aria-hidden="true"></i>
+
+            <span> Take Photo </span>
+          </button>
+
+          <button type="button" id="cancelCameraButton" class="logout-btn">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container footer-container">
+        <div class="footer-brand">
+          <a
+            href="../index.html"
+            class="footer-logo"
+            aria-label="EcoShare Home"
+          >
+            <img
+              src="https://cplbvftcbiwgqkeqmrbq.supabase.co/storage/v1/object/public/site-assets/logo.png"
+              alt="EcoShare logo"
+              width="110"
+              height="58"
+              decoding="async"
+            />
+          </a>
+
+          <p>Share resources. Reduce waste. Build community.</p>
+        </div>
+
+        <div class="footer-bottom">
+          <p>
+            &copy;
+            <span id="footerYear">2026</span>
+            EcoShare. All rights reserved.
+          </p>
+
+          <p>Built for a more sustainable community.</p>
+        </div>
+      </div>
+    </footer>
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================== -->
+
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- Supabase configuration -->
+    <script src="supabase.js"></script>
+
+    <!-- Global EcoShare behavior -->
+    <script src="page.js"></script>
+
+    <!-- Profile page behavior -->
+    <script src="profile.js"></script>
+  </body>
+</html>

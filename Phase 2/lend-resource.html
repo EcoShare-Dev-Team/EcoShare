@@ -1,0 +1,915 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    />
+
+    <title>Lend a Resource | EcoShare</title>
+
+    <meta
+        name="description"
+        content="Share your unused resources with your community through EcoShare."
+    />
+
+    <!-- Google Fonts -->
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    />
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    />
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+
+    <!-- Global CSS -->
+    <link
+        rel="stylesheet"
+        href="../Phase 1/page.css"
+    />
+
+    <link
+        rel="stylesheet"
+        href="../Phase 1/style.css"
+    />
+
+    <!-- Lend Resource CSS -->
+    <link
+        rel="stylesheet"
+        href="lend-resource.css"
+    />
+</head>
+
+<body>
+
+    <!-- ==================================================
+         HEADER
+         ================================================== -->
+ <header class="header">
+      <div class="container navbar">
+
+        <button
+          type="button"
+          class="menu-btn"
+          id="menu-btn"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          aria-controls="primary-navigation"
+        >
+          <i class="fa-solid fa-bars" aria-hidden="true"></i>
+        </button>
+        <!-- =====================================================
+                 LOGO
+                 ===================================================== -->
+
+        <a href="../index.html" class="logo" aria-label="EcoShare Home">
+          <img
+            id="siteLogo"
+            src="https://cplbvftcbiwgqkeqmrbq.supabase.co/storage/v1/object/public/site-assets/logo.png"
+            alt="EcoShare logo"
+            width="120"
+            height="120"
+            decoding="async"
+            fetchpriority="high"
+          />
+        </a>
+
+        <!-- =====================================================
+                 PRIMARY NAVIGATION
+                 ===================================================== -->
+
+        <nav
+          class="primary-navigation"
+          id="primary-navigation"
+          aria-label="Main navigation"
+        >
+          <!-- Home -->
+
+          <a href="../index.html" class="nav-link" aria-current="page">
+            <i class="fa-solid fa-house" aria-hidden="true"></i>
+
+            <span>Home</span>
+          </a>
+
+          <!-- Explore -->
+
+          <a href="../Phase 2/explore.html" class="nav-link">
+            <i class="fa-solid fa-compass" aria-hidden="true"></i>
+
+            <span>Explore</span>
+          </a>
+
+          <!-- Community -->
+
+          <a href="../Phase 4/community.html" class="nav-link">
+            <i class="fa-solid fa-users" aria-hidden="true"></i>
+
+            <span>Community</span>
+          </a>
+
+          <!-- Messages -->
+
+          <a
+            href="../Phase 3/messages.html"
+            class="nav-link"
+            id="messagesNavLink"
+          >
+            <i class="fa-solid fa-message" aria-hidden="true"></i>
+
+            <span>Messages</span>
+          </a>
+
+          <!-- Notifications -->
+
+          <a
+            href="../Phase 3/notifications.html"
+            class="nav-link notifications-nav-link"
+            id="notificationsNavLink"
+          >
+            <i class="fa-solid fa-bell" aria-hidden="true"></i>
+
+            <span>Notifications</span>
+
+            <span
+              id="notificationUnreadBadge"
+              class="notification-unread-badge"
+              aria-label="Unread notifications"
+              hidden
+            >
+              0
+            </span>
+          </a>
+        </nav>
+
+        <!-- =====================================================
+                 LOGIN / REGISTRATION
+                 ===================================================== -->
+
+        <a href="../Phase 1/login.html" class="login-nav-btn" id="authNavButton">
+          <i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i>
+
+          <span>Login</span>
+        </a>
+
+        <a href="../Phase 1/register.html" class="register-nav-btn" id="registerNavButton">
+          <i class="fa-solid fa-user-plus" aria-hidden="true"></i>
+
+          <span>Register</span>
+        </a>
+
+        <!-- =====================================================
+                 PROFILE DROPDOWN
+                 ===================================================== -->
+
+        <div class="profile-dropdown" id="profileDropdown" hidden>
+          <!-- Profile Avatar Button -->
+
+          <button
+            type="button"
+            class="profile-avatar-btn"
+            id="profileAvatarBtn"
+            aria-label="Open profile menu"
+            aria-expanded="false"
+            aria-controls="profileMenu"
+          >
+            <img
+              id="navProfilePhoto"
+              src=""
+              alt="Your profile"
+              class="profile-avatar"
+              width="40"
+              height="40"
+              decoding="async"
+            />
+
+            <i
+              class="fa-solid fa-chevron-down profile-chevron"
+              aria-hidden="true"
+            ></i>
+          </button>
+
+          <!-- Profile Menu -->
+
+          <div class="profile-menu" id="profileMenu" hidden>
+            <!-- Profile Information -->
+
+            <div class="profile-menu-header">
+              <img
+                id="menuProfilePhoto"
+                src=""
+                alt=""
+                class="profile-menu-avatar"
+                width="48"
+                height="48"
+                decoding="async"
+              />
+
+              <div class="profile-menu-user">
+                <a
+                  href="../Phase 1/profile.html"
+                  class="profile-menu-user-link"
+                  aria-label="Open your profile"
+                >
+                  <strong id="menuProfileName"> My Account </strong>
+
+                  <span id="menuProfileEmail"> EcoShare Member </span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Profile -->
+
+            <a href="../Phase 1/profile.html" class="profile-menu-item">
+              <i class="fa-solid fa-user" aria-hidden="true"></i>
+
+              <span>My Profile</span>
+            </a>
+
+            <!-- Admin Dashboard -->
+
+            <a
+              href="../Phase 1/admin-dashboard.html"
+              class="profile-menu-item"
+              id="adminDashboardLink"
+              hidden
+            >
+              <i class="fa-solid fa-user-shield" aria-hidden="true"></i>
+
+              <span>Admin Dashboard</span>
+            </a>
+
+            <!-- User Dashboard -->
+
+            <a
+              href="../Phase 1/user-dashboard.html"
+              class="profile-menu-item"
+              id="userDashboardLink"
+              hidden
+            >
+              <i class="fa-solid fa-gauge-high" aria-hidden="true"></i>
+
+              <span>User Dashboard</span>
+            </a>
+
+            <!-- Resource Management -->
+
+            <a href="../Phase 2/my-listings.html" class="profile-menu-item">
+              <i class="fa-solid fa-box" aria-hidden="true"></i>
+
+              <span>My Resource Listings</span>
+            </a>
+
+            <a href="../Phase 2/lend-resource.html" class="profile-menu-item">
+              <i class="fa-solid fa-hand-holding-heart" aria-hidden="true"></i>
+
+              <span>Lend a Resource</span>
+            </a>
+
+            <a href="../Phase 2/my-requests.html" class="profile-menu-item">
+              <i class="fa-solid fa-handshake" aria-hidden="true"></i>
+
+              <span>My Borrow Requests</span>
+            </a>
+
+            <a
+              href="../Phase 2/incoming-requests.html"
+              class="profile-menu-item"
+            >
+              <i class="fa-solid fa-inbox" aria-hidden="true"></i>
+
+              <span>Incoming Borrow Requests</span>
+            </a>
+
+            <div class="profile-menu-divider"></div>
+
+            <div class="sidebar-divider"></div>
+            <!-- Information -->
+
+            <a href="../Phase 1/about.html" class="profile-menu-item">
+              <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+
+              <span>About EcoShare</span>
+            </a>
+
+            <a href="../Phase 1/contact.html" class="profile-menu-item">
+              <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+
+              <span>Contact Us</span>
+            </a>
+
+            <div class="profile-menu-divider"></div>
+
+            <!-- Logout -->
+
+            <button
+              type="button"
+              class="profile-menu-item logout-menu-item"
+              id="profileLogoutBtn"
+            >
+              <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>
+
+              <span>Logout</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- =====================================================
+                 MOBILE NAVIGATION BUTTON
+                 ===================================================== -->
+
+        
+      </div>
+    </header>
+
+    <!-- ==================================================
+         MAIN CONTENT
+         ================================================== -->
+
+    <main>
+
+        <!-- Page Hero -->
+
+        <section class="page-hero">
+            <div class="container">
+
+                <div class="hero-badge">
+                    <i
+                        class="fa-solid fa-hand-holding-heart"
+                        aria-hidden="true"
+                    ></i>
+                    Community Sharing
+                </div>
+
+                <h1>Lend a Resource</h1>
+
+                <p>
+                    Share something you no longer need and give it a useful purpose in
+                    your community.
+                </p>
+
+            </div>
+        </section>
+
+
+        <!-- ==================================================
+             LEND FORM SECTION
+             ================================================== -->
+
+        <section class="lend-section">
+
+            <div class="container lend-container">
+
+                <div class="lend-card">
+
+                    <!-- Form Header -->
+
+                    <div class="form-header">
+
+                        <div class="form-icon">
+                            <i
+                                class="fa-solid fa-box-open"
+                                aria-hidden="true"
+                            ></i>
+                        </div>
+
+                        <div>
+                            <h2>Add Your Resource</h2>
+
+                            <p>
+                                Provide some details so others can find and request your
+                                resource.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <!-- ==================================================
+                         RESOURCE FORM
+                         ================================================== -->
+
+                    <form
+                        id="lendResourceForm"
+                        class="lend-form"
+                        novalidate
+                    >
+
+                        <!-- Resource Title -->
+
+                        <div class="form-group">
+
+                            <label for="resourceTitle">
+                                Resource Title
+                                <span>*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                id="resourceTitle"
+                                name="title"
+                                placeholder="e.g. Programming Books"
+                                maxlength="100"
+                                autocomplete="off"
+                                required
+                            />
+
+                            <small
+                                class="field-error"
+                                id="titleError"
+                            ></small>
+
+                        </div>
+
+
+                        <!-- Description -->
+
+                        <div class="form-group">
+
+                            <label for="resourceDescription">
+                                Description
+                                <span>*</span>
+                            </label>
+
+                            <textarea
+                                id="resourceDescription"
+                                name="description"
+                                placeholder="Describe your resource, its condition, and anything borrowers should know..."
+                                maxlength="1000"
+                                rows="6"
+                                required
+                            ></textarea>
+
+                            <div class="character-count">
+                                <span id="descriptionCount">
+                                    0
+                                </span>
+                                /1000
+                            </div>
+
+                            <small
+                                class="field-error"
+                                id="descriptionError"
+                            ></small>
+
+                        </div>
+
+
+                        <!-- Category -->
+
+                        <div class="form-group">
+
+                            <label for="resourceCategory">
+                                Category
+                                <span>*</span>
+                            </label>
+
+                            <select
+                                id="resourceCategory"
+                                name="category"
+                                required
+                            >
+                                <option value="">
+                                    Select a category
+                                </option>
+
+                                <option value="electronics">
+                                    Electronics
+                                </option>
+
+                                <option value="books">
+                                    Books
+                                </option>
+
+                                <option value="tools">
+                                    Tools
+                                </option>
+
+                                <option value="sports">
+                                    Sports
+                                </option>
+
+                                <option value="others">
+                                    Others
+                                </option>
+                            </select>
+
+                            <small
+                                class="field-error"
+                                id="categoryError"
+                            ></small>
+
+                        </div>
+
+
+                        <!-- Pricing -->
+
+                        <div class="form-group">
+
+                            <label for="pricePerHour">
+                                Price per Hour (₹)
+                            </label>
+
+                            <input
+                                type="number"
+                                id="pricePerHour"
+                                name="price_per_hour"
+                                min="0"
+                                step="0.01"
+                                inputmode="decimal"
+                                placeholder="e.g. 50"
+                                value="0"
+                            />
+
+                            <small class="field-help">
+                                Enter 0 if this resource is not available for hourly rental.
+                            </small>
+
+                            <small
+                                class="field-error"
+                                id="pricePerHourError"
+                            ></small>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="pricePerDay">
+                                Price per Day (₹)
+                            </label>
+
+                            <input
+                                type="number"
+                                id="pricePerDay"
+                                name="price_per_day"
+                                min="0"
+                                step="0.01"
+                                inputmode="decimal"
+                                placeholder="e.g. 300"
+                                value="0"
+                            />
+
+                            <small class="field-help">
+                                Enter 0 if this resource is not available for daily rental.
+                            </small>
+
+                            <small
+                                class="field-error"
+                                id="pricePerDayError"
+                            ></small>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="buyPrice">
+                                Buy Price (₹)
+                            </label>
+
+                            <input
+                                type="number"
+                                id="buyPrice"
+                                name="buy_price"
+                                min="0"
+                                step="0.01"
+                                inputmode="decimal"
+                                placeholder="e.g. 1500"
+                                value="0"
+                            />
+
+                            <small class="field-help">
+                                Enter 0 if this resource is not available for purchase.
+                            </small>
+
+                            <small
+                                class="field-error"
+                                id="buyPriceError"
+                            ></small>
+
+                        </div>
+
+
+                        <!-- Location -->
+
+                        <div class="form-group">
+
+                            <label for="resourceLocation">
+                                Location
+                            </label>
+
+                            <input
+                                type="text"
+                                id="resourceLocation"
+                                name="location"
+                                placeholder="e.g. Kottayam"
+                                maxlength="100"
+                                autocomplete="address-level2"
+                            />
+
+                            <button
+                                type="button"
+                                class="location-btn"
+                                id="useCurrentLocationBtn"
+                            >
+                                <i
+                                    class="fa-solid fa-location-crosshairs"
+                                    aria-hidden="true"
+                                ></i>
+
+                                <span id="locationButtonText">
+                                    Use My Current Location
+                                </span>
+                            </button>
+
+                            <small
+                                class="field-help"
+                                id="locationHelp"
+                                aria-live="polite"
+                            >
+                                Enter your location manually or use GPS to detect it.
+                            </small>
+
+                            <small
+                                class="field-error"
+                                id="locationError"
+                                role="status"
+                                aria-live="polite"
+                            ></small>
+
+                        </div>
+
+
+                        <!-- Resource Image -->
+
+                        <div class="form-group">
+
+                            <label for="resourceImage">
+                                Resource Image
+                            </label>
+
+                            <div class="image-upload-wrapper">
+
+                                <!-- File Input -->
+
+                                <input
+                                    type="file"
+                                    id="resourceImage"
+                                    name="image"
+                                    accept="image/jpeg,image/png,image/webp"
+                                />
+
+
+                                <!-- Upload Area -->
+
+                                <label
+                                    for="resourceImage"
+                                    class="image-upload-area"
+                                    id="imageUploadArea"
+                                >
+
+                                    <div class="image-upload-icon">
+                                        <i
+                                            class="fa-solid fa-cloud-arrow-up"
+                                            aria-hidden="true"
+                                        ></i>
+                                    </div>
+
+                                    <strong>
+                                        Upload a resource image
+                                    </strong>
+
+                                    <span>
+                                        JPG, PNG or WEBP · Maximum 5 MB
+                                    </span>
+
+                                    <span
+                                        class="image-upload-filename"
+                                        id="imageFileName"
+                                    >
+                                        No image selected
+                                    </span>
+
+                                </label>
+
+
+                                <!-- Image Preview -->
+
+                                <div
+                                    class="image-preview"
+                                    id="imagePreview"
+                                    hidden
+                                >
+
+                                    <img
+                                        id="imagePreviewImg"
+                                        alt="Resource image preview"
+                                        decoding="async"
+                                    />
+
+                                    <button
+                                        type="button"
+                                        id="removeImageButton"
+                                        class="remove-image-btn"
+                                        aria-label="Remove selected image"
+                                    >
+                                        <i
+                                            class="fa-solid fa-xmark"
+                                            aria-hidden="true"
+                                        ></i>
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                            <small class="field-help">
+                                Upload a clear photo of the resource so borrowers can identify
+                                it easily.
+                            </small>
+
+                            <small
+                                class="field-error"
+                                id="imageError"
+                            ></small>
+
+                        </div>
+
+
+                        <!-- Information Box -->
+
+                        <div class="form-info">
+
+                            <div class="info-icon">
+                                <i
+                                    class="fa-solid fa-circle-info"
+                                    aria-hidden="true"
+                                ></i>
+                            </div>
+
+                            <div>
+                                <strong>
+                                    Before you share
+                                </strong>
+
+                                <p>
+                                    Make sure the resource is available to borrow and provide
+                                    accurate information about its condition.
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <!-- Form Message -->
+
+                        <div
+                            class="form-message"
+                            id="formMessage"
+                            role="alert"
+                            aria-live="polite"
+                        ></div>
+
+
+                        <!-- Form Actions -->
+
+                        <div class="form-actions">
+
+                            <a
+                                href="../Phase 2/explore.html"
+                                class="btn btn-secondary"
+                            >
+                                <i
+                                    class="fa-solid fa-arrow-left"
+                                    aria-hidden="true"
+                                ></i>
+                                Cancel
+                            </a>
+
+                            <button
+                                type="submit"
+                                class="btn btn-primary"
+                                id="submitResourceBtn"
+                            >
+                                <i
+                                    class="fa-solid fa-hand-holding-heart"
+                                    aria-hidden="true"
+                                ></i>
+                                Share Resource
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ==================================================
+         FOOTER
+         ================================================== -->
+
+    <footer class="footer">
+
+        <div class="container footer-container">
+
+            <div class="footer-brand">
+
+                <a
+                    href="../index.html"
+                    class="footer-logo"
+                    aria-label="EcoShare Home"
+                >
+                    <img
+                        src="https://cplbvftcbiwgqkeqmrbq.supabase.co/storage/v1/object/public/site-assets/logo.png"
+                        alt="EcoShare logo"
+                        width="48"
+                        height="48"
+                        loading="lazy"
+                        decoding="async"
+                    />
+
+                   
+                </a>
+
+                <p>
+                    Share resources. Build community. Reduce waste.
+                </p>
+
+            </div>
+
+
+            <div class="footer-bottom">
+
+                <p>
+                    &copy; 2026 EcoShare. All rights reserved.
+                </p>
+
+                <p>
+                    Built for a more sustainable community.
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- ==================================================
+         JAVASCRIPT
+         ================================================== -->
+
+    <!-- Supabase SDK -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+    ></script>
+
+
+    <!-- Supabase Client -->
+
+    <script
+        src="../Phase 1/supabase.js"
+    ></script>
+
+
+    <!-- Global Shared UI -->
+
+    <script
+        src="../Phase 1/page.js"
+    ></script>
+
+
+    <!-- Lend Resource Logic -->
+
+    <script
+        src="lend-resource.js"
+    ></script>
+
+</body>
+
+</html>

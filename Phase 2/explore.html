@@ -1,0 +1,626 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="description"
+      content="Explore resources shared by the EcoShare community and find useful items to borrow."
+    />
+
+    <meta name="theme-color" content="#ffffff" />
+
+    <title>Explore Resources | EcoShare</title>
+
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://cplbvftcbiwgqkeqmrbq.supabase.co/storage/v1/object/public/site-assets/logo.png"
+    />
+
+    <!-- Font Awesome -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+
+    <!-- Global EcoShare Styles -->
+    <link rel="stylesheet" href="../Phase 1/page.css" />
+
+    <!-- Explore Page Styles -->
+    <link rel="stylesheet" href="explore.css" />
+  </head>
+
+  <body>
+    <!-- =========================================================
+         HEADER / NAVIGATION
+         ========================================================= -->
+    <header class="header">
+      <div class="container navbar">
+        <!-- =====================================================
+                 LOGO
+                 ===================================================== -->
+
+        <a href="../index.html" class="logo" aria-label="EcoShare Home">
+          <img
+            id="siteLogo"
+            src="https://cplbvftcbiwgqkeqmrbq.supabase.co/storage/v1/object/public/site-assets/logo.png"
+            alt="EcoShare logo"
+            width="120"
+            height="120"
+            decoding="async"
+            fetchpriority="high"
+          />
+        </a>
+
+        <!-- =====================================================
+                 PRIMARY NAVIGATION
+                 ===================================================== -->
+
+        <nav
+          class="primary-navigation"
+          id="primary-navigation"
+          aria-label="Main navigation"
+        >
+          <!-- Home -->
+
+          <a href="../index.html" class="nav-link" aria-current="page">
+            <i class="fa-solid fa-house" aria-hidden="true"></i>
+
+            <span>Home</span>
+          </a>
+
+          <!-- Explore -->
+
+          <a href="../Phase 2/explore.html" class="nav-link">
+            <i class="fa-solid fa-compass" aria-hidden="true"></i>
+
+            <span>Explore</span>
+          </a>
+
+          <!-- Community -->
+
+          <a href="../Phase 4/community.html" class="nav-link">
+            <i class="fa-solid fa-users" aria-hidden="true"></i>
+
+            <span>Community</span>
+          </a>
+
+          <!-- Messages -->
+
+          <a
+            href="../Phase 3/messages.html"
+            class="nav-link"
+            id="messagesNavLink"
+          >
+            <i class="fa-solid fa-message" aria-hidden="true"></i>
+
+            <span>Messages</span>
+          </a>
+
+          <!-- Notifications -->
+
+          <a
+            href="../Phase 3/notifications.html"
+            class="nav-link notifications-nav-link"
+            id="notificationsNavLink"
+          >
+            <i class="fa-solid fa-bell" aria-hidden="true"></i>
+
+            <span>Notifications</span>
+
+            <span
+              id="notificationUnreadBadge"
+              class="notification-unread-badge"
+              aria-label="Unread notifications"
+              hidden
+            >
+              0
+            </span>
+          </a>
+        </nav>
+
+        <!-- =====================================================
+                 LOGIN / REGISTRATION
+                 ===================================================== -->
+
+        <a
+          href="../Phase 1/login.html"
+          class="login-nav-btn"
+          id="authNavButton"
+        >
+          <i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i>
+
+          <span>Login</span>
+        </a>
+
+        <a
+          href="../Phase 1/register.html"
+          class="register-nav-btn"
+          id="registerNavButton"
+        >
+          <i class="fa-solid fa-user-plus" aria-hidden="true"></i>
+
+          <span>Register</span>
+        </a>
+
+        <!-- =====================================================
+                 PROFILE DROPDOWN
+                 ===================================================== -->
+
+        <div class="profile-dropdown" id="profileDropdown" hidden>
+          <!-- Profile Avatar Button -->
+
+          <button
+            type="button"
+            class="profile-avatar-btn"
+            id="profileAvatarBtn"
+            aria-label="Open profile menu"
+            aria-expanded="false"
+            aria-controls="profileMenu"
+          >
+            <img
+              id="navProfilePhoto"
+              src=""
+              alt="Your profile"
+              class="profile-avatar"
+              width="40"
+              height="40"
+              decoding="async"
+            />
+
+            <i
+              class="fa-solid fa-chevron-down profile-chevron"
+              aria-hidden="true"
+            ></i>
+          </button>
+
+          <!-- Profile Menu -->
+
+          <div class="profile-menu" id="profileMenu" hidden>
+            <!-- Profile Information -->
+
+            <div class="profile-menu-header">
+              <img
+                id="menuProfilePhoto"
+                src=""
+                alt=""
+                class="profile-menu-avatar"
+                width="48"
+                height="48"
+                decoding="async"
+              />
+
+              <div class="profile-menu-user">
+                <a
+                  href="../Phase 1/profile.html"
+                  class="profile-menu-user-link"
+                  aria-label="Open your profile"
+                >
+                  <strong id="menuProfileName"> My Account </strong>
+
+                  <span id="menuProfileEmail"> EcoShare Member </span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Profile -->
+
+            <a href="../Phase 1/profile.html" class="profile-menu-item">
+              <i class="fa-solid fa-user" aria-hidden="true"></i>
+
+              <span>My Profile</span>
+            </a>
+
+            <!-- Admin Dashboard -->
+
+            <a
+              href="../Phase 1/admin-dashboard.html"
+              class="profile-menu-item"
+              id="adminDashboardLink"
+              hidden
+            >
+              <i class="fa-solid fa-user-shield" aria-hidden="true"></i>
+
+              <span>Admin Dashboard</span>
+            </a>
+
+            <!-- User Dashboard -->
+
+            <a
+              href="../Phase 1/user-dashboard.html"
+              class="profile-menu-item"
+              id="userDashboardLink"
+              hidden
+            >
+              <i class="fa-solid fa-gauge-high" aria-hidden="true"></i>
+
+              <span>User Dashboard</span>
+            </a>
+
+            <!-- Resource Management -->
+
+            <a href="../Phase 2/my-listings.html" class="profile-menu-item">
+              <i class="fa-solid fa-box" aria-hidden="true"></i>
+
+              <span>My Resource Listings</span>
+            </a>
+
+            <a href="../Phase 2/lend-resource.html" class="profile-menu-item">
+              <i class="fa-solid fa-hand-holding-heart" aria-hidden="true"></i>
+
+              <span>Lend a Resource</span>
+            </a>
+
+            <a href="../Phase 2/my-requests.html" class="profile-menu-item">
+              <i class="fa-solid fa-handshake" aria-hidden="true"></i>
+
+              <span>My Borrow Requests</span>
+            </a>
+
+            <a
+              href="../Phase 2/incoming-requests.html"
+              class="profile-menu-item"
+            >
+              <i class="fa-solid fa-inbox" aria-hidden="true"></i>
+
+              <span>Incoming Borrow Requests</span>
+            </a>
+
+            <div class="profile-menu-divider"></div>
+
+            <div class="sidebar-divider"></div>
+            <!-- Information -->
+
+            <a href="../Phase 1/about.html" class="profile-menu-item">
+              <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+
+              <span>About EcoShare</span>
+            </a>
+
+            <a href="../Phase 1/contact.html" class="profile-menu-item">
+              <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+
+              <span>Contact Us</span>
+            </a>
+
+            <div class="profile-menu-divider"></div>
+
+            <!-- Logout -->
+
+            <button
+              type="button"
+              class="profile-menu-item logout-menu-item"
+              id="profileLogoutBtn"
+            >
+              <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>
+
+              <span>Logout</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- =====================================================
+                 MOBILE NAVIGATION BUTTON
+                 ===================================================== -->
+
+        <button
+          type="button"
+          class="menu-btn"
+          id="menu-btn"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          aria-controls="primary-navigation"
+        >
+          <i class="fa-solid fa-bars" aria-hidden="true"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- =========================================================
+         MAIN CONTENT
+         ========================================================= -->
+
+    <main id="main-content">
+      <!-- =====================================================
+             EXPLORE HERO
+             ===================================================== -->
+
+      <section class="explore-hero">
+        <div class="container">
+          <div class="explore-hero-content">
+            <span class="explore-label">
+              <i class="fa-solid fa-leaf" aria-hidden="true"></i>
+              Community Resources
+            </span>
+
+            <h1>Explore Resources</h1>
+
+            <p>
+              Find useful resources shared by people in your community. Borrow
+              what you need instead of buying something you may only use once.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================
+             RESOURCE EXPLORER
+             ===================================================== -->
+
+      <section class="explore-section" id="explore-resources">
+        <div class="container">
+          <!-- Resource Controls -->
+          <div class="resource-controls">
+            <!-- Search -->
+            <div class="explore-search">
+              <label for="resourceSearch" class="sr-only">
+                Search resources
+              </label>
+
+              <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+
+                <input
+                  type="search"
+                  id="resourceSearch"
+                  placeholder="Search resources..."
+                  autocomplete="off"
+                  aria-label="Search resources"
+                />
+
+                <button type="button" class="search-btn" id="searchBtn">
+                  Search
+                </button>
+              </div>
+            </div>
+
+            <!-- Filter Row -->
+            <div class="filter-row">
+              <!-- Category -->
+              <div class="filter-group">
+                <label for="categoryFilter"> Category </label>
+
+                <select id="categoryFilter">
+                  <option value="all">All Categories</option>
+
+                  <option value="electronics">Electronics</option>
+
+                  <option value="books">Books</option>
+
+                  <option value="tools">Tools</option>
+
+                  <option value="sports">Sports</option>
+
+                  <option value="others">Others</option>
+                </select>
+              </div>
+
+              <!-- Availability -->
+              <div class="filter-group">
+                <label for="availabilityFilter"> Availability </label>
+
+                <select id="availabilityFilter">
+                  <option value="all">All Resources</option>
+
+                  <option value="available">Available</option>
+
+                  <option value="unavailable">Currently Borrowed</option>
+                </select>
+              </div>
+
+              <!-- Distance -->
+              <div class="filter-group">
+                <label for="distanceFilter"> Distance </label>
+
+                <select id="distanceFilter" aria-describedby="distanceHelp">
+                  <option value="all">Any Distance</option>
+
+                  <option value="1">Within 1 km</option>
+
+                  <option value="5">Within 5 km</option>
+
+                  <option value="10">Within 10 km</option>
+
+                  <option value="15">Within 15 km</option>
+
+                  <option value="20">Within 20 km</option>
+
+                  <option value="30">Within 30 km</option>
+                </select>
+
+                <span id="distanceHelp" class="sr-only">
+                  Distance filtering uses your saved profile location or current
+                  location when available. Location access is requested only
+                  when needed.
+                </span>
+              </div>
+
+              <!-- Reset -->
+              <div class="filter-group filter-reset-group">
+                <button
+                  type="button"
+                  class="reset-filter-btn"
+                  id="resetFilters"
+                >
+                  <i class="fa-solid fa-rotate-left" aria-hidden="true"></i>
+
+                  <span> Reset Filters </span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Results Header -->
+          <div class="results-header">
+            <div>
+              <h2>Resources</h2>
+
+              <p id="resultsCount" aria-live="polite">Showing resources</p>
+            </div>
+
+            <!-- Sort -->
+            <div class="sort-group">
+              <label for="sortFilter"> Sort by </label>
+
+              <select id="sortFilter">
+                <option value="newest">Newest</option>
+
+                <option value="name-asc">Name: A–Z</option>
+
+                <option value="name-desc">Name: Z–A</option>
+
+                <option value="distance-asc">Distance: Nearest</option>
+
+                <option value="price-asc">Price: Lowest</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Resource Grid -->
+          <div
+            class="resource-grid"
+            id="resourceGrid"
+            aria-live="polite"
+            aria-busy="false"
+          ></div>
+
+          <!-- Loading State -->
+          <div
+            class="resource-loading"
+            id="resourceLoading"
+            hidden
+            aria-live="polite"
+            aria-busy="true"
+          >
+            <div class="loading-spinner" aria-hidden="true">
+              <i class="fa-solid fa-spinner fa-spin"></i>
+            </div>
+
+            <p>Loading resources...</p>
+          </div>
+
+          <!-- Error State -->
+          <div class="resource-error" id="resourceError" hidden role="alert">
+            <div class="resource-error-icon" aria-hidden="true">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+
+            <h3>Unable to load resources</h3>
+
+            <p id="resourceErrorMessage">
+              We couldn't load the available resources. Please try again.
+            </p>
+
+            <button type="button" class="primary-btn" id="retryResourcesBtn">
+              <i class="fa-solid fa-rotate-right" aria-hidden="true"></i>
+
+              Try Again
+            </button>
+          </div>
+
+          <!-- Empty State -->
+          <div class="no-resources" id="noResources" hidden>
+            <div class="no-resources-icon" aria-hidden="true">
+              <i class="fa-solid fa-box-open"></i>
+            </div>
+
+            <h3>No resources found</h3>
+
+            <p>
+              No resources match your current search or filters. Try changing
+              your search or resetting the filters.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================
+             LEND RESOURCE CTA
+             ===================================================== -->
+
+      <section class="explore-cta">
+        <div class="container">
+          <div class="explore-cta-content">
+            <!-- CTA Icon -->
+            <div class="explore-cta-icon" aria-hidden="true">
+              <i class="fa-solid fa-hand-holding-heart"></i>
+            </div>
+
+            <!-- CTA Text -->
+            <div class="explore-cta-text">
+              <h2>Have something useful to share?</h2>
+
+              <p>
+                Give your unused resources a second life by sharing them with
+                your community.
+              </p>
+            </div>
+
+            <!-- CTA Button -->
+            <a href="../Phase 2/lend-resource.html" class="primary-btn">
+              <i class="fa-solid fa-plus" aria-hidden="true"></i>
+
+              Lend a Resource
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- =========================================================
+         FOOTER
+         ========================================================= -->
+
+    <footer class="footer">
+      <div class="container footer-container">
+        <div class="footer-brand">
+          <a
+            href="../index.html"
+            class="footer-logo"
+            aria-label="EcoShare Home"
+          >
+            <img
+              src="https://cplbvftcbiwgqkeqmrbq.supabase.co/storage/v1/object/public/site-assets/logo.png"
+              alt="EcoShare logo"
+              width="120"
+              height="120"
+              decoding="async"
+            />
+          </a>
+
+          <p>Share resources. Build community. Reduce waste.</p>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2026 EcoShare. All rights reserved.</p>
+
+          <p>Built for a more sustainable community.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- =========================================================
+         JAVASCRIPT
+         ========================================================= -->
+
+    <!-- Supabase SDK -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+      defer
+    ></script>
+
+    <!-- Supabase Configuration -->
+    <script src="../Phase 1/supabase.js" defer></script>
+
+    <!-- Global EcoShare Functionality -->
+    <script src="../Phase 1/page.js" defer></script>
+
+    <!-- Explore Page Functionality -->
+    <script src="explore.js" defer></script>
+  </body>
+</html>

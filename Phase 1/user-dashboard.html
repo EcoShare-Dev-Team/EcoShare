@@ -1,0 +1,839 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="description"
+      content="EcoShare user dashboard - manage your shared resources and borrowing requests."
+    />
+
+    <meta name="theme-color" content="#538d22" />
+
+    <title>User Dashboard | EcoShare</title>
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+    <!-- Global EcoShare Design System -->
+    <link rel="stylesheet" href="page.css" />
+
+    <!-- User Dashboard Styles -->
+    <link rel="stylesheet" href="user-dashboard.css" />
+  </head>
+
+  <body class="dashboard-page">
+    <!-- =====================================================
+         HEADER / NAVBAR
+         ===================================================== -->
+
+    <header class="header">
+      <div class="container navbar">
+        <button
+          type="button"
+          class="menu-btn"
+          id="menu-btn"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          aria-controls="primary-navigation"
+        >
+          <i class="fa-solid fa-bars" aria-hidden="true"></i>
+        </button>
+        <!-- =====================================================
+                 LOGO
+                 ===================================================== -->
+
+        <a href="../index.html" class="logo" aria-label="EcoShare Home">
+          <img
+            id="siteLogo"
+            src="https://cplbvftcbiwgqkeqmrbq.supabase.co/storage/v1/object/public/site-assets/logo.png"
+            alt="EcoShare logo"
+            width="120"
+            height="120"
+            decoding="async"
+            fetchpriority="high"
+          />
+        </a>
+
+        <!-- =====================================================
+                 PRIMARY NAVIGATION
+                 ===================================================== -->
+
+        <nav
+          class="primary-navigation"
+          id="primary-navigation"
+          aria-label="Main navigation"
+        >
+          <!-- Home -->
+
+          <a href="../index.html" class="nav-link" aria-current="page">
+            <i class="fa-solid fa-house" aria-hidden="true"></i>
+
+            <span>Home</span>
+          </a>
+
+          <!-- Explore -->
+
+          <a href="../Phase 2/explore.html" class="nav-link">
+            <i class="fa-solid fa-compass" aria-hidden="true"></i>
+
+            <span>Explore</span>
+          </a>
+
+          <!-- Community -->
+
+          <a href="../Phase 4/community.html" class="nav-link">
+            <i class="fa-solid fa-users" aria-hidden="true"></i>
+
+            <span>Community</span>
+          </a>
+
+          <!-- Messages -->
+
+          <a
+            href="../Phase 3/messages.html"
+            class="nav-link"
+            id="messagesNavLink"
+          >
+            <i class="fa-solid fa-message" aria-hidden="true"></i>
+
+            <span>Messages</span>
+          </a>
+
+          <!-- Notifications -->
+
+          <a
+            href="../Phase 3/notifications.html"
+            class="nav-link notifications-nav-link"
+            id="notificationsNavLink"
+          >
+            <i class="fa-solid fa-bell" aria-hidden="true"></i>
+
+            <span>Notifications</span>
+
+            <span
+              id="notificationUnreadBadge"
+              class="notification-unread-badge"
+              aria-label="Unread notifications"
+              hidden
+            >
+              0
+            </span>
+          </a>
+        </nav>
+
+        <!-- =====================================================
+                 LOGIN / REGISTRATION
+                 ===================================================== -->
+
+        <a
+          href="../Phase 1/login.html"
+          class="login-nav-btn"
+          id="authNavButton"
+        >
+          <i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i>
+
+          <span>Login</span>
+        </a>
+
+        <a
+          href="../Phase 1/register.html"
+          class="register-nav-btn"
+          id="registerNavButton"
+        >
+          <i class="fa-solid fa-user-plus" aria-hidden="true"></i>
+
+          <span>Register</span>
+        </a>
+
+        <!-- =====================================================
+                 PROFILE DROPDOWN
+                 ===================================================== -->
+
+        <div class="profile-dropdown" id="profileDropdown" hidden>
+          <!-- Profile Avatar Button -->
+
+          <button
+            type="button"
+            class="profile-avatar-btn"
+            id="profileAvatarBtn"
+            aria-label="Open profile menu"
+            aria-expanded="false"
+            aria-controls="profileMenu"
+          >
+            <img
+              id="navProfilePhoto"
+              src=""
+              alt="Your profile"
+              class="profile-avatar"
+              width="40"
+              height="40"
+              decoding="async"
+            />
+
+            <i
+              class="fa-solid fa-chevron-down profile-chevron"
+              aria-hidden="true"
+            ></i>
+          </button>
+
+          <!-- Profile Menu -->
+
+          <div class="profile-menu" id="profileMenu" hidden>
+            <!-- Profile Information -->
+
+            <div class="profile-menu-header">
+              <img
+                id="menuProfilePhoto"
+                src=""
+                alt=""
+                class="profile-menu-avatar"
+                width="48"
+                height="48"
+                decoding="async"
+              />
+
+              <div class="profile-menu-user">
+                <a
+                  href="../Phase 1/profile.html"
+                  class="profile-menu-user-link"
+                  aria-label="Open your profile"
+                >
+                  <strong id="menuProfileName"> My Account </strong>
+
+                  <span id="menuProfileEmail"> EcoShare Member </span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Profile -->
+
+            <a href="../Phase 1/profile.html" class="profile-menu-item">
+              <i class="fa-solid fa-user" aria-hidden="true"></i>
+
+              <span>My Profile</span>
+            </a>
+
+            <!-- Admin Dashboard -->
+
+            <a
+              href="../Phase 1/admin-dashboard.html"
+              class="profile-menu-item"
+              id="adminDashboardLink"
+              hidden
+            >
+              <i class="fa-solid fa-user-shield" aria-hidden="true"></i>
+
+              <span>Admin Dashboard</span>
+            </a>
+
+            <!-- User Dashboard -->
+
+            <a
+              href="../Phase 1/user-dashboard.html"
+              class="profile-menu-item"
+              id="userDashboardLink"
+              hidden
+            >
+              <i class="fa-solid fa-gauge-high" aria-hidden="true"></i>
+
+              <span>User Dashboard</span>
+            </a>
+
+            <!-- Resource Management -->
+
+            <a href="../Phase 2/my-listings.html" class="profile-menu-item">
+              <i class="fa-solid fa-box" aria-hidden="true"></i>
+
+              <span>My Resource Listings</span>
+            </a>
+
+            <a href="../Phase 2/lend-resource.html" class="profile-menu-item">
+              <i class="fa-solid fa-hand-holding-heart" aria-hidden="true"></i>
+
+              <span>Lend a Resource</span>
+            </a>
+
+            <a href="../Phase 2/my-requests.html" class="profile-menu-item">
+              <i class="fa-solid fa-handshake" aria-hidden="true"></i>
+
+              <span>My Borrow Requests</span>
+            </a>
+
+            <a
+              href="../Phase 2/incoming-requests.html"
+              class="profile-menu-item"
+            >
+              <i class="fa-solid fa-inbox" aria-hidden="true"></i>
+
+              <span>Incoming Borrow Requests</span>
+            </a>
+
+            <div class="profile-menu-divider"></div>
+
+            <div class="sidebar-divider"></div>
+            <!-- Information -->
+
+            <a href="../Phase 1/about.html" class="profile-menu-item">
+              <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+
+              <span>About EcoShare</span>
+            </a>
+
+            <a href="../Phase 1/contact.html" class="profile-menu-item">
+              <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+
+              <span>Contact Us</span>
+            </a>
+
+            <div class="profile-menu-divider"></div>
+
+            <!-- Logout -->
+
+            <button
+              type="button"
+              class="profile-menu-item logout-menu-item"
+              id="profileLogoutBtn"
+            >
+              <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>
+
+              <span>Logout</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- =====================================================
+                 MOBILE NAVIGATION BUTTON
+                 ===================================================== -->
+      </div>
+    </header>
+
+    <!-- =====================================================
+         MAIN DASHBOARD
+         ===================================================== -->
+
+    <main class="dashboard-container" id="main-content">
+      <!-- =================================================
+             DASHBOARD HERO
+             ================================================== -->
+
+      <section class="welcome-section" aria-labelledby="welcomeHeading">
+        <div class="welcome-content">
+          <span class="welcome-eyebrow"> ECOSHARE DASHBOARD </span>
+
+          <h1 id="welcomeHeading">
+            Welcome back,
+            <span id="userName">EcoShare Member</span>!
+          </h1>
+
+          <p class="welcome-description">
+            Manage your shared resources, track requests, and keep your EcoShare
+            activity organized.
+          </p>
+
+          <div class="welcome-actions">
+            <a href="../Phase 2/explore.html" class="hero-secondary-btn">
+              <i class="fa-solid fa-compass" aria-hidden="true"></i>
+              Explore Resources
+            </a>
+
+            <a href="../Phase 2/lend-resource.html" class="hero-primary-btn">
+              <i class="fa-solid fa-plus" aria-hidden="true"></i>
+              Share a Resource
+            </a>
+          </div>
+        </div>
+
+        <!-- Decorative Visual -->
+        <div class="welcome-visual" aria-hidden="true">
+          <div class="welcome-circle welcome-circle-one"></div>
+          <div class="welcome-circle welcome-circle-two"></div>
+
+          <div class="welcome-leaf">
+            <i class="fa-solid fa-leaf"></i>
+          </div>
+
+          <div class="welcome-floating-card welcome-card-top">
+            <i class="fa-solid fa-box"></i>
+            <span>Share resources</span>
+          </div>
+
+          <div class="welcome-floating-card welcome-card-bottom">
+            <i class="fa-solid fa-handshake"></i>
+            <span>Build community</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================
+             PROFILE CARD
+             ================================================== -->
+
+      <section
+        class="profile-card"
+        id="profileSection"
+        aria-labelledby="profileHeading"
+      >
+        <div class="profile-card-main">
+          <a
+            href="profile.html"
+            class="dashboard-avatar-wrapper"
+            aria-label="View your profile"
+          >
+            <img
+              id="profileAvatar"
+              class="dashboard-profile-avatar"
+              alt="Profile picture"
+              width="96"
+              height="96"
+              decoding="async"
+            />
+          </a>
+
+          <div class="profile-info">
+            <span class="profile-label"> YOUR ACCOUNT </span>
+
+            <h2 id="profileHeading">
+              <span id="profileName"> EcoShare Member </span>
+            </h2>
+
+            <p id="profileEmail">—</p>
+
+            <span class="role-badge">
+              <i class="fa-solid fa-user" aria-hidden="true"></i>
+              Member
+            </span>
+          </div>
+        </div>
+
+        <a href="profile.html" class="edit-profile-btn">
+          <i class="fa-solid fa-pen" aria-hidden="true"></i>
+          <span>Edit Profile</span>
+        </a>
+      </section>
+
+      <!-- =================================================
+             STATISTICS
+             ================================================== -->
+
+      <section class="stats-grid" aria-label="Dashboard statistics">
+        <!-- My Listings -->
+        <a
+          href="../Phase 2/my-listings.html"
+          class="stat-card stat-card-green"
+          id="myListingsStat"
+          aria-label="View my resource listings"
+        >
+          <div class="stat-top">
+            <div class="stat-icon">
+              <i class="fa-solid fa-box" aria-hidden="true"></i>
+            </div>
+
+            <span class="stat-arrow">
+              <i
+                class="fa-solid fa-arrow-up-right-from-square"
+                aria-hidden="true"
+              ></i>
+            </span>
+          </div>
+
+          <div class="stat-content">
+            <span class="stat-label"> MY LISTINGS </span>
+
+            <strong id="totalListings"> 0 </strong>
+
+            <p>Resources you've shared</p>
+          </div>
+        </a>
+
+        <!-- Pending Requests -->
+        <a
+          href="../Phase 2/incoming-requests.html?status=pending"
+          class="stat-card stat-card-blue"
+          id="pendingRequestsStat"
+          aria-label="View pending requests received"
+        >
+          <div class="stat-top">
+            <div class="stat-icon">
+              <i class="fa-solid fa-clock" aria-hidden="true"></i>
+            </div>
+
+            <span class="stat-arrow">
+              <i
+                class="fa-solid fa-arrow-up-right-from-square"
+                aria-hidden="true"
+              ></i>
+            </span>
+          </div>
+
+          <div class="stat-content">
+            <span class="stat-label"> PENDING REQUESTS </span>
+
+            <strong id="pendingRequests"> 0 </strong>
+
+            <p>Waiting for your response</p>
+          </div>
+        </a>
+
+        <!-- Approved Requests -->
+        <a
+          href="../Phase 2/incoming-requests.html?status=approved"
+          class="stat-card stat-card-orange"
+          id="approvedRequestsStat"
+          aria-label="View approved requests received"
+        >
+          <div class="stat-top">
+            <div class="stat-icon">
+              <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+            </div>
+
+            <span class="stat-arrow">
+              <i
+                class="fa-solid fa-arrow-up-right-from-square"
+                aria-hidden="true"
+              ></i>
+            </span>
+          </div>
+
+          <div class="stat-content">
+            <span class="stat-label"> APPROVED REQUESTS </span>
+
+            <strong id="approvedRequests"> 0 </strong>
+
+            <p>Requests you've approved</p>
+          </div>
+        </a>
+
+        <!-- My Borrow Requests -->
+        <a
+          href="../Phase 2/my-requests.html"
+          class="stat-card stat-card-purple"
+          id="myBorrowRequestsStat"
+          aria-label="View my borrowing activity"
+        >
+          <div class="stat-top">
+            <div class="stat-icon">
+              <i class="fa-solid fa-handshake" aria-hidden="true"></i>
+            </div>
+
+            <span class="stat-arrow">
+              <i
+                class="fa-solid fa-arrow-up-right-from-square"
+                aria-hidden="true"
+              ></i>
+            </span>
+          </div>
+
+          <div class="stat-content">
+            <span class="stat-label"> MY BORROW REQUESTS </span>
+
+            <strong id="myBorrowRequests"> 0 </strong>
+
+            <p>Your borrowing activity</p>
+          </div>
+        </a>
+      </section>
+
+      <!-- =================================================
+             MY LISTINGS
+             ================================================== -->
+
+      <section
+        class="dashboard-section"
+        id="myListingsSection"
+        aria-labelledby="myListingsHeading"
+      >
+        <div class="section-heading dashboard-section-heading">
+          <div class="section-title-left">
+            <span class="section-eyebrow"> YOUR RESOURCES </span>
+
+            <h2 id="myListingsHeading">My Listings</h2>
+
+            <p>Resources you've shared with the community.</p>
+          </div>
+
+          <a
+            href="../Phase 2/lend-resource.html"
+            class="primary-btn"
+            id="addResourceBtn"
+          >
+            <i class="fa-solid fa-plus" aria-hidden="true"></i>
+            <span>Add Resource</span>
+          </a>
+        </div>
+
+        <div
+          id="listingsContainer"
+          class="listings-grid"
+          aria-live="polite"
+          aria-busy="false"
+        ></div>
+      </section>
+
+      <!-- =================================================
+             RECEIVED REQUESTS
+             ================================================== -->
+
+      <section
+        class="dashboard-section"
+        id="receivedRequestsSection"
+        aria-labelledby="receivedRequestsHeading"
+      >
+        <div class="section-heading">
+          <div class="section-title-left">
+            <span class="section-eyebrow"> RESOURCE ACTIVITY </span>
+
+            <h2 id="receivedRequestsHeading">Received Requests</h2>
+
+            <p>People requesting resources you've shared.</p>
+          </div>
+        </div>
+
+        <!-- Filters -->
+        <div
+          class="request-toolbar"
+          id="receivedRequestFilters"
+          aria-label="Filter received requests"
+        >
+          <span class="filter-label">
+            <i class="fa-solid fa-filter" aria-hidden="true"></i>
+            Filter
+          </span>
+
+          <button
+            type="button"
+            class="filter-btn active"
+            data-request-filter="all"
+            aria-pressed="true"
+          >
+            All
+          </button>
+
+          <button
+            type="button"
+            class="filter-btn"
+            data-request-filter="pending"
+            aria-pressed="false"
+          >
+            Pending
+          </button>
+
+          <button
+            type="button"
+            class="filter-btn"
+            data-request-filter="approved"
+            aria-pressed="false"
+          >
+            Approved
+          </button>
+
+          <button
+            type="button"
+            class="filter-btn"
+            data-request-filter="rejected"
+            aria-pressed="false"
+          >
+            Rejected
+          </button>
+
+          <button
+            type="button"
+            class="filter-btn"
+            data-request-filter="cancelled"
+            aria-pressed="false"
+          >
+            Cancelled
+          </button>
+        </div>
+
+        <!-- Table -->
+        <div class="table-wrapper">
+          <table class="dashboard-table">
+            <thead>
+              <tr>
+                <th scope="col">Resource</th>
+                <th scope="col">Borrower</th>
+                <th scope="col">Message</th>
+                <th scope="col">Status</th>
+                <th scope="col">Date</th>
+              </tr>
+            </thead>
+
+            <tbody id="receivedRequestsBody">
+              <tr>
+                <td colspan="5" class="loading-text">Loading requests...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- =================================================
+             MY BORROWING ACTIVITY
+             ================================================== -->
+
+      <section
+        class="dashboard-section"
+        id="myBorrowingSection"
+        aria-labelledby="myBorrowingHeading"
+      >
+        <div class="section-heading">
+          <div class="section-title-left">
+            <span class="section-eyebrow"> BORROWING ACTIVITY </span>
+
+            <h2 id="myBorrowingHeading">My Borrow Requests</h2>
+
+            <p>Track resources you've requested from others.</p>
+          </div>
+        </div>
+
+        <!-- Filters -->
+        <div
+          class="request-toolbar"
+          id="myBorrowRequestFilters"
+          aria-label="Filter borrowing requests"
+        >
+          <span class="filter-label">
+            <i class="fa-solid fa-filter" aria-hidden="true"></i>
+            Filter
+          </span>
+
+          <button
+            type="button"
+            class="filter-btn active"
+            data-borrow-filter="all"
+            aria-pressed="true"
+          >
+            All
+          </button>
+
+          <button
+            type="button"
+            class="filter-btn"
+            data-borrow-filter="pending"
+            aria-pressed="false"
+          >
+            Pending
+          </button>
+
+          <button
+            type="button"
+            class="filter-btn"
+            data-borrow-filter="approved"
+            aria-pressed="false"
+          >
+            Approved
+          </button>
+
+          <button
+            type="button"
+            class="filter-btn"
+            data-borrow-filter="rejected"
+            aria-pressed="false"
+          >
+            Rejected
+          </button>
+
+          <button
+            type="button"
+            class="filter-btn"
+            data-borrow-filter="cancelled"
+            aria-pressed="false"
+          >
+            Cancelled
+          </button>
+
+          <button
+            type="button"
+            class="filter-btn"
+            data-borrow-filter="returned"
+            aria-pressed="false"
+          >
+            Returned
+          </button>
+        </div>
+
+        <!-- Table -->
+        <div class="table-wrapper">
+          <table class="dashboard-table">
+            <thead>
+              <tr>
+                <th scope="col">Resource</th>
+                <th scope="col">Message</th>
+                <th scope="col">Status</th>
+                <th scope="col">Date</th>
+              </tr>
+            </thead>
+
+            <tbody id="myRequestsBody">
+              <tr>
+                <td colspan="4" class="loading-text">
+                  Loading borrowing activity...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- =================================================
+             DASHBOARD MESSAGE
+             ================================================== -->
+
+      <div
+        id="dashboardMessage"
+        class="dashboard-message"
+        role="alert"
+        aria-live="assertive"
+        hidden
+      ></div>
+    </main>
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
+    <footer class="footer">
+      <div class="container footer-container">
+        <div class="footer-brand">
+          <img
+            src="https://cplbvftcbiwgqkeqmrbq.supabase.co/storage/v1/object/public/site-assets/logo.png"
+            alt="EcoShare"
+            class="footer-logo"
+            width="120"
+            height="120"
+            loading="lazy"
+            decoding="async"
+          />
+
+          <p>Share resources. Build community. Reduce waste.</p>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2026 EcoShare. All rights reserved.</p>
+
+          <p>Built for a more sustainable community.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- =====================================================
+         SCRIPTS
+         ===================================================== -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="supabase.js"></script>
+
+    <!-- Global EcoShare Behaviour -->
+    <script src="page.js"></script>
+
+    <!-- Dashboard-specific Behaviour -->
+    <script src="user-dashboard.js"></script>
+  </body>
+</html>

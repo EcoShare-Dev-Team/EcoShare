@@ -1,0 +1,704 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="description"
+      content="View details about a resource shared on EcoShare."
+    />
+
+    <title>Resource Details | EcoShare</title>
+
+    <!-- =====================================================
+         FONT AWESOME
+    ====================================================== -->
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+
+    <!-- =====================================================
+         GLOBAL STYLES
+    ====================================================== -->
+
+    <link rel="stylesheet" href="../Phase 1/style.css" />
+
+    <link rel="stylesheet" href="../Phase 1/page.css" />
+
+    <!-- =====================================================
+         PAGE STYLES
+    ====================================================== -->
+
+    <link rel="stylesheet" href="../Phase 2/resource-details.css" />
+  </head>
+
+  <body>
+    <!-- =====================================================
+         HEADER / NAVBAR
+    ====================================================== -->
+
+    <header class="header">
+      <div class="container navbar">
+        <button
+          type="button"
+          class="menu-btn"
+          id="menu-btn"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          aria-controls="primary-navigation"
+        >
+          <i class="fa-solid fa-bars" aria-hidden="true"></i>
+        </button>
+        <!-- =====================================================
+                 LOGO
+                 ===================================================== -->
+
+        <a href="../index.html" class="logo" aria-label="EcoShare Home">
+          <img
+            id="siteLogo"
+            src="https://cplbvftcbiwgqkeqmrbq.supabase.co/storage/v1/object/public/site-assets/logo.png"
+            alt="EcoShare logo"
+            width="120"
+            height="120"
+            decoding="async"
+            fetchpriority="high"
+          />
+        </a>
+
+        <!-- =====================================================
+                 PRIMARY NAVIGATION
+                 ===================================================== -->
+
+        <nav
+          class="primary-navigation"
+          id="primary-navigation"
+          aria-label="Main navigation"
+        >
+          <!-- Home -->
+
+          <a href="../index.html" class="nav-link" aria-current="page">
+            <i class="fa-solid fa-house" aria-hidden="true"></i>
+
+            <span>Home</span>
+          </a>
+
+          <!-- Explore -->
+
+          <a href="../Phase 2/explore.html" class="nav-link">
+            <i class="fa-solid fa-compass" aria-hidden="true"></i>
+
+            <span>Explore</span>
+          </a>
+
+          <!-- Community -->
+
+          <a href="../Phase 4/community.html" class="nav-link">
+            <i class="fa-solid fa-users" aria-hidden="true"></i>
+
+            <span>Community</span>
+          </a>
+
+          <!-- Messages -->
+
+          <a
+            href="../Phase 3/messages.html"
+            class="nav-link"
+            id="messagesNavLink"
+          >
+            <i class="fa-solid fa-message" aria-hidden="true"></i>
+
+            <span>Messages</span>
+          </a>
+
+          <!-- Notifications -->
+
+          <a
+            href="../Phase 3/notifications.html"
+            class="nav-link notifications-nav-link"
+            id="notificationsNavLink"
+          >
+            <i class="fa-solid fa-bell" aria-hidden="true"></i>
+
+            <span>Notifications</span>
+
+            <span
+              id="notificationUnreadBadge"
+              class="notification-unread-badge"
+              aria-label="Unread notifications"
+              hidden
+            >
+              0
+            </span>
+          </a>
+        </nav>
+
+        <!-- =====================================================
+                 LOGIN / REGISTRATION
+                 ===================================================== -->
+
+        <a
+          href="../Phase 1/login.html"
+          class="login-nav-btn"
+          id="authNavButton"
+        >
+          <i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i>
+
+          <span>Login</span>
+        </a>
+
+        <a
+          href="../Phase 1/register.html"
+          class="register-nav-btn"
+          id="registerNavButton"
+        >
+          <i class="fa-solid fa-user-plus" aria-hidden="true"></i>
+
+          <span>Register</span>
+        </a>
+
+        <!-- =====================================================
+                 PROFILE DROPDOWN
+                 ===================================================== -->
+
+        <div class="profile-dropdown" id="profileDropdown" hidden>
+          <!-- Profile Avatar Button -->
+
+          <button
+            type="button"
+            class="profile-avatar-btn"
+            id="profileAvatarBtn"
+            aria-label="Open profile menu"
+            aria-expanded="false"
+            aria-controls="profileMenu"
+          >
+            <img
+              id="navProfilePhoto"
+              src=""
+              alt="Your profile"
+              class="profile-avatar"
+              width="40"
+              height="40"
+              decoding="async"
+            />
+
+            <i
+              class="fa-solid fa-chevron-down profile-chevron"
+              aria-hidden="true"
+            ></i>
+          </button>
+
+          <!-- Profile Menu -->
+
+          <div class="profile-menu" id="profileMenu" hidden>
+            <!-- Profile Information -->
+
+            <div class="profile-menu-header">
+              <img
+                id="menuProfilePhoto"
+                src=""
+                alt=""
+                class="profile-menu-avatar"
+                width="48"
+                height="48"
+                decoding="async"
+              />
+
+              <div class="profile-menu-user">
+                <a
+                  href="../Phase 1/profile.html"
+                  class="profile-menu-user-link"
+                  aria-label="Open your profile"
+                >
+                  <strong id="menuProfileName"> My Account </strong>
+
+                  <span id="menuProfileEmail"> EcoShare Member </span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Profile -->
+
+            <a href="../Phase 1/profile.html" class="profile-menu-item">
+              <i class="fa-solid fa-user" aria-hidden="true"></i>
+
+              <span>My Profile</span>
+            </a>
+
+            <!-- Admin Dashboard -->
+
+            <a
+              href="../Phase 1/admin-dashboard.html"
+              class="profile-menu-item"
+              id="adminDashboardLink"
+              hidden
+            >
+              <i class="fa-solid fa-user-shield" aria-hidden="true"></i>
+
+              <span>Admin Dashboard</span>
+            </a>
+
+            <!-- User Dashboard -->
+
+            <a
+              href="../Phase 1/user-dashboard.html"
+              class="profile-menu-item"
+              id="userDashboardLink"
+              hidden
+            >
+              <i class="fa-solid fa-gauge-high" aria-hidden="true"></i>
+
+              <span>User Dashboard</span>
+            </a>
+
+            <!-- Resource Management -->
+
+            <a href="../Phase 2/my-listings.html" class="profile-menu-item">
+              <i class="fa-solid fa-box" aria-hidden="true"></i>
+
+              <span>My Resource Listings</span>
+            </a>
+
+            <a href="../Phase 2/lend-resource.html" class="profile-menu-item">
+              <i class="fa-solid fa-hand-holding-heart" aria-hidden="true"></i>
+
+              <span>Lend a Resource</span>
+            </a>
+
+            <a href="../Phase 2/my-requests.html" class="profile-menu-item">
+              <i class="fa-solid fa-handshake" aria-hidden="true"></i>
+
+              <span>My Borrow Requests</span>
+            </a>
+
+            <a
+              href="../Phase 2/incoming-requests.html"
+              class="profile-menu-item"
+            >
+              <i class="fa-solid fa-inbox" aria-hidden="true"></i>
+
+              <span>Incoming Borrow Requests</span>
+            </a>
+
+            <div class="profile-menu-divider"></div>
+
+            <div class="sidebar-divider"></div>
+            <!-- Information -->
+
+            <a href="../Phase 1/about.html" class="profile-menu-item">
+              <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+
+              <span>About EcoShare</span>
+            </a>
+
+            <a href="../Phase 1/contact.html" class="profile-menu-item">
+              <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+
+              <span>Contact Us</span>
+            </a>
+
+            <div class="profile-menu-divider"></div>
+
+            <!-- Logout -->
+
+            <button
+              type="button"
+              class="profile-menu-item logout-menu-item"
+              id="profileLogoutBtn"
+            >
+              <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>
+
+              <span>Logout</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- =====================================================
+                 MOBILE NAVIGATION BUTTON
+                 ===================================================== -->
+      </div>
+    </header>
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main>
+      <!-- =================================================
+             BREADCRUMB / BACK
+        ================================================== -->
+
+      <section class="details-top">
+        <div class="container">
+          <a href="../Phase 2/explore.html" class="back-btn">
+            <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+
+            <span>Back</span>
+          </a>
+
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="../index.html"> Home </a>
+
+            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+
+            <a href="../Phase 2/explore.html"> Explore </a>
+
+            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+
+            <span id="breadcrumbTitle"> Resource Details </span>
+          </nav>
+        </div>
+      </section>
+
+      <!-- =================================================
+             RESOURCE DETAILS
+        ================================================== -->
+
+      <section class="resource-details">
+        <div class="container">
+          <!-- Details Card -->
+
+          <div class="details-card" id="detailsCard">
+            <!-- Resource Image -->
+
+            <div class="details-image-wrapper">
+              <div
+                class="details-image"
+                id="detailsImage"
+                role="img"
+                aria-label="Resource image"
+              ></div>
+            </div>
+
+            <!-- Resource Content -->
+
+            <div class="details-content">
+              <!-- Category -->
+
+              <span class="details-category" id="detailsCategory">
+                Category
+              </span>
+
+              <!-- Title -->
+
+              <h1 id="detailsTitle">Resource Title</h1>
+
+              <!-- Description -->
+
+              <p class="details-description" id="detailsDescription">
+                Resource description
+              </p>
+
+              <!-- =================================================
+                             RESOURCE INFORMATION
+                        ================================================== -->
+
+              <div class="details-info">
+                <!-- Owner -->
+
+                <div class="detail-item">
+                  <div class="detail-icon">
+                    <i class="fa-solid fa-user" aria-hidden="true"></i>
+                  </div>
+
+                  <div>
+                    <span class="detail-label"> Owner </span>
+
+                    <strong id="detailsOwner"> — </strong>
+                  </div>
+                </div>
+
+                <!-- Location -->
+
+                <div class="detail-item">
+                  <div class="detail-icon">
+                    <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                  </div>
+
+                  <div>
+                    <span class="detail-label"> Location </span>
+
+                    <strong id="detailsLocation"> — </strong>
+                  </div>
+                </div>
+
+                <!-- Availability -->
+
+                <div class="detail-item">
+                  <div class="detail-icon">
+                    <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+                  </div>
+
+                  <div>
+                    <span class="detail-label"> Availability </span>
+
+                    <strong id="detailsAvailability" class="availability">
+                      —
+                    </strong>
+                  </div>
+                </div>
+
+                <!-- Price Per Hour -->
+
+                <div class="detail-item" id="detailsPriceHourItem" hidden>
+                  <div class="detail-icon">
+                    <i class="fa-solid fa-clock" aria-hidden="true"></i>
+                  </div>
+
+                  <div>
+                    <span class="detail-label"> Rental Price </span>
+
+                    <strong id="detailsPricePerHour"> — </strong>
+                  </div>
+                </div>
+
+                <!-- Price Per Day -->
+
+                <div class="detail-item" id="detailsPriceDayItem" hidden>
+                  <div class="detail-icon">
+                    <i class="fa-solid fa-calendar-day" aria-hidden="true"></i>
+                  </div>
+
+                  <div>
+                    <span class="detail-label"> Daily Price </span>
+
+                    <strong id="detailsPricePerDay"> — </strong>
+                  </div>
+                </div>
+
+                <!-- Buy Price -->
+
+                <div class="detail-item" id="detailsBuyPriceItem" hidden>
+                  <div class="detail-icon">
+                    <i
+                      class="fa-solid fa-indian-rupee-sign"
+                      aria-hidden="true"
+                    ></i>
+                  </div>
+
+                  <div>
+                    <span class="detail-label"> Buy Price </span>
+
+                    <strong id="detailsBuyPrice"> — </strong>
+                  </div>
+                </div>
+              </div>
+
+              <!-- =================================================
+                             ACTIONS
+                        ================================================== -->
+
+              <div class="details-actions">
+                <!-- Borrow / Request -->
+
+                <button type="button" class="borrow-btn" id="borrowBtn">
+                  <i class="fa-solid fa-hand-holding" aria-hidden="true"></i>
+
+                  <span>Borrow</span>
+                </button>
+
+                <!-- Buy -->
+
+                <button type="button" class="buy-btn" id="buyBtn" hidden>
+                  <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
+
+                  <span>Buy Resource</span>
+                </button>
+
+                <!-- Report Listing -->
+                <button
+                  type="button"
+                  class="report-listing-btn"
+                  id="reportListingBtn"
+                >
+                  <i class="fa-solid fa-flag" aria-hidden="true"></i>
+                  <span>Report Listing</span>
+                </button>
+              </div>
+
+              <!-- =================================================
+                             RATINGS & REVIEWS
+                        ================================================== -->
+
+              <section
+                class="resource-reviews-section"
+                id="resourceReviews"
+                aria-labelledby="reviewsHeading"
+              >
+                <div class="reviews-header">
+                  <div>
+                    <span class="reviews-label"> Community Feedback </span>
+
+                    <h2 id="reviewsHeading">Ratings & Reviews</h2>
+
+                    <p>
+                      See what other community members think about this
+                      resource.
+                    </p>
+                  </div>
+
+                  <!-- Rating Summary -->
+
+                  <div class="rating-summary">
+                    <div class="rating-number" id="averageRating">0.0</div>
+
+                    <div
+                      class="rating-stars"
+                      id="averageStars"
+                      aria-label="Average rating"
+                    >
+                      ☆☆☆☆☆
+                    </div>
+
+                    <div class="rating-count">
+                      <span id="reviewCount"> 0 </span>
+
+                      reviews
+                    </div>
+                  </div>
+                </div>
+
+                <!-- View Reviews -->
+
+                <div class="reviews-action">
+                  <a href="#" class="view-reviews-btn" id="viewReviewsBtn">
+                    <i class="fa-solid fa-star" aria-hidden="true"></i>
+
+                    <span> View Ratings & Reviews </span>
+
+                    <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </section>
+
+              <!-- =================================================
+                             MESSAGE / STATUS
+                        ================================================== -->
+
+              <div
+                class="details-message"
+                id="detailsMessage"
+                role="status"
+                aria-live="polite"
+              ></div>
+            </div>
+          </div>
+
+          <!-- =================================================
+                     RESOURCE NOT FOUND
+                ================================================== -->
+
+          <div
+            class="resource-not-found"
+            id="resourceNotFound"
+            hidden
+            role="alert"
+          >
+            <div class="not-found-icon">
+              <i class="fa-solid fa-box-open" aria-hidden="true"></i>
+            </div>
+
+            <h2>Resource Not Found</h2>
+
+            <p>
+              The resource you're looking for doesn't exist or may no longer be
+              available.
+            </p>
+
+            <a href="../Phase 2/explore.html" class="back-btn">
+              <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+
+              <span> Browse Resources </span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================
+             BORROW INFORMATION
+        ================================================== -->
+
+      <section class="borrow-info">
+        <div class="container">
+          <div class="borrow-info-card">
+            <div class="borrow-info-icon">
+              <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+            </div>
+
+            <div>
+              <h2>How borrowing works</h2>
+
+              <p>
+                Request a resource from its owner, wait for approval, and
+                arrange a convenient time to collect it.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="footer">
+      <div class="container footer-container">
+        <div class="footer-brand">
+          <a
+            href="../index.html"
+            class="footer-logo"
+            aria-label="EcoShare Home"
+          >
+            <img
+              src="https://cplbvftcbiwgqkeqmrbq.supabase.co/storage/v1/object/public/site-assets/logo.png"
+              alt="EcoShare logo"
+              width="48"
+              height="48"
+              loading="lazy"
+              decoding="async"
+            />
+          </a>
+
+          <p>Share resources. Build community. Reduce waste.</p>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2026 EcoShare. All rights reserved.</p>
+
+          <p>Built for a more sustainable community.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <!-- Supabase SDK -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- Supabase client -->
+
+    <script src="../Phase 1/supabase.js"></script>
+
+    <!-- Global EcoShare functionality
+         - Navbar
+         - Authentication
+         - Profile
+         - Shared avatar system
+         - Notifications
+         - Logout
+         - Mobile navigation
+    -->
+
+    <script src="../Phase 1/page.js"></script>
+
+    <!-- Resource details page functionality -->
+
+    <script src="../Phase 2/resource-details.js"></script>
+  </body>
+</html>

@@ -1,0 +1,2275 @@
+/*
+=========================================================
+
+  EcoShare — Global Page Styles
+
+  File: page.css
+
+  Global:
+  - Design tokens
+  - Reset / typography
+  - Containers
+  - Buttons
+  - Cards
+  - Forms
+  - Tables
+  - Header / navbar
+  - Mobile navigation
+  - Profile dropdown
+  - Notification badge
+  - Utilities
+  - Accessibility
+  - Footer
+  - Responsive behavior
+
+  Page-specific styles belong in:
+  - style.css
+  - about.css
+  - contact.css
+  - profile.css
+  - login.css
+  - register.css
+  - user-dashboard.css
+  - admin-dashboard.css
+
+=========================================================
+*/
+
+/* =========================================================
+   1. DESIGN TOKENS
+========================================================= */
+
+:root {
+  /* Green */
+
+  --eco-green-50: #f7fbf2;
+  --eco-green-100: #edf5df;
+  --eco-green-200: #dcebc8;
+  --eco-green-300: #c6dda8;
+  --eco-green-400: #aad576;
+  --eco-green-500: #8fbe59;
+  --eco-green-600: #538d22;
+  --eco-green-700: #44761d;
+  --eco-green-800: #245501;
+  --eco-green-900: #193b00;
+  --eco-green-950: #102900;
+
+  /* Neutral */
+
+  --eco-white: #ffffff;
+  --eco-black: #111111;
+
+  --eco-text: #1f2933;
+  --eco-text-soft: #46515c;
+  --eco-text-muted: #6b7280;
+  --eco-text-light: #8a949e;
+
+  --eco-border-light: #e8ece4;
+  --eco-border: #d9e0d4;
+  --eco-border-strong: #c5cfc0;
+
+  --eco-surface: #ffffff;
+  --eco-surface-soft: #f8faf6;
+  --eco-background: #ffffff;
+  --eco-background-soft: #f5f8f2;
+
+  /* Semantic */
+
+  --eco-success: #2f7d32;
+  --eco-success-dark: #216425;
+  --eco-success-soft: #ecf8ed;
+
+  --eco-warning: #c46b08;
+  --eco-warning-dark: #9a5200;
+  --eco-warning-soft: #fff5e8;
+
+  --eco-danger: #c62828;
+  --eco-danger-dark: #9f1d1d;
+  --eco-danger-soft: #fff0f0;
+
+  --eco-info: #2563a8;
+  --eco-info-dark: #1d4f85;
+  --eco-info-soft: #eff6ff;
+
+  /* Typography */
+
+  --font-sans: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+
+  --font-size-xs: 11px;
+  --font-size-sm: 13px;
+  --font-size-md: 14px;
+  --font-size-lg: 16px;
+  --font-size-xl: 18px;
+  --font-size-2xl: 22px;
+  --font-size-3xl: 28px;
+  --font-size-4xl: 36px;
+
+  /* Layout */
+
+  --container-width: 1180px;
+  --content-max-width: 1180px;
+
+  --page-padding: 24px;
+  --page-padding-mobile: 16px;
+
+  --header-height: 76px;
+  --header-mobile-height: 68px;
+  --header-max-width: 1180px;
+
+  --section-space: 72px;
+  --section-space-mobile: 48px;
+
+  /* Spacing */
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 28px;
+  --space-8: 32px;
+  --space-9: 40px;
+  --space-10: 48px;
+  --space-11: 56px;
+  --space-12: 64px;
+  --space-13: 72px;
+  --space-14: 80px;
+
+  /* Radius */
+
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --radius-2xl: 22px;
+  --radius-full: 999px;
+
+  /* Shadows */
+
+  --shadow-xs: 0 1px 3px rgba(20, 40, 15, 0.05);
+
+  --shadow-sm: 0 4px 12px rgba(20, 40, 15, 0.07);
+
+  --shadow-md: 0 8px 24px rgba(20, 40, 15, 0.1);
+
+  --shadow-lg: 0 16px 40px rgba(20, 40, 15, 0.14);
+
+  --shadow-xl: 0 24px 60px rgba(20, 40, 15, 0.18);
+
+  /* Transitions */
+
+  --transition-fast: 0.15s ease;
+  --transition: 0.22s ease;
+  --transition-slow: 0.35s ease;
+
+  /* Z-index */
+
+  --z-base: 1;
+  --z-header: 1000;
+  --z-dropdown: 1100;
+  --z-modal: 2000;
+  --z-toast: 3000;
+
+  /* Compatibility */
+
+  --eco-primary: var(--eco-green-600);
+  --eco-primary-dark: var(--eco-green-800);
+}
+
+/* =========================================================
+   2. RESET
+========================================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-height) + 16px);
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+
+  background: var(--eco-background);
+  color: var(--eco-text);
+
+  font-family: var(--font-sans);
+  font-size: var(--font-size-md);
+  line-height: 1.5;
+
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img,
+svg,
+video,
+canvas {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+button,
+input,
+textarea,
+select {
+  margin: 0;
+  font: inherit;
+  color: inherit;
+}
+
+button:disabled,
+input:disabled,
+select:disabled,
+textarea:disabled {
+  cursor: not-allowed;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+ol,
+figure {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--eco-text);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+p {
+  line-height: 1.7;
+}
+
+/* =========================================================
+   3. PAGE FOUNDATION
+========================================================= */
+
+body.eco-page,
+.eco-page {
+  background: var(--eco-background);
+}
+
+main {
+  width: 100%;
+}
+
+.eco-page-content {
+  width: 100%;
+  padding: var(--space-10) var(--page-padding);
+}
+
+.eco-section {
+  width: 100%;
+  padding: var(--section-space) 0;
+}
+
+/* =========================================================
+   4. CONTAINERS
+========================================================= */
+
+.container,
+.eco-container {
+  width: min(calc(100% - (var(--page-padding) * 2)), var(--container-width));
+
+  margin-inline: auto;
+}
+
+.footer-container {
+  width: min(calc(100% - (var(--page-padding) * 2)), var(--content-max-width));
+
+  margin-inline: auto;
+}
+
+/* =========================================================
+   5. PAGE HEADINGS
+========================================================= */
+
+.eco-page-header {
+  margin-bottom: var(--space-8);
+}
+
+.eco-page-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+}
+
+.eco-page-header-content {
+  min-width: 0;
+}
+
+.eco-page-header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.eco-page-title {
+  margin-bottom: var(--space-2);
+
+  color: var(--eco-green-900);
+  font-size: clamp(26px, 4vw, 38px);
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.eco-page-subtitle {
+  max-width: 720px;
+
+  color: var(--eco-text-muted);
+  font-size: var(--font-size-md);
+  line-height: 1.7;
+}
+
+.eco-section-title {
+  margin-bottom: var(--space-3);
+
+  color: var(--eco-green-900);
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 800;
+}
+
+.eco-section-description {
+  max-width: 700px;
+
+  color: var(--eco-text-muted);
+  line-height: 1.75;
+}
+
+.eco-section-label {
+  display: inline-flex;
+  align-items: center;
+
+  margin-bottom: var(--space-3);
+
+  color: var(--eco-green-700);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   6. BUTTONS
+========================================================= */
+
+.eco-button,
+.eco-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 44px;
+  gap: 8px;
+  padding: 10px 18px;
+
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+
+  background: var(--eco-green-600);
+  color: var(--eco-white);
+
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.eco-button:hover,
+.eco-btn:hover {
+  background: var(--eco-green-700);
+  border-color: var(--eco-green-700);
+  color: var(--eco-white);
+  transform: translateY(-1px);
+}
+
+.eco-button:active,
+.eco-btn:active {
+  transform: translateY(0);
+}
+
+.eco-button:disabled,
+.eco-btn:disabled {
+  opacity: 0.55;
+  transform: none;
+}
+
+.eco-button-secondary,
+.eco-btn-secondary {
+  background: var(--eco-white);
+  border-color: var(--eco-border);
+  color: var(--eco-green-800);
+}
+
+.eco-button-secondary:hover,
+.eco-btn-secondary:hover {
+  background: var(--eco-green-50);
+  border-color: var(--eco-green-400);
+  color: var(--eco-green-800);
+}
+
+.eco-button-outline,
+.eco-btn-outline {
+  background: transparent;
+  border-color: var(--eco-green-600);
+  color: var(--eco-green-700);
+}
+
+.eco-button-outline:hover,
+.eco-btn-outline:hover {
+  background: var(--eco-green-50);
+  border-color: var(--eco-green-700);
+  color: var(--eco-green-800);
+}
+
+.eco-button-danger,
+.eco-btn-danger {
+  background: var(--eco-danger);
+  border-color: var(--eco-danger);
+  color: var(--eco-white);
+}
+
+.eco-button-danger:hover,
+.eco-btn-danger:hover {
+  background: var(--eco-danger-dark);
+  border-color: var(--eco-danger-dark);
+}
+
+.eco-button-small,
+.eco-btn-small {
+  min-height: 38px;
+  padding: 8px 14px;
+  font-size: 12px;
+}
+
+.eco-button-large,
+.eco-btn-large {
+  min-height: 48px;
+  padding: 12px 22px;
+}
+
+/* =========================================================
+   7. SHARED CARDS
+========================================================= */
+
+.eco-card {
+  min-width: 0;
+
+  border: 1px solid var(--eco-border-light);
+  border-radius: var(--radius-lg);
+
+  background: var(--eco-white);
+  box-shadow: var(--shadow-sm);
+}
+
+.eco-card-header {
+  padding: var(--space-5) var(--space-6);
+
+  border-bottom: 1px solid var(--eco-border-light);
+}
+
+.eco-card-body {
+  padding: var(--space-6);
+}
+
+.eco-card-footer {
+  padding: var(--space-4) var(--space-6);
+
+  border-top: 1px solid var(--eco-border-light);
+}
+
+/* =========================================================
+   8. FORM SYSTEM
+========================================================= */
+
+.eco-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.eco-form-label {
+  color: var(--eco-text-soft);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.eco-form-help {
+  color: var(--eco-text-muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.eco-input,
+.eco-select,
+.eco-textarea {
+  width: 100%;
+  min-height: 44px;
+
+  padding: 10px 13px;
+
+  border: 1px solid var(--eco-border);
+  border-radius: var(--radius-md);
+
+  outline: none;
+
+  background: var(--eco-white);
+  color: var(--eco-text);
+
+  font-size: 14px;
+  line-height: 1.4;
+
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    background var(--transition-fast);
+}
+
+.eco-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.eco-input::placeholder,
+.eco-textarea::placeholder {
+  color: var(--eco-text-light);
+}
+
+.eco-input:hover,
+.eco-select:hover,
+.eco-textarea:hover {
+  border-color: var(--eco-border-strong);
+}
+
+.eco-input:focus,
+.eco-select:focus,
+.eco-textarea:focus {
+  border-color: var(--eco-green-500);
+
+  box-shadow: 0 0 0 3px rgba(83, 141, 34, 0.12);
+}
+
+.eco-form-row {
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: var(--space-5);
+}
+
+.eco-form-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+}
+
+/* =========================================================
+   9. FILTER / SEARCH
+========================================================= */
+
+.eco-filter-bar {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.eco-filter-item {
+  min-width: 180px;
+  flex: 1;
+}
+
+.eco-filter-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-left: auto;
+}
+
+/* =========================================================
+   10. STATUS BADGES
+========================================================= */
+
+.eco-badge,
+.eco-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 26px;
+  padding: 5px 9px;
+
+  border: 1px solid transparent;
+  border-radius: var(--radius-full);
+
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1;
+
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.eco-badge-success,
+.eco-status-success,
+.status-approved,
+.status-available {
+  background: var(--eco-success-soft);
+  border-color: #c8e9ca;
+  color: var(--eco-success-dark);
+}
+
+.eco-badge-warning,
+.eco-status-warning,
+.status-pending {
+  background: var(--eco-warning-soft);
+  border-color: #fed7aa;
+  color: var(--eco-warning-dark);
+}
+
+.eco-badge-danger,
+.eco-status-danger,
+.status-rejected,
+.status-cancelled,
+.status-unavailable {
+  background: var(--eco-danger-soft);
+  border-color: #fecaca;
+  color: var(--eco-danger-dark);
+}
+
+.eco-badge-info,
+.eco-status-info,
+.status-returned {
+  background: var(--eco-info-soft);
+  border-color: #bfdbfe;
+  color: var(--eco-info-dark);
+}
+
+/* =========================================================
+   11. ALERTS
+========================================================= */
+
+.eco-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+
+  width: 100%;
+  padding: 12px 14px;
+
+  border: 1px solid;
+  border-radius: var(--radius-md);
+
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.eco-alert-success {
+  background: var(--eco-success-soft);
+  border-color: #bbf7d0;
+  color: var(--eco-success-dark);
+}
+
+.eco-alert-warning {
+  background: var(--eco-warning-soft);
+  border-color: #fed7aa;
+  color: var(--eco-warning-dark);
+}
+
+.eco-alert-danger {
+  background: var(--eco-danger-soft);
+  border-color: #fecaca;
+  color: var(--eco-danger-dark);
+}
+
+.eco-alert-info {
+  background: var(--eco-info-soft);
+  border-color: #bfdbfe;
+  color: var(--eco-info-dark);
+}
+
+/* =========================================================
+   12. LOADING / EMPTY / ERROR
+========================================================= */
+
+.eco-loading,
+.eco-empty,
+.eco-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  gap: var(--space-3);
+
+  min-height: 180px;
+  padding: var(--space-8);
+
+  border: 1px dashed var(--eco-border-strong);
+  border-radius: var(--radius-lg);
+
+  background: var(--eco-surface-soft);
+  color: var(--eco-text-muted);
+
+  text-align: center;
+}
+
+.eco-loading-icon,
+.eco-empty-icon,
+.eco-error-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 48px;
+  height: 48px;
+
+  border-radius: 50%;
+
+  background: var(--eco-green-100);
+  color: var(--eco-green-700);
+
+  font-size: 18px;
+}
+
+.eco-error {
+  border-color: #fecaca;
+  background: var(--eco-danger-soft);
+  color: var(--eco-danger-dark);
+}
+
+.eco-error-icon {
+  background: #fee2e2;
+  color: var(--eco-danger);
+}
+
+.eco-loading-spinner {
+  width: 28px;
+  height: 28px;
+
+  border: 3px solid var(--eco-green-200);
+  border-top-color: var(--eco-green-600);
+  border-radius: 50%;
+
+  animation: eco-spin 0.8s linear infinite;
+}
+
+@keyframes eco-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================================
+   13. TABLES
+========================================================= */
+
+.eco-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+
+  border: 1px solid var(--eco-border-light);
+  border-radius: var(--radius-lg);
+
+  background: var(--eco-white);
+  box-shadow: var(--shadow-xs);
+}
+
+.eco-table {
+  width: 100%;
+  min-width: 650px;
+
+  border-collapse: collapse;
+
+  font-size: 13px;
+}
+
+.eco-table th {
+  padding: 13px 16px;
+
+  border-bottom: 1px solid var(--eco-border);
+
+  background: var(--eco-surface-soft);
+  color: var(--eco-text-soft);
+
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.eco-table td {
+  padding: 14px 16px;
+
+  border-bottom: 1px solid var(--eco-border-light);
+
+  color: var(--eco-text);
+  vertical-align: middle;
+}
+
+.eco-table tbody tr {
+  transition: background var(--transition-fast);
+}
+
+.eco-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.eco-table tbody tr:hover {
+  background: var(--eco-green-50);
+}
+
+/* =========================================================
+   14. HEADER
+========================================================= */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-header);
+
+  width: 100%;
+  height: var(--header-height);
+
+  background: rgba(255, 255, 255, 0.97);
+
+  border-bottom: 1px solid var(--eco-border-light);
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  transition:
+    background var(--transition),
+    box-shadow var(--transition);
+}
+
+.header.scrolled {
+  background: rgba(255, 255, 255, 0.99);
+  box-shadow: var(--shadow-sm);
+}
+
+.header .navbar {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  width: min(calc(100% - (var(--page-padding) * 2)), var(--header-max-width));
+
+  height: var(--header-height);
+  margin-inline: auto;
+
+  gap: 20px;
+}
+
+/* =========================================================
+   15. LOGO
+========================================================= */
+
+.header .logo {
+  display: inline-flex;
+  align-items: center;
+
+  flex: 0 0 auto;
+
+  width: 104px;
+  height: 58px;
+
+  margin-right: auto;
+
+  color: var(--eco-green-900);
+
+  text-decoration: none;
+
+  transition:
+    opacity var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.header .logo img {
+  display: block;
+
+  width: 104px;
+  height: 58px;
+
+  max-width: none;
+
+  object-fit: contain;
+}
+
+.header .logo span {
+  display: none;
+}
+
+.header .logo:hover {
+  color: var(--eco-green-800);
+  opacity: 0.92;
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   16. DESKTOP NAVIGATION
+========================================================= */
+
+.header .primary-navigation {
+  display: flex;
+  align-items: center;
+
+  flex: 0 0 auto;
+
+  gap: 6px;
+
+  margin: 0;
+  padding: 0;
+}
+
+.header .nav-links {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.header .nav-link {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 auto;
+  min-width: 0;
+
+  height: 44px;
+  min-height: 44px;
+
+  gap: 9px;
+  padding: 10px 13px;
+
+  border: 0;
+  border-radius: var(--radius-md);
+
+  background: transparent;
+  color: var(--eco-text-soft);
+
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+
+  white-space: nowrap;
+  text-decoration: none;
+
+  transition:
+    color var(--transition-fast),
+    background var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.header .nav-link i,
+.header .nav-link svg {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 18px;
+  height: 18px;
+
+  flex: 0 0 auto;
+
+  font-size: 17px;
+  line-height: 1;
+}
+
+.header .nav-link:hover {
+  color: var(--eco-green-800);
+  background: var(--eco-green-50);
+}
+
+.header .nav-link.active {
+  color: var(--eco-green-800);
+  background: transparent;
+}
+
+.header .nav-link:active {
+  transform: scale(0.98);
+}
+
+.header .nav-link::after {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  bottom: 3px;
+
+  width: 0;
+  height: 2px;
+
+  border-radius: var(--radius-full);
+
+  background: var(--eco-green-600);
+
+  transform: translateX(-50%);
+
+  transition: width var(--transition);
+}
+
+.header .nav-link:hover::after {
+  width: 18px;
+}
+
+.header .nav-link.active::after,
+.header .nav-link[aria-current="page"]::after {
+  width: 30px;
+}
+
+/* =========================================================
+   17. AUTH BUTTONS
+========================================================= */
+
+.header .login-nav-btn,
+.header .register-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 auto;
+
+  min-height: 42px;
+
+  gap: 8px;
+  padding: 10px 17px;
+
+  border: 1px solid var(--eco-green-600);
+  border-radius: var(--radius-full);
+
+  background: var(--eco-green-600);
+  color: var(--eco-white);
+
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+
+  cursor: pointer;
+
+  text-decoration: none;
+  white-space: nowrap;
+
+  box-shadow: 0 4px 12px rgba(83, 141, 34, 0.16);
+
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.header .login-nav-btn:hover,
+.header .register-nav-btn:hover {
+  background: var(--eco-green-800);
+  border-color: var(--eco-green-800);
+  color: var(--eco-white);
+
+  transform: translateY(-1px);
+
+  box-shadow: 0 7px 18px rgba(83, 141, 34, 0.22);
+}
+
+.header .login-nav-btn:active,
+.header .register-nav-btn:active {
+  transform: translateY(0);
+}
+
+.header .login-nav-btn:focus-visible,
+.header .register-nav-btn:focus-visible {
+  outline: 3px solid rgba(83, 141, 34, 0.25);
+
+  outline-offset: 2px;
+}
+
+.header #authNavButton[hidden],
+.header #registerNavButton[hidden] {
+  display: none !important;
+}
+
+/* =========================================================
+   18. MOBILE MENU BUTTON
+========================================================= */
+
+.header .menu-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 auto;
+
+  width: 42px;
+  height: 42px;
+
+  padding: 0;
+
+  border: 1px solid var(--eco-border);
+  border-radius: var(--radius-md);
+
+  background: var(--eco-white);
+  color: var(--eco-green-800);
+
+  font-size: 19px;
+
+  cursor: pointer;
+
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.header .menu-btn:hover,
+.header .menu-btn.active {
+  background: var(--eco-green-100);
+  border-color: var(--eco-green-500);
+  color: var(--eco-green-800);
+}
+
+/* =========================================================
+   19. PROFILE DROPDOWN
+========================================================= */
+
+#profileDropdown,
+.profile-dropdown {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+
+  flex: 0 0 auto;
+}
+
+#profileDropdown[hidden],
+.profile-dropdown[hidden],
+#profileMenu[hidden],
+.profile-menu[hidden],
+.profile-avatar-btn[hidden],
+#authNavButton[hidden],
+#registerNavButton[hidden],
+#messagesNavLink[hidden],
+#notificationsNavLink[hidden],
+#adminDashboardLink[hidden],
+#userDashboardLink[hidden] {
+  display: none !important;
+}
+
+/* Avatar button */
+
+.profile-avatar-btn {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 50px;
+  height: 50px;
+
+  gap: 7px;
+  padding: 3px;
+
+  border: 0;
+  border-radius: var(--radius-full);
+
+  background: transparent;
+  color: var(--eco-green-800);
+
+  cursor: pointer;
+
+  transition: background var(--transition-fast);
+}
+
+.profile-avatar-btn:hover {
+  background: var(--eco-green-50);
+}
+
+.profile-avatar-btn:active {
+  background: var(--eco-green-100);
+}
+
+.profile-dropdown .profile-avatar {
+  display: block;
+
+  width: 44px;
+  height: 44px;
+
+  flex: 0 0 44px;
+
+  border: 2px solid var(--eco-green-400);
+  border-radius: 50%;
+
+  object-fit: cover;
+  object-position: center;
+
+  background: var(--eco-green-50);
+
+  transition:
+    transform var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.profile-avatar-btn:hover .profile-avatar {
+  border-color: var(--eco-green-600);
+  transform: scale(1.03);
+}
+
+.profile-chevron {
+  color: var(--eco-green-700);
+  font-size: 12px;
+
+  transition: transform var(--transition);
+}
+
+.profile-avatar-btn[aria-expanded="true"] .profile-chevron,
+.profile-dropdown.open .profile-chevron {
+  transform: rotate(180deg);
+}
+
+/* Profile menu */
+
+#profileDropdown #profileMenu,
+#profileDropdown .profile-menu,
+#profileMenu,
+.profile-menu {
+  position: absolute;
+
+  top: calc(100% + 10px);
+  left: 50%;
+  right: auto;
+
+  width: 320px;
+  max-width: calc(100vw - 32px);
+
+  padding: 8px;
+
+  box-sizing: border-box;
+
+  border: 1px solid var(--eco-border-light);
+  border-radius: var(--radius-lg);
+
+  background: var(--eco-white);
+
+  box-shadow: var(--shadow-lg);
+
+  overflow: hidden;
+
+  transform: translateX(-50%);
+  transform-origin: top center;
+
+  z-index: var(--z-dropdown);
+}
+
+#profileDropdown #profileMenu::before,
+#profileDropdown .profile-menu::before {
+  content: "";
+
+  position: absolute;
+
+  top: -6px;
+  left: 50%;
+
+  width: 12px;
+  height: 12px;
+
+  border-top: 1px solid var(--eco-border-light);
+
+  border-left: 1px solid var(--eco-border-light);
+
+  background: var(--eco-white);
+
+  transform: translateX(-50%) rotate(45deg);
+}
+
+/* Profile header */
+
+.profile-menu-header {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  width: 100%;
+  min-width: 0;
+
+  padding: 12px;
+
+  border-bottom: 1px solid var(--eco-border-light);
+}
+
+.profile-menu-header img,
+#menuProfilePhoto {
+  width: 44px;
+  height: 44px;
+
+  min-width: 44px;
+  flex: 0 0 44px;
+
+  border-radius: 50%;
+
+  object-fit: cover;
+  object-position: center;
+
+  background: var(--eco-green-50);
+}
+
+.profile-menu-user {
+  min-width: 0;
+  flex: 1;
+}
+
+.profile-menu-user-link {
+  display: block;
+
+  min-width: 0;
+  padding: 0;
+
+  border-radius: var(--radius-sm);
+}
+
+#menuProfileName,
+#menuProfileEmail {
+  display: block;
+
+  min-width: 0;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#menuProfileName {
+  color: var(--eco-green-900);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+#menuProfileEmail {
+  margin-top: 2px;
+
+  color: var(--eco-text-muted);
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+/* Menu items */
+
+.profile-menu-item,
+#profileLogoutBtn {
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+  min-width: 0;
+  min-height: 42px;
+
+  gap: 11px;
+  padding: 10px 12px;
+
+  border: 0;
+  border-radius: var(--radius-sm);
+
+  background: transparent;
+  color: var(--eco-text-soft);
+
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.25;
+
+  text-align: left;
+  text-decoration: none;
+
+  cursor: pointer;
+
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.profile-menu-item:hover {
+  background: var(--eco-green-50);
+  color: var(--eco-green-800);
+}
+
+.profile-menu-item > i,
+.profile-menu-item > svg,
+#profileLogoutBtn > i,
+#profileLogoutBtn > svg {
+  width: 20px;
+  min-width: 20px;
+
+  flex: 0 0 20px;
+
+  text-align: center;
+}
+
+.profile-menu-item > span,
+#profileLogoutBtn > span {
+  min-width: 0;
+  flex: 1;
+}
+
+.profile-menu-item-danger,
+#profileLogoutBtn {
+  color: var(--eco-danger);
+}
+
+.profile-menu-item-danger:hover,
+#profileLogoutBtn:hover {
+  background: var(--eco-danger-soft);
+  color: var(--eco-danger-dark);
+}
+
+#profileLogoutBtn i,
+#profileLogoutBtn svg {
+  color: var(--eco-danger);
+}
+
+#profileLogoutBtn:hover i,
+#profileLogoutBtn:hover svg {
+  color: var(--eco-danger-dark);
+}
+
+/* =========================================================
+   20. NOTIFICATION BADGE
+========================================================= */
+
+.notification-wrapper {
+  position: relative;
+  display: inline-flex;
+}
+
+.notification-badge,
+.notification-unread-badge,
+#notificationUnreadBadge {
+  position: absolute;
+
+  top: 3px;
+  right: 4px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 17px;
+  height: 17px;
+
+  padding: 0 4px;
+
+  border: 2px solid var(--eco-white);
+  border-radius: var(--radius-full);
+
+  background: var(--eco-danger);
+  color: var(--eco-white);
+
+  font-size: 9px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.notification-badge[hidden],
+.notification-unread-badge[hidden],
+#notificationUnreadBadge[hidden] {
+  display: none !important;
+}
+
+/* =========================================================
+   21. UTILITY CLASSES
+========================================================= */
+
+.eco-hidden {
+  display: none !important;
+}
+
+.eco-flex {
+  display: flex;
+}
+
+.eco-inline-flex {
+  display: inline-flex;
+}
+
+.eco-grid {
+  display: grid;
+}
+
+.eco-align-center {
+  align-items: center;
+}
+
+.eco-justify-center {
+  justify-content: center;
+}
+
+.eco-justify-between {
+  justify-content: space-between;
+}
+
+.eco-text-center {
+  text-align: center;
+}
+
+.eco-w-full {
+  width: 100%;
+}
+
+.eco-mx-auto {
+  margin-inline: auto;
+}
+
+.eco-overflow-hidden {
+  overflow: hidden;
+}
+
+.eco-image-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.eco-image-contain {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.eco-media-rounded {
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+}
+
+.eco-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--eco-border-light);
+}
+
+/* =========================================================
+   22. GRID UTILITIES
+========================================================= */
+
+.eco-grid-2 {
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: var(--space-5);
+}
+
+.eco-grid-3 {
+  display: grid;
+
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: var(--space-5);
+}
+
+.eco-grid-4 {
+  display: grid;
+
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  gap: var(--space-5);
+}
+
+/* =========================================================
+   23. ACCESSIBILITY
+========================================================= */
+
+.skip-link {
+  position: fixed;
+
+  top: 10px;
+  left: 10px;
+
+  z-index: var(--z-toast);
+
+  padding: 10px 14px;
+
+  border-radius: var(--radius-md);
+
+  background: var(--eco-green-800);
+  color: var(--eco-white);
+
+  font-size: 13px;
+  font-weight: 700;
+
+  transform: translateY(-150%);
+
+  transition: transform var(--transition-fast);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+:focus-visible {
+  outline: 3px solid rgba(83, 141, 34, 0.28);
+
+  outline-offset: 2px;
+}
+
+/* =========================================================
+   24. FOOTER
+========================================================= */
+
+.footer {
+  width: 100%;
+
+  padding: 64px 0 24px;
+
+  border-top: 1px solid var(--eco-border-light);
+
+  background: var(--eco-green-950);
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.footer-container {
+  width: min(calc(100% - (var(--page-padding) * 2)), var(--content-max-width));
+
+  margin-inline: auto;
+}
+
+.footer-grid {
+  display: grid;
+
+  grid-template-columns:
+    1.5fr
+    repeat(3, minmax(0, 1fr));
+
+  gap: var(--space-10);
+
+  padding-bottom: var(--space-10);
+}
+
+.footer-brand {
+  min-width: 0;
+}
+
+.footer-logo {
+  display: inline-flex;
+  align-items: center;
+
+  margin-bottom: var(--space-4);
+
+  color: var(--eco-white);
+
+  font-size: 20px;
+  font-weight: 800;
+
+  text-decoration: none;
+}
+
+.footer-logo img {
+  width: 110px;
+  height: 58px;
+
+  object-fit: contain;
+}
+
+.footer-description {
+  max-width: 360px;
+
+  color: rgba(255, 255, 255, 0.68);
+
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+.footer-heading {
+  margin-bottom: var(--space-4);
+
+  color: var(--eco-white);
+
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+.footer-links a {
+  color: rgba(255, 255, 255, 0.68);
+
+  font-size: 13px;
+
+  transition:
+    color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.footer-links a:hover {
+  color: var(--eco-white);
+  transform: translateX(2px);
+}
+
+.footer-socials {
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  margin-top: var(--space-5);
+}
+
+.footer-social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 36px;
+  height: 36px;
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.75);
+
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.footer-social:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.28);
+  color: var(--eco-white);
+  transform: translateY(-1px);
+}
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: var(--space-4);
+
+  padding-top: var(--space-5);
+
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+  color: rgba(255, 255, 255, 0.52);
+
+  font-size: 11px;
+}
+
+.footer-bottom-links {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  gap: 14px;
+}
+
+.footer-bottom-links a {
+  color: inherit;
+}
+
+.footer-bottom-links a:hover {
+  color: var(--eco-white);
+}
+
+/* =========================================================
+   26. RESPONSIVE TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+  :root {
+    --page-padding: 20px;
+    --section-space: 64px;
+  }
+
+  .header .navbar {
+    gap: 12px;
+  }
+
+  .header .primary-navigation {
+    gap: 2px;
+  }
+
+  .header .nav-link {
+    gap: 7px;
+    padding-inline: 10px;
+    font-size: 13px;
+  }
+
+  .header .login-nav-btn,
+  .header .register-nav-btn {
+    padding-inline: 14px;
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: var(--space-8);
+  }
+}
+
+/* =========================================================
+   27. MOBILE
+========================================================= */
+
+@media (max-width: 800px) {
+  :root {
+    --header-height: var(--header-mobile-height);
+    --page-padding: var(--page-padding-mobile);
+    --section-space: var(--section-space-mobile);
+  }
+
+  /* =====================================================
+       MOBILE HEADER
+       ===================================================== */
+
+  .header {
+    height: var(--header-mobile-height);
+  }
+
+  .header .navbar {
+    width: calc(100% - (var(--page-padding-mobile) * 2));
+
+    height: var(--header-mobile-height);
+
+    gap: 10px;
+  }
+
+  /* =====================================================
+       HAMBURGER — LEFT OF LOGO
+       ===================================================== */
+
+  .header .menu-btn {
+    display: inline-flex;
+
+    order: 1;
+
+    flex: 0 0 auto;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 46px;
+    height: 46px;
+
+    padding: 0;
+
+    border: 1px solid var(--eco-border);
+
+    border-radius: var(--radius-md);
+
+    background: var(--eco-white);
+
+    color: var(--eco-green-800);
+
+    font-size: 20px;
+
+    cursor: pointer;
+  }
+
+  .header .menu-btn:hover,
+  .header .menu-btn.active {
+    background: var(--eco-green-100);
+
+    border-color: var(--eco-green-500);
+
+    color: var(--eco-green-800);
+  }
+
+  /* =====================================================
+       LOGO — AFTER HAMBURGER
+       ===================================================== */
+
+  .header .logo {
+    order: 2;
+
+    width: 94px;
+    height: 52px;
+
+    margin-right: 0;
+  }
+
+  .header .logo img {
+    width: 94px;
+    height: 52px;
+  }
+
+  /* =====================================================
+       HIDE DESKTOP NAVIGATION BY DEFAULT
+       ===================================================== */
+
+  .header .primary-navigation {
+    position: fixed;
+
+    order: 6;
+
+    top: var(--header-mobile-height);
+
+    left: 0;
+    right: 0;
+
+    z-index: calc(var(--z-header) - 1);
+
+    display: flex;
+
+    flex-direction: column;
+    align-items: stretch;
+
+    width: 100%;
+
+    max-height: calc(100vh - var(--header-mobile-height));
+
+    padding: 12px var(--page-padding-mobile) 20px;
+
+    border-bottom: 1px solid var(--eco-border-light);
+
+    background: rgba(255, 255, 255, 0.98);
+
+    box-shadow: var(--shadow-md);
+
+    backdrop-filter: blur(14px);
+
+    -webkit-backdrop-filter: blur(14px);
+
+    overflow-y: auto;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transform: translateY(-8px);
+
+    transition:
+      opacity var(--transition),
+      visibility var(--transition),
+      transform var(--transition);
+  }
+
+  /* =====================================================
+       OPEN MOBILE MENU
+       ===================================================== */
+
+  .header .primary-navigation.show {
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+
+    transform: translateY(0);
+  }
+
+  /* =====================================================
+       MOBILE NAV LINKS
+       ===================================================== */
+
+  .header .nav-link {
+    display: flex;
+
+    align-items: center;
+    justify-content: flex-start;
+
+    width: 100%;
+
+    min-height: 50px;
+
+    gap: 13px;
+
+    padding: 12px 14px;
+
+    border-radius: var(--radius-md);
+
+    color: var(--eco-text-soft);
+
+    font-size: 14px;
+    font-weight: 600;
+
+    text-decoration: none;
+  }
+
+  .header .nav-link i,
+  .header .nav-link svg {
+    width: 21px;
+    height: 21px;
+
+    flex: 0 0 21px;
+
+    font-size: 16px;
+  }
+
+  /* =====================================================
+       MOBILE ACTIVE PAGE
+       ===================================================== */
+
+  .header .nav-link.active,
+  .header .nav-link[aria-current="page"] {
+    position: relative;
+
+    background: var(--eco-green-50);
+
+    color: var(--eco-green-800);
+  }
+
+  .header .nav-link.active::after,
+  .header .nav-link[aria-current="page"]::after {
+    position: absolute;
+
+    top: 7px;
+    bottom: 7px;
+
+    left: 0;
+
+    width: 3px;
+    height: auto;
+
+    border-radius: 0 var(--radius-full) var(--radius-full) 0;
+
+    background: var(--eco-green-600);
+
+    transform: none;
+  }
+
+  /* =====================================================
+       PROFILE — RIGHT SIDE
+       ===================================================== */
+
+  /* =====================================================
+     LOGIN — AFTER LOGO
+     ===================================================== */
+
+  .header .login-nav-btn {
+    order: 3;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex: 0 0 auto;
+
+    min-height: 42px;
+
+    gap: 8px;
+    padding: 9px 14px;
+
+    font-size: 13px;
+  }
+
+  /* =====================================================
+     REGISTER — AFTER LOGIN
+     ===================================================== */
+
+  .header .register-nav-btn {
+    order: 4;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex: 0 0 auto;
+
+    min-height: 42px;
+
+    gap: 8px;
+    padding: 9px 14px;
+
+    font-size: 13px;
+  }
+
+  /* =====================================================
+     PROFILE — AFTER REGISTER
+     ===================================================== */
+
+  .header .profile-dropdown {
+    order: 5;
+
+    margin-left: auto;
+  }
+  /* Login/register remain hidden on mobile */
+}
+
+/* =========================================================
+   28. SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+  .eco-page-title {
+    font-size: 28px;
+  }
+
+  .eco-card-body {
+    padding: 18px;
+  }
+
+  .eco-form-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .eco-form-actions .eco-button,
+  .eco-form-actions .eco-btn {
+    width: 100%;
+  }
+
+  .profile-menu-header {
+    padding: 10px;
+  }
+
+  #profileDropdown #profileMenu,
+  #profileDropdown .profile-menu {
+    right: 8px;
+
+    width: calc(100vw - 16px);
+
+    max-width: calc(100vw - 16px);
+  }
+}
+
+/* =========================================================
+   29. EXTRA SMALL DEVICES
+========================================================= */
+
+@media (max-width: 360px) {
+  .header .logo {
+    width: 82px;
+  }
+
+  .header .logo img {
+    width: 82px;
+  }
+
+  .header .navbar {
+    gap: 5px;
+  }
+
+  .eco-page-content {
+    padding-inline: 12px;
+  }
+}
+
+/* =========================================================
+   30. REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* =========================================================
+   31. PRINT
+========================================================= */
+
+@media print {
+  .header,
+  .footer,
+  .menu-btn,
+  .profile-dropdown,
+  .skip-link {
+    display: none !important;
+  }
+
+  body {
+    background: #ffffff;
+    color: #000000;
+  }
+
+  .container,
+  .eco-container {
+    width: 100%;
+    max-width: none;
+  }
+
+  .eco-card {
+    box-shadow: none;
+  }
+}
+
+.sidebar-divider {
+  height: 1px;
+  background: #e5e7eb;
+  margin: 10px 20px;
+}

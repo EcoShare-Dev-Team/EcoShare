@@ -1,0 +1,1270 @@
+/*
+=========================================================
+  EcoShare — Explore Resources
+
+  Clean, consolidated page-specific stylesheet
+=========================================================
+*/
+
+/* =========================================================
+   1. DESIGN TOKENS
+   ========================================================= */
+
+:root {
+  --explore-primary: var(--eco-green-600, #538d22);
+  --explore-primary-dark: var(--eco-green-800, #245501);
+  --explore-primary-deep: var(--eco-green-900, #1a4301);
+  --explore-accent: var(--eco-green-300, #aad576);
+
+  --explore-white: #ffffff;
+  --explore-black: #000000;
+
+  --explore-text: var(--eco-text, #1f2937);
+  --explore-text-secondary: var(--eco-text-secondary, #555555);
+  --explore-text-muted: var(--eco-text-muted, #777777);
+
+  --explore-background: var(--eco-background, #ffffff);
+  --explore-background-soft: var(--eco-background-soft, #f5f8ef);
+  --explore-background-green: var(--eco-background-green, #edf5df);
+
+  --explore-border: var(--eco-border, #d9e3c9);
+  --explore-border-light: var(--eco-border-light, #e4ebd8);
+
+  --explore-success: var(--eco-success, #2e7d32);
+  --explore-danger: var(--eco-danger, #dc2626);
+
+  --explore-success-bg: #dcfce7;
+  --explore-success-border: #bbf7d0;
+  --explore-success-text: #166534;
+
+  --explore-danger-bg: #fee2e2;
+  --explore-danger-border: #fecaca;
+  --explore-danger-text: #991b1b;
+
+  --explore-error-bg: #fef2f2;
+  --explore-error-text: #7f1d1d;
+
+  --explore-shadow-sm: 0 3px 12px rgba(0, 0, 0, 0.05);
+
+  --explore-shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+
+  --explore-shadow-lg: 0 14px 40px rgba(0, 0, 0, 0.1);
+
+  --explore-shadow-primary: 0 8px 22px rgba(83, 141, 34, 0.18);
+
+  --explore-transition-fast: 0.2s ease;
+  --explore-transition-normal: 0.3s ease;
+
+  --explore-radius-sm: 6px;
+  --explore-radius-md: 8px;
+  --explore-radius-lg: 10px;
+  --explore-radius-xl: 12px;
+  --explore-radius-2xl: 16px;
+  --explore-radius-pill: 999px;
+
+  --explore-section-padding: 72px;
+}
+
+/* =========================================================
+   2. EXPLORE HERO
+   ========================================================= */
+
+.explore-hero {
+  padding: 56px 0 48px;
+  background: linear-gradient(
+    135deg,
+    var(--explore-background-green),
+    var(--explore-white)
+  );
+  border-bottom: 1px solid var(--explore-border-light);
+}
+
+.explore-hero-content {
+  max-width: 700px;
+}
+
+.explore-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  padding: 7px 13px;
+  border-radius: var(--explore-radius-pill);
+  background: var(--explore-white);
+  color: var(--explore-primary-dark);
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: var(--explore-shadow-sm);
+}
+
+.explore-label i {
+  color: var(--explore-primary);
+}
+
+.explore-hero h1 {
+  margin: 0 0 10px;
+  color: var(--explore-black);
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.explore-hero p {
+  max-width: 650px;
+  margin: 0;
+  color: var(--explore-text-secondary);
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+/* =========================================================
+   3. EXPLORE SECTION
+   ========================================================= */
+
+.explore-section {
+  padding: 64px 0 72px;
+  background: var(--explore-background);
+}
+
+/* =========================================================
+   4. RESOURCE CONTROLS
+   ========================================================= */
+
+.resource-controls {
+  margin-bottom: 48px;
+  padding: 24px;
+  border: 1px solid var(--explore-border-light);
+  border-radius: var(--explore-radius-2xl);
+  background: var(--explore-background-soft);
+}
+
+/* =========================================================
+   5. SEARCH
+   ========================================================= */
+
+.explore-search {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.search-box {
+  position: relative;
+  width: 100%;
+}
+
+.search-box > i {
+  position: absolute;
+  top: 50%;
+  left: 17px;
+  transform: translateY(-50%);
+  color: var(--explore-text-muted);
+  pointer-events: none;
+}
+
+.search-box input {
+  width: 100%;
+  height: 48px;
+  padding: 0 110px 0 45px;
+  border: 1px solid var(--explore-border);
+  border-radius: var(--explore-radius-md);
+  outline: none;
+  background: var(--explore-white);
+  color: var(--explore-black);
+  font-size: 14px;
+  transition:
+    border-color var(--explore-transition-fast),
+    box-shadow var(--explore-transition-fast);
+}
+
+.search-box input::placeholder {
+  color: var(--explore-text-muted);
+}
+
+.search-box input:hover {
+  border-color: var(--explore-primary);
+}
+
+.search-box input:focus {
+  border-color: var(--explore-primary);
+  box-shadow: 0 0 0 3px rgba(83, 141, 34, 0.12);
+}
+
+.search-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  height: 38px;
+  padding: 0 18px;
+  border: none;
+  border-radius: var(--explore-radius-sm);
+  background: var(--explore-primary);
+  color: var(--explore-white);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background var(--explore-transition-fast),
+    transform var(--explore-transition-fast);
+}
+
+.search-btn:hover {
+  background: var(--explore-primary-dark);
+  transform: translateY(-1px);
+}
+
+.search-btn:active {
+  transform: translateY(0);
+}
+
+/* =========================================================
+   6. FILTERS
+   ========================================================= */
+
+.filter-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.filter-group,
+.sort-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.filter-group label,
+.sort-group label {
+  flex-shrink: 0;
+  color: var(--explore-text-secondary);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.filter-group select,
+.sort-group select {
+  width: 100%;
+  height: 42px;
+  padding: 0 36px 0 12px;
+  border: 1px solid var(--explore-border);
+  border-radius: var(--explore-radius-md);
+  outline: none;
+  background: var(--explore-white);
+  color: var(--explore-black);
+  font-size: 13px;
+  cursor: pointer;
+  transition:
+    border-color var(--explore-transition-fast),
+    box-shadow var(--explore-transition-fast);
+}
+
+.filter-group select:hover,
+.sort-group select:hover {
+  border-color: var(--explore-primary);
+}
+
+.filter-group select:focus,
+.sort-group select:focus {
+  border-color: var(--explore-primary);
+  box-shadow: 0 0 0 3px rgba(83, 141, 34, 0.1);
+}
+
+#distanceFilter {
+  min-width: 150px;
+}
+
+/* =========================================================
+   7. RESET FILTER
+   ========================================================= */
+
+.filter-reset-group {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 0;
+}
+
+.reset-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 0 17px;
+  border: 1px solid var(--explore-primary);
+  border-radius: var(--explore-radius-md);
+  background: var(--explore-primary);
+  color: var(--explore-white);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background var(--explore-transition-fast),
+    border-color var(--explore-transition-fast),
+    transform var(--explore-transition-fast),
+    box-shadow var(--explore-transition-fast);
+}
+
+.reset-filter-btn:hover {
+  background: var(--explore-primary-dark);
+  border-color: var(--explore-primary-dark);
+  transform: translateY(-1px);
+  box-shadow: var(--explore-shadow-primary);
+}
+
+.reset-filter-btn:active {
+  transform: translateY(0);
+}
+
+/* =========================================================
+   8. RESULTS HEADER
+   ========================================================= */
+
+.results-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.results-header h2 {
+  margin: 0 0 4px;
+  color: var(--explore-black);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.results-header p {
+  margin: 0;
+  color: var(--explore-text-muted);
+  font-size: 13px;
+}
+
+.results-header .sort-group {
+  min-width: 210px;
+}
+
+.sort-group select {
+  width: auto;
+  min-width: 130px;
+}
+
+/* =========================================================
+   9. RESOURCE GRID
+   ========================================================= */
+
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+  align-items: stretch;
+}
+
+/* =========================================================
+   10. RESOURCE CARD
+   ========================================================= */
+
+.resource-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid var(--explore-border-light);
+  border-radius: var(--explore-radius-xl);
+  background: var(--explore-white);
+  box-shadow: var(--explore-shadow-sm);
+  cursor: pointer;
+  transition:
+    transform var(--explore-transition-normal),
+    box-shadow var(--explore-transition-normal),
+    border-color var(--explore-transition-normal);
+}
+
+.resource-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--explore-border);
+  box-shadow: var(--explore-shadow-md);
+}
+
+.resource-card:focus-within {
+  border-color: var(--explore-primary);
+  box-shadow: 0 0 0 3px rgba(83, 141, 34, 0.1);
+}
+
+/* =========================================================
+   11. RESOURCE IMAGE
+   ========================================================= */
+
+.resource-card-image {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  overflow: hidden;
+  background: var(--explore-background-soft);
+  border-bottom: 1px solid var(--explore-border-light);
+}
+
+.resource-card-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  object-position: center;
+  transition: transform var(--explore-transition-normal);
+}
+
+.resource-card:hover .resource-card-image img {
+  transform: scale(1.03);
+}
+
+.resource-card-image-placeholder {
+  color: var(--explore-primary);
+  font-size: 48px;
+}
+
+.resource-card-image-placeholder i {
+  color: var(--explore-primary);
+}
+
+/* =========================================================
+   12. RESOURCE CARD CONTENT
+   ========================================================= */
+
+.resource-card-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  padding: 20px;
+}
+
+/* =========================================================
+   13. RESOURCE CARD TOP
+   ========================================================= */
+
+.resource-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.resource-category {
+  align-self: flex-start;
+  max-width: 60%;
+  margin: 0;
+  padding: 4px 9px;
+  overflow: hidden;
+  border-radius: var(--explore-radius-pill);
+  background: var(--explore-background-green);
+  color: var(--explore-primary-dark);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: capitalize;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* =========================================================
+   14. AVAILABILITY
+   ========================================================= */
+
+.resource-availability {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 6px 10px;
+  border: 1px solid transparent;
+  border-radius: var(--explore-radius-pill);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.resource-availability.available {
+  background: var(--explore-success-bg);
+  border-color: var(--explore-success-border);
+  color: var(--explore-success-text);
+}
+
+.resource-availability.unavailable {
+  background: var(--explore-danger-bg);
+  border-color: var(--explore-danger-border);
+  color: var(--explore-danger);
+}
+
+/* =========================================================
+   15. RESOURCE TITLE
+   ========================================================= */
+
+.resource-title {
+  margin: 0 0 8px;
+  color: var(--explore-black);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+/* =========================================================
+   16. RESOURCE DESCRIPTION
+   ========================================================= */
+
+.resource-description {
+  display: -webkit-box;
+  width: 100%;
+  min-height: 62px;
+  height: 62px;
+  margin: 0 0 16px;
+  color: var(--explore-text-secondary);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.6;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+}
+
+/* =========================================================
+   17. RESOURCE LOCATION
+   ========================================================= */
+
+.resource-location {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  min-width: 0;
+  margin-bottom: 8px;
+  color: var(--explore-text-muted);
+  font-size: 12px;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.resource-location > i {
+  flex: 0 0 14px;
+  width: 14px;
+  margin-top: 2px;
+  color: var(--explore-primary);
+}
+
+.resource-location > span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+/* =========================================================
+   18. RESOURCE DISTANCE
+   ========================================================= */
+
+.resource-distance {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  margin-bottom: 14px;
+  color: var(--explore-primary-dark);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.resource-distance i {
+  flex: 0 0 14px;
+  width: 14px;
+  margin-right: 4px;
+  color: var(--explore-primary);
+}
+
+/* =========================================================
+   19. RESOURCE PRICING
+   ========================================================= */
+
+.resource-pricing {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-width: 0;
+  margin: 0 0 14px;
+}
+
+.resource-price-hour,
+.resource-price-day,
+.resource-price-free {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  padding: 6px 9px;
+  border: 1px solid var(--explore-border-light);
+  border-radius: var(--explore-radius-pill);
+  background: var(--explore-background-soft);
+  color: var(--explore-primary-dark);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.resource-price-hour i,
+.resource-price-day i {
+  flex: 0 0 auto;
+  color: var(--explore-primary);
+}
+
+.resource-price-free {
+  background: var(--explore-background-green);
+  border-color: var(--explore-border);
+  color: var(--explore-primary-dark);
+}
+
+/* =========================================================
+   20. RESOURCE FOOTER
+   ========================================================= */
+
+.resource-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--explore-border-light);
+}
+
+/* =========================================================
+   21. RESOURCE OWNER
+   ========================================================= */
+
+.resource-owner {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+  flex: 1;
+}
+
+.resource-owner-avatar {
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--explore-background-green);
+  border: 1px solid var(--explore-border-light);
+}
+
+.resource-owner-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: 2px;
+}
+
+.resource-owner-label {
+  color: var(--explore-text-muted);
+  font-size: 10px;
+  line-height: 1.2;
+}
+
+.resource-owner-name {
+  min-width: 0;
+  color: var(--explore-text);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.resource-date {
+  flex-shrink: 0;
+  color: var(--explore-text-muted);
+  font-size: 10px;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+/* =========================================================
+   22. VIEW DETAILS BUTTON
+   ========================================================= */
+
+.resource-view-btn {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 38px;
+  margin-top: 16px;
+  padding: 8px 14px;
+  border: 1px solid var(--explore-primary);
+  border-radius: var(--explore-radius-md);
+  background: transparent;
+  color: var(--explore-primary-dark);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background var(--explore-transition-fast),
+    color var(--explore-transition-fast),
+    border-color var(--explore-transition-fast),
+    transform var(--explore-transition-fast);
+}
+
+.resource-view-btn:hover {
+  background: var(--explore-primary);
+  border-color: var(--explore-primary);
+  color: var(--explore-white);
+  transform: translateY(-1px);
+}
+
+.resource-view-btn:active {
+  transform: translateY(0);
+}
+
+/* =========================================================
+   23. EMPTY STATE
+   ========================================================= */
+
+.no-resources {
+  padding: 64px 24px;
+  text-align: center;
+  border: 1px dashed var(--explore-border);
+  border-radius: var(--explore-radius-2xl);
+  background: var(--explore-background-soft);
+}
+
+.no-resources[hidden] {
+  display: none !important;
+}
+
+.no-resources-icon {
+  width: 58px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  background: var(--explore-background-green);
+  color: var(--explore-primary);
+  font-size: 22px;
+}
+
+.no-resources h3 {
+  margin: 0 0 8px;
+  color: var(--explore-black);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.no-resources p {
+  max-width: 480px;
+  margin: 0 auto 24px;
+  color: var(--explore-text-muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* =========================================================
+   24. LOADING STATE
+   ========================================================= */
+
+.resource-loading {
+  width: 100%;
+  padding: 48px 24px;
+  text-align: center;
+  border: 1px solid var(--explore-border-light);
+  border-radius: var(--explore-radius-2xl);
+  background: var(--explore-background-soft);
+  color: var(--explore-text-muted);
+  font-size: 14px;
+}
+
+.resource-loading[hidden] {
+  display: none !important;
+}
+
+.resource-loading i {
+  margin-right: 8px;
+  color: var(--explore-primary);
+}
+
+/* =========================================================
+   25. ERROR STATE
+   ========================================================= */
+
+.resource-error {
+  width: 100%;
+  padding: 48px 24px;
+  text-align: center;
+  border: 1px solid var(--explore-danger-border);
+  border-radius: var(--explore-radius-2xl);
+  background: var(--explore-error-bg);
+}
+
+.resource-error[hidden] {
+  display: none !important;
+}
+
+.resource-error-icon {
+  width: 58px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  background: var(--explore-danger-bg);
+  color: var(--explore-danger);
+  font-size: 22px;
+}
+
+.resource-error h3 {
+  margin: 0 0 8px;
+  color: var(--explore-danger-text);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.resource-error p {
+  max-width: 520px;
+  margin: 0 auto 20px;
+  color: var(--explore-error-text);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.retry-resources-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 0 16px;
+  border: 1px solid var(--explore-primary);
+  border-radius: var(--explore-radius-md);
+  background: var(--explore-primary);
+  color: var(--explore-white);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background var(--explore-transition-fast),
+    transform var(--explore-transition-fast),
+    box-shadow var(--explore-transition-fast);
+}
+
+.retry-resources-btn:hover {
+  background: var(--explore-primary-dark);
+  transform: translateY(-1px);
+  box-shadow: var(--explore-shadow-primary);
+}
+
+/* =========================================================
+   26. EXPLORE CTA
+   ========================================================= */
+
+.explore-cta {
+  padding: 56px 0;
+  background: var(--explore-primary-deep);
+}
+
+.explore-cta-content {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 28px 32px;
+  border: 1px solid rgba(170, 213, 118, 0.22);
+  border-radius: var(--explore-radius-2xl);
+  background: linear-gradient(
+    135deg,
+    rgba(36, 85, 1, 0.9),
+    rgba(83, 141, 34, 0.35)
+  );
+}
+
+.explore-cta-icon {
+  width: 52px;
+  height: 52px;
+  flex: 0 0 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--explore-radius-lg);
+  background: var(--explore-accent);
+  color: var(--explore-primary-deep);
+  font-size: 21px;
+}
+
+.explore-cta-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.explore-cta-text h2 {
+  margin: 0 0 4px;
+  color: var(--explore-white);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.explore-cta-text p {
+  margin: 0;
+  color: #dce9c9;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.explore-cta .primary-btn {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 0 18px;
+  border: none;
+  border-radius: var(--explore-radius-md);
+  background: var(--explore-accent);
+  color: var(--explore-primary-deep);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background var(--explore-transition-fast),
+    transform var(--explore-transition-fast);
+}
+
+.explore-cta .primary-btn:hover {
+  background: var(--explore-white);
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   27. ACCESSIBILITY
+   ========================================================= */
+
+.search-box input:focus-visible,
+.filter-group select:focus-visible,
+.sort-group select:focus-visible,
+.resource-view-btn:focus-visible,
+.reset-filter-btn:focus-visible,
+.retry-resources-btn:focus-visible,
+.explore-cta .primary-btn:focus-visible {
+  outline: 3px solid rgba(83, 141, 34, 0.22);
+  outline-offset: 2px;
+}
+
+/* =========================================================
+   28. RESPONSIVE — 1100px
+   ========================================================= */
+
+@media (max-width: 1100px) {
+  .resource-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* =========================================================
+   29. RESPONSIVE — 900px
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .resource-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .explore-hero {
+    padding: 48px 0 42px;
+  }
+
+  .explore-hero h1 {
+    font-size: 32px;
+  }
+
+  .explore-cta-content {
+    align-items: flex-start;
+  }
+}
+
+/* =========================================================
+   30. RESPONSIVE — 700px
+   ========================================================= */
+
+@media (max-width: 700px) {
+  .resource-controls {
+    padding: 20px;
+  }
+
+  .filter-row {
+    grid-template-columns: 1fr;
+  }
+
+  .filter-group,
+  .sort-group {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .filter-group label,
+  .sort-group label {
+    font-size: 12px;
+  }
+
+  .filter-group select,
+  .sort-group select {
+    height: 44px;
+  }
+
+  #distanceFilter {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .filter-reset-group {
+    align-items: stretch;
+    justify-content: stretch;
+  }
+
+  .reset-filter-btn {
+    width: 100%;
+    min-height: 44px;
+  }
+
+  .results-header {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .results-header .sort-group {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .sort-group select {
+    width: 100%;
+    flex: 1;
+  }
+
+  .explore-cta-content {
+    flex-wrap: wrap;
+  }
+
+  .explore-cta-text {
+    min-width: 0;
+    flex: 1 1 calc(100% - 76px);
+  }
+
+  .explore-cta .primary-btn {
+    width: 100%;
+  }
+
+  .resource-card-footer {
+    align-items: flex-start;
+  }
+}
+
+/* =========================================================
+   31. RESPONSIVE — 600px
+   ========================================================= */
+
+@media (max-width: 600px) {
+  .explore-section {
+    padding: 48px 0 64px;
+  }
+
+  .resource-controls {
+    margin-bottom: 36px;
+    padding: 18px;
+  }
+
+  .resource-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .resource-card-image {
+    height: 210px;
+  }
+
+  .explore-cta {
+    padding: 42px 0;
+  }
+
+  .explore-cta-content {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px;
+  }
+
+  .explore-cta .primary-btn {
+    width: 100%;
+  }
+
+  .no-resources,
+  .resource-loading,
+  .resource-error {
+    padding: 48px 18px;
+  }
+}
+
+/* =========================================================
+   32. RESPONSIVE — 450px
+   ========================================================= */
+
+@media (max-width: 450px) {
+  .explore-hero {
+    padding: 42px 0;
+  }
+
+  .explore-hero h1 {
+    font-size: 28px;
+  }
+
+  .explore-hero p {
+    font-size: 14px;
+  }
+
+  .search-box input {
+    height: 46px;
+    padding-right: 95px;
+  }
+
+  .search-btn {
+    padding: 0 13px;
+  }
+
+  .results-header h2 {
+    font-size: 21px;
+  }
+
+  .resource-card-image {
+    height: 190px;
+  }
+
+  .resource-card-content {
+    padding: 18px;
+  }
+
+  .resource-card-footer {
+    align-items: flex-start;
+  }
+
+  .resource-availability {
+    font-size: 10px;
+  }
+
+  .resource-view-btn {
+    min-height: 36px;
+    padding: 7px 11px;
+    font-size: 11px;
+  }
+
+  .resource-owner-avatar {
+    width: 32px;
+    height: 32px;
+    flex-basis: 32px;
+  }
+
+  .resource-date {
+    display: none;
+  }
+
+  .resource-pricing {
+    gap: 6px;
+  }
+
+  .resource-price-hour,
+  .resource-price-day,
+  .resource-price-free {
+    padding: 5px 8px;
+    font-size: 10px;
+  }
+
+  .explore-cta {
+    padding: 32px 0;
+  }
+
+  .explore-cta-content {
+    padding: 20px;
+  }
+}
+
+/* =========================================================
+   33. REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .resource-card,
+  .resource-card-image img,
+  .search-btn,
+  .resource-view-btn,
+  .reset-filter-btn,
+  .retry-resources-btn,
+  .explore-cta .primary-btn {
+    transition: none;
+  }
+
+  .resource-card:hover {
+    transform: none;
+  }
+
+  .resource-card:hover .resource-card-image img {
+    transform: none;
+  }
+
+  .search-btn:hover,
+  .resource-view-btn:hover,
+  .reset-filter-btn:hover,
+  .retry-resources-btn:hover,
+  .explore-cta .primary-btn:hover {
+    transform: none;
+  }
+}
+
+/* =========================================================
+   34. PRINT
+   ========================================================= */
+
+@media print {
+  .resource-controls,
+  .explore-cta,
+  .resource-view-btn,
+  .reset-filter-btn,
+  .retry-resources-btn {
+    display: none !important;
+  }
+
+  .explore-hero {
+    padding: 24px 0;
+  }
+
+  .resource-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .resource-card {
+    break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid #cccccc;
+  }
+}
