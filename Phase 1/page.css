@@ -2192,14 +2192,62 @@ main {
     padding: 10px;
   }
 
-  #profileDropdown #profileMenu,
-  #profileDropdown .profile-menu {
-    right: 8px;
+ /* =====================================================
+   MOBILE PROFILE DROPDOWN
+   ===================================================== */
 
-    width: calc(100vw - 16px);
+#profileDropdown #profileMenu,
+#profileDropdown .profile-menu {
+    top: calc(100% + 8px);
 
-    max-width: calc(100vw - 16px);
-  }
+    left: auto;
+    right: 0;
+
+    width: 290px;
+    max-width: calc(100vw - 24px);
+
+    padding: 6px;
+
+    transform: none;
+    transform-origin: top right;
+
+    border-radius: var(--radius-lg);
+
+    box-shadow: var(--shadow-lg);
+}
+
+  /* =====================================================
+   MOBILE PROFILE MENU COMPACT ITEMS
+   ===================================================== */
+
+.profile-menu-header {
+    padding: 10px;
+    gap: 10px;
+}
+
+.profile-menu-header img,
+#menuProfilePhoto {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    flex-basis: 40px;
+}
+
+.profile-menu-item,
+#profileLogoutBtn {
+    min-height: 38px;
+    gap: 10px;
+    padding: 8px 10px;
+
+    font-size: 13px;
+}
+
+.profile-menu-item i,
+#profileLogoutBtn i {
+    width: 18px;
+    min-width: 18px;
+    font-size: 14px;
+}
 }
 
 /* =========================================================
