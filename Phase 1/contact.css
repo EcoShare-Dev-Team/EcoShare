@@ -252,6 +252,13 @@
     color var(--contact-transition),
     transform var(--contact-transition),
     box-shadow var(--contact-transition);
+
+
+   /* Space between multiple email links */
+
+.contact-content .contact-email + .contact-email {
+  margin-top: 12px;
+}
 }
 
 /* Email Hover */
