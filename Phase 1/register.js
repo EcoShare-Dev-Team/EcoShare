@@ -1268,15 +1268,8 @@
       return;
     }
 
-    /*
-     * No Terms page currently exists in the supplied
-     * registration implementation.
-     *
-     * Prevent "#" from unexpectedly scrolling the page.
-     */
-    termsLink.addEventListener("click", (event) => {
-      event.preventDefault();
-    });
+    termsLink.href = "terms.html";
+    termsLink.removeAttribute("aria-disabled");
   }
 
   /* =====================================================

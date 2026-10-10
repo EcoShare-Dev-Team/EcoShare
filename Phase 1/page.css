@@ -2110,7 +2110,7 @@ main {
    LOGIN — FAR RIGHT
    ===================================================== */
 
-.header .login-nav-btn {
+  .header .login-nav-btn {
     order: 3;
 
     margin-left: auto;
@@ -2128,14 +2128,13 @@ main {
     padding: 9px 14px;
 
     font-size: 13px;
-}
+  }
 
-
-/* =====================================================
+  /* =====================================================
    REGISTER — RIGHT OF LOGIN
    ===================================================== */
 
-.header .register-nav-btn {
+  .header .register-nav-btn {
     order: 4;
 
     display: inline-flex;
@@ -2151,7 +2150,7 @@ main {
     padding: 9px 14px;
 
     font-size: 13px;
-}
+  }
 
   /* =====================================================
      PROFILE — AFTER REGISTER
@@ -2192,13 +2191,61 @@ main {
     padding: 10px;
   }
 
+  /* =====================================================
+   MOBILE PROFILE DROPDOWN
+   ===================================================== */
+
   #profileDropdown #profileMenu,
   #profileDropdown .profile-menu {
-    right: 8px;
+    top: calc(100% + 8px);
 
-    width: calc(100vw - 16px);
+    left: auto;
+    right: 0;
 
-    max-width: calc(100vw - 16px);
+    width: 290px;
+    max-width: calc(100vw - 24px);
+
+    padding: 6px;
+
+    transform: none;
+    transform-origin: top right;
+
+    border-radius: var(--radius-lg);
+
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* =====================================================
+   MOBILE PROFILE MENU COMPACT ITEMS
+   ===================================================== */
+
+  .profile-menu-header {
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .profile-menu-header img,
+  #menuProfilePhoto {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    flex-basis: 40px;
+  }
+
+  .profile-menu-item,
+  #profileLogoutBtn {
+    min-height: 38px;
+    gap: 10px;
+    padding: 8px 10px;
+
+    font-size: 13px;
+  }
+
+  .profile-menu-item i,
+  #profileLogoutBtn i {
+    width: 18px;
+    min-width: 18px;
+    font-size: 14px;
   }
 }
 
@@ -2275,4 +2322,36 @@ main {
   height: 1px;
   background: #e5e7eb;
   margin: 10px 20px;
+}
+
+/* =====================================================
+   LEGAL LINKS IN FOOTER
+===================================================== */
+
+.legal-footer-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin: 12px 0;
+}
+
+.legal-footer-links a {
+  color: inherit;
+  font-size: 13px;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.legal-footer-links a:hover {
+  color: var(--eco-green-400);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+@media (max-width: 800px) {
+  .legal-footer-links {
+    gap: 10px 14px;
+  }
 }
