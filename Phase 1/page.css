@@ -2195,10 +2195,10 @@ main {
    MOBILE PROFILE DROPDOWN
    ===================================================== */
 
+
   #profileDropdown #profileMenu,
   #profileDropdown .profile-menu {
     top: calc(100% + 8px);
-
     left: auto;
     right: 0;
 
@@ -2211,13 +2211,12 @@ main {
     transform-origin: top right;
 
     border-radius: var(--radius-lg);
-
     box-shadow: var(--shadow-lg);
   }
 
   /* =====================================================
-   MOBILE PROFILE MENU COMPACT ITEMS
-   ===================================================== */
+     MOBILE PROFILE MENU COMPACT ITEMS
+  ===================================================== */
 
   .profile-menu-header {
     padding: 10px;
@@ -2237,7 +2236,6 @@ main {
     min-height: 38px;
     gap: 10px;
     padding: 8px 10px;
-
     font-size: 13px;
   }
 
@@ -2247,7 +2245,7 @@ main {
     min-width: 18px;
     font-size: 14px;
   }
-}
+
 
 /* =========================================================
    29. EXTRA SMALL DEVICES
@@ -2354,4 +2352,6 @@ main {
   .legal-footer-links {
     gap: 10px 14px;
   }
+}
+
 }
