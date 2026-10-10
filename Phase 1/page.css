@@ -1,39 +1,35 @@
-/*
-=========================================================
+/* =========================================================
+   EcoShare — Global Page Styles
+   File: page.css
 
-  EcoShare — Global Page Styles
+   Global:
+   - Design tokens
+   - Reset / typography
+   - Containers
+   - Buttons
+   - Cards
+   - Forms
+   - Tables
+   - Header / navbar
+   - Mobile navigation
+   - Profile dropdown
+   - Notification badge
+   - Utilities
+   - Accessibility
+   - Footer
+   - Responsive behavior
 
-  File: page.css
+   Page-specific styles belong in:
+   - style.css
+   - about.css
+   - contact.css
+   - profile.css
+   - login.css
+   - register.css
+   - user-dashboard.css
+   - admin-dashboard.css
+========================================================= */
 
-  Global:
-  - Design tokens
-  - Reset / typography
-  - Containers
-  - Buttons
-  - Cards
-  - Forms
-  - Tables
-  - Header / navbar
-  - Mobile navigation
-  - Profile dropdown
-  - Notification badge
-  - Utilities
-  - Accessibility
-  - Footer
-  - Responsive behavior
-
-  Page-specific styles belong in:
-  - style.css
-  - about.css
-  - contact.css
-  - profile.css
-  - login.css
-  - register.css
-  - user-dashboard.css
-  - admin-dashboard.css
-
-=========================================================
-*/
 
 /* =========================================================
    1. DESIGN TOKENS
@@ -41,7 +37,6 @@
 
 :root {
   /* Green */
-
   --eco-green-50: #f7fbf2;
   --eco-green-100: #edf5df;
   --eco-green-200: #dcebc8;
@@ -55,7 +50,6 @@
   --eco-green-950: #102900;
 
   /* Neutral */
-
   --eco-white: #ffffff;
   --eco-black: #111111;
 
@@ -74,7 +68,6 @@
   --eco-background-soft: #f5f8f2;
 
   /* Semantic */
-
   --eco-success: #2f7d32;
   --eco-success-dark: #216425;
   --eco-success-soft: #ecf8ed;
@@ -92,9 +85,7 @@
   --eco-info-soft: #eff6ff;
 
   /* Typography */
-
   --font-sans: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-
   --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
 
   --font-size-xs: 11px;
@@ -107,7 +98,6 @@
   --font-size-4xl: 36px;
 
   /* Layout */
-
   --container-width: 1180px;
   --content-max-width: 1180px;
 
@@ -122,7 +112,6 @@
   --section-space-mobile: 48px;
 
   /* Spacing */
-
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
@@ -139,7 +128,6 @@
   --space-14: 80px;
 
   /* Radius */
-
   --radius-xs: 4px;
   --radius-sm: 8px;
   --radius-md: 10px;
@@ -149,25 +137,18 @@
   --radius-full: 999px;
 
   /* Shadows */
-
   --shadow-xs: 0 1px 3px rgba(20, 40, 15, 0.05);
-
   --shadow-sm: 0 4px 12px rgba(20, 40, 15, 0.07);
-
   --shadow-md: 0 8px 24px rgba(20, 40, 15, 0.1);
-
   --shadow-lg: 0 16px 40px rgba(20, 40, 15, 0.14);
-
   --shadow-xl: 0 24px 60px rgba(20, 40, 15, 0.18);
 
   /* Transitions */
-
   --transition-fast: 0.15s ease;
   --transition: 0.22s ease;
   --transition-slow: 0.35s ease;
 
   /* Z-index */
-
   --z-base: 1;
   --z-header: 1000;
   --z-dropdown: 1100;
@@ -175,10 +156,10 @@
   --z-toast: 3000;
 
   /* Compatibility */
-
   --eco-primary: var(--eco-green-600);
   --eco-primary-dark: var(--eco-green-800);
 }
+
 
 /* =========================================================
    2. RESET
@@ -280,6 +261,7 @@ p {
   line-height: 1.7;
 }
 
+
 /* =========================================================
    3. PAGE FOUNDATION
 ========================================================= */
@@ -303,22 +285,28 @@ main {
   padding: var(--section-space) 0;
 }
 
+
 /* =========================================================
    4. CONTAINERS
 ========================================================= */
 
 .container,
 .eco-container {
-  width: min(calc(100% - (var(--page-padding) * 2)), var(--container-width));
-
+  width: min(
+    calc(100% - (var(--page-padding) * 2)),
+    var(--container-width)
+  );
   margin-inline: auto;
 }
 
 .footer-container {
-  width: min(calc(100% - (var(--page-padding) * 2)), var(--content-max-width));
-
+  width: min(
+    calc(100% - (var(--page-padding) * 2)),
+    var(--content-max-width)
+  );
   margin-inline: auto;
 }
+
 
 /* =========================================================
    5. PAGE HEADINGS
@@ -347,7 +335,6 @@ main {
 
 .eco-page-title {
   margin-bottom: var(--space-2);
-
   color: var(--eco-green-900);
   font-size: clamp(26px, 4vw, 38px);
   font-weight: 800;
@@ -356,7 +343,6 @@ main {
 
 .eco-page-subtitle {
   max-width: 720px;
-
   color: var(--eco-text-muted);
   font-size: var(--font-size-md);
   line-height: 1.7;
@@ -364,7 +350,6 @@ main {
 
 .eco-section-title {
   margin-bottom: var(--space-3);
-
   color: var(--eco-green-900);
   font-size: clamp(24px, 3vw, 32px);
   font-weight: 800;
@@ -372,7 +357,6 @@ main {
 
 .eco-section-description {
   max-width: 700px;
-
   color: var(--eco-text-muted);
   line-height: 1.75;
 }
@@ -380,7 +364,6 @@ main {
 .eco-section-label {
   display: inline-flex;
   align-items: center;
-
   margin-bottom: var(--space-3);
 
   color: var(--eco-green-700);
@@ -390,6 +373,7 @@ main {
   line-height: 1.2;
   text-transform: uppercase;
 }
+
 
 /* =========================================================
    6. BUTTONS
@@ -501,23 +485,21 @@ main {
   padding: 12px 22px;
 }
 
+
 /* =========================================================
    7. SHARED CARDS
 ========================================================= */
 
 .eco-card {
   min-width: 0;
-
   border: 1px solid var(--eco-border-light);
   border-radius: var(--radius-lg);
-
   background: var(--eco-white);
   box-shadow: var(--shadow-sm);
 }
 
 .eco-card-header {
   padding: var(--space-5) var(--space-6);
-
   border-bottom: 1px solid var(--eco-border-light);
 }
 
@@ -527,9 +509,9 @@ main {
 
 .eco-card-footer {
   padding: var(--space-4) var(--space-6);
-
   border-top: 1px solid var(--eco-border-light);
 }
+
 
 /* =========================================================
    8. FORM SYSTEM
@@ -558,12 +540,10 @@ main {
 .eco-textarea {
   width: 100%;
   min-height: 44px;
-
   padding: 10px 13px;
 
   border: 1px solid var(--eco-border);
   border-radius: var(--radius-md);
-
   outline: none;
 
   background: var(--eco-white);
@@ -598,15 +578,12 @@ main {
 .eco-select:focus,
 .eco-textarea:focus {
   border-color: var(--eco-green-500);
-
   box-shadow: 0 0 0 3px rgba(83, 141, 34, 0.12);
 }
 
 .eco-form-row {
   display: grid;
-
   grid-template-columns: repeat(2, minmax(0, 1fr));
-
   gap: var(--space-5);
 }
 
@@ -614,10 +591,10 @@ main {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-
   gap: var(--space-3);
   margin-top: var(--space-5);
 }
+
 
 /* =========================================================
    9. FILTER / SEARCH
@@ -627,7 +604,6 @@ main {
   display: flex;
   align-items: flex-end;
   flex-wrap: wrap;
-
   gap: var(--space-4);
   margin-bottom: var(--space-6);
 }
@@ -643,6 +619,7 @@ main {
   gap: var(--space-2);
   margin-left: auto;
 }
+
 
 /* =========================================================
    10. STATUS BADGES
@@ -703,6 +680,7 @@ main {
   color: var(--eco-info-dark);
 }
 
+
 /* =========================================================
    11. ALERTS
 ========================================================= */
@@ -746,6 +724,7 @@ main {
   color: var(--eco-info-dark);
 }
 
+
 /* =========================================================
    12. LOADING / EMPTY / ERROR
 ========================================================= */
@@ -759,7 +738,6 @@ main {
   flex-direction: column;
 
   gap: var(--space-3);
-
   min-height: 180px;
   padding: var(--space-8);
 
@@ -783,7 +761,6 @@ main {
   height: 48px;
 
   border-radius: 50%;
-
   background: var(--eco-green-100);
   color: var(--eco-green-700);
 
@@ -818,6 +795,7 @@ main {
   }
 }
 
+
 /* =========================================================
    13. TABLES
 ========================================================= */
@@ -836,15 +814,12 @@ main {
 .eco-table {
   width: 100%;
   min-width: 650px;
-
   border-collapse: collapse;
-
   font-size: 13px;
 }
 
 .eco-table th {
   padding: 13px 16px;
-
   border-bottom: 1px solid var(--eco-border);
 
   background: var(--eco-surface-soft);
@@ -860,9 +835,7 @@ main {
 
 .eco-table td {
   padding: 14px 16px;
-
   border-bottom: 1px solid var(--eco-border-light);
-
   color: var(--eco-text);
   vertical-align: middle;
 }
@@ -879,6 +852,7 @@ main {
   background: var(--eco-green-50);
 }
 
+
 /* =========================================================
    14. HEADER
 ========================================================= */
@@ -892,7 +866,6 @@ main {
   height: var(--header-height);
 
   background: rgba(255, 255, 255, 0.97);
-
   border-bottom: 1px solid var(--eco-border-light);
 
   backdrop-filter: blur(14px);
@@ -910,17 +883,19 @@ main {
 
 .header .navbar {
   position: relative;
-
   display: flex;
   align-items: center;
 
-  width: min(calc(100% - (var(--page-padding) * 2)), var(--header-max-width));
+  width: min(
+    calc(100% - (var(--page-padding) * 2)),
+    var(--header-max-width)
+  );
 
   height: var(--header-height);
   margin-inline: auto;
-
   gap: 20px;
 }
+
 
 /* =========================================================
    15. LOGO
@@ -929,16 +904,13 @@ main {
 .header .logo {
   display: inline-flex;
   align-items: center;
-
   flex: 0 0 auto;
 
   width: 104px;
   height: 58px;
-
   margin-right: auto;
 
   color: var(--eco-green-900);
-
   text-decoration: none;
 
   transition:
@@ -948,12 +920,9 @@ main {
 
 .header .logo img {
   display: block;
-
   width: 104px;
   height: 58px;
-
   max-width: none;
-
   object-fit: contain;
 }
 
@@ -967,6 +936,7 @@ main {
   transform: translateY(-1px);
 }
 
+
 /* =========================================================
    16. DESKTOP NAVIGATION
 ========================================================= */
@@ -974,11 +944,8 @@ main {
 .header .primary-navigation {
   display: flex;
   align-items: center;
-
   flex: 0 0 auto;
-
   gap: 6px;
-
   margin: 0;
   padding: 0;
 }
@@ -1033,7 +1000,6 @@ main {
 
   width: 18px;
   height: 18px;
-
   flex: 0 0 auto;
 
   font-size: 17px;
@@ -1056,7 +1022,6 @@ main {
 
 .header .nav-link::after {
   content: "";
-
   position: absolute;
 
   left: 50%;
@@ -1066,11 +1031,9 @@ main {
   height: 2px;
 
   border-radius: var(--radius-full);
-
   background: var(--eco-green-600);
 
   transform: translateX(-50%);
-
   transition: width var(--transition);
 }
 
@@ -1083,6 +1046,7 @@ main {
   width: 30px;
 }
 
+
 /* =========================================================
    17. AUTH BUTTONS
 ========================================================= */
@@ -1092,11 +1056,9 @@ main {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
   flex: 0 0 auto;
 
   min-height: 42px;
-
   gap: 8px;
   padding: 10px 17px;
 
@@ -1112,7 +1074,6 @@ main {
   line-height: 1;
 
   cursor: pointer;
-
   text-decoration: none;
   white-space: nowrap;
 
@@ -1133,7 +1094,6 @@ main {
   color: var(--eco-white);
 
   transform: translateY(-1px);
-
   box-shadow: 0 7px 18px rgba(83, 141, 34, 0.22);
 }
 
@@ -1145,7 +1105,6 @@ main {
 .header .login-nav-btn:focus-visible,
 .header .register-nav-btn:focus-visible {
   outline: 3px solid rgba(83, 141, 34, 0.25);
-
   outline-offset: 2px;
 }
 
@@ -1153,6 +1112,7 @@ main {
 .header #registerNavButton[hidden] {
   display: none !important;
 }
+
 
 /* =========================================================
    18. MOBILE MENU BUTTON
@@ -1162,12 +1122,10 @@ main {
   display: none;
   align-items: center;
   justify-content: center;
-
   flex: 0 0 auto;
 
   width: 42px;
   height: 42px;
-
   padding: 0;
 
   border: 1px solid var(--eco-border);
@@ -1177,7 +1135,6 @@ main {
   color: var(--eco-green-800);
 
   font-size: 19px;
-
   cursor: pointer;
 
   transition:
@@ -1193,6 +1150,7 @@ main {
   color: var(--eco-green-800);
 }
 
+
 /* =========================================================
    19. PROFILE DROPDOWN
 ========================================================= */
@@ -1200,10 +1158,8 @@ main {
 #profileDropdown,
 .profile-dropdown {
   position: relative;
-
   display: inline-flex;
   align-items: center;
-
   flex: 0 0 auto;
 }
 
@@ -1243,7 +1199,6 @@ main {
   color: var(--eco-green-800);
 
   cursor: pointer;
-
   transition: background var(--transition-fast);
 }
 
@@ -1260,7 +1215,6 @@ main {
 
   width: 44px;
   height: 44px;
-
   flex: 0 0 44px;
 
   border: 2px solid var(--eco-green-400);
@@ -1284,7 +1238,6 @@ main {
 .profile-chevron {
   color: var(--eco-green-700);
   font-size: 12px;
-
   transition: transform var(--transition);
 }
 
@@ -1309,14 +1262,12 @@ main {
   max-width: calc(100vw - 32px);
 
   padding: 8px;
-
   box-sizing: border-box;
 
   border: 1px solid var(--eco-border-light);
   border-radius: var(--radius-lg);
 
   background: var(--eco-white);
-
   box-shadow: var(--shadow-lg);
 
   overflow: hidden;
@@ -1330,7 +1281,6 @@ main {
 #profileDropdown #profileMenu::before,
 #profileDropdown .profile-menu::before {
   content: "";
-
   position: absolute;
 
   top: -6px;
@@ -1340,11 +1290,9 @@ main {
   height: 12px;
 
   border-top: 1px solid var(--eco-border-light);
-
   border-left: 1px solid var(--eco-border-light);
 
   background: var(--eco-white);
-
   transform: translateX(-50%) rotate(45deg);
 }
 
@@ -1353,12 +1301,10 @@ main {
 .profile-menu-header {
   display: flex;
   align-items: center;
-
   gap: 12px;
 
   width: 100%;
   min-width: 0;
-
   padding: 12px;
 
   border-bottom: 1px solid var(--eco-border-light);
@@ -1373,7 +1319,6 @@ main {
   flex: 0 0 44px;
 
   border-radius: 50%;
-
   object-fit: cover;
   object-position: center;
 
@@ -1387,17 +1332,14 @@ main {
 
 .profile-menu-user-link {
   display: block;
-
   min-width: 0;
   padding: 0;
-
   border-radius: var(--radius-sm);
 }
 
 #menuProfileName,
 #menuProfileEmail {
   display: block;
-
   min-width: 0;
 
   overflow: hidden;
@@ -1414,7 +1356,6 @@ main {
 
 #menuProfileEmail {
   margin-top: 2px;
-
   color: var(--eco-text-muted);
   font-size: 11px;
   line-height: 1.4;
@@ -1447,7 +1388,6 @@ main {
 
   text-align: left;
   text-decoration: none;
-
   cursor: pointer;
 
   transition:
@@ -1466,9 +1406,7 @@ main {
 #profileLogoutBtn > svg {
   width: 20px;
   min-width: 20px;
-
   flex: 0 0 20px;
-
   text-align: center;
 }
 
@@ -1499,6 +1437,7 @@ main {
   color: var(--eco-danger-dark);
 }
 
+
 /* =========================================================
    20. NOTIFICATION BADGE
 ========================================================= */
@@ -1522,7 +1461,6 @@ main {
 
   min-width: 17px;
   height: 17px;
-
   padding: 0 4px;
 
   border: 2px solid var(--eco-white);
@@ -1541,6 +1479,7 @@ main {
 #notificationUnreadBadge[hidden] {
   display: none !important;
 }
+
 
 /* =========================================================
    21. UTILITY CLASSES
@@ -1613,33 +1552,29 @@ main {
   background: var(--eco-border-light);
 }
 
+
 /* =========================================================
    22. GRID UTILITIES
 ========================================================= */
 
 .eco-grid-2 {
   display: grid;
-
   grid-template-columns: repeat(2, minmax(0, 1fr));
-
   gap: var(--space-5);
 }
 
 .eco-grid-3 {
   display: grid;
-
   grid-template-columns: repeat(3, minmax(0, 1fr));
-
   gap: var(--space-5);
 }
 
 .eco-grid-4 {
   display: grid;
-
   grid-template-columns: repeat(4, minmax(0, 1fr));
-
   gap: var(--space-5);
 }
+
 
 /* =========================================================
    23. ACCESSIBILITY
@@ -1654,7 +1589,6 @@ main {
   z-index: var(--z-toast);
 
   padding: 10px 14px;
-
   border-radius: var(--radius-md);
 
   background: var(--eco-green-800);
@@ -1664,7 +1598,6 @@ main {
   font-weight: 700;
 
   transform: translateY(-150%);
-
   transition: transform var(--transition-fast);
 }
 
@@ -1674,9 +1607,9 @@ main {
 
 :focus-visible {
   outline: 3px solid rgba(83, 141, 34, 0.28);
-
   outline-offset: 2px;
 }
+
 
 /* =========================================================
    24. FOOTER
@@ -1684,7 +1617,6 @@ main {
 
 .footer {
   width: 100%;
-
   padding: 64px 0 24px;
 
   border-top: 1px solid var(--eco-border-light);
@@ -1694,20 +1626,20 @@ main {
 }
 
 .footer-container {
-  width: min(calc(100% - (var(--page-padding) * 2)), var(--content-max-width));
-
+  width: min(
+    calc(100% - (var(--page-padding) * 2)),
+    var(--content-max-width)
+  );
   margin-inline: auto;
 }
 
 .footer-grid {
   display: grid;
-
   grid-template-columns:
     1.5fr
     repeat(3, minmax(0, 1fr));
 
   gap: var(--space-10);
-
   padding-bottom: var(--space-10);
 }
 
@@ -1718,38 +1650,30 @@ main {
 .footer-logo {
   display: inline-flex;
   align-items: center;
-
   margin-bottom: var(--space-4);
 
   color: var(--eco-white);
-
   font-size: 20px;
   font-weight: 800;
-
   text-decoration: none;
 }
 
 .footer-logo img {
   width: 110px;
   height: 58px;
-
   object-fit: contain;
 }
 
 .footer-description {
   max-width: 360px;
-
   color: rgba(255, 255, 255, 0.68);
-
   font-size: 13px;
   line-height: 1.75;
 }
 
 .footer-heading {
   margin-bottom: var(--space-4);
-
   color: var(--eco-white);
-
   font-size: 13px;
   font-weight: 800;
 }
@@ -1757,13 +1681,11 @@ main {
 .footer-links {
   display: flex;
   flex-direction: column;
-
   gap: 10px;
 }
 
 .footer-links a {
   color: rgba(255, 255, 255, 0.68);
-
   font-size: 13px;
 
   transition:
@@ -1779,9 +1701,7 @@ main {
 .footer-socials {
   display: flex;
   align-items: center;
-
   gap: 9px;
-
   margin-top: var(--space-5);
 }
 
@@ -1793,96 +1713,104 @@ main {
   width: 36px;
   height: 36px;
 
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-full);
 
-  background: rgba(255, 255, 255, 0.04);
-  color: rgba(255, 255, 255, 0.75);
-
+  color: var(--eco-white);
   transition:
     background var(--transition-fast),
     border-color var(--transition-fast),
-    color var(--transition-fast),
     transform var(--transition-fast);
 }
 
 .footer-social:hover {
   background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.28);
-  color: var(--eco-white);
-  transform: translateY(-1px);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
 }
+
+
+/* =========================================================
+   25. FOOTER BOTTOM
+========================================================= */
 
 .footer-bottom {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
 
-  gap: var(--space-4);
+  gap: 16px;
+  padding-top: 24px;
 
-  padding-top: var(--space-5);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
 
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-
-  color: rgba(255, 255, 255, 0.52);
-
-  font-size: 11px;
+.footer-copyright {
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 12px;
+  line-height: 1.6;
 }
 
 .footer-bottom-links {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-
-  gap: 14px;
+  gap: 16px;
 }
 
 .footer-bottom-links a {
-  color: inherit;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 12px;
+  transition: color var(--transition-fast);
 }
 
 .footer-bottom-links a:hover {
   color: var(--eco-white);
 }
 
+
 /* =========================================================
-   26. RESPONSIVE TABLET
+   26. RESPONSIVE LAYOUT
 ========================================================= */
 
-@media (max-width: 1000px) {
+@media (max-width: 1100px) {
   :root {
     --page-padding: 20px;
-    --section-space: 64px;
   }
 
   .header .navbar {
-    gap: 12px;
-  }
-
-  .header .primary-navigation {
-    gap: 2px;
+    gap: 14px;
   }
 
   .header .nav-link {
-    gap: 7px;
     padding-inline: 10px;
     font-size: 13px;
   }
 
-  .header .login-nav-btn,
-  .header .register-nav-btn {
-    padding-inline: 14px;
-  }
-
   .footer-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-
-    gap: var(--space-8);
+    gap: var(--space-6);
   }
 }
 
+@media (max-width: 900px) {
+  .footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-8);
+  }
+
+  .eco-grid-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .eco-page-header-row {
+    align-items: flex-start;
+  }
+}
+
+
 /* =========================================================
-   27. MOBILE
+   27. TABLET / MOBILE NAVIGATION
 ========================================================= */
 
 @media (max-width: 800px) {
@@ -1892,310 +1820,140 @@ main {
     --section-space: var(--section-space-mobile);
   }
 
-  /* =====================================================
-       MOBILE HEADER
-       ===================================================== */
+  html {
+    scroll-padding-top: calc(var(--header-height) + 12px);
+  }
 
   .header {
-    height: var(--header-mobile-height);
+    height: var(--header-height);
   }
 
   .header .navbar {
-    width: calc(100% - (var(--page-padding-mobile) * 2));
-
-    height: var(--header-mobile-height);
-
+    height: var(--header-height);
     gap: 10px;
   }
 
-  /* =====================================================
-       HAMBURGER — LEFT OF LOGO
-       ===================================================== */
-
-  .header .menu-btn {
-    display: inline-flex;
-
-    order: 1;
-
-    flex: 0 0 auto;
-
-    align-items: center;
-    justify-content: center;
-
-    width: 46px;
-    height: 46px;
-
-    padding: 0;
-
-    border: 1px solid var(--eco-border);
-
-    border-radius: var(--radius-md);
-
-    background: var(--eco-white);
-
-    color: var(--eco-green-800);
-
-    font-size: 20px;
-
-    cursor: pointer;
-  }
-
-  .header .menu-btn:hover,
-  .header .menu-btn.active {
-    background: var(--eco-green-100);
-
-    border-color: var(--eco-green-500);
-
-    color: var(--eco-green-800);
-  }
-
-  /* =====================================================
-       LOGO — AFTER HAMBURGER
-       ===================================================== */
-
   .header .logo {
-    order: 2;
-
-    width: 94px;
+    width: 92px;
     height: 52px;
-
-    margin-right: 0;
   }
 
   .header .logo img {
-    width: 94px;
+    width: 92px;
     height: 52px;
   }
 
-  /* =====================================================
-       HIDE DESKTOP NAVIGATION BY DEFAULT
-       ===================================================== */
+  .header .menu-btn {
+    display: inline-flex;
+  }
 
   .header .primary-navigation {
-    position: fixed;
-
-    order: 6;
-
-    top: var(--header-mobile-height);
-
+    position: absolute;
+    top: calc(100% + 1px);
     left: 0;
     right: 0;
 
-    z-index: calc(var(--z-header) - 1);
-
-    display: flex;
-
+    display: none;
     flex-direction: column;
     align-items: stretch;
 
     width: 100%;
-
-    max-height: calc(100vh - var(--header-mobile-height));
-
-    padding: 12px var(--page-padding-mobile) 20px;
-
-    border-bottom: 1px solid var(--eco-border-light);
-
-    background: rgba(255, 255, 255, 0.98);
-
-    box-shadow: var(--shadow-md);
-
-    backdrop-filter: blur(14px);
-
-    -webkit-backdrop-filter: blur(14px);
-
+    max-height: calc(100vh - var(--header-height) - 16px);
     overflow-y: auto;
 
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
+    padding: 12px;
+    gap: 6px;
 
-    transform: translateY(-8px);
+    border: 1px solid var(--eco-border-light);
+    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
 
-    transition:
-      opacity var(--transition),
-      visibility var(--transition),
-      transform var(--transition);
+    background: var(--eco-white);
+    box-shadow: var(--shadow-md);
   }
 
-  /* =====================================================
-       OPEN MOBILE MENU
-       ===================================================== */
-
-  .header .primary-navigation.show {
-    opacity: 1;
-
-    visibility: visible;
-
-    pointer-events: auto;
-
-    transform: translateY(0);
+  .header .primary-navigation.active,
+  .header .primary-navigation.open {
+    display: flex;
   }
 
-  /* =====================================================
-       MOBILE NAV LINKS
-       ===================================================== */
+  .header .nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+    width: 100%;
+  }
 
   .header .nav-link {
     display: flex;
-
-    align-items: center;
     justify-content: flex-start;
-
     width: 100%;
-
-    min-height: 50px;
-
-    gap: 13px;
-
-    padding: 12px 14px;
-
-    border-radius: var(--radius-md);
-
-    color: var(--eco-text-soft);
-
-    font-size: 14px;
-    font-weight: 600;
-
-    text-decoration: none;
+    min-height: 44px;
+    padding: 12px;
+    border-radius: var(--radius-sm);
   }
 
-  .header .nav-link i,
-  .header .nav-link svg {
-    width: 21px;
-    height: 21px;
-
-    flex: 0 0 21px;
-
-    font-size: 16px;
+  .header .nav-link::after {
+    display: none;
   }
 
-  /* =====================================================
-       MOBILE ACTIVE PAGE
-       ===================================================== */
-
-  .header .nav-link.active,
-  .header .nav-link[aria-current="page"] {
-    position: relative;
-
+  .header .nav-link.active {
     background: var(--eco-green-50);
-
-    color: var(--eco-green-800);
   }
 
-  .header .nav-link.active::after,
-  .header .nav-link[aria-current="page"]::after {
-    position: absolute;
-
-    top: 7px;
-    bottom: 7px;
-
-    left: 0;
-
-    width: 3px;
-    height: auto;
-
-    border-radius: 0 var(--radius-full) var(--radius-full) 0;
-
-    background: var(--eco-green-600);
-
-    transform: none;
-  }
-
-  /* =====================================================
-       PROFILE — RIGHT SIDE
-       ===================================================== */
-
-  /* =====================================================
-   LOGIN — FAR RIGHT
-   ===================================================== */
-
-  .header .login-nav-btn {
-    order: 3;
-
-    margin-left: auto;
-
-    display: inline-flex;
-
-    align-items: center;
-    justify-content: center;
-
-    flex: 0 0 auto;
-
-    min-height: 42px;
-
-    gap: 8px;
-    padding: 9px 14px;
-
-    font-size: 13px;
-  }
-
-  /* =====================================================
-   REGISTER — RIGHT OF LOGIN
-   ===================================================== */
-
+  .header .login-nav-btn,
   .header .register-nav-btn {
-    order: 4;
-
-    display: inline-flex;
-
-    align-items: center;
-    justify-content: center;
-
-    flex: 0 0 auto;
-
-    min-height: 42px;
-
-    gap: 8px;
-    padding: 9px 14px;
-
-    font-size: 13px;
+    width: 100%;
+    min-height: 44px;
+    margin-top: 4px;
   }
 
-  /* =====================================================
-     PROFILE — AFTER REGISTER
-     ===================================================== */
-
-  .header .profile-dropdown {
-    order: 5;
-
-    margin-left: auto;
-  }
-  /* Login/register remain hidden on mobile */
-}
-
-/* =========================================================
-   28. SMALL MOBILE
-========================================================= */
-
-@media (max-width: 480px) {
-  .eco-page-title {
-    font-size: 28px;
+  .eco-page-content {
+    padding-block: var(--space-8);
   }
 
-  .eco-card-body {
-    padding: 18px;
+  .eco-section {
+    padding-block: var(--section-space);
   }
 
-  .eco-form-actions {
+  .eco-form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .eco-grid-3,
+  .eco-grid-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .eco-page-header-row {
     flex-direction: column;
     align-items: stretch;
   }
 
-  .eco-form-actions .eco-button,
-  .eco-form-actions .eco-btn {
-    width: 100%;
+  .eco-page-header-actions {
+    flex-wrap: wrap;
   }
 
-  .profile-menu-header {
-    padding: 10px;
+  .footer {
+    padding-top: 48px;
   }
 
-  /* =====================================================
-   MOBILE PROFILE DROPDOWN
-   ===================================================== */
+  .footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px 24px;
+  }
 
+  .footer-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+  }
 
+  .legal-footer-links {
+    column-gap: 20px;
+    row-gap: 12px;
+  }
+
+  /* Mobile profile dropdown */
   #profileDropdown #profileMenu,
   #profileDropdown .profile-menu {
     top: calc(100% + 8px);
@@ -2214,10 +1972,7 @@ main {
     box-shadow: var(--shadow-lg);
   }
 
-  /* =====================================================
-     MOBILE PROFILE MENU COMPACT ITEMS
-  ===================================================== */
-
+  /* Mobile profile menu compact items */
   .profile-menu-header {
     padding: 10px;
     gap: 10px;
@@ -2245,29 +2000,115 @@ main {
     min-width: 18px;
     font-size: 14px;
   }
+}
+
+
+/* =========================================================
+   28. MOBILE FOOTER AND GRID
+========================================================= */
+
+@media (max-width: 600px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .footer-description {
+    max-width: 100%;
+  }
+
+  .eco-grid-2,
+  .eco-grid-3,
+  .eco-grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  .eco-card-body {
+    padding: 20px;
+  }
+
+  .footer-bottom-links {
+    gap: 12px;
+  }
+}
 
 
 /* =========================================================
    29. EXTRA SMALL DEVICES
 ========================================================= */
 
-@media (max-width: 360px) {
-  .header .logo {
-    width: 82px;
+@media (max-width: 480px) {
+  .eco-page-title {
+    font-size: 28px;
   }
 
-  .header .logo img {
-    width: 82px;
+  .eco-card-body {
+    padding: 18px;
   }
 
-  .header .navbar {
-    gap: 5px;
+  .eco-form-actions {
+    flex-direction: column;
+    align-items: stretch;
   }
 
-  .eco-page-content {
-    padding-inline: 12px;
+  .eco-form-actions .eco-button,
+  .eco-form-actions .eco-btn {
+    width: 100%;
+  }
+
+  .profile-menu-header {
+    padding: 10px;
+  }
+
+  /* Mobile profile dropdown */
+  #profileDropdown #profileMenu,
+  #profileDropdown .profile-menu {
+    top: calc(100% + 8px);
+    left: auto;
+    right: 0;
+
+    width: 290px;
+    max-width: calc(100vw - 24px);
+
+    padding: 6px;
+
+    transform: none;
+    transform-origin: top right;
+
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* Mobile profile menu compact items */
+  .profile-menu-header {
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .profile-menu-header img,
+  #menuProfilePhoto {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    flex-basis: 40px;
+  }
+
+  .profile-menu-item,
+  #profileLogoutBtn {
+    min-height: 38px;
+    gap: 10px;
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+
+  .profile-menu-item i,
+  #profileLogoutBtn i {
+    width: 18px;
+    min-width: 18px;
+    font-size: 14px;
   }
 }
+
 
 /* =========================================================
    30. REDUCED MOTION
@@ -2286,6 +2127,7 @@ main {
     transition-duration: 0.01ms !important;
   }
 }
+
 
 /* =========================================================
    31. PRINT
@@ -2316,23 +2158,31 @@ main {
   }
 }
 
+
+/* =========================================================
+   SIDEBAR DIVIDER
+========================================================= */
+
 .sidebar-divider {
   height: 1px;
   background: #e5e7eb;
   margin: 10px 20px;
 }
 
-/* =====================================================
+
+/* =========================================================
    LEGAL LINKS IN FOOTER
-===================================================== */
+========================================================= */
 
 .legal-footer-links {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 8px 18px;
-  margin: 12px 0;
+
+  column-gap: 28px;
+  row-gap: 14px;
+  margin: 18px 0;
 }
 
 .legal-footer-links a {
@@ -2350,7 +2200,14 @@ main {
 
 @media (max-width: 800px) {
   .legal-footer-links {
-    gap: 10px 14px;
+    column-gap: 20px;
+    row-gap: 12px;
   }
 }
+
+@media (max-width: 480px) {
+  .legal-footer-links {
+    column-gap: 16px;
+    row-gap: 12px;
+  }
 }
