@@ -1,6 +1,6 @@
-# 🌱 **EcoShare**
+# 🌱 **EcoShare — Where Sharing Meets Sustainability**
 
-## 👥 **Team Members**
+## 👥 **Authors**
 
 1. **Alok Kumar**
 2. **Rohan Kumar**
