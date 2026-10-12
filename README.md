@@ -1,9 +1,8 @@
 # 🌱 **EcoShare — Where Sharing Meets Sustainability**
 
 ## 👥 **Authors**
-
-1. **Alok Kumar**
-2. **Rohan Kumar**
-3. **Sidhart Sharame**
-4. **Aryan Pandey**
-5. **Ritwik Jha**
+* *Alok Kumar*
+* *Rohan Kumar*
+* *Siddharth Sharma*
+* *Aryan Pandey*
+* *Ritwik Jha*
