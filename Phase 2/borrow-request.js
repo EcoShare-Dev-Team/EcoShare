@@ -1163,197 +1163,326 @@
   // 23. HANDLE REQUEST SUBMISSION
   // ==========================================
 
-  async function handleRequestSubmission() {
-    // Prevent duplicate submissions.
-    if (isSubmittingRequest || requestCompleted) {
-      return;
-    }
 
-    // Resource
-    if (!currentResource) {
-      showFormMessage("Resource information is unavailable.", "error");
+async function handleRequestSubmission() {
+  if (isSubmittingRequest || requestCompleted) {
+    return;
+  }
 
-      return;
-    }
+  if (!currentResource) {
+    showFormMessage("Resource information is unavailable.", "error");
+    return;
+  }
 
-    // Authentication
-    const user = await getAuthenticatedUser();
+  const user = await getAuthenticatedUser();
 
-    if (!user) {
-      redirectToLogin();
-      return;
-    }
+  if (!user) {
+    redirectToLogin();
+    return;
+  }
 
-    // Defensive availability check.
-    // The database/RPC checks again.
-    if (currentResource.available !== true) {
-      showFormMessage("This resource is currently unavailable.", "error");
+  if (currentResource.available !== true) {
+    showFormMessage("This resource is currently unavailable.", "error");
+    disableRequestForm("Currently Unavailable", true);
+    return;
+  }
 
-      disableRequestForm("Currently Unavailable", true);
+  const hourlyPrice = normalizePrice(currentResource.price_per_hour);
+  const dailyPrice = normalizePrice(currentResource.price_per_day);
 
-      return;
-    }
+  // A resource is free only when neither rental price is configured.
+  const isFreeResource = hourlyPrice <= 0 && dailyPrice <= 0;
 
-    // Validate rental.
+  let rentalTypeValue = null;
+  let rentalQuantityValue = null;
+  let displayedTotal = 0;
+
+  // Validate rental options only for paid resources.
+  if (!isFreeResource) {
     if (!validateRental()) {
       return;
     }
 
-    const rentalTypeValue = getSelectedRentalType();
-
-    const rentalQuantityValue = rentalQuantity
+    rentalTypeValue = getSelectedRentalType();
+    rentalQuantityValue = rentalQuantity
       ? Number(rentalQuantity.value)
       : 1;
 
-    // Final validation.
-    if (!VALID_RENTAL_TYPES.has(rentalTypeValue)) {
-      showFormMessage("Please select a valid rental option.", "error");
-
-      return;
-    }
-
     const maximum =
-      rentalTypeValue === "day" ? MAX_RENTAL_DAYS : MAX_RENTAL_HOURS;
+      rentalTypeValue === "day"
+        ? MAX_RENTAL_DAYS
+        : MAX_RENTAL_HOURS;
 
     if (
+      !VALID_RENTAL_TYPES.has(rentalTypeValue) ||
       !Number.isInteger(rentalQuantityValue) ||
       rentalQuantityValue < MIN_RENTAL_QUANTITY ||
       rentalQuantityValue > maximum
     ) {
       showFormMessage("Please enter a valid rental duration.", "error");
-
       return;
     }
 
-    // Client-side calculation is ONLY
-    // for displaying the amount.
-    const displayedUnitPrice = getResourcePrice(rentalTypeValue);
+    displayedTotal =
+      getResourcePrice(rentalTypeValue) * rentalQuantityValue;
 
-    const displayedTotal = displayedUnitPrice * rentalQuantityValue;
-
-    if (!Number.isFinite(displayedTotal) || displayedTotal < 0) {
-      showFormMessage("Unable to calculate the rental amount.", "error");
-
+    if (!Number.isFinite(displayedTotal) || displayedTotal <= 0) {
+      showFormMessage("The rental amount is invalid.", "error");
       return;
     }
+  }
 
-    // Lock form.
-    isSubmittingRequest = true;
+  const client = getSupabaseClient();
 
-    if (requestBtn) {
-      requestBtn.disabled = true;
+  if (!client) {
+    showFormMessage("Unable to connect to EcoShare. Please refresh.", "error");
+    return;
+  }
 
-      requestBtn.setAttribute("aria-busy", "true");
+  if (!isFreeResource && typeof window.Razorpay !== "function") {
+    showFormMessage(
+      "Payment checkout could not load. Please refresh and try again.",
+      "error",
+    );
+    return;
+  }
 
-      setButtonContent(
-        requestBtn,
-        "fa-solid fa-spinner fa-spin",
-        "Processing...",
-      );
-    }
+  isSubmittingRequest = true;
 
-    try {
-      const client = getSupabaseClient();
+  if (requestBtn) {
+    requestBtn.disabled = true;
+    requestBtn.setAttribute("aria-busy", "true");
+    setButtonContent(
+      requestBtn,
+      "fa-solid fa-spinner fa-spin",
+      isFreeResource ? "Submitting..." : "Preparing Payment...",
+    );
+  }
 
-      if (!client) {
-        throw new Error("Supabase client unavailable");
-      }
-
-      // ==========================================
-      // SECURE RPC SUBMISSION
-      // ==========================================
-      //
-      // IMPORTANT:
-      //
-      // Do NOT send:
-      // - unit_price
-      // - total_price
-      // - borrower_id
-      //
-      // Only user-controlled rental values are sent.
-      //
-      // The database/RPC must:
-      // - authenticate the caller
-      // - determine borrower_id
-      // - verify resource ownership
-      // - verify availability
-      // - verify rental type
-      // - verify quantity
-      // - calculate authoritative price
-      // - create the request
-      // ==========================================
-
+  try {
+    // FREE RESOURCE: keep the existing secure database RPC.
+    if (isFreeResource) {
       const { data: requestId, error } = await client.rpc(
         "create_borrow_request",
         {
           p_resource_id: currentResource.id,
-
-          p_rental_type: rentalTypeValue,
-
-          p_rental_quantity: rentalQuantityValue,
+          p_rental_type: null,
+          p_rental_quantity: null,
         },
       );
 
       if (error) {
-        console.error("EcoShare: Borrow & Pay error:", error);
-
+        console.error("EcoShare: Free borrow request error:", error);
         handleRequestError(error);
-
         return;
       }
 
-      console.log("EcoShare: Borrow request created:", requestId);
-
-      requestCompleted = true;
-
-      showFormMessage(
-        "Your borrow request has been created successfully.",
-        "success",
+      console.log("EcoShare: Free borrow request created:", requestId);
+      completeBorrowRequest(
+        "Your free borrow request has been created successfully.",
       );
+      return;
+    }
 
-      // Disable controls after success.
-      if (rentalType) {
-        rentalType.disabled = true;
-      }
+    // PAID RESOURCE: create the order on the server.
+    const { data: order, error: orderError } =
+      await client.functions.invoke("create-razorpay-order", {
+        body: {
+          resource_id: String(currentResource.id),
+          rental_type: rentalTypeValue,
+          rental_quantity: rentalQuantityValue,
+        },
+      });
 
-      if (rentalQuantity) {
-        rentalQuantity.disabled = true;
-      }
+    if (orderError) {
+      console.error("EcoShare: Order creation error:", orderError);
+      throw new Error(
+        orderError.message || "Unable to create a payment order.",
+      );
+    }
 
-      if (requestBtn) {
-        requestBtn.disabled = true;
+    if (
+      !order ||
+      !order.order_id ||
+      !order.key_id ||
+      !Number.isInteger(Number(order.amount)) ||
+      Number(order.amount) <= 0 ||
+      order.currency !== "INR"
+    ) {
+      throw new Error("The server returned an invalid payment order.");
+    }
 
-        requestBtn.setAttribute("aria-busy", "false");
+    // Wait until checkout is completed, failed, or dismissed.
+    await new Promise((resolve) => {
+      let finished = false;
 
-        setButtonContent(requestBtn, "fa-solid fa-check", "Request Created");
-      }
+      const finish = () => {
+        if (finished) return;
+        finished = true;
+        resolve();
+      };
 
-      // Navigate back to resource details.
-      window.setTimeout(() => {
-        if (window.history.length > 1) {
-          window.history.back();
-          return;
-        }
+      const checkout = new window.Razorpay({
+        key: order.key_id,
+        amount: Number(order.amount),
+        currency: order.currency,
+        name: "EcoShare",
+        description: `Borrow ${normalizeText(currentResource.title, "resource")}`,
+        order_id: order.order_id,
+        prefill: {
+          email: user.email || "",
+        },
+        notes: {
+          resource_id: String(currentResource.id),
+          rental_type: rentalTypeValue,
+          rental_quantity: String(rentalQuantityValue),
+        },
+        theme: {
+          color: "#2e7d32",
+        },
+        modal: {
+          ondismiss: () => {
+            if (!finished) {
+              showFormMessage(
+                "Payment was not completed. You can try again.",
+                "warning",
+              );
+            }
+            finish();
+          },
+        },
+        handler: async (response) => {
+          try {
+            if (
+              !response.razorpay_order_id ||
+              !response.razorpay_payment_id ||
+              !response.razorpay_signature
+            ) {
+              throw new Error("Payment verification details are missing.");
+            }
 
-        window.location.href = `resource-details.html?id=${encodeURIComponent(
-          String(currentResource.id),
-        )}`;
-      }, 1200);
-    } catch (error) {
-      console.error("EcoShare: Unexpected borrow request error:", error);
+            showFormMessage(
+              "Payment received by checkout. Verifying securely...",
+              "info",
+            );
 
-      showFormMessage(
+            const { data: verification, error: verifyError } =
+              await client.functions.invoke("verify-razorpay-payment", {
+                body: {
+                  razorpay_order_id: response.razorpay_order_id,
+                  razorpay_payment_id: response.razorpay_payment_id,
+                  razorpay_signature: response.razorpay_signature,
+                },
+              });
+
+            if (verifyError) {
+              console.error(
+                "EcoShare: Payment verification error:",
+                verifyError,
+              );
+              throw new Error(
+                "Payment could not be confirmed. Do not pay again yet; check your payment status or contact support.",
+              );
+            }
+
+            if (
+              !verification ||
+              verification.success !== true ||
+              !verification.borrow_request_id
+            ) {
+              throw new Error(
+                verification?.error ||
+                  verification?.message ||
+                  "Payment was received, but the borrow request could not be confirmed. Please contact support before retrying.",
+              );
+            }
+
+            console.log(
+              "EcoShare: Payment verified and borrow request created:",
+              verification.borrow_request_id,
+            );
+
+            completeBorrowRequest(
+              "Payment verified! Your borrow request has been sent to the resource owner for approval.",
+            );
+          } catch (error) {
+            console.error("EcoShare: Checkout verification failed:", error);
+            showFormMessage(
+              error.message ||
+                "Payment status could not be confirmed. Please contact support before trying again.",
+              "error",
+            );
+          } finally {
+            finish();
+          }
+        },
+      });
+
+      checkout.on("payment.failed", (event) => {
+        console.error(
+          "EcoShare: Razorpay payment failed:",
+          event?.error?.code || "Unknown error",
+          event?.error?.description || "",
+        );
+
+        showFormMessage(
+          "Payment failed. No borrow request was confirmed. Please try again if your payment was not deducted.",
+          "error",
+        );
+
+        finish();
+      });
+
+      checkout.open();
+    });
+  } catch (error) {
+    console.error("EcoShare: Borrow & Pay error:", error);
+
+    showFormMessage(
+      error.message ||
         "Unable to process your request right now. Please try again.",
-        "error",
-      );
-
+      "error",
+    );
+  } finally {
+    if (!requestCompleted) {
       resetRequestButton();
-    } finally {
-      if (!requestCompleted) {
-        isSubmittingRequest = false;
-      }
     }
   }
+}
+
+// Shared success handling for free and paid requests.
+function completeBorrowRequest(message) {
+  requestCompleted = true;
+
+  showFormMessage(message, "success");
+
+  if (rentalType) {
+    rentalType.disabled = true;
+  }
+
+  if (rentalQuantity) {
+    rentalQuantity.disabled = true;
+  }
+
+  if (requestBtn) {
+    requestBtn.disabled = true;
+    requestBtn.setAttribute("aria-busy", "false");
+    setButtonContent(requestBtn, "fa-solid fa-check", "Request Created");
+  }
+
+  window.setTimeout(() => {
+    if (window.history.length > 1) {
+      window.history.back();
+      return;
+    }
+
+    window.location.href =
+      `resource-details.html?id=${encodeURIComponent(
+        String(currentResource.id),
+      )}`;
+  }, 1800);
+}
+
 
   // ==========================================
   // 24. HANDLE REQUEST ERROR

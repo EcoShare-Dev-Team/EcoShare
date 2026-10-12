@@ -980,6 +980,23 @@
 
     const locationText = resourceLocation?.value.trim() || "";
 
+    if (
+  !Number.isFinite(currentLatitude) ||
+  currentLatitude < -90 ||
+  currentLatitude > 90 ||
+  !Number.isFinite(currentLongitude) ||
+  currentLongitude < -180 ||
+  currentLongitude > 180
+) {
+  showFieldError(
+    resourceLocation,
+    locationError,
+    "Please capture the pickup location using the location button."
+  );
+
+  return;
+}
+
     let valid = true;
 
     // ---------------------------------------------------------
