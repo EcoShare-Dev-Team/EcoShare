@@ -55,7 +55,7 @@
   const RESOURCE_DETAILS_PAGE = "resource-details.html";
 
   const RESOURCE_LIMIT = 100;
-  const MAX_DISTANCE_KM = 30;
+  const MAX_DISTANCE_KM = 5;
 
   const RESOURCE_STORAGE_BUCKET = "resource-images";
   const DEFAULT_CURRENCY = "₹";
@@ -947,7 +947,7 @@
        */
 
       await getUserLocation({
-        allowGPS: false,
+        allowGPS: true,
       });
 
       const rows = await fetchResources();
