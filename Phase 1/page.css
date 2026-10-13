@@ -1872,9 +1872,10 @@ main {
   }
 
   .header .primary-navigation.active,
-  .header .primary-navigation.open {
-    display: flex;
-  }
+.header .primary-navigation.open,
+.header .primary-navigation.show {
+  display: flex;
+}
 
   .header .nav-links {
     display: flex;
